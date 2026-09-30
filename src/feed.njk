@@ -1,0 +1,19 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>digitalfadi | Learn</title>
+  <link>{{ site.url }}/learn/</link>
+  <description>Google Ads, explained properly.</description>
+  {%- for p in collections.posts | reverse %}
+  <item>
+    <title>{{ p.data.title }}</title>
+    <link>{{ site.url }}{{ p.url }}</link>
+    <guid>{{ site.url }}{{ p.url }}</guid>
+    <pubDate>{{ p.date | rfc822 }}</pubDate>
+    <description>{{ p.data.description }}</description>
+  </item>
+  {%- endfor %}
+</channel></rss>

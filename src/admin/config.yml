@@ -1,0 +1,47 @@
+backend:
+  name: github
+  repo: FawadHussainVA/digitalfadi
+  branch: main
+  base_url: https://digitalfadi.com
+  auth_endpoint: api/auth
+
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+publish_mode: simple
+site_url: https://digitalfadi.com
+
+collections:
+  - name: "posts"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Sentence case. Becomes the heading, the page title and the web address."
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        pattern: ['^.{50,160}$', "Needs to be between 50 and 160 characters for Google"]
+        hint: "Shown on the Learn page and as the Google search snippet."
+      - label: "Topic badge"
+        name: "topic"
+        widget: "select"
+        default: "Strategy"
+        options: ["Search", "Shopping", "Performance Max", "YouTube", "Display",
+                  "Demand Gen", "Remarketing", "Local Services", "Tracking", "Strategy"]
+      - label: "Publish date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: true
+      - label: "Article"
+        name: "body"
+        widget: "markdown"
+        hint: "Use Heading 2 for sections. This becomes a real HTML page, so Google indexes every word."
