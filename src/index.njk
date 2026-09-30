@@ -164,8 +164,9 @@ permalink: /
 
       <div class="fcard fade" style="--d:.35s">
         <div class="fcard-head"><b>Contact us</b><span>Reply in 1 working day</span></div>
-        <form name="contact-hero" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-leadform>
+        <form name="contact-hero" method="POST" data-leadform>
           <input type="hidden" name="form-name" value="contact-hero">
+          <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
           <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
           <div class="frow">
             <div class="field">
@@ -973,8 +974,9 @@ permalink: /
 
     <div class="fcard rv">
       <div class="fcard-head"><b>Free Google Ads audit</b><span>No obligation</span></div>
-      <form name="account-analysis" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-leadform>
+      <form name="account-analysis" method="POST" data-leadform>
         <input type="hidden" name="form-name" value="account-analysis">
+          <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
         <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
         <div class="frow">
           <div class="field">

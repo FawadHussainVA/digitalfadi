@@ -10,7 +10,6 @@
 <meta property="og:description" content="{{ description }}">
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
-<meta name="google-site-verification" content="liPVjOKC7fgMfePXJWAC2L7wLSnRx2Fqx3A3FzteJY8" />
 {% block extrahead %}{% endblock %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,8 +17,8 @@
 <meta name="theme-color" content="#6A5AE0">
 <meta property="og:site_name" content="digitalfadi">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236A5AE0'/%3E%3Ccircle cx='46' cy='18' r='7' fill='%23FBC57C'/%3E%3Ctext x='32' y='45' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='bold' fill='white' text-anchor='middle'%3EDF%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236A5AE0'/%3E%3Ccircle cx='46' cy='18' r='7' fill='%23FBC57C'/%3E%3Ctext x='32' y='45' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='bold' fill='white' text-anchor='middle'%3EDF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236A5AE0'/%3E%3Ccircle cx='46' cy='18' r='7' fill='%23FBC57C'/%3E%3Ctext x='32' y='47' font-family='Arial,Helvetica,sans-serif' font-size='34' font-weight='bold' fill='white' text-anchor='middle'%3Ed%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236A5AE0'/%3E%3Ccircle cx='46' cy='18' r='7' fill='%23FBC57C'/%3E%3Ctext x='32' y='47' font-family='Arial,Helvetica,sans-serif' font-size='34' font-weight='bold' fill='white' text-anchor='middle'%3Ed%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
 :root{
@@ -872,12 +871,11 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 
 
   /* ---------- lead forms ----------
-     Deployed on Netlify, these post to Netlify Forms with no setup required.
-     Hosting elsewhere? Replace FORM_ENDPOINT with a Formspree URL
-     (e.g. 'https://formspree.io/f/xxxxxxx'). If the post fails for any
-     reason the form falls back to opening the visitor's email client,
-     so a submission is never silently lost. */
-  var FORM_ENDPOINT = '/';
+     Posts to Web3Forms, which emails the submission straight through.
+     The access key lives in src/_data/site.json, nowhere else.
+     If the post fails for any reason the form falls back to opening the
+     visitor's email client, so a submission is never silently lost. */
+  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
   var FORM_EMAIL = '{{ site.email }}';
 
   function formDone(card, email){
@@ -914,12 +912,23 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
       btn.disabled = true;
       btn.textContent = 'Sending\u2026';
 
+      var payload = {};
+      fd.forEach(function(v, k){
+        if(k === 'bot-field') return;
+        payload[k] = payload[k] ? payload[k] + ', ' + v : v;
+      });
+      payload.subject = fd.get('form-name') === 'account-analysis'
+        ? 'Free Google Ads audit request'
+        : 'Website enquiry';
+      payload.from_name = 'digitalfadi website';
       fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: new URLSearchParams(fd).toString()
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify(payload)
       }).then(function(r){
-        if(!r.ok) throw new Error('bad status');
+        return r.json();
+      }).then(function(d){
+        if(!d || !d.success) throw new Error('rejected');
         formDone(card, email);
       }).catch(function(){
         btn.disabled = false;
