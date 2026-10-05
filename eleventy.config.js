@@ -7,6 +7,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico" });
   eleventyConfig.addPassthroughCopy({ "src/apple-touch-icon.png": "apple-touch-icon.png" });
   eleventyConfig.addPassthroughCopy({ "src/icon-512.png": "icon-512.png" });
+  eleventyConfig.addPassthroughCopy({ "src/icon-96.png": "icon-96.png" });
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
 
   eleventyConfig.addFilter("readable", (d) =>
