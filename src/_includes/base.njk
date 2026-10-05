@@ -211,6 +211,7 @@ section{padding:clamp(50px,6.5vw,92px) 0;position:relative}
 
 /* channel cards */
 .channels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(min-width:1001px){.channels>.ch:last-child:nth-child(3n+1){grid-column:2}}
 .ch{background:var(--bg-2);border:var(--bd);border-radius:var(--r);box-shadow:var(--sh);padding:24px 22px 22px;display:flex;flex-direction:column;gap:11px;min-height:200px;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
 .ch:hover{transform:translate(-2px,-2px);box-shadow:var(--sh-lg)}
 .ch-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
