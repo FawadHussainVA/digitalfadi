@@ -253,6 +253,15 @@ section{padding:clamp(50px,6.5vw,92px) 0;position:relative}
 .sec-head.left{text-align:left;max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:end}
 
 /* channel cards */
+/* ---- service page: content with a sticky enquiry sidebar ---- */
+.svc{display:grid;grid-template-columns:minmax(0,1fr) 348px;gap:clamp(28px,3.4vw,54px);align-items:start}
+.svc-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
+.svc-side .fcard,.svc-side .panel{margin:0}
+/* ---- Google Premier Partner badge (official asset) ---- */
+.gpbadge{display:inline-block;line-height:0;transition:transform .13s var(--ease)}
+.gpbadge:hover{transform:translateY(-2px)}
+.gpbadge img{width:120px;height:120px;display:block}
+.foot .gpbadge{margin-top:14px}
 .channels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(min-width:1001px){.channels>.ch:last-child:nth-child(3n+1){grid-column:2}}
 .ch{background:var(--bg-2);border:var(--bd);border-radius:var(--r);box-shadow:var(--sh);padding:24px 22px 22px;display:flex;flex-direction:column;gap:11px;min-height:200px;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
@@ -567,6 +576,8 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 @media(max-width:1000px){
   .hero-grid,.deskband-in{grid-template-columns:1fr}
   .channels,.posts{grid-template-columns:repeat(2,1fr)}
+  .svc{grid-template-columns:1fr}
+  .svc-side{position:static}
   .phases{grid-template-columns:repeat(2,1fr)}
   .tiers,.quotes,.cases,.feat,.news,.vs{grid-template-columns:1fr}
   .feat-vis{border-left:0;border-top:var(--bd)}
@@ -753,6 +764,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <a href="/" class="logo" style="font-size:1.05rem" aria-label="digitalfadi home"><i aria-hidden="true"></i>digitalfadi</a>
       <p style="margin-top:10px;font-size:.86rem;max-width:34ch">A Google Ads agency. Search, Shopping, Performance Max, YouTube, Display, Demand Gen and remarketing.</p>
+      <a class="gpbadge" href="{{ site.partnerUrl }}" target="_blank" rel="noopener"
+         aria-label="digitalfadi is a 2026 Google Premier Partner. Opens the Google Partners directory listing.">
+        <img src="https://www.gstatic.com/partners/badge/images/2026/PremierBadgeClickable.svg"
+             alt="Google Premier Partner 2026" width="150" height="150" loading="lazy" decoding="async">
+      </a>
     </div>
     <nav class="foot-nav" aria-label="Footer">
       <a href="/#about">About</a>

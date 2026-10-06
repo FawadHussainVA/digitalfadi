@@ -11,11 +11,7 @@ layout: base.njk
   "serviceType": {{ heading | dump | safe }},
   "url": "{{ site.url }}{{ page.url }}",
   "areaServed": ["US", "GB", "AU"],
-  "provider": {
-    "@type": "ProfessionalService",
-    "name": "digitalfadi",
-    "url": "{{ site.url }}/"
-  }
+  "provider": {"@type": "ProfessionalService", "name": "digitalfadi", "url": "{{ site.url }}/"}
 }
 </script>
 <script type="application/ld+json">
@@ -48,7 +44,7 @@ layout: base.njk
 {% endif %}
 {% endblock %}
 <div class="phero">
-  <div class="wrap phero-in narrow">
+  <div class="wrap phero-in">
     <nav class="crumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span aria-hidden="true">/</span>
@@ -56,98 +52,92 @@ layout: base.njk
       <span aria-hidden="true">/</span>
       <span aria-current="page">{{ crumb }}</span>
     </nav>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch">{{ heading }}</h1>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:21ch">{{ heading }}</h1>
     <p style="max-width:58ch">{{ standfirst }}</p>
+    <div class="hero-cta">
+      <a href="#enquiry" class="btn">Get a free audit <span class="arw">&rarr;</span></a>
+      <a href="/#pricing" class="btn ghost">See pricing</a>
+    </div>
+    <p class="hero-note"><b aria-hidden="true"></b>Read-only access is enough to start. We never change anything without asking.</p>
   </div>
 </div>
 
-<section class="wrap narrow pt0">
-  <div class="fcard">
-    <div class="fcard-head">
-      <b>Free Google Ads audit</b>
-      <span>No obligation</span>
-    </div>
-    <form name="account-analysis" method="POST" data-leadform>
-      <input type="hidden" name="form-name" value="account-analysis">
-      <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
-      <input type="hidden" name="page" value="{{ crumb }}">
-      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
-      <div class="frow">
-        <div class="field">
-          <label for="s-name">Your name</label>
-          <input id="s-name" name="name" type="text" autocomplete="name" required placeholder="Full name">
-        </div>
-        <div class="field">
-          <label for="s-email">Email</label>
-          <input id="s-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
-        </div>
-      </div>
-      <div class="frow">
-        <div class="field">
-          <label for="s-site">Website</label>
-          <input id="s-site" name="website" type="text" autocomplete="url" required placeholder="yourcompany.com">
-        </div>
-        <div class="field">
-          <label for="s-budget">Monthly Google Ads budget</label>
-          <select id="s-budget" name="budget" required>
-            <option value="">Select a range</option>
-            <option>Under $1,000</option>
-            <option>$1,000 &ndash; $5,000</option>
-            <option>$5,000 &ndash; $20,000</option>
-            <option>$20,000 &ndash; $50,000</option>
-            <option>$50,000+</option>
-            <option>Not running Google Ads yet</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
-        <label for="s-msg">What do you want the account to do?</label>
-        <textarea id="s-msg" name="message" rows="3" placeholder="One or two lines is plenty."></textarea>
-      </div>
-      <button type="submit" class="btn fsubmit">Get my free audit <span class="arw">&rarr;</span></button>
-      <p class="fnote">We reply within one working day. Your details are never shared or sold.</p>
-    </form>
-  </div>
+<section class="wrap pt0">
+  <div class="svc">
 
-  <div class="panel" style="margin-top:22px">
-    <dl>
-      <dt class="first">Email</dt>
-      <dd><a href="mailto:{{ site.email }}?subject={{ crumb | urlencode }}%20enquiry" style="color:var(--purple);font-weight:700">{{ site.email }}</a></dd>
-      <dt>WhatsApp</dt>
-      <dd><a href="https://wa.me/{{ site.whatsapp }}?text=Hi%20digitalfadi%2C%20I%27d%20like%20to%20talk%20about%20{{ crumb | urlencode }}." target="_blank" rel="noopener" style="color:var(--purple);font-weight:700">Message us directly</a>, usually the fastest route.</dd>
-      <dt>Upwork</dt>
-      <dd><a href="{{ site.upwork }}" target="_blank" rel="noopener" style="color:var(--purple);font-weight:700">Hire through Upwork</a> if you would prefer contracts and payments handled on the platform.</dd>
-      <dt>LinkedIn</dt>
-      <dd><a href="{{ site.linkedin }}" target="_blank" rel="noopener" style="color:var(--purple);font-weight:700">Connect on LinkedIn</a></dd>
-      <dt>Response time</dt>
-      <dd>Messages are monitored 24/7. We reply within one working day at the latest, usually much sooner.</dd>
-    </dl>
-  </div>
-</section>
-
-<article class="article">
-  <div class="wrap narrow">
-    <div class="prose">
+    <div class="svc-main">
+      <div class="prose">
 {{ content | safe }}
+      </div>
+
+      {% if faqs %}
+      <div class="sec-head rv" style="margin-top:52px">
+        <span class="eyebrow">Questions</span>
+        <h2>Common questions about <span class="hl">{{ crumb | lower }}</span></h2>
+      </div>
+      {%- for f in faqs %}
+      <details>
+        <summary>{{ f.q }}</summary>
+        <p>{{ f.a }}</p>
+      </details>
+      {%- endfor %}
+      {% endif %}
     </div>
-  </div>
-</article>
 
+    <aside class="svc-side" id="enquiry" aria-label="Enquiry">
+      <div class="fcard">
+        <div class="fcard-head">
+          <b>Free Google Ads audit</b>
+          <span>No obligation</span>
+        </div>
+        <form name="account-analysis" method="POST" data-leadform>
+          <input type="hidden" name="form-name" value="account-analysis">
+          <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
+          <input type="hidden" name="page" value="{{ crumb }}">
+          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
+          <div class="field">
+            <label for="s-name">Your name</label>
+            <input id="s-name" name="name" type="text" autocomplete="name" required placeholder="Full name">
+          </div>
+          <div class="field">
+            <label for="s-email">Email</label>
+            <input id="s-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+          </div>
+          <div class="field">
+            <label for="s-site">Website</label>
+            <input id="s-site" name="website" type="text" autocomplete="url" required placeholder="yourcompany.com">
+          </div>
+          <div class="field">
+            <label for="s-budget">Monthly Google Ads budget</label>
+            <select id="s-budget" name="budget" required>
+              <option value="">Select a range</option>
+              <option>Under $1,000</option>
+              <option>$1,000 &ndash; $5,000</option>
+              <option>$5,000 &ndash; $20,000</option>
+              <option>$20,000 &ndash; $50,000</option>
+              <option>$50,000+</option>
+              <option>Not running Google Ads yet</option>
+            </select>
+          </div>
+          <button type="submit" class="btn fsubmit">Get my free audit <span class="arw">&rarr;</span></button>
+          <p class="fnote">We reply within one working day. Your details are never shared or sold.</p>
+        </form>
+      </div>
 
-{% if faqs %}
-<section class="wrap narrow pt0">
-  <div class="sec-head rv">
-    <span class="eyebrow">Questions</span>
-    <h2>Common questions about <span class="hl">{{ crumb | lower }}</span></h2>
+      <div class="panel">
+        <dl>
+          <dt class="first">Email</dt>
+          <dd><a href="mailto:{{ site.email }}?subject={{ crumb | urlencode }}%20enquiry" style="color:var(--purple);font-weight:700">{{ site.email }}</a></dd>
+          <dt>WhatsApp</dt>
+          <dd><a href="https://wa.me/{{ site.whatsapp }}?text=Hi%20digitalfadi%2C%20I%27d%20like%20to%20talk%20about%20{{ crumb | urlencode }}." target="_blank" rel="noopener" style="color:var(--purple);font-weight:700">Message us directly</a></dd>
+          <dt>Response time</dt>
+          <dd>Monitored 24/7. We reply within one working day at the latest.</dd>
+        </dl>
+      </div>
+    </aside>
+
   </div>
-  {%- for f in faqs %}
-  <details>
-    <summary>{{ f.q }}</summary>
-    <p>{{ f.a }}</p>
-  </details>
-  {%- endfor %}
 </section>
-{% endif %}
 
 <div class="cta-band" id="contact-cta">
   <div class="wrap">
