@@ -2,6 +2,32 @@
 layout: base.njk
 ogtype: article
 ---
+{% block extrahead %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ title | dump | safe }},
+  "description": {{ description | dump | safe }},
+  "datePublished": "{{ date | iso }}",
+  "dateModified": "{{ date | iso }}",
+  "author": {"@type":"Person","name":{{ site.authorName | dump | safe }}},
+  "publisher": {"@type":"Organization","name":"digitalfadi"},
+  "mainEntityOfPage": "{{ site.url }}{{ page.url }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},
+    {"@type":"ListItem","position":2,"name":"Learn","item":"{{ site.url }}/learn/"},
+    {"@type":"ListItem","position":3,"name":{{ title | dump | safe }},"item":"{{ site.url }}{{ page.url }}"}
+  ]
+}
+</script>
+{% endblock %}
 <div class="phero">
   <div class="wrap phero-in narrow">
     <nav class="crumb" aria-label="Breadcrumb">

@@ -125,6 +125,30 @@ nav{display:flex;gap:6px;margin-left:auto;font-size:.9rem;font-weight:600}
 nav a{color:var(--slate);padding:8px 13px;border-radius:999px;transition:background .2s,color .2s}
 nav a:hover{background:var(--purple-l);color:var(--purple)}
 nav a.on{background:var(--purple);color:#fff}
+  /* ---- services dropdown ---- */
+  .navdrop{position:relative;display:inline-flex}
+  .navtop{display:inline-flex;align-items:center;gap:7px}
+  .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
+    border-top:5px solid currentColor;display:block;transition:transform .2s var(--ease)}
+  .navdrop:hover .caret,.navdrop:focus-within .caret{transform:rotate(180deg)}
+  .navmenu{position:absolute;top:calc(100% + 12px);left:0;min-width:262px;background:var(--bg-2);
+    border:var(--bd);border-radius:var(--r-sm);box-shadow:var(--sh);padding:8px;
+    display:none;flex-direction:column;gap:2px;z-index:80}
+  .navdrop:hover .navmenu,.navdrop:focus-within .navmenu{display:flex}
+  .navmenu a{white-space:nowrap;border-radius:var(--r-sm);padding:9px 12px}
+  /* ---- mobile menu ---- */
+  .navtoggle{display:none;width:44px;height:44px;flex:none;border:var(--bd);border-radius:var(--r-sm);
+    background:var(--bg-2);box-shadow:3px 3px 0 var(--ink);cursor:pointer;padding:0;
+    place-items:center;transition:transform .13s var(--ease),box-shadow .13s var(--ease)}
+  .navtoggle:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .navtoggle i{display:block;width:18px;height:2px;background:var(--ink);position:relative}
+  .navtoggle i::before,.navtoggle i::after{content:"";position:absolute;left:0;width:18px;height:2px;
+    background:var(--ink);transition:transform .2s var(--ease),top .2s var(--ease)}
+  .navtoggle i::before{top:-6px}
+  .navtoggle i::after{top:6px}
+  .navtoggle[aria-expanded="true"] i{background:transparent}
+  .navtoggle[aria-expanded="true"] i::before{top:0;transform:rotate(45deg)}
+  .navtoggle[aria-expanded="true"] i::after{top:0;transform:rotate(-45deg)}
 
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
@@ -529,6 +553,15 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
   .tiers,.quotes,.cases,.feat,.news,.vs{grid-template-columns:1fr}
   .feat-vis{border-left:0;border-top:var(--bd)}
   nav{display:none}
+  .navtoggle{display:grid;margin-left:auto}
+  nav#mainnav.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+    gap:2px;background:var(--bg-2);border-bottom:var(--bd);padding:14px 20px 20px;
+    max-height:78vh;overflow-y:auto;font-size:.95rem}
+  nav#mainnav.open a{padding:12px 14px;border-radius:var(--r-sm)}
+  nav#mainnav.open .navdrop{display:flex;flex-direction:column}
+  nav#mainnav.open .navmenu{position:static;display:flex;min-width:0;border:0;box-shadow:none;
+    padding:2px 0 6px 16px;background:transparent}
+  nav#mainnav.open .caret{display:none}
   .sec-head.left{grid-template-columns:1fr;gap:14px}
 }
 @media(max-width:680px){
@@ -669,13 +702,22 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 <header id="hdr">
   <div class="wrap bar">
     <a href="/" class="logo" aria-label="digitalfadi home"><i aria-hidden="true"></i>digitalfadi</a>
-    <nav aria-label="Main">
-      <a href="/#about" class="">About</a>
-      <a href="/#services" class="">Google Ads Services</a>
-      <a href="/learn/" class="">Learn</a>
-      <a href="/#reviews" class="">Reviews</a>
-      <a href="/#contact" class="">Contact</a>
+    <nav aria-label="Main" id="mainnav">
+      <a href="/#about">About</a>
+      <span class="navdrop">
+        <a href="/#services" class="navtop">Google Ads Services<i class="caret" aria-hidden="true"></i></a>
+        <span class="navmenu">
+          <a href="/google-ads-audit/">Google Ads audit</a>
+          <a href="/performance-max-management/">Performance Max management</a>
+          <a href="/google-ads-for-ecommerce/">Google Ads for e-commerce</a>
+          <a href="/google-ads-for-local-services/">Google Ads for local services</a>
+        </span>
+      </span>
+      <a href="/learn/">Learn</a>
+      <a href="/#reviews">Reviews</a>
+      <a href="/#contact">Contact</a>
     </nav>
+    <button class="navtoggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><i aria-hidden="true"></i></button>
     <a href="/#contact" class="btn sm">Free consultation</a>
   </div>
 </header>
@@ -693,6 +735,10 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
     <nav class="foot-nav" aria-label="Footer">
       <a href="/#about">About</a>
       <a href="/#services">Google Ads Services</a>
+      <a href="/google-ads-audit/">Audit</a>
+      <a href="/performance-max-management/">Performance Max</a>
+      <a href="/google-ads-for-ecommerce/">E-commerce</a>
+      <a href="/google-ads-for-local-services/">Local services</a>
       <a href="/learn/">Learn</a>
       <a href="/#reviews">Reviews</a>
       <a href="/#contact">Contact</a>
@@ -1005,6 +1051,31 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
       }, {rootMargin:'-45% 0px -50% 0px'});
       spyTargets.forEach(function(t){ spy.observe(t); });
     }
+  }
+
+  /* ---------- mobile menu ---------- */
+  var navToggle = document.getElementById('navToggle'),
+      mainNav   = document.getElementById('mainnav');
+  if(navToggle && mainNav){
+    navToggle.addEventListener('click', function(){
+      var open = mainNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mainNav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded','false');
+        navToggle.setAttribute('aria-label','Open menu');
+      }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && mainNav.classList.contains('open')){
+        mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded','false');
+        navToggle.focus();
+      }
+    });
   }
 
 })();
