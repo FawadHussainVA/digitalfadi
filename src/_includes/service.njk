@@ -82,6 +82,18 @@ layout: base.njk
       </details>
       {%- endfor %}
       {% endif %}
+
+      {% set others = collections.posts | reverse %}
+      {% if others.length %}
+      <div class="note rv further-reading" style="margin-top:40px">
+        <h4>Further reading</h4>
+        <p>
+        {%- for a in others -%}
+          {% if loop.index <= 3 %}<a href="{{ a.url }}" style="color:var(--purple);font-weight:700">{{ a.data.title }}</a>{% if not loop.last and loop.index < 3 %} &middot; {% endif %}{% endif %}
+        {%- endfor -%}
+        </p>
+      </div>
+      {% endif %}
     </div>
 
     <aside class="svc-side" id="enquiry" aria-label="Enquiry">
