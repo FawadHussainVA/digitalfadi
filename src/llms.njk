@@ -1,0 +1,46 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# digitalfadi
+
+> A Google Ads agency and nothing else, run by {{ site.authorName }}. Search, Shopping,
+> Performance Max, YouTube, Display, Demand Gen and remarketing, built on verified
+> conversion tracking and managed against cost per lead or sale.
+
+## Facts
+
+- Operates on one advertising platform only: Google Ads. No SEO, social advertising,
+  branding or website builds.
+- Five years running Google Ads accounts. More than 100 businesses served across the
+  US, UK and Australia. 25 accounts live at present, across twelve sectors.
+- Google Partner. Top Rated Plus on Upwork with a 100% job success score.
+- Sectors: skincare, electronics, fall-alert wearables, private label manufacturing,
+  SAAS, media firms, law firms, HVAC, landscaping, moving companies, logistics,
+  apartment rentals.
+- Pricing, published: $200 one-time account analysis, $999 per month management,
+  or 10% of managed ad spend for larger accounts. USD. Ad spend is paid by the client
+  directly to Google and is never invoiced or marked up.
+- Contact: {{ site.email }}. Messages monitored 24/7, reply within one working day.
+
+## Services
+
+- [Google Ads audit]({{ site.url }}/google-ads-audit/): paid written account review,
+  $200, tracking checked before anything else.
+- [Performance Max management]({{ site.url }}/performance-max-management/): brand
+  exclusions, deliberate asset groups, channel-level reporting.
+- [Google Ads for e-commerce]({{ site.url }}/google-ads-for-ecommerce/): Merchant Center
+  and product feed work first, then Shopping and Performance Max structured by margin.
+- [Google Ads for local services]({{ site.url }}/google-ads-for-local-services/): Local
+  Services Ads and geo-targeted Search, measured on booked jobs rather than calls.
+
+## Writing
+
+{% for p in collections.posts | reverse -%}
+- [{{ p.data.title }}]({{ site.url }}{{ p.url }}): {{ p.data.description }}
+{% endfor %}
+## Pages
+
+- [Home]({{ site.url }}/)
+- [Learn]({{ site.url }}/learn/)
+- [Privacy and terms]({{ site.url }}/privacy-terms/)
