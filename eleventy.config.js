@@ -16,7 +16,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("rfc822", (d) => new Date(d).toUTCString());
 
   eleventyConfig.addCollection("posts", (c) =>
-    c.getFilteredByGlob("src/posts/*.md").sort((a, b) => a.date - b.date));
+    c.getFilteredByGlob("src/posts/*.md")
+      .sort((a, b) => (a.data.order || 0) - (b.data.order || 0) || a.date - b.date));
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },

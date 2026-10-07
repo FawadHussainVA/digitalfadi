@@ -2,7 +2,8 @@
 title: "Why Google Ads is important for a growing business"
 description: "Google Ads is the one channel where the customer starts the conversation. What that is worth, what it costs when run badly, and when it is the wrong answer."
 topic: "Strategy"
-date: 2026-10-01
+date: 2026-10-07
+order: 1
 ---
 
 Most marketing interrupts people. A display banner, a pre-roll advert, a sponsored post in a feed: all of them arrive uninvited, and all of them start by having to earn attention that was pointed somewhere else. Google Ads is the exception. Somebody has a problem, they type it into a search box, and your advert appears in the half second where they are actively looking for the answer. That single difference is the reason paid search still takes the largest share of most serious advertising budgets, and it is the reason it is worth doing properly rather than approximately.
