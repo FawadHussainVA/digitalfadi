@@ -78,6 +78,6 @@ Three questions, all answerable:
 
 ## Where to go next
 
-If you want this checked properly in your own account, that is part of a [Google Ads audit](/google-ads-audit/), or see how we handle it on an ongoing basis under [Performance Max management](/performance-max-management/).
+If you want this checked properly in your own account, that is part of a [Google Ads audit](/google-ads-audit/), which looks at brand exclusions and the channel breakdown before anything else.
 
 The brand question has its own article: [should you bid on your own brand name](/learn/should-you-bid-on-your-own-brand-name/).

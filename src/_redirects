@@ -1,4 +1,4 @@
-# Old multi-page URLs -> one-pager anchors. Netlify reads this file at the site root.
+# Old multi-page URLs -> one-pager anchors.
 /about.html                 /#about       301
 /google-ads-services.html   /#services    301
 /reviews.html               /#reviews     301
@@ -7,6 +7,7 @@
 /post-branded-search.html  /learn/  301
 /privacy-terms.html  /privacy-terms/  301
 
-# CMS login (Netlify Git Gateway is deprecated, so the site brokers this itself)
-/api/auth      /.netlify/functions/auth      200
-/api/callback  /.netlify/functions/callback  200
+
+# Retired service page, folded into the audit offering
+/performance-max-management/  /google-ads-audit/  301
+/performance-max-management   /google-ads-audit/  301
