@@ -38,10 +38,48 @@ export async function onRequestPost({ request, env }) {
       return json({ success: false, error: "Invalid details" }, 400);
     }
 
-    const excluded = new Set([
-      "access_key", "bot-field", "form-name",
-      "subject", "from_name"
-    ]);
+    // Verify Cloudflare Turnstile before sending email.
+    const token = String(data["cf-turnstile-response"] || "");
+
+    if (!env.TURNSTILE_SECRET_KEY) {
+      return json({ success: false, error: "Turnstile not configured" }, 503);
+    }
+
+    if (!token || token.length > 2048) {
+      return json({ success: false, error: "Verification required" }, 403);
+    }
+
+    const verification = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          secret: env.TURNSTILE_SECRET_KEY,
+          response: token,
+          remoteip: request.headers.get("CF-Connecting-IP")
+        })
+      }
+    );
+
+    if (!verification.ok) {
+      return json({ success: false, error: "Verification unavailable" }, 502);
+    }
+
+    const verificationResult = await verification.json();
+
+    if (
+      verificationResult.success !== true ||
+      verificationResult.hostname !== "digitalfadi.com"
+    ) {
+      return json({ success: false, error: "Verification failed" }, 403);
+    }
+
+   
+const excluded = new Set([
+  "access_key", "bot-field", "form-name",
+  "subject", "from_name", "cf-turnstile-response"
+]);
 
     const lines = Object.entries(data)
       .filter(([key]) => !excluded.has(key))
