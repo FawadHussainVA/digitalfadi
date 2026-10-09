@@ -960,7 +960,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      The access key lives in src/_data/site.json, nowhere else.
      If the post fails for any reason the form falls back to opening the
      visitor's email client, so a submission is never silently lost. */
-  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+  var FORM_ENDPOINT = '/api/contact';
   var FORM_EMAIL = '{{ site.email }}';
 
   function formDone(card, email){
