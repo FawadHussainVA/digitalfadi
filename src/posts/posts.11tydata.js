@@ -7,7 +7,7 @@ module.exports = {
     // browser tab and Google get the brand suffix, the h1 does not
     // brand suffix only when it still fits what Google shows
     pageTitle: (data) => {
-      const full = `${data.title} | digitalfadi`;
+      const full = `${data.title} | DigitalFadi`;
       return full.length <= 60 ? full : data.title;
     },
     // reading time worked out from the article itself

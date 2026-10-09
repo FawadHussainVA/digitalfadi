@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: FawadHussainVA/digitalfadi
+  repo: FawadHussainVA/DigitalFadi
   branch: main
   base_url: https://digitalfadi.com
   auth_endpoint: api/auth
