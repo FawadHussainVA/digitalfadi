@@ -1,0 +1,37 @@
+---
+layout: base.njk
+permalink: /tools/
+title: "Free Google Ads Tools | DigitalFadi"
+description: "Free Google Ads tools that run entirely in your browser. Character counters, calculators and builders, with nothing uploaded or sent anywhere."
+---
+<div class="phero">
+  <div class="wrap phero-in">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Free tools</span>
+    </nav>
+    <h1>Free Google Ads <span class="hl">tools</span></h1>
+    <p>Small tools for the jobs that take longer than they should. Every one runs in your browser, so your work stays on your device and is never sent anywhere, including to us.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="sec-head rv">
+    <span class="eyebrow">Tools</span>
+    <h2>Currently <span class="hl">available</span></h2>
+  </div>
+  <div class="channels stg">
+  {%- for t in collections.tools | sort(false, false, 'data.order') %}
+    <a class="ch" href="{{ t.url }}" style="text-decoration:none">
+      <div class="ch-top"><h3>{{ t.data.crumb }}</h3><span class="unit">Free</span></div>
+      <p>{{ t.data.standfirst }}</p>
+    </a>
+  {%- else %}
+    <div class="note rv">
+      <h3>Nothing here yet</h3>
+      <p>The first tools are being built.</p>
+    </div>
+  {%- endfor %}
+  </div>
+</section>

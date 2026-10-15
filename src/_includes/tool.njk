@@ -1,0 +1,101 @@
+---
+layout: base.njk
+---
+{% block extrahead %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": {{ heading | dump | safe }},
+  "description": {{ description | dump | safe }},
+  "url": "{{ site.url }}{{ page.url }}",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "publisher": {"@type": "Organization", "name": "DigitalFadi", "url": "{{ site.url }}/"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},
+    {"@type":"ListItem","position":2,"name":"Free tools","item":"{{ site.url }}/tools/"},
+    {"@type":"ListItem","position":3,"name":{{ crumb | dump | safe }},"item":"{{ site.url }}{{ page.url }}"}
+  ]
+}
+</script>
+{% if faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in faqs %}
+    {"@type":"Question","name":{{ f.q | dump | safe }},
+     "acceptedAnswer":{"@type":"Answer","text":{{ f.a | dump | safe }}}}{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+<div class="phero">
+  <div class="wrap phero-in">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/tools/">Free tools</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ crumb }}</span>
+    </nav>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch">{{ heading }}</h1>
+    <p style="max-width:60ch">{{ standfirst }}</p>
+    <p class="hero-note"><b aria-hidden="true"></b>Runs entirely in your browser. Your work stays on this device and is never uploaded or sent anywhere, including to us.</p>
+  </div>
+</div>
+
+{{ content | safe }}
+
+{% if faqs %}
+<section class="wrap narrow pt0">
+  <div class="sec-head rv">
+    <span class="eyebrow">Questions</span>
+    <h2>About this <span class="hl">tool</span></h2>
+  </div>
+  {%- for f in faqs %}
+  <details>
+    <summary>{{ f.q }}</summary>
+    <p>{{ f.a }}</p>
+  </details>
+  {%- endfor %}
+</section>
+{% endif %}
+
+<section class="wrap pt0">
+  <div class="sec-head rv">
+    <span class="eyebrow">More tools</span>
+    <h2>Other free <span class="hl">Google Ads tools</span></h2>
+  </div>
+  <div class="objs stg">
+  {%- for t in collections.tools | sort(false, false, 'data.order') %}
+    {%- if t.url != page.url %}
+    <a class="obj" href="{{ t.url }}" style="text-decoration:none"><i>&check;</i><span>{{ t.data.crumb }}</span></a>
+    {%- endif -%}
+  {%- endfor %}
+  </div>
+</section>
+
+<div class="cta-band" id="contact-cta">
+  <div class="wrap">
+    <span class="eyebrow">Free consultation</span>
+    <h2>Find out what your Google Ads account is really doing</h2>
+    <p>Send us read-only access and we'll come back with the specific campaigns, keywords and placements burning your budget, plus what we'd change first. No obligation, no slide deck.</p>
+    <div class="cta-row">
+      <a href="/#contact" class="btn">Get a free Google Ads audit <span class="arw">&rarr;</span></a>
+      <a href="https://wa.me/{{ site.whatsapp }}?text=Hi%20DigitalFadi%2C%20I%27d%20like%20a%20free%20consultation." target="_blank" rel="noopener" class="btn wa">WhatsApp us</a>
+    </div>
+    <p class="cta-alt">Or email <a href="mailto:{{ site.email }}?subject=PPC%20enquiry">{{ site.email }}</a> &middot; <a href="/#pricing">See pricing</a></p>
+  </div>
+</div>

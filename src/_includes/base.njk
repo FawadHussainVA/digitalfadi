@@ -754,7 +754,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="navdrop">
         <a href="/tools/" class="navtop">Tools<i class="caret" aria-hidden="true"></i></a>
         <span class="navmenu">
-          {%- for t in collections.tools %}
+          {%- for t in collections.tools | sort(false, false, 'data.order') %}
           <a href="{{ t.url }}">{{ t.data.crumb }}</a>
           {%- endfor %}
           <a href="/tools/">All free tools</a>
