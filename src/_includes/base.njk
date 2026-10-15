@@ -3,6 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Consent Mode v2: must run before any Google tag.
+     UK, EU, EEA and Switzerland start denied until the visitor accepts.
+     A saved choice (cookie banner) always wins. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+(function(){
+  var DENY = {ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied'};
+  var ALLOW = {ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted'};
+  var saved = null;
+  try { saved = localStorage.getItem('df_consent'); } catch(e) {}
+  if (saved === 'granted') { gtag('consent', 'default', ALLOW); }
+  else if (saved === 'denied') { gtag('consent', 'default', DENY); }
+  else {
+    gtag('consent', 'default', Object.assign({
+      region: ['GB','AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','CH'],
+      wait_for_update: 500
+    }, DENY));
+    gtag('consent', 'default', ALLOW);
+  }
+  gtag('set', 'ads_data_redaction', true);
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -187,6 +210,19 @@ nav a.on{background:var(--purple);color:#fff}
 .btn svg{width:17px;height:17px;fill:currentColor;flex:none}
 .btn{white-space:nowrap}
 .btn.wa{background:#25D366;color:var(--ink)}
+/* ---- cookie banner ---- */
+.ckb{position:fixed;left:22px;bottom:22px;z-index:130;width:min(430px,calc(100vw - 44px));
+  background:var(--bg-2);border:var(--bd);border-radius:var(--r);box-shadow:var(--sh-lg);padding:20px 22px}
+.ckb[hidden]{display:none}
+.ckb .ckb-t{font-size:1.02rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:6px}
+.ckb p{font-size:.86rem;color:var(--slate);line-height:1.55}
+.ckb p a{color:var(--purple);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.ckb-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.ckb-row .btn{flex:1 1 auto}
+@media(min-width:1001px){.ckb{left:calc(var(--rail) + 22px)}}
+@media(max-width:680px){.ckb{left:10px;right:10px;bottom:10px;width:auto;padding:16px 16px 18px}}
+.foot-nav .ckset{font-weight:600;color:inherit;padding:0;cursor:pointer}
+.foot-nav .ckset:hover{color:var(--purple)}
 .btn.wa:hover{background:#1FB958}
 
 /* ===== hero ===== */
@@ -790,6 +826,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/#contact">Contact</a>
       <a href="/#pricing">Pricing</a>
       <a href="/privacy-terms/">Privacy &amp; Terms</a>
+      <button type="button" class="ckset" id="ckOpen">Cookie settings</button>
     </nav>
     <div class="foot-soc">
       <a href="{{ site.upwork }}" target="_blank" rel="noopener" aria-label="DigitalFadi on Upwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg></a>
@@ -1129,6 +1166,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 })();
 
+</script>
+<div class="ckb" id="ckBanner" role="region" aria-label="Cookie choice" hidden>
+  <p class="ckb-t">Cookies on this site</p>
+  <p>We use Google Analytics cookies to see which pages are useful. Accept or reject them, and change your mind any time under Cookie settings at the bottom of the page. <a href="/privacy-terms/#privacy">Privacy policy</a></p>
+  <div class="ckb-row">
+    <button type="button" class="btn sm" id="ckYes">Accept</button>
+    <button type="button" class="btn ghost sm" id="ckNo">Reject</button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'df_consent', box = document.getElementById('ckBanner');
+  if (!box) return;
+  function read(){ try { return localStorage.getItem(KEY); } catch(e) { return null; } }
+  function choose(v){
+    var s = v === 'granted' ? 'granted' : 'denied';
+    try { localStorage.setItem(KEY, s); localStorage.setItem(KEY + '_at', new Date().toISOString()); } catch(e) {}
+    gtag('consent', 'update', {ad_storage:s, ad_user_data:s, ad_personalization:s, analytics_storage:s});
+    window.dataLayer.push({event: 'consent_choice', consent: s});
+    box.hidden = true;
+  }
+  document.getElementById('ckYes').addEventListener('click', function(){ choose('granted'); });
+  document.getElementById('ckNo').addEventListener('click', function(){ choose('denied'); });
+  var open = document.getElementById('ckOpen');
+  if (open) open.addEventListener('click', function(){ box.hidden = false; document.getElementById('ckYes').focus(); });
+  if (!read()) box.hidden = false;
+})();
 </script>
 </body>
 </html>
