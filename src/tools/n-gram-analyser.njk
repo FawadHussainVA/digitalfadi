@@ -1,0 +1,430 @@
+---
+crumb: "N-gram analyser"
+order: 3
+heading: "Search terms n-gram analyser for Google Ads"
+standfirst: "Paste or upload your search terms report and see which single words and short phrases are spending money without converting. Tick the worst ones and export them as negative keywords."
+title: "Search Terms N-gram Analyser for Google Ads | DigitalFadi"
+description: "Free n-gram analyser for Google Ads search terms. Find the words and phrases wasting spend across your report, then export them as negative keywords."
+faqs:
+  - q: "What is an n-gram analysis in Google Ads?"
+    a: "It splits every search term in your report into single words (1-grams), pairs of words (2-grams) and three-word phrases (3-grams), then adds up the cost, clicks and conversions of every search that contained each one. A word that appears in 60 different searches, each costing a little, can add up to a large amount of waste that is invisible when you read the report line by line."
+  - q: "How do I export a search terms report from Google Ads?"
+    a: "In Google Ads open Insights and reports, then Search terms. Set a date range of at least 30 days, or 90 if the account is small, add the Conversions and Conv. value columns if they are missing, then use the download icon and choose CSV. Upload that file here as it is. The tool finds the header row on its own."
+  - q: "What date range should I use for an n-gram analysis?"
+    a: "Long enough that each phrase has a fair number of clicks. For most accounts that means 60 to 90 days. A short range makes ordinary phrases look like waste simply because they have not had time to convert, so judge a phrase on its clicks and cost, not on a single week."
+  - q: "Should I add every zero-conversion n-gram as a negative?"
+    a: "No. Check the searches behind each phrase first, which you can do by clicking it in the table. A word like cost might appear in both research searches and buyer searches. Add a negative only when the searches behind it are clearly the wrong intent, and be careful with single words, because a negative blocks every search containing it."
+  - q: "Is my search terms data uploaded anywhere?"
+    a: "No. The file is read and analysed inside your browser and is never uploaded or sent to any server, including ours. It is not saved either, so the data is gone when you close or refresh the page."
+  - q: "Which file formats does the analyser accept?"
+    a: "CSV and tab-separated files exported from Google Ads, including the Excel CSV export in UTF-16, plus plain text pasted straight from a spreadsheet. If there are no metric columns it treats each line as one search term and counts how often each phrase appears."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>1. Your search terms</b><span>CSV or paste</span></div>
+        <div class="tk-body">
+          <div class="tk-drop" id="nDrop">
+            <input type="file" id="nFile" accept=".csv,.tsv,.txt,text/csv,text/plain">
+            Drop your search terms CSV here or <label for="nFile">choose a file</label>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="nPaste">Or paste the report, including the header row</label>
+            <textarea id="nPaste" class="tk-area" placeholder="Search term,Clicks,Impr.,Cost,Conversions&#10;emergency plumber near me,14,120,52.30,2&#10;plumber jobs,6,80,18.40,0" spellcheck="false"></textarea>
+          </div>
+          <div class="tk-row">
+            <button type="button" class="btn sm" id="nRun">Analyse</button>
+            <button type="button" class="btn ghost sm" id="nSample">Try sample data</button>
+            <button type="button" class="btn ghost sm" id="nClear">Clear</button>
+          </div>
+          <p class="tk-err" id="nErr" hidden></p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">Report summary</h2>
+        <dl id="nSum">
+          <dt>Search terms</dt><dd id="sTerms">0</dd>
+          <dt>Total cost</dt><dd id="sCost">0</dd>
+          <dt>Conversions</dt><dd id="sConv">0</dd>
+          <dt>Spend on searches with no conversions</dt><dd id="sWaste">0</dd>
+        </dl>
+        <p class="tk-hint" id="nCols" style="margin-top:12px">Columns found will be listed here.</p>
+      </div>
+      <div class="fcard">
+        <div class="fcard-head"><b>2. Settings</b><span>Updates live</span></div>
+        <div class="tk-body">
+          <div class="tk-seg" role="group" aria-label="Phrase length">
+            <button type="button" class="btn sm on" data-n="1" aria-pressed="true">1 word</button>
+            <button type="button" class="btn sm" data-n="2" aria-pressed="false">2 words</button>
+            <button type="button" class="btn sm" data-n="3" aria-pressed="false">3 words</button>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="nMinCost">Minimum cost</label>
+              <input id="nMinCost" type="number" min="0" step="any" value="0" inputmode="decimal">
+            </div>
+            <div class="field">
+              <label for="nMinTerms">Minimum searches</label>
+              <input id="nMinTerms" type="number" min="1" step="1" value="2" inputmode="numeric">
+            </div>
+          </div>
+          <label class="tk-tog"><input type="checkbox" id="nZero"><span>Only show phrases with zero conversions</span></label>
+          <label class="tk-tog" style="margin-bottom:0"><input type="checkbox" id="nStop" checked><span>Hide filler words like the, for and in</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fcard" style="margin-top:20px">
+    <div class="fcard-head"><b>3. Phrases ranked</b><span id="nShown">No data yet</span></div>
+    <div class="tk-body">
+      <div class="field">
+        <label for="nFind">Filter phrases</label>
+        <input id="nFind" type="search" placeholder="Type to filter, e.g. free" autocomplete="off">
+      </div>
+      <div class="tk-scroll" style="max-height:560px">
+        <table class="tk-table" id="nTable">
+          <thead><tr>
+            <th scope="col" class="l"><span class="tk-sr">Select</span></th>
+            <th scope="col" class="l"><button type="button" data-sort="g">Phrase</button></th>
+            <th scope="col"><button type="button" data-sort="t">Searches</button></th>
+            <th scope="col"><button type="button" data-sort="i">Impr.</button></th>
+            <th scope="col"><button type="button" data-sort="k">Clicks</button></th>
+            <th scope="col"><button type="button" data-sort="c">Cost</button></th>
+            <th scope="col"><button type="button" data-sort="v">Conv.</button></th>
+            <th scope="col"><button type="button" data-sort="cpa">Cost / conv.</button></th>
+            <th scope="col"><button type="button" data-sort="cr">Conv. rate</button></th>
+            <th scope="col"><button type="button" data-sort="roas">ROAS</button></th>
+          </tr></thead>
+          <tbody id="nBody"><tr><td colspan="10" class="l" style="padding:22px;color:var(--slate)">Add your search terms above and press Analyse.</td></tr></tbody>
+        </table>
+      </div>
+      <div class="tk-row">
+        <button type="button" class="btn ghost sm" id="nMore" hidden>Show 100 more</button>
+        <button type="button" class="btn ghost sm" id="nCsv">Download table as CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:20px">
+    <div class="fcard">
+      <div class="fcard-head"><b>Searches containing</b><span id="nDetailHead">Click a phrase</span></div>
+      <div class="tk-body">
+        <div class="tk-scroll" style="max-height:340px">
+          <table class="tk-table"><thead><tr><th scope="col" class="l">Search term</th><th scope="col">Clicks</th><th scope="col">Cost</th><th scope="col">Conv.</th></tr></thead>
+          <tbody id="nDetail"><tr><td colspan="4" class="l" style="color:var(--slate)">Click any phrase in the table to see the searches behind it before you exclude it.</td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+    <div class="fcard">
+      <div class="fcard-head"><b>4. Negative keywords</b><span><span id="nSelN">0</span> selected</span></div>
+      <div class="tk-body">
+        <div class="field">
+          <label for="nMatch">Match type</label>
+          <select id="nMatch" class="tk-sel">
+            <option value="phrase">Phrase match "word"</option>
+            <option value="exact">Exact match [word]</option>
+            <option value="broad">Broad match word</option>
+          </select>
+        </div>
+        <div class="tk-out empty" id="nNeg">Tick phrases in the table to build a negative list.</div>
+        <div class="tk-row">
+          <button type="button" class="btn sm" id="nNegCopy">Copy negatives</button>
+          <button type="button" class="btn ghost sm" id="nNegClear">Untick all</button>
+        </div>
+        <p class="tk-hint">Paste the list into Google Ads under Keywords, then Negative keywords. To check them against your own keywords first, use the <a href="/tools/negative-keyword-generator/">negative keyword generator</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>Why read search terms in n-grams</h2>
+    <p>A search terms report lists every search that triggered your ads, often thousands of rows, most with one or two clicks. Read line by line, nothing looks expensive. Grouped by the words inside them, patterns appear: every search containing jobs, every search containing free, every search naming a town you do not cover. N-gram analysis adds those small costs together so the waste shows up as one number you can act on.</p>
+
+    <h2>How to read the table</h2>
+    <ul>
+      <li><strong>Start with 1-grams, sorted by cost.</strong> Single words give the widest view. Anything with real spend and no conversions is a candidate.</li>
+      <li><strong>Move to 2-grams and 3-grams</strong> when a single word is too blunt. Repair might be good while tv repair is not.</li>
+      <li><strong>Click before you exclude.</strong> The panel below the table shows every search behind a phrase, so you can see whether it is truly the wrong intent.</li>
+      <li><strong>Look at winners too.</strong> Sort by conversions. Phrases that convert well and are not yet keywords are worth adding as their own keywords.</li>
+    </ul>
+
+    <h2>Common sources of wasted spend</h2>
+    <p>The same groups turn up in most accounts: job seekers, people looking for free or DIY versions, students, researchers wanting a definition, people looking for a different product with a similar name, and searches from areas the business does not serve. The <a href="/tools/negative-keyword-generator/">negative keyword generator</a> has ready lists for each of these. If the report shows waste on a scale that suggests the keyword strategy itself is off, that is exactly what a <a href="/google-ads-audit/">$200 account analysis</a> looks at, along with tracking and structure.</p>
+
+    <h2>A note on match types</h2>
+    <p>Broad match keywords and Performance Max surface far more varied searches than they used to, which makes n-gram analysis more useful than ever. Negative keywords do not automatically block plurals or misspellings, so if a word matters, add its common variants too.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var STOP = ['a','an','the','and','or','of','to','in','on','for','with','at','by','is','are','my','your','i','it','be','from','as','that','this'];
+  var rows = [], grams = [], view = [], n = 1, sortKey = 'c', sortDir = -1, limit = 100, selected = {}, hasMetrics = false;
+
+  /* ---------- parsing ---------- */
+  function parseDelimited(text){
+    var first = text.split(/\r?\n/).slice(0, 10).join('\n');
+    var tabs = (first.match(/\t/g) || []).length, commas = (first.match(/,/g) || []).length, semis = (first.match(/;/g) || []).length;
+    var d = tabs > commas && tabs > semis ? '\t' : (semis > commas ? ';' : ',');
+    var out = [], row = [], cell = '', q = false;
+    for (var i = 0; i < text.length; i++){
+      var ch = text[i];
+      if (q){
+        if (ch === '"'){ if (text[i + 1] === '"'){ cell += '"'; i++; } else q = false; }
+        else cell += ch;
+      } else if (ch === '"') q = true;
+      else if (ch === d){ row.push(cell); cell = ''; }
+      else if (ch === '\n' || ch === '\r'){
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+        row.push(cell); out.push(row); row = []; cell = '';
+      } else cell += ch;
+    }
+    if (cell || row.length){ row.push(cell); out.push(row); }
+    return out;
+  }
+  function num(v){
+    if (v === undefined || v === null) return 0;
+    v = String(v).trim();
+    if (!v || v === '--' || v === '-') return 0;
+    v = v.replace(/[^0-9.,\-]/g, '');
+    if (/,\d{1,2}$/.test(v) && v.indexOf('.') === -1) v = v.replace(/\./g, '').replace(',', '.');
+    else v = v.replace(/,/g, '');
+    var f = parseFloat(v); return isFinite(f) ? f : 0;
+  }
+  function findCol(head, res){
+    for (var r = 0; r < res.length; r++) for (var i = 0; i < head.length; i++) if (res[r].test(head[i].trim())) return i;
+    return -1;
+  }
+
+  function load(text){
+    $('nErr').hidden = true;
+    text = String(text || '').replace(/^\uFEFF/, '');
+    if (!text.trim()){ showErr('There is nothing to analyse yet. Paste a report or choose a file.'); return; }
+    var table = parseDelimited(text), hi = -1;
+    for (var i = 0; i < Math.min(table.length, 15); i++){
+      if (table[i].some(function(c){ return /^(search term|search terms|search query|query|search keyword)$/i.test(c.trim()); })){ hi = i; break; }
+    }
+    rows = [];
+    if (hi === -1){
+      hasMetrics = false;
+      table.forEach(function(r){ var t = (r[0] || '').trim(); if (t) rows.push({ t: t, i: 0, k: 0, c: 0, v: 0, val: 0 }); });
+      $('nCols').textContent = 'No header row found, so each line is treated as one search term. Only counts are shown.';
+    } else {
+      var h = table[hi];
+      var col = {
+        t: findCol(h, [/^(search term|search terms|search query|query|search keyword)$/i]),
+        i: findCol(h, [/^impr(\.|essions)?$/i]),
+        k: findCol(h, [/^clicks$/i]),
+        c: findCol(h, [/^cost$/i, /^cost \(/i, /^spend$/i]),
+        v: findCol(h, [/^conversions$/i, /^conv\.$/i, /^all conv\.$/i]),
+        val: findCol(h, [/^conv\. value$/i, /^conversion value$/i, /^total conv\. value$/i, /^conv\. value \(/i])
+      };
+      hasMetrics = col.k > -1 || col.c > -1;
+      for (var j = hi + 1; j < table.length; j++){
+        var r = table[j], t = (r[col.t] || '').trim();
+        if (!t || /^total/i.test(t) || /^total/i.test((r[0] || '').trim())) continue;
+        rows.push({ t: t, i: num(r[col.i]), k: num(r[col.k]), c: num(r[col.c]), v: num(r[col.v]), val: num(r[col.val]) });
+      }
+      var found = [['Search term', col.t], ['Impressions', col.i], ['Clicks', col.k], ['Cost', col.c], ['Conversions', col.v], ['Conv. value', col.val]];
+      $('nCols').textContent = 'Columns found: ' + found.filter(function(f){ return f[1] > -1; }).map(function(f){ return f[0]; }).join(', ') +
+        (found.some(function(f){ return f[1] === -1; }) ? '. Missing: ' + found.filter(function(f){ return f[1] === -1; }).map(function(f){ return f[0]; }).join(', ') + '.' : '.');
+    }
+    if (!rows.length){ showErr('No search terms were found. Check the file is a search terms report with a Search term column.'); return; }
+    selected = {};
+    summarise(); analyse();
+  }
+  function showErr(m){ var e = $('nErr'); e.textContent = m; e.hidden = false; }
+
+  /* ---------- analysis ---------- */
+  function tokens(t){
+    return t.toLowerCase().split(/\s+/).map(function(w){ return w.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, ''); }).filter(Boolean);
+  }
+  function summarise(){
+    var c = 0, v = 0, w = 0;
+    rows.forEach(function(r){ c += r.c; v += r.v; if (!r.v) w += r.c; });
+    $('sTerms').textContent = rows.length.toLocaleString();
+    $('sCost').textContent = money(c);
+    $('sConv').textContent = fmt(v, 1);
+    $('sWaste').textContent = hasMetrics ? money(w) + (c ? ' (' + fmt(w / c * 100, 0) + '%)' : '') : 'n/a';
+  }
+  function analyse(){
+    var map = {}, stop = $('nStop').checked;
+    rows.forEach(function(r, idx){
+      var tk = tokens(r.t), seen = {};
+      for (var i = 0; i + n <= tk.length; i++){
+        var parts = tk.slice(i, i + n);
+        if (stop && parts.every(function(p){ return STOP.indexOf(p) > -1; })) continue;
+        if (stop && n > 1 && (STOP.indexOf(parts[0]) > -1 || STOP.indexOf(parts[n - 1]) > -1)) continue;
+        var g = parts.join(' ');
+        if (seen[g]) continue; seen[g] = 1;
+        var m = map[g] || (map[g] = { g: g, t: 0, i: 0, k: 0, c: 0, v: 0, val: 0, rows: [] });
+        m.t++; m.i += r.i; m.k += r.k; m.c += r.c; m.v += r.v; m.val += r.val; m.rows.push(idx);
+      }
+    });
+    grams = Object.keys(map).map(function(k){
+      var m = map[k];
+      m.cpa = m.v ? m.c / m.v : (m.c ? Infinity : 0);
+      m.cr = m.k ? m.v / m.k : 0;
+      m.roas = m.c ? m.val / m.c : 0;
+      return m;
+    });
+    limit = 100; render();
+  }
+  function render(){
+    var minC = num($('nMinCost').value), minT = Math.max(1, num($('nMinTerms').value)), zero = $('nZero').checked;
+    var find = $('nFind').value.trim().toLowerCase();
+    var key = hasMetrics ? sortKey : (sortKey === 'g' ? 'g' : 't');
+    view = grams.filter(function(m){
+      return m.c >= minC && m.t >= minT && (!zero || !m.v) && (!find || m.g.indexOf(find) > -1);
+    }).sort(function(a, b){
+      if (key === 'g') return sortDir * (a.g < b.g ? -1 : a.g > b.g ? 1 : 0);
+      var x = a[key], y = b[key];
+      if (x === y) return b.c - a.c || b.t - a.t;
+      return sortDir * (x - y);
+    });
+    $('nShown').textContent = grams.length ? view.length.toLocaleString() + ' of ' + grams.length.toLocaleString() + ' phrases' : 'No data yet';
+    var body = $('nBody');
+    if (!grams.length){ return; }
+    if (!view.length){ body.innerHTML = '<tr><td colspan="10" class="l" style="padding:22px;color:var(--slate)">No phrases match these settings. Lower the minimum cost or minimum searches.</td></tr>'; $('nMore').hidden = true; return; }
+    body.innerHTML = view.slice(0, limit).map(function(m){
+      var on = !!selected[m.g];
+      return '<tr' + (on ? ' class="sel"' : '') + '>' +
+        '<td class="l"><input type="checkbox" data-g="' + esc(m.g) + '"' + (on ? ' checked' : '') + ' aria-label="Add ' + esc(m.g) + ' to negatives"></td>' +
+        '<td class="l"><button type="button" class="tk-link" data-show="' + esc(m.g) + '">' + esc(m.g) + '</button></td>' +
+        '<td>' + m.t.toLocaleString() + '</td>' +
+        '<td>' + (hasMetrics ? Math.round(m.i).toLocaleString() : '') + '</td>' +
+        '<td>' + (hasMetrics ? Math.round(m.k).toLocaleString() : '') + '</td>' +
+        '<td>' + (hasMetrics ? money(m.c) : '') + '</td>' +
+        '<td' + (hasMetrics && !m.v && m.c ? ' class="zero"' : '') + '>' + (hasMetrics ? fmt(m.v, 1) : '') + '</td>' +
+        '<td>' + (hasMetrics ? (m.v ? money(m.cpa) : (m.c ? 'none' : '')) : '') + '</td>' +
+        '<td>' + (hasMetrics && m.k ? fmt(m.cr * 100, 1) + '%' : '') + '</td>' +
+        '<td>' + (hasMetrics && m.val ? fmt(m.roas, 2) : '') + '</td></tr>';
+    }).join('');
+    $('nMore').hidden = view.length <= limit;
+  }
+  function detail(g){
+    var m = grams.filter(function(x){ return x.g === g; })[0]; if (!m) return;
+    $('nDetailHead').textContent = '"' + g + '" in ' + m.t + ' search' + (m.t > 1 ? 'es' : '');
+    $('nDetail').innerHTML = m.rows.map(function(i){ return rows[i]; }).sort(function(a, b){ return b.c - a.c || b.k - a.k; }).slice(0, 300).map(function(r){
+      return '<tr><td class="l" style="white-space:normal">' + esc(r.t) + '</td><td>' + Math.round(r.k) + '</td><td>' + money(r.c) + '</td><td' + (!r.v && r.c ? ' class="zero"' : '') + '>' + fmt(r.v, 1) + '</td></tr>';
+    }).join('');
+  }
+
+  /* ---------- negatives ---------- */
+  function negs(){
+    var mt = $('nMatch').value, list = Object.keys(selected);
+    $('nSelN').textContent = list.length;
+    var out = $('nNeg');
+    if (!list.length){ out.textContent = 'Tick phrases in the table to build a negative list.'; out.classList.add('empty'); return ''; }
+    var txt = list.map(function(g){ return mt === 'phrase' ? '"' + g + '"' : mt === 'exact' ? '[' + g + ']' : g; }).join('\n');
+    out.textContent = txt; out.classList.remove('empty'); return txt;
+  }
+
+  /* ---------- helpers ---------- */
+  function fmt(v, dp){ return (Math.round(v * Math.pow(10, dp)) / Math.pow(10, dp)).toLocaleString(undefined, { minimumFractionDigits: dp, maximumFractionDigits: dp }); }
+  function money(v){ return isFinite(v) ? fmt(v, 2) : 'none'; }
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function csvCell(c){ return '"' + String(c).replace(/"/g, '""') + '"'; }
+
+  /* ---------- file reading, including UTF-16 Excel exports ---------- */
+  function readFile(f){
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var b = new Uint8Array(r.result), text;
+      try {
+        if (b[0] === 0xFF && b[1] === 0xFE) text = new TextDecoder('utf-16le').decode(b);
+        else if (b[0] === 0xFE && b[1] === 0xFF) text = new TextDecoder('utf-16be').decode(b);
+        else text = new TextDecoder('utf-8').decode(b);
+      } catch(e){ showErr('This file could not be read. Export the report again as CSV.'); return; }
+      $('nPaste').value = text.length > 200000 ? '' : text;
+      if (text.length > 200000) $('nPaste').placeholder = f.name + ' loaded (' + Math.round(text.length / 1024) + ' KB)';
+      load(text);
+    };
+    r.onerror = function(){ showErr('This file could not be read. Export the report again as CSV.'); };
+    r.readAsArrayBuffer(f);
+  }
+  $('nFile').addEventListener('change', function(){ readFile(this.files[0]); this.value = ''; });
+  var drop = $('nDrop');
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function(e){ if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); });
+
+  /* ---------- events ---------- */
+  $('nRun').addEventListener('click', function(){ load($('nPaste').value); });
+  $('nSample').addEventListener('click', function(){
+    /* Made-up rows that only demonstrate the format. Not client data. */
+    var s = 'Search term,Clicks,Impr.,Cost,Conversions,Conv. value\n' + [
+      ['emergency plumber near me',18,140,61.20,3],['emergency plumber',22,210,70.40,2],['24 hour plumber near me',9,95,30.60,1],
+      ['plumber jobs',7,80,19.60,0],['plumbing jobs near me',5,66,14.50,0],['plumber apprenticeship jobs',4,40,11.20,0],
+      ['how to fix a leaking tap',6,120,9.60,0],['how to unblock a sink yourself',5,90,8.50,0],['diy boiler repair',4,50,10.80,0],
+      ['boiler repair near me',15,130,58.50,3],['boiler repair cost',8,100,27.20,0],['boiler service cost',6,70,19.80,1],
+      ['free boiler replacement',9,150,24.30,0],['free plumbing quote',3,40,9.00,1],['plumbing course',4,60,10.00,0],
+      ['plumber salary',3,55,6.90,0],['local plumber',12,140,40.80,2],['blocked drain plumber',7,70,23.10,1],
+      ['plumber near me',25,260,82.50,4],['cheap plumber near me',8,90,24.00,0],['leaking pipe repair',6,75,19.20,1],
+      ['plumbing tools',3,60,4.20,0],['plumbing supplies near me',5,70,9.50,0],['what does a plumber do',2,45,3.40,0]
+    ].map(function(r){ return r.map(csvCell).join(',') + ',' + (r[4] * 120).toFixed(2); }).join('\n');
+    $('nPaste').value = s; load(s);
+  });
+  $('nClear').addEventListener('click', function(){
+    $('nPaste').value = ''; $('nPaste').placeholder = 'Search term,Clicks,Impr.,Cost,Conversions\nemergency plumber near me,14,120,52.30,2\nplumber jobs,6,80,18.40,0';
+    rows = []; grams = []; selected = {}; $('nErr').hidden = true;
+    $('nBody').innerHTML = '<tr><td colspan="10" class="l" style="padding:22px;color:var(--slate)">Add your search terms above and press Analyse.</td></tr>';
+    $('nShown').textContent = 'No data yet'; $('nCols').textContent = 'Columns found will be listed here.'; $('nMore').hidden = true;
+    $('nDetail').innerHTML = '<tr><td colspan="4" class="l" style="color:var(--slate)">Click any phrase in the table to see the searches behind it before you exclude it.</td></tr>';
+    $('nDetailHead').textContent = 'Click a phrase';
+    ['sTerms','sCost','sConv','sWaste'].forEach(function(id){ $(id).textContent = '0'; });
+    negs();
+  });
+  [].slice.call(document.querySelectorAll('[data-n]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      n = +b.dataset.n;
+      document.querySelectorAll('[data-n]').forEach(function(x){ x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+      if (rows.length) analyse();
+    });
+  });
+  ['nMinCost','nMinTerms','nFind'].forEach(function(id){ $(id).addEventListener('input', function(){ limit = 100; render(); }); });
+  $('nZero').addEventListener('change', function(){ limit = 100; render(); });
+  $('nStop').addEventListener('change', function(){ if (rows.length) analyse(); });
+  document.querySelector('#nTable thead').addEventListener('click', function(e){
+    var b = e.target.closest('[data-sort]'); if (!b) return;
+    var k = b.dataset.sort;
+    if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = (k === 'g' || k === 'cpa') ? 1 : -1; }
+    render();
+  });
+  $('nBody').addEventListener('click', function(e){
+    var s = e.target.closest('[data-show]'); if (s) detail(s.dataset.show);
+  });
+  $('nBody').addEventListener('change', function(e){
+    var c = e.target; if (!c.dataset || c.dataset.g === undefined) return;
+    if (c.checked) selected[c.dataset.g] = 1; else delete selected[c.dataset.g];
+    c.closest('tr').classList.toggle('sel', c.checked); negs();
+  });
+  $('nMore').addEventListener('click', function(){ limit += 100; render(); });
+  $('nMatch').addEventListener('change', negs);
+  $('nNegCopy').addEventListener('click', function(){
+    var t = negs(), b = this; if (!t || !navigator.clipboard) return;
+    navigator.clipboard.writeText(t).then(function(){ var o = b.textContent; b.textContent = 'Copied'; setTimeout(function(){ b.textContent = o; }, 1400); });
+  });
+  $('nNegClear').addEventListener('click', function(){ selected = {}; render(); negs(); });
+  $('nCsv').addEventListener('click', function(){
+    if (!view.length) return;
+    var out = [['Phrase','Searches','Impressions','Clicks','Cost','Conversions','Cost per conversion','Conversion rate','Conv. value','ROAS']].concat(view.map(function(m){
+      return [m.g, m.t, Math.round(m.i), Math.round(m.k), m.c.toFixed(2), m.v, m.v ? m.cpa.toFixed(2) : '', m.k ? (m.cr * 100).toFixed(2) + '%' : '', m.val.toFixed(2), m.c ? m.roas.toFixed(2) : ''];
+    }));
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([out.map(function(r){ return r.map(csvCell).join(','); }).join('\n')], { type: 'text/csv' }));
+    a.download = 'ngrams-' + n + '-word.csv'; a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); }, 500);
+  });
+})();
+</script>

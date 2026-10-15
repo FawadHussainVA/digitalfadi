@@ -1,0 +1,224 @@
+---
+crumb: "Metrics calculator"
+order: 4
+heading: "Google Ads metrics calculator"
+standfirst: "Enter the numbers you have and get CTR, CPC, CPM, conversion rate, cost per conversion and ROAS in one place. Then work backwards from a target CPA or ROAS to the most you can afford per click."
+title: "Google Ads Calculator: CTR, CPC, CPA and ROAS | DigitalFadi"
+description: "Free Google Ads metrics calculator. Work out CTR, CPC, CPM, conversion rate, CPA and ROAS, then find the maximum CPC your target CPA or ROAS allows."
+faqs:
+  - q: "How do you calculate CPA in Google Ads?"
+    a: "Divide the total cost by the number of conversions. If you spent 1,000 and got 25 conversions, your cost per conversion (CPA) is 40. Google Ads shows this as Cost / conv. Make sure the conversions counted are real enquiries or sales, not page views or button clicks, or the CPA will look far better than it is."
+  - q: "How do you calculate ROAS?"
+    a: "Divide the conversion value by the cost. If ads cost 1,000 and produced 4,500 in tracked sales, ROAS is 4.5, which Google Ads shows as 450 percent when you set a target ROAS. ROAS measures revenue, not profit, so use the break-even ROAS calculator to see what figure you actually need."
+  - q: "What is a good CTR for Google Ads?"
+    a: "It depends heavily on the industry, the network and whether the search is for your brand. Brand searches often have very high click-through rates and generic searches much lower ones. Compare a campaign against its own history and against similar campaigns in your account rather than against a single industry average."
+  - q: "How do I work out the maximum CPC I can afford?"
+    a: "Multiply your target cost per conversion by your conversion rate. With a target CPA of 50 and a conversion rate of 4 percent, you can afford up to 2.00 per click on average. For ROAS targets, multiply the average conversion value by the conversion rate and divide by the target ROAS."
+  - q: "What is the difference between CPC and CPM?"
+    a: "CPC is the average cost of one click. CPM is the cost of one thousand impressions, whether or not anyone clicks. Search campaigns are usually judged on CPC, while display and video campaigns are often bought and compared on CPM."
+  - q: "Does this calculator save my numbers?"
+    a: "Yes, in this browser only, so they are still there when you come back on the same device. Nothing is uploaded or sent anywhere, including to us. The Clear button removes them."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Your numbers</b><span>Fill in what you have</span></div>
+        <div class="tk-body">
+          <div class="field">
+            <label for="mCur">Currency</label>
+            <select id="mCur" class="tk-sel">
+              <option value="USD">US dollar ($)</option>
+              <option value="GBP">British pound (&pound;)</option>
+              <option value="EUR">Euro (&euro;)</option>
+              <option value="AUD">Australian dollar (A$)</option>
+              <option value="CAD">Canadian dollar (C$)</option>
+            </select>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="mCost">Cost</label><input id="mCost" type="number" min="0" step="any" inputmode="decimal" placeholder="1500"></div>
+            <div class="field"><label for="mImpr">Impressions</label><input id="mImpr" type="number" min="0" step="1" inputmode="numeric" placeholder="42000"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="mClicks">Clicks</label><input id="mClicks" type="number" min="0" step="1" inputmode="numeric" placeholder="1300"></div>
+            <div class="field"><label for="mConv">Conversions</label><input id="mConv" type="number" min="0" step="any" inputmode="decimal" placeholder="52"></div>
+          </div>
+          <div class="field" style="margin-bottom:0"><label for="mVal">Conversion value (revenue)</label><input id="mVal" type="number" min="0" step="any" inputmode="decimal" placeholder="optional, for ROAS"></div>
+          <div class="tk-row">
+            <button type="button" class="btn ghost sm" id="mCopy">Copy results</button>
+            <button type="button" class="btn ghost sm" id="mClear">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel" aria-live="polite">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">Results</h2>
+        <dl id="mOut">
+          <dt>Click-through rate (CTR)</dt><dd><span id="rCtr">&ndash;</span><small class="tk-formula">clicks &divide; impressions</small></dd>
+          <dt>Average cost per click (CPC)</dt><dd><span id="rCpc">&ndash;</span><small class="tk-formula">cost &divide; clicks</small></dd>
+          <dt>Cost per 1,000 impressions (CPM)</dt><dd><span id="rCpm">&ndash;</span><small class="tk-formula">cost &divide; impressions &times; 1,000</small></dd>
+          <dt>Conversion rate</dt><dd><span id="rCr">&ndash;</span><small class="tk-formula">conversions &divide; clicks</small></dd>
+          <dt>Cost per conversion (CPA)</dt><dd><span id="rCpa">&ndash;</span><small class="tk-formula">cost &divide; conversions</small></dd>
+          <dt>Return on ad spend (ROAS)</dt><dd><span id="rRoas">&ndash;</span><small class="tk-formula">conversion value &divide; cost</small></dd>
+          <dt>Average value per conversion</dt><dd><span id="rAov">&ndash;</span><small class="tk-formula">conversion value &divide; conversions</small></dd>
+          <dt>Value per click</dt><dd><span id="rVpc">&ndash;</span><small class="tk-formula">conversion value &divide; clicks</small></dd>
+          <dt>Ad cost as a share of revenue</dt><dd><span id="rCos">&ndash;</span><small class="tk-formula">cost &divide; conversion value</small></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:20px">
+    <div class="fcard">
+      <div class="fcard-head"><b>Work backwards</b><span>Maximum CPC</span></div>
+      <div class="tk-body">
+        <div class="tk-seg" role="group" aria-label="Target type">
+          <button type="button" class="btn sm on" data-t="cpa" aria-pressed="true">Target CPA</button>
+          <button type="button" class="btn sm" data-t="roas" aria-pressed="false">Target ROAS</button>
+        </div>
+        <div class="frow">
+          <div class="field" id="tCpaWrap"><label for="tCpa">Target cost per conversion</label><input id="tCpa" type="number" min="0" step="any" inputmode="decimal" placeholder="50"></div>
+          <div class="field" id="tRoasWrap" hidden><label for="tRoas">Target ROAS (e.g. 4 for 400%)</label><input id="tRoas" type="number" min="0" step="any" inputmode="decimal" placeholder="4"></div>
+          <div class="field" id="tAovWrap" hidden><label for="tAov">Average conversion value</label><input id="tAov" type="number" min="0" step="any" inputmode="decimal" placeholder="120"></div>
+          <div class="field"><label for="tCr">Conversion rate %</label><input id="tCr" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="4"></div>
+        </div>
+        <p class="tk-big" id="tOut">&ndash;</p>
+        <p class="tk-sub" id="tWhy">Maximum average cost per click before you miss the target. Fills in from your numbers above where it can.</p>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head"><b>Plan a month</b><span>Budget forecast</span></div>
+      <div class="tk-body">
+        <div class="frow">
+          <div class="field"><label for="pBud">Monthly budget</label><input id="pBud" type="number" min="0" step="any" inputmode="decimal" placeholder="2000"></div>
+          <div class="field"><label for="pCpc">Expected CPC</label><input id="pCpc" type="number" min="0" step="any" inputmode="decimal" placeholder="2.50"></div>
+          <div class="field"><label for="pCr">Conversion rate %</label><input id="pCr" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="4"></div>
+        </div>
+        <div class="panel" style="margin-top:4px">
+          <dl>
+            <dt>Clicks per month</dt><dd id="pClicks">&ndash;</dd>
+            <dt>Conversions per month</dt><dd id="pConv">&ndash;</dd>
+            <dt>Cost per conversion</dt><dd id="pCpa">&ndash;</dd>
+            <dt>Daily budget to set</dt><dd id="pDay">&ndash;</dd>
+          </dl>
+        </div>
+        <p class="tk-hint">A forecast, not a promise. Real CPCs and conversion rates move with competition, season and landing page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>The formulas, in one place</h2>
+    <ul>
+      <li><strong>CTR</strong> = clicks &divide; impressions &times; 100</li>
+      <li><strong>Average CPC</strong> = cost &divide; clicks</li>
+      <li><strong>CPM</strong> = cost &divide; impressions &times; 1,000</li>
+      <li><strong>Conversion rate</strong> = conversions &divide; clicks &times; 100</li>
+      <li><strong>Cost per conversion (CPA)</strong> = cost &divide; conversions</li>
+      <li><strong>ROAS</strong> = conversion value &divide; cost. Google Ads writes a ROAS of 4 as 400%.</li>
+      <li><strong>Maximum CPC for a target CPA</strong> = target CPA &times; conversion rate</li>
+      <li><strong>Maximum CPC for a target ROAS</strong> = average conversion value &times; conversion rate &divide; target ROAS</li>
+    </ul>
+
+    <h2>Which number matters most</h2>
+    <p>For lead generation, cost per conversion is the number that pays the bills, as long as a conversion means a real enquiry. For e-commerce it is ROAS, read against your margin, because a ROAS that looks healthy can still lose money once product and delivery costs come out. The <a href="/tools/break-even-roas-calculator/">break-even ROAS calculator</a> shows the minimum you need. CTR and CPC explain why CPA or ROAS moved; they are rarely the goal on their own.</p>
+
+    <h2>When the numbers do not add up</h2>
+    <p>If conversions look too good to be true, they usually are. Page views, button clicks and duplicate tags counted as conversions make every metric on this page look better than reality. If you are unsure what your account is counting, that is the first thing a <a href="/google-ads-audit/">$200 account analysis</a> checks, and the <a href="/learn/why-are-my-google-ads-not-converting/">guide to Google Ads that are not converting</a> covers the usual causes.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_metrics_v1';
+  var IDS = ['mCur','mCost','mImpr','mClicks','mConv','mVal','tCpa','tRoas','tAov','tCr','pBud','pCpc','pCr'];
+  var tMode = 'cpa';
+
+  function v(id){ var x = parseFloat($(id).value); return isFinite(x) && x >= 0 ? x : null; }
+  function cur(n, dp){
+    try { return new Intl.NumberFormat(undefined, { style: 'currency', currency: $('mCur').value, minimumFractionDigits: dp === undefined ? 2 : dp, maximumFractionDigits: dp === undefined ? 2 : dp }).format(n); }
+    catch(e){ return n.toFixed(2); }
+  }
+  function pct(n, dp){ return (n * 100).toLocaleString(undefined, { minimumFractionDigits: dp, maximumFractionDigits: dp }) + '%'; }
+  function set(id, ok, text){ $(id).textContent = ok ? text : '\u2013'; }
+
+  function calc(){
+    var cost = v('mCost'), imp = v('mImpr'), clk = v('mClicks'), conv = v('mConv'), val = v('mVal');
+    set('rCtr', imp && clk !== null, imp ? pct(clk / imp, 2) : '');
+    set('rCpc', clk && cost !== null, clk ? cur(cost / clk) : '');
+    set('rCpm', imp && cost !== null, imp ? cur(cost / imp * 1000) : '');
+    set('rCr', clk && conv !== null, clk ? pct(conv / clk, 2) : '');
+    set('rCpa', conv && cost !== null, conv ? cur(cost / conv) : '');
+    set('rRoas', cost && val !== null, cost ? (val / cost).toFixed(2) + ' (' + Math.round(val / cost * 100) + '%)' : '');
+    set('rAov', conv && val !== null, conv ? cur(val / conv) : '');
+    set('rVpc', clk && val !== null, clk ? cur(val / clk) : '');
+    set('rCos', val && cost !== null, val ? pct(cost / val, 1) : '');
+
+    /* targets, defaulting to observed values where the field is empty */
+    var cr = v('tCr'), crSrc = false;
+    if (cr === null && clk && conv !== null){ cr = conv / clk * 100; crSrc = true; }
+    var aov = v('tAov'); if (aov === null && conv && val !== null) aov = val / conv;
+    var out = $('tOut'), why = $('tWhy'), max = null;
+    if (tMode === 'cpa'){
+      var t = v('tCpa');
+      if (t && cr) max = t * cr / 100;
+      why.textContent = max !== null ? 'At a ' + cr.toFixed(2) + '% conversion rate' + (crSrc ? ' (from your numbers)' : '') + ', paying more than this per click on average puts cost per conversion above ' + cur(t) + '.' : 'Enter a target cost per conversion and a conversion rate.';
+    } else {
+      var r = v('tRoas');
+      if (r && cr && aov) max = aov * cr / 100 / r;
+      why.textContent = max !== null ? 'With an average conversion value of ' + cur(aov) + ' and a ' + cr.toFixed(2) + '% conversion rate, paying more than this per click on average drops ROAS below ' + r + ' (' + Math.round(r * 100) + '%).' : 'Enter a target ROAS, the average conversion value and a conversion rate.';
+    }
+    out.textContent = max !== null ? cur(max) : '\u2013';
+
+    /* monthly plan */
+    var b = v('pBud'), pc = v('pCpc'), pr = v('pCr');
+    var clicks = b && pc ? b / pc : null, convs = clicks !== null && pr !== null ? clicks * pr / 100 : null;
+    set('pClicks', clicks !== null, clicks !== null ? Math.floor(clicks).toLocaleString() : '');
+    set('pConv', convs !== null, convs !== null ? convs.toLocaleString(undefined, { maximumFractionDigits: 1 }) : '');
+    set('pCpa', convs, convs ? cur(b / convs) : '');
+    set('pDay', b, b ? cur(b / 30.4) : '');
+    save();
+  }
+
+  [].slice.call(document.querySelectorAll('[data-t]')).forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tMode = btn.dataset.t;
+      document.querySelectorAll('[data-t]').forEach(function(x){ x.classList.toggle('on', x === btn); x.setAttribute('aria-pressed', x === btn); });
+      $('tCpaWrap').hidden = tMode !== 'cpa'; $('tRoasWrap').hidden = tMode !== 'roas'; $('tAovWrap').hidden = tMode !== 'roas';
+      calc();
+    });
+  });
+  $('mCopy').addEventListener('click', function(){
+    var lines = [].slice.call(document.querySelectorAll('#mOut dt')).map(function(dt){
+      return dt.textContent + ': ' + dt.nextElementSibling.querySelector('span').textContent;
+    });
+    var b = this; if (!navigator.clipboard) return;
+    navigator.clipboard.writeText(lines.join('\n')).then(function(){ var o = b.textContent; b.textContent = 'Copied'; setTimeout(function(){ b.textContent = o; }, 1400); });
+  });
+  $('mClear').addEventListener('click', function(){
+    IDS.forEach(function(id){ if (id !== 'mCur') $(id).value = ''; });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    calc();
+  });
+
+  function save(){ try { var d = { t: tMode }; IDS.forEach(function(id){ d[id] = $(id).value; }); localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} }
+  function restore(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d) return;
+      IDS.forEach(function(id){ if (typeof d[id] === 'string') $(id).value = d[id]; });
+      if (d.t === 'roas') document.querySelector('[data-t="roas"]').click();
+    } catch(e){}
+  }
+  IDS.forEach(function(id){ $(id).addEventListener(id === 'mCur' ? 'change' : 'input', calc); });
+  restore(); calc();
+})();
+</script>

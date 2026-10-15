@@ -1,0 +1,252 @@
+---
+crumb: "Break-even ROAS calculator"
+order: 6
+heading: "Break-even ROAS and target ROAS calculator"
+standfirst: "Find the lowest ROAS your Google Ads can run at without losing money, the target ROAS that leaves the profit you want, and what every level of ROAS actually earns you after costs."
+title: "Break-even ROAS Calculator for Google Ads | DigitalFadi"
+description: "Free break-even ROAS calculator. Factor in product cost, delivery, fees, returns and VAT to find your minimum ROAS and a profitable target ROAS."
+faqs:
+  - q: "What is break-even ROAS?"
+    a: "Break-even ROAS is the return on ad spend at which the profit from a sale exactly covers the cost of the ads that produced it. Below it, every sale loses money. The formula is 1 divided by your profit margin before ad costs, so a 25 percent margin gives a break-even ROAS of 4, or 400 percent in Google Ads."
+  - q: "How do I calculate break-even ROAS?"
+    a: "Take the average order value, subtract product cost, delivery, payment fees, returns and any other cost per order to get the profit before advertising. Divide the order value by that profit. If an order is worth 100 and leaves 30 before ads, the break-even ROAS is 100 divided by 30, which is 3.33."
+  - q: "What target ROAS should I set in Google Ads?"
+    a: "Set it above break-even by enough to leave the profit you need. Google Ads takes target ROAS as a percentage, so a target of 5 is entered as 500 percent. Start near your recent actual ROAS rather than jumping straight to a much higher figure, because a target far above current results can sharply cut volume while the bidding adjusts."
+  - q: "Does VAT affect my ROAS?"
+    a: "It can. If your conversion tracking reports the price including VAT or sales tax, Google Ads counts revenue you never keep. Tick the VAT option in this calculator and it removes the tax before working out profit, so the break-even figure matches what your account actually reports."
+  - q: "Why is my ROAS good but the business is not making money?"
+    a: "ROAS measures revenue, not profit. A ROAS of 3 sounds healthy, but with a 25 percent margin the break-even point is 4, so every sale loses money. The table in this calculator shows the profit or loss at each ROAS level for your own costs."
+  - q: "Is the information I enter saved?"
+    a: "Yes, in this browser only, so your figures are still there next time on the same device. Nothing is uploaded or sent anywhere, including to us. The Clear button removes them."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Your costs</b><span>Per average order</span></div>
+        <div class="tk-body">
+          <div class="tk-seg" role="group" aria-label="Calculation mode">
+            <button type="button" class="btn sm on" data-mode="detail" aria-pressed="true">Detailed</button>
+            <button type="button" class="btn sm" data-mode="simple" aria-pressed="false">I know my margin</button>
+          </div>
+          <div class="field">
+            <label for="bCur">Currency</label>
+            <select id="bCur" class="tk-sel">
+              <option value="USD">US dollar ($)</option>
+              <option value="GBP">British pound (&pound;)</option>
+              <option value="EUR">Euro (&euro;)</option>
+              <option value="AUD">Australian dollar (A$)</option>
+              <option value="CAD">Canadian dollar (C$)</option>
+            </select>
+          </div>
+
+          <div id="bDetail">
+            <div class="field"><label for="bAov">Average order value, as Google Ads reports it</label><input id="bAov" type="number" min="0" step="any" inputmode="decimal" placeholder="120"></div>
+            <div class="frow">
+              <div class="field"><label for="bCogs">Product cost per order</label><input id="bCogs" type="number" min="0" step="any" inputmode="decimal" placeholder="45"></div>
+              <div class="field"><label for="bShip">Delivery and packing</label><input id="bShip" type="number" min="0" step="any" inputmode="decimal" placeholder="8"></div>
+            </div>
+            <div class="frow">
+              <div class="field"><label for="bFeeP">Payment fees %</label><input id="bFeeP" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="2.9"></div>
+              <div class="field"><label for="bFeeF">Fixed fee per order</label><input id="bFeeF" type="number" min="0" step="any" inputmode="decimal" placeholder="0.30"></div>
+            </div>
+            <div class="frow">
+              <div class="field"><label for="bRet">Returns and refunds, % of revenue</label><input id="bRet" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="5"></div>
+              <div class="field"><label for="bOther">Other costs per order</label><input id="bOther" type="number" min="0" step="any" inputmode="decimal" placeholder="0"></div>
+            </div>
+          </div>
+
+          <div id="bSimple" hidden>
+            <div class="field"><label for="bMargin">Profit margin before ad costs %</label><input id="bMargin" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="30"></div>
+            <p class="tk-hint" style="margin:-6px 0 16px">What is left from each sale after product, delivery, fees and returns, but before advertising.</p>
+          </div>
+
+          <label class="tk-tog"><input type="checkbox" id="bVatOn"><span>My conversion value includes VAT or sales tax</span></label>
+          <div class="field" id="bVatWrap" hidden><label for="bVat">Tax rate %</label><input id="bVat" type="number" min="0" max="100" step="any" inputmode="decimal" value="20"></div>
+          <div class="field" style="margin-bottom:0"><label for="bProfit">Profit you want to keep after ads, % of sales</label><input id="bProfit" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="10"></div>
+          <div class="tk-row"><button type="button" class="btn ghost sm" id="bClear">Clear</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Break-even ROAS</b><span>Your minimum</span></div>
+        <div class="tk-body" aria-live="polite">
+          <p class="tk-big" id="oBe">&ndash;</p>
+          <p class="tk-sub" id="oBeSub">Enter your order value and costs to see the minimum ROAS.</p>
+          <p class="tk-err" id="oErr" hidden></p>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">The detail</h2>
+        <dl>
+          <dt>Profit per order before ads</dt><dd id="oContrib">&ndash;</dd>
+          <dt>Margin before ads</dt><dd id="oMargin">&ndash;</dd>
+          <dt>Break-even cost per sale (CPA)</dt><dd id="oCpa">&ndash;</dd>
+          <dt>Target ROAS for your profit goal</dt><dd id="oTarget">&ndash;</dd>
+          <dt>Most you can spend per sale for that goal</dt><dd id="oTcpa">&ndash;</dd>
+        </dl>
+      </div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Check your current ROAS</b><span>Profit or loss</span></div>
+        <div class="tk-body">
+          <div class="field"><label for="bNow">Your current ROAS (e.g. 3.5)</label><input id="bNow" type="number" min="0" step="any" inputmode="decimal" placeholder="3.5"></div>
+          <p class="tk-sub" id="oNow" style="margin:0">Enter the ROAS your account is reporting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fcard" style="margin-top:20px">
+    <div class="fcard-head"><b>Profit at each ROAS level</b><span>Per 1,000 of ad spend</span></div>
+    <div class="tk-body">
+      <div class="tk-scroll">
+        <table class="tk-table">
+          <thead><tr><th scope="col">ROAS</th><th scope="col">Google Ads target</th><th scope="col">Revenue</th><th scope="col">Profit before ads</th><th scope="col">Profit after ads</th><th scope="col" class="l">Result</th></tr></thead>
+          <tbody id="oTable"><tr><td colspan="6" class="l" style="color:var(--slate)">Fill in your costs to see the table.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>The break-even ROAS formula</h2>
+    <p>Break-even ROAS = order value &divide; profit per order before ad costs. Put another way, it is 1 divided by your margin before ads. A product with a 50% margin breaks even at a ROAS of 2. A product with a 20% margin needs a ROAS of 5 just to stand still. That is why two shops with the same ROAS can have completely different results.</p>
+
+    <h2>Costs people forget</h2>
+    <ul>
+      <li><strong>VAT or sales tax</strong> in the tracked conversion value, which inflates ROAS without adding a penny of profit.</li>
+      <li><strong>Payment fees</strong>, small per order but charged on every one.</li>
+      <li><strong>Returns and refunds</strong>, which Google Ads counted as revenue at the time of the sale.</li>
+      <li><strong>Delivery and packing</strong>, especially where free delivery is offered.</li>
+    </ul>
+
+    <h2>From break-even to a target ROAS</h2>
+    <p>Breaking even on the first order can still make sense when customers come back, but it should be a decision, not an accident. Set the profit you want to keep and the calculator gives the target ROAS to enter in Google Ads, as a percentage. Raise targets in steps rather than all at once, because a big jump can stall spend while bidding relearns. If the account reports a healthy ROAS but the profit never shows up in the bank, the cause is often inflated conversion values, which is the first thing a <a href="/google-ads-audit/">$200 account analysis</a> checks. To turn raw cost and revenue into ROAS, use the <a href="/tools/metrics-calculator/">metrics calculator</a>.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_beroas_v1';
+  var IDS = ['bCur','bAov','bCogs','bShip','bFeeP','bFeeF','bRet','bOther','bMargin','bVat','bProfit','bNow'];
+  var mode = 'detail';
+
+  function v(id){ var x = parseFloat($(id).value); return isFinite(x) && x >= 0 ? x : 0; }
+  function has(id){ return $(id).value.trim() !== ''; }
+  function cur(n){
+    try { return new Intl.NumberFormat(undefined, { style:'currency', currency:$('bCur').value, minimumFractionDigits:2, maximumFractionDigits:2 }).format(n); }
+    catch(e){ return n.toFixed(2); }
+  }
+  function r2(n){ return n.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+  function dash(ids){ ids.forEach(function(id){ $(id).textContent = '\u2013'; }); }
+
+  function calc(){
+    $('bVatWrap').hidden = !$('bVatOn').checked;
+    var vat = $('bVatOn').checked ? v('bVat') / 100 : 0;
+    var err = $('oErr'); err.hidden = true;
+    /* share = profit before ads as a fraction of the value Google Ads reports */
+    var share = null, contrib = null, tracked = null, net = null;
+
+    if (mode === 'detail'){
+      if (has('bAov') && v('bAov') > 0){
+        tracked = v('bAov'); net = tracked / (1 + vat);
+        var fees = tracked * v('bFeeP') / 100 + v('bFeeF');
+        contrib = net - v('bCogs') - v('bShip') - fees - net * v('bRet') / 100 - v('bOther');
+        share = contrib / tracked;
+      }
+    } else if (has('bMargin')){
+      tracked = 100; net = 100 / (1 + vat);
+      contrib = net * v('bMargin') / 100; share = contrib / tracked;
+    }
+
+    var outIds = ['oContrib','oMargin','oCpa','oTarget','oTcpa'];
+    if (share === null){
+      $('oBe').textContent = '\u2013'; $('oBeSub').textContent = mode === 'detail' ? 'Enter your order value and costs to see the minimum ROAS.' : 'Enter your margin before ad costs.';
+      dash(outIds); $('oNow').textContent = 'Enter the ROAS your account is reporting.';
+      $('oTable').innerHTML = '<tr><td colspan="6" class="l" style="color:var(--slate)">Fill in your costs to see the table.</td></tr>';
+      save(); return;
+    }
+    if (contrib <= 0){
+      $('oBe').textContent = 'Not possible';
+      $('oBeSub').textContent = '';
+      err.textContent = mode === 'simple' ? 'With no margin before ad costs, no ROAS can break even.'
+        : 'Each order ' + (contrib < 0 ? 'loses ' + cur(-contrib) : 'makes nothing') + ' before any advertising, so no ROAS can break even. Lower costs or raise prices first.';
+      err.hidden = false; dash(outIds);
+      $('oTable').innerHTML = ''; save(); return;
+    }
+
+    var be = 1 / share;
+    $('oBe').textContent = r2(be);
+    $('oBeSub').textContent = 'Enter ' + Math.ceil(be * 100) + '% as the floor for target ROAS in Google Ads. Below this, every sale loses money.';
+    $('oMargin').textContent = (contrib / net * 100).toFixed(1) + '%';
+    if (mode === 'detail'){
+      $('oContrib').textContent = cur(contrib);
+      $('oCpa').textContent = cur(contrib);
+    } else {
+      $('oContrib').textContent = (contrib / net * 100).toFixed(1) + '% of each sale';
+      $('oCpa').textContent = (share * 100).toFixed(1) + '% of order value';
+    }
+
+    var p = v('bProfit') / 100, allowed = contrib - net * p;
+    if (!has('bProfit')){ $('oTarget').textContent = 'Add a profit goal'; $('oTcpa').textContent = '\u2013'; }
+    else if (allowed <= 0){ $('oTarget').textContent = 'Goal is above your margin'; $('oTcpa').textContent = '\u2013'; }
+    else {
+      var tr = tracked / allowed;
+      $('oTarget').textContent = r2(tr) + ' (' + Math.ceil(tr * 100) + '%)';
+      $('oTcpa').textContent = mode === 'detail' ? cur(allowed) : (allowed / tracked * 100).toFixed(1) + '% of order value';
+    }
+
+    if (has('bNow') && v('bNow') > 0){
+      var now = v('bNow'), per1000 = 1000 * now * share - 1000;
+      $('oNow').innerHTML = '<span class="tk-tag ' + (per1000 >= 0 ? 'good' : 'bad') + '">' + (per1000 >= 0 ? 'Profitable' : 'Losing money') + '</span> ' +
+        'At a ROAS of ' + r2(now) + ', every ' + cur(1000) + ' of ad spend ' + (per1000 >= 0 ? 'leaves ' + cur(per1000) + ' profit' : 'loses ' + cur(-per1000)) + ' after ad costs.';
+    } else $('oNow').textContent = 'Enter the ROAS your account is reporting.';
+
+    var levels = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+    if (levels.indexOf(Math.round(be * 100) / 100) === -1) levels.push(Math.round(be * 100) / 100);
+    levels.sort(function(a, b){ return a - b; });
+    $('oTable').innerHTML = levels.map(function(l){
+      var rev = 1000 * l, gp = rev * share, np = gp - 1000, isBe = Math.abs(l - be) < 0.005;
+      return '<tr' + (isBe ? ' class="sel"' : '') + '><td>' + r2(l) + (isBe ? ' <b>(break-even)</b>' : '') + '</td><td>' + Math.round(l * 100) + '%</td><td>' + cur(rev) + '</td><td>' + cur(gp) + '</td>' +
+        '<td' + (np < -0.005 ? ' class="zero"' : '') + '>' + cur(np) + '</td><td class="l"><span class="tk-tag ' + (np > 0.005 ? 'good' : np < -0.005 ? 'bad' : 'soft') + '">' + (np > 0.005 ? 'Profit' : np < -0.005 ? 'Loss' : 'Break-even') + '</span></td></tr>';
+    }).join('');
+    save();
+  }
+
+  [].slice.call(document.querySelectorAll('[data-mode]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.dataset.mode;
+      document.querySelectorAll('[data-mode]').forEach(function(x){ x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+      $('bDetail').hidden = mode !== 'detail'; $('bSimple').hidden = mode !== 'simple';
+      calc();
+    });
+  });
+  $('bClear').addEventListener('click', function(){
+    IDS.forEach(function(id){ if (id !== 'bCur' && id !== 'bVat') $(id).value = ''; });
+    $('bVat').value = '20'; $('bVatOn').checked = false;
+    try { localStorage.removeItem(KEY); } catch(e){}
+    calc();
+  });
+
+  function save(){ try { var d = { m: mode, vatOn: $('bVatOn').checked }; IDS.forEach(function(id){ d[id] = $(id).value; }); localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} }
+  function restore(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d) return;
+      IDS.forEach(function(id){ if (typeof d[id] === 'string') $(id).value = d[id]; });
+      $('bVatOn').checked = !!d.vatOn;
+      if (d.m === 'simple') document.querySelector('[data-mode="simple"]').click();
+    } catch(e){}
+  }
+  IDS.forEach(function(id){ $(id).addEventListener(id === 'bCur' ? 'change' : 'input', calc); });
+  $('bVatOn').addEventListener('change', calc);
+  restore(); calc();
+})();
+</script>

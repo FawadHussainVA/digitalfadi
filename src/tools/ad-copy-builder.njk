@@ -1,0 +1,413 @@
+---
+crumb: "Ad copy builder"
+order: 1
+heading: "Google Ads character counter and ad preview"
+standfirst: "Write your headlines and descriptions with live character counts, duplicate checking, and a preview of how the advert actually looks on desktop and mobile."
+title: "Google Ads Character Counter & Ad Preview | DigitalFadi"
+description: "Free Google Ads character counter. Check headline and description limits live, spot duplicates, and preview your responsive search ad on desktop and mobile."
+faqs:
+  - q: "What are the Google Ads character limits?"
+    a: "Headlines are 30 characters each and you can add up to 15. Descriptions are 90 characters each and you can add up to 4. Path fields are 15 characters each. Spaces and punctuation count towards the limit."
+  - q: "How many headlines should a responsive search ad have?"
+    a: "Google allows 15 and rewards using most of them, because more combinations give the system more to test. Aim for at least 8 to 10 genuinely different headlines rather than 15 variations of the same sentence."
+  - q: "Does this tool send my ad copy anywhere?"
+    a: "No. Everything runs in your browser. Your headlines are saved in this browser so they are still there when you come back, but nothing is ever uploaded or sent to any server, including ours. The Clear button removes the saved copy."
+  - q: "Is my work saved if I close the tab?"
+    a: "Yes. The tool keeps your headlines and descriptions in this browser, so they are still there when you come back on the same device. It is not an account and nothing is sent anywhere. Use Clear to wipe it."
+  - q: "Why does my headline get cut off in the preview?"
+    a: "Google shows up to three headlines joined by vertical bars, and the full set rarely fits, especially on mobile. The preview shows roughly what Google displays so you can check your most important headline still reads properly when the others are truncated."
+---
+
+<section class="wrap">
+  <div class="split" style="align-items:start">
+
+    <div>
+      <div class="fcard">
+        <div class="fcard-head">
+          <b>Headlines</b>
+          <span><span id="hCount">0</span> / 15</span>
+        </div>
+        <div style="padding:22px">
+          <div id="headlines"></div>
+          <button type="button" class="btn ghost sm" id="addH" style="margin-top:12px">Add headline</button>
+        </div>
+      </div>
+
+      <div class="fcard" style="margin-top:20px">
+        <div class="fcard-head">
+          <b>Descriptions</b>
+          <span><span id="dCount">0</span> / 4</span>
+        </div>
+        <div style="padding:22px">
+          <div id="descriptions"></div>
+          <button type="button" class="btn ghost sm" id="addD" style="margin-top:12px">Add description</button>
+        </div>
+      </div>
+
+      <div class="fcard" style="margin-top:20px">
+        <div class="fcard-head">
+          <b>Display URL</b>
+          <span>Paths</span>
+        </div>
+        <div style="padding:22px">
+          <div class="frow">
+            <div class="field">
+              <label for="dom">Domain</label>
+              <input id="dom" type="text" value="yoursite.com" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="p1">Path 1 <span class="plim" id="p1c">0/15</span></label>
+              <input id="p1" type="text" placeholder="services" maxlength="15" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="p2">Path 2 <span class="plim" id="p2c">0/15</span></label>
+              <input id="p2" type="text" placeholder="audit" maxlength="15" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel" id="checks">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">Checks</h2>
+        <ul id="checkList" style="list-style:none;padding:0;margin:0;font-size:.9rem;line-height:1.7"></ul>
+      </div>
+
+      <div class="fcard" style="margin-top:20px">
+        <div class="fcard-head">
+          <b>Preview</b>
+          <span id="prevMode">Desktop</span>
+        </div>
+        <div style="padding:22px">
+          <div class="tabs" style="display:flex;gap:8px;margin-bottom:14px">
+            <button type="button" class="btn sm prevtab on" data-w="desktop">Desktop</button>
+            <button type="button" class="btn sm prevtab" data-w="mobile">Mobile</button>
+          </div>
+          <div id="adPreview"></div>
+        </div>
+      </div>
+
+      <div class="fcard" style="margin-top:20px">
+        <div class="fcard-head">
+          <b>Export</b>
+          <span>Copy or download</span>
+        </div>
+        <div style="padding:22px;display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" class="btn sm" id="copyAll">Copy all</button>
+          <button type="button" class="btn ghost sm" id="dlCsv">Download CSV</button>
+          <button type="button" class="btn ghost sm" id="dlEditor">Google Ads Editor CSV</button>
+          <button type="button" class="btn ghost sm" id="clearAll">Clear</button>
+          <p class="fnote" style="width:100%;margin:4px 0 0" id="savedNote">Your work is kept in this browser only. Press Enter in any field to add another.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>Why character limits matter more than they look</h2>
+    <p>Google does not warn you properly when a headline is too long. It simply will not serve that asset, so the advert quietly runs on whatever else you gave it. Accounts regularly run for months with three of their fifteen headlines never showing.</p>
+    <p>The other trap is duplication. Fifteen headlines that all say the same thing in different words give the system nothing to test, and Google will tell you the ad strength is poor without explaining why.</p>
+
+    <h2>What to write in each field</h2>
+    <ul>
+      <li><strong>Headlines</strong> carry the message. Lead with the outcome, not the company name. Include the search term in at least two, because relevance feeds Quality Score.</li>
+      <li><strong>Descriptions</strong> carry proof and the call to action. Specifics beat adjectives: a number, a guarantee, a timeframe.</li>
+      <li><strong>Paths</strong> are not real URLs. They are display text, and they should match the search rather than your site structure.</li>
+    </ul>
+
+    <h2>Pinning, briefly</h2>
+    <p>Pinning a headline to position one guarantees it shows, and removes every combination that would have placed it elsewhere. That is sometimes necessary for legal or brand reasons and is usually a mistake otherwise. If you pin, pin two or three assets to the same position so the system still has something to choose between.</p>
+    <p>If the account is not performing and you are not sure whether the adverts are the problem, a <a href="/google-ads-audit/">$200 account analysis</a> checks tracking, search terms and structure before anything else. There is more on the usual causes in <a href="/learn/why-are-my-google-ads-not-converting/">why your Google Ads are not converting</a>.</p>
+  </div>
+</section>
+
+<style>
+/* rows use the site's own input styling, not browser defaults */
+  .acrow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+  .acnum{flex:none;width:22px;text-align:right;font-size:.78rem;font-weight:800;
+    color:var(--slate-l);font-variant-numeric:tabular-nums}
+  .acfield{position:relative;flex:1;min-width:0}
+  .acfield input{width:100%;font-family:var(--font);font-size:.94rem;
+    padding:12px 62px 12px 14px;border:var(--bd);border-radius:var(--r-sm);
+    background:var(--bg);color:var(--ink);
+    transition:box-shadow .14s var(--ease),background .2s}
+  .acfield input:focus{outline:none;background:#fff;box-shadow:3px 3px 0 var(--purple)}
+  .acfield input::placeholder{color:var(--slate-l)}
+  .acfield.warn input:focus{box-shadow:3px 3px 0 var(--amber-d)}
+  .acfield.over input{background:#FBE9E5}
+  .acfield.over input:focus{box-shadow:3px 3px 0 var(--red)}
+  .account{position:absolute;right:13px;top:50%;transform:translateY(-50%);
+    font-size:.73rem;font-weight:800;color:var(--slate-l);
+    font-variant-numeric:tabular-nums;pointer-events:none}
+  .acfield.warn .account{color:var(--amber-d)}
+  .acfield.over .account{color:var(--red)}
+  .acdel{flex:none;width:34px;height:34px;border:var(--bd);border-radius:var(--r-sm);
+    background:var(--bg-2);cursor:pointer;font-size:1.05rem;font-weight:800;line-height:1;
+    color:var(--slate);padding:0;transition:transform .12s var(--ease),background .2s}
+  .acdel:hover{background:var(--purple-l);color:var(--ink)}
+  .acdel:active{transform:translateY(2px)}
+
+  .tchk{display:flex;gap:9px;align-items:flex-start;margin-bottom:8px}
+  .tchk i{flex:none;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;
+    font-style:normal;font-size:.62rem;font-weight:800;color:#fff;margin-top:3px}
+  .tchk.ok i{background:var(--green)}
+  .tchk.no i{background:var(--red)}
+
+  .gad{border:var(--bd);border-radius:var(--r-sm);padding:15px 17px;background:#fff}
+  .gad .badge{display:inline-block;font-size:.66rem;font-weight:800;border:1.5px solid var(--ink);
+    border-radius:5px;padding:1px 6px;margin-right:8px}
+  .gad .url{font-size:.8rem;color:#202124}
+  .gad .ghead{color:#1a0dab;font-size:1.05rem;line-height:1.3;margin:6px 0 5px;font-weight:600}
+  .gad .gdesc{color:#4d5156;font-size:.84rem;line-height:1.5}
+  .gad.mob{max-width:330px}
+  .plim{float:right;font-size:.72rem;font-weight:800;color:var(--slate-l);font-variant-numeric:tabular-nums}
+  .plim.over{color:var(--red)}
+  .prevtab{background:var(--bg-2)}
+  .prevtab.on{background:var(--purple);color:#fff}
+  @media(max-width:1000px){ .split{grid-template-columns:1fr} }
+</style>
+<script>
+(function(){
+  'use strict';
+  var H_MAX = 30, D_MAX = 90, H_LIMIT = 15, D_LIMIT = 4;
+  var headlines = document.getElementById('headlines'),
+      descriptions = document.getElementById('descriptions');
+
+  function row(kind, value){
+    var max = kind === 'h' ? H_MAX : D_MAX;
+    var wrap = document.createElement('div');
+    wrap.className = 'acrow';
+
+    var num = document.createElement('span');
+    num.className = 'acnum';
+
+    var field = document.createElement('span');
+    field.className = 'acfield';
+
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.value = value || '';
+    input.placeholder = kind === 'h' ? 'Lead with the outcome' : 'Proof, specifics, then the call to action';
+    input.setAttribute('aria-label', (kind === 'h' ? 'Headline' : 'Description') + ', max ' + max + ' characters');
+
+    var count = document.createElement('span');
+    count.className = 'account';
+
+    field.appendChild(input);
+    field.appendChild(count);
+
+    var del = document.createElement('button');
+    del.type = 'button'; del.className = 'acdel'; del.innerHTML = '&times;';
+    del.setAttribute('aria-label', 'Remove this ' + (kind === 'h' ? 'headline' : 'description'));
+    del.addEventListener('click', function(){ wrap.remove(); update(); });
+
+    input.addEventListener('input', update);
+    wrap.appendChild(num); wrap.appendChild(field); wrap.appendChild(del);
+    wrap.dataset.max = max;
+    return wrap;
+  }
+
+  function vals(container){
+    return [].slice.call(container.querySelectorAll('input')).map(function(i){ return i.value.trim(); });
+  }
+
+  function update(){
+    [headlines, descriptions].forEach(function(c){
+      [].slice.call(c.children).forEach(function(r, idx){
+        var input = r.querySelector('input'),
+            count = r.querySelector('.account'),
+            field = r.querySelector('.acfield'),
+            num   = r.querySelector('.acnum');
+        var max = Number(r.dataset.max), n = input.value.length;
+        num.textContent = (idx + 1) + '.';
+        count.textContent = n + '/' + max;
+        field.className = 'acfield' + (n > max ? ' over' : (n > max - 5 && n > 0 ? ' warn' : ''));
+      });
+    });
+    var hs = vals(headlines), ds = vals(descriptions);
+    document.getElementById('hCount').textContent = hs.filter(Boolean).length;
+    document.getElementById('dCount').textContent = ds.filter(Boolean).length;
+    ['p1','p2'].forEach(function(id){
+      var n = document.getElementById(id).value.length;
+      var el = document.getElementById(id + 'c');
+      el.textContent = n + '/15';
+      el.className = 'plim' + (n >= 15 ? ' over' : '');
+    });
+    runChecks(hs, ds);
+    drawPreview(hs, ds);
+    save();
+  }
+
+  function runChecks(hs, ds){
+    var filledH = hs.filter(Boolean), filledD = ds.filter(Boolean);
+    var overH = hs.filter(function(t){ return t.length > H_MAX; }).length;
+    var overD = ds.filter(function(t){ return t.length > D_MAX; }).length;
+    var lower = filledH.map(function(t){ return t.toLowerCase(); });
+    var dupes = lower.filter(function(t, i){ return lower.indexOf(t) !== i; });
+    var short = filledH.filter(function(t){ return t.length < 15; }).length;
+
+    var items = [
+      [overH === 0, overH === 0 ? 'No headline over 30 characters'
+        : overH + ' headline' + (overH > 1 ? 's' : '') + ' over 30 characters, which will not serve'],
+      [overD === 0, overD === 0 ? 'No description over 90 characters'
+        : overD + ' description' + (overD > 1 ? 's' : '') + ' over 90 characters, which will not serve'],
+      [dupes.length === 0, dupes.length === 0 ? 'No duplicate headlines'
+        : dupes.length + ' duplicate headline' + (dupes.length > 1 ? 's' : '')],
+      [filledH.length >= 8, filledH.length >= 8
+        ? filledH.length + ' headlines, enough for Google to test'
+        : 'Only ' + filledH.length + ' headlines. Aim for 8 or more'],
+      [filledD.length >= 2, filledD.length >= 2
+        ? filledD.length + ' descriptions'
+        : 'Add at least 2 descriptions'],
+      [short === 0, short === 0 ? 'No very short headlines'
+        : short + ' headline' + (short > 1 ? 's' : '') + ' under 15 characters, which wastes the space']
+    ];
+
+    document.getElementById('checkList').innerHTML = items.map(function(it){
+      var cls = it[0] ? 'ok' : 'no';
+      return '<li class="tchk ' + cls + '"><i aria-hidden="true">' + (it[0] ? '\u2713' : '!') +
+             '</i><span>' + it[1] + '</span></li>';
+    }).join('');
+  }
+
+  var mode = 'desktop';
+  function esc(t){
+    return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function drawPreview(hs, ds){
+    var fh = hs.filter(Boolean), fd = ds.filter(Boolean);
+    var shown = fh.slice(0, mode === 'mobile' ? 2 : 3);
+    var dom = document.getElementById('dom').value.trim() || 'yoursite.com';
+    var p1 = document.getElementById('p1').value.trim(), p2 = document.getElementById('p2').value.trim();
+    var path = dom + (p1 ? '/' + p1 : '') + (p2 ? '/' + p2 : '');
+    var desc = fd.slice(0, mode === 'mobile' ? 1 : 2).join(' ');
+    document.getElementById('adPreview').innerHTML =
+      '<div class="gad' + (mode === 'mobile' ? ' mob' : '') + '">' +
+      '<div><span class="badge">Sponsored</span><span class="url">' + esc(path) + '</span></div>' +
+      '<div class="ghead">' + (shown.length ? esc(shown.join(' | ')) : 'Your headlines appear here') + '</div>' +
+      '<div class="gdesc">' + (desc ? esc(desc) : 'Your descriptions appear here.') + '</div>' +
+      '</div>';
+  }
+
+  document.getElementById('addH').addEventListener('click', function(){
+    if (headlines.children.length >= H_LIMIT) return;
+    headlines.appendChild(row('h')); update();
+    headlines.lastChild.querySelector('input').focus();
+  });
+  document.getElementById('addD').addEventListener('click', function(){
+    if (descriptions.children.length >= D_LIMIT) return;
+    descriptions.appendChild(row('d')); update();
+    descriptions.lastChild.querySelector('input').focus();
+  });
+  ['dom','p1','p2'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', update);
+  });
+  [].slice.call(document.querySelectorAll('.prevtab')).forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.dataset.w;
+      document.querySelectorAll('.prevtab').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('prevMode').textContent = mode === 'mobile' ? 'Mobile' : 'Desktop';
+      update();
+    });
+  });
+
+  document.getElementById('copyAll').addEventListener('click', function(){
+    var hs = vals(headlines).filter(Boolean), ds = vals(descriptions).filter(Boolean);
+    var text = 'HEADLINES\n' + hs.map(function(t, i){ return (i + 1) + '. ' + t; }).join('\n') +
+               '\n\nDESCRIPTIONS\n' + ds.map(function(t, i){ return (i + 1) + '. ' + t; }).join('\n');
+    var btn = this;
+    navigator.clipboard.writeText(text).then(function(){
+      var old = btn.textContent; btn.textContent = 'Copied';
+      setTimeout(function(){ btn.textContent = old; }, 1400);
+    });
+  });
+
+  document.getElementById('dlCsv').addEventListener('click', function(){
+    var rows = [['Type','Text','Characters']];
+    vals(headlines).filter(Boolean).forEach(function(t){ rows.push(['Headline', t, t.length]); });
+    vals(descriptions).filter(Boolean).forEach(function(t){ rows.push(['Description', t, t.length]); });
+    var csv = rows.map(function(r){
+      return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(',');
+    }).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+    a.download = 'ad-copy.csv'; a.click(); URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('clearAll').addEventListener('click', function(){
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    headlines.innerHTML = ''; descriptions.innerHTML = '';
+    for (var i = 0; i < 3; i++) headlines.appendChild(row('h'));
+    for (var j = 0; j < 2; j++) descriptions.appendChild(row('d'));
+    update();
+  });
+
+  /* ---------- keep work between visits, in this browser only ---------- */
+  var KEY = 'df_adcopy_v1';
+  function save(){
+    try{
+      localStorage.setItem(KEY, JSON.stringify({
+        h: vals(headlines), d: vals(descriptions),
+        dom: document.getElementById('dom').value,
+        p1: document.getElementById('p1').value,
+        p2: document.getElementById('p2').value
+      }));
+    }catch(e){}
+  }
+  function restore(){
+    var raw;
+    try{ raw = localStorage.getItem(KEY); }catch(e){ return false; }
+    if(!raw) return false;
+    var d;
+    try{ d = JSON.parse(raw); }catch(e){ return false; }
+    if(!d || !d.h) return false;
+    d.h.forEach(function(v){ headlines.appendChild(row('h', v)); });
+    (d.d || []).forEach(function(v){ descriptions.appendChild(row('d', v)); });
+    if(d.dom) document.getElementById('dom').value = d.dom;
+    if(d.p1) document.getElementById('p1').value = d.p1;
+    if(d.p2) document.getElementById('p2').value = d.p2;
+    return headlines.children.length > 0;
+  }
+
+  /* ---------- Enter adds the next field ---------- */
+  function wireEnter(container, kind, limit){
+    container.addEventListener('keydown', function(e){
+      if(e.key !== 'Enter') return;
+      e.preventDefault();
+      if(container.children.length >= limit) return;
+      container.appendChild(row(kind));
+      update();
+      container.lastChild.querySelector('input').focus();
+    });
+  }
+  wireEnter(headlines, 'h', H_LIMIT);
+  wireEnter(descriptions, 'd', D_LIMIT);
+
+  /* ---------- Google Ads Editor import format ---------- */
+  document.getElementById('dlEditor').addEventListener('click', function(){
+    var hs = vals(headlines).filter(Boolean), ds = vals(descriptions).filter(Boolean);
+    var head = [], rowOut = [];
+    for (var i = 1; i <= 15; i++){ head.push('Headline ' + i); rowOut.push(hs[i-1] || ''); }
+    for (var k = 1; k <= 4; k++){ head.push('Description ' + k); rowOut.push(ds[k-1] || ''); }
+    head.push('Path 1', 'Path 2');
+    rowOut.push(document.getElementById('p1').value, document.getElementById('p2').value);
+    var csv = [head, rowOut].map(function(r){
+      return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(',');
+    }).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+    a.download = 'responsive-search-ad.csv'; a.click(); URL.revokeObjectURL(a.href);
+  });
+
+  if(!restore()){
+    for (var i = 0; i < 3; i++) headlines.appendChild(row('h'));
+    for (var j = 0; j < 2; j++) descriptions.appendChild(row('d'));
+  }
+  update();
+})();
+</script>

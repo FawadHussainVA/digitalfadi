@@ -1,0 +1,244 @@
+---
+crumb: "Negative keyword generator"
+order: 5
+heading: "Negative keyword generator for Google Ads"
+standfirst: "Build a starter negative keyword list from ready-made groups, add your own, format it for any match type, and check it against your keywords so you never block the searches you are paying for."
+title: "Negative Keyword Generator for Google Ads | DigitalFadi"
+description: "Free negative keyword generator for Google Ads. Pick from ready lists, add your own, choose a match type and check for conflicts with your keywords."
+faqs:
+  - q: "What are negative keywords in Google Ads?"
+    a: "Negative keywords stop your ads from showing on searches that contain them. If you repair boilers and add jobs as a negative, your ads will not show for boiler engineer jobs. They are the main way to stop paying for clicks from people who were never going to buy."
+  - q: "What is the difference between negative broad, phrase and exact match?"
+    a: "Negative broad blocks a search if it contains all the negative words, in any order. Negative phrase blocks a search only if it contains the words in that exact order, with anything else around them. Negative exact blocks a search only if it is exactly that phrase with nothing added. Phrase match is the safest default for most lists."
+  - q: "Do negative keywords block plurals and misspellings?"
+    a: "No. Unlike normal keywords, negative keywords do not expand to close variants. Adding job will not block jobs, so add the singular, the plural and any common misspelling separately. The lists in this tool already include the usual pairs."
+  - q: "Can negative keywords block searches I want?"
+    a: "Yes, and that is the most common mistake. A negative of cheap blocks cheap plumber near me, which might be a perfectly good customer. Paste your keywords into the conflict checker in this tool and it flags any negative that would stop one of them from showing."
+  - q: "Where should I add negative keywords?"
+    a: "Use a shared negative keyword list for words that should be blocked everywhere, such as jobs and training, and apply it to every relevant campaign. Add campaign or ad group negatives for terms that only make sense in one place. Google Ads also supports account-level negatives for blocking terms across eligible campaigns."
+  - q: "How often should I update my negative keyword list?"
+    a: "Review the search terms report every week or two while a campaign is new, then monthly once it settles. The n-gram analyser on this site groups the report by repeated words, which makes new negatives much faster to find."
+  - q: "Does this tool save my list?"
+    a: "Yes, in this browser only, so your choices are still there next time on the same device. Nothing is uploaded or sent anywhere, including to us. The Reset button clears it."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>1. Ready-made groups</b><span>Click a word to drop it</span></div>
+        <div class="tk-body" id="kGroups"></div>
+      </div>
+      <div class="fcard">
+        <div class="fcard-head"><b>2. Your own negatives</b><span>One per line</span></div>
+        <div class="tk-body">
+          <div class="field">
+            <label for="kCustom">Extra negatives</label>
+            <textarea id="kCustom" class="tk-area" style="min-height:110px" placeholder="tv&#10;car&#10;commercial" spellcheck="false"></textarea>
+          </div>
+          <div class="field">
+            <label for="kLoc">Places you do not serve</label>
+            <textarea id="kLoc" class="tk-area" style="min-height:90px" placeholder="Towns, counties or countries outside your area" spellcheck="false"></textarea>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="kComp">Brand names to exclude</label>
+            <textarea id="kComp" class="tk-area" style="min-height:90px" placeholder="Other brands you do not sell or want to bid on" spellcheck="false"></textarea>
+            <span class="tk-hint">Only exclude brands if you have decided not to bid on them. Some accounts do well on them.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>3. Your negative list</b><span><span id="kCount">0</span> keywords</span></div>
+        <div class="tk-body">
+          <div class="tk-seg" role="group" aria-label="Match type">
+            <button type="button" class="btn sm on" data-m="phrase" aria-pressed="true">Phrase "word"</button>
+            <button type="button" class="btn sm" data-m="exact" aria-pressed="false">Exact [word]</button>
+            <button type="button" class="btn sm" data-m="broad" aria-pressed="false">Broad word</button>
+          </div>
+          <div class="tk-out" id="kOut" style="max-height:340px;overflow:auto;word-break:normal"></div>
+          <div class="tk-row">
+            <button type="button" class="btn sm" id="kCopy">Copy list</button>
+            <button type="button" class="btn ghost sm" id="kTxt">Download .txt</button>
+            <button type="button" class="btn ghost sm" id="kCsv">Download CSV</button>
+            <button type="button" class="btn ghost sm" id="kReset">Reset</button>
+          </div>
+          <p class="tk-hint">In Google Ads, open Tools, then Shared library, and find negative keyword lists (labelled Exclusion lists in newer versions). Create a list, paste this in, then apply it to your campaigns.</p>
+        </div>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-head"><b>4. Conflict check</b><span>Protect your keywords</span></div>
+        <div class="tk-body">
+          <div class="field">
+            <label for="kKw">Paste your keywords</label>
+            <textarea id="kKw" class="tk-area" style="min-height:120px" placeholder="emergency plumber&#10;&quot;boiler repair near me&quot;&#10;[cheap plumber]" spellcheck="false"></textarea>
+            <span class="tk-hint">Match type symbols are ignored. The check uses your chosen negative match type.</span>
+          </div>
+          <ul class="tk-list" id="kConf"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>Why every account needs a negative list</h2>
+    <p>Google matches ads to searches more loosely every year. A keyword like boiler repair can show for boiler repair course, boiler engineer jobs and how to repair a boiler yourself. None of those people will hire you, and each click costs the same as a real customer. A good negative list is usually the fastest, cheapest improvement an account can make.</p>
+
+    <h2>How to use these lists safely</h2>
+    <ul>
+      <li><strong>Read every word before you copy.</strong> A word that is waste for one business is a customer for another. Free is waste for most, yet free quote is a buying search for tradespeople, which is why it starts switched off.</li>
+      <li><strong>Prefer phrase match.</strong> It blocks the words in order, which is precise without being as narrow as exact.</li>
+      <li><strong>Run the conflict check.</strong> One careless negative can quietly switch off your best keyword.</li>
+      <li><strong>Keep going after launch.</strong> Starter lists cover the predictable waste. Your own search terms report finds the rest, and the <a href="/tools/n-gram-analyser/">n-gram analyser</a> makes that quick.</li>
+    </ul>
+
+    <h2>Shared lists, campaign negatives and account negatives</h2>
+    <p>Words that are wrong everywhere, such as jobs or training, belong in a shared list applied to every campaign. Words that are wrong only in one place belong on that campaign or ad group, for example blocking emergency on a planned-maintenance campaign so the emergency campaign gets those searches instead. If wasted spend keeps coming back however many negatives you add, the cause is usually match types or structure, which is what a <a href="/google-ads-audit/">$200 account analysis</a> looks at. Local businesses will find more on keeping spend inside the service area on the <a href="/google-ads-for-local-services/">local services page</a>.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_negkw_v1';
+  /* Each word: [text, on by default]. Off means it is often a buying search, so it is opt-in. */
+  var GROUPS = [
+    { id:'jobs', name:'Jobs and careers', on:true, words:[['job',1],['jobs',1],['career',1],['careers',1],['hiring',1],['vacancy',1],['vacancies',1],['salary',1],['salaries',1],['recruitment',1],['apprenticeship',1],['apprenticeships',1],['internship',1],['employment',1],['resume',1],['cv',1],['wage',1],['indeed',1],['glassdoor',1]] },
+    { id:'learn', name:'Courses and training', on:true, words:[['course',1],['courses',1],['training',1],['certification',1],['certificate',1],['qualification',1],['degree',1],['diploma',1],['class',1],['classes',1],['college',1],['university',1],['school',1],['exam',1],['lesson',1],['lessons',1]] },
+    { id:'diy', name:'DIY and how-to', on:true, words:[['diy',1],['how to',1],['yourself',1],['tutorial',1],['tutorials',1],['instructions',1],['manual',1],['step by step',1],['youtube',1],['video',0],['guide',0]] },
+    { id:'research', name:'Research and definitions', on:true, words:[['what is',1],['meaning',1],['definition',1],['define',1],['wiki',1],['wikipedia',1],['example',1],['examples',1],['pdf',1],['history',1],['statistics',1],['template',1],['templates',1],['ideas',0]] },
+    { id:'free', name:'Free and freebies', on:true, words:[['free',0],['freebie',1],['freebies',1],['giveaway',1],['torrent',1],['crack',1],['cracked',1],['download',0]] },
+    { id:'used', name:'Second-hand', on:false, words:[['used',1],['second hand',1],['secondhand',1],['pre owned',1],['refurbished',1],['ebay',1],['gumtree',1],['craigslist',1],['marketplace',1]] },
+    { id:'media', name:'Images and media', on:true, words:[['images',1],['image',1],['pictures',1],['picture',1],['photos',1],['png',1],['clipart',1],['wallpaper',1],['drawing',1],['coloring',1],['colouring',1],['logo',0]] },
+    { id:'support', name:'Existing customers and support', on:false, words:[['login',1],['log in',1],['sign in',1],['my account',1],['customer service',1],['tracking',1],['cancel',1],['cancellation',1],['unsubscribe',1],['refund',1],['complaint',1],['complaints',1]] },
+    { id:'trade', name:'Wholesale and trade', on:false, words:[['wholesale',1],['bulk',1],['supplier',1],['suppliers',1],['manufacturer',1],['manufacturers',1],['distributor',1],['trade price',1]] },
+    { id:'price', name:'Low budget intent', on:false, words:[['cheap',1],['cheapest',1],['budget',0],['discount',0],['bargain',1]] }
+  ];
+  var state = { groups:{}, words:{}, match:'phrase' };
+
+  function wkey(g, w){ return g + '|' + w; }
+  function drawGroups(){
+    $('kGroups').innerHTML = GROUPS.map(function(g){
+      var on = state.groups[g.id];
+      return '<div style="margin-bottom:18px">' +
+        '<label class="tk-tog" style="font-weight:800"><input type="checkbox" data-group="' + g.id + '"' + (on ? ' checked' : '') + '><span>' + g.name + ' <span class="tk-hint" style="display:inline;font-weight:600">(' + g.words.length + ')</span></span></label>' +
+        '<div class="tk-chips"' + (on ? '' : ' hidden') + '>' + g.words.map(function(w){
+          var p = state.words[wkey(g.id, w[0])];
+          return '<button type="button" class="tk-chip" data-g="' + g.id + '" data-w="' + w[0] + '" aria-pressed="' + (p ? 'true' : 'false') + '">' + w[0] + '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
+  function lines(id){ return $(id).value.split(/\r?\n/).map(norm).filter(Boolean); }
+  function norm(t){ return t.toLowerCase().replace(/^[\s"\[+-]+|[\s"\]]+$/g, '').replace(/\s+/g, ' ').trim(); }
+
+  function list(){
+    var out = [], seen = {};
+    GROUPS.forEach(function(g){
+      if (!state.groups[g.id]) return;
+      g.words.forEach(function(w){ if (state.words[wkey(g.id, w[0])] && !seen[w[0]]){ seen[w[0]] = 1; out.push(w[0]); } });
+    });
+    lines('kCustom').concat(lines('kLoc'), lines('kComp')).forEach(function(w){ if (!seen[w]){ seen[w] = 1; out.push(w); } });
+    return out;
+  }
+  function wrap(w){ return state.match === 'phrase' ? '"' + w + '"' : state.match === 'exact' ? '[' + w + ']' : w; }
+
+  /* does a negative block this keyword (treated as a search)? */
+  function blocks(neg, kw){
+    var nw = neg.split(' '), kws = kw.split(' ');
+    if (state.match === 'exact') return neg === kw;
+    if (state.match === 'broad') return nw.every(function(x){ return kws.indexOf(x) > -1; });
+    return (' ' + kw + ' ').indexOf(' ' + neg + ' ') > -1;
+  }
+
+  function render(){
+    var l = list();
+    $('kCount').textContent = l.length;
+    var out = $('kOut');
+    out.textContent = l.length ? l.map(wrap).join('\n') : 'Switch on a group or add your own negatives.';
+    out.classList.toggle('empty', !l.length);
+
+    var kws = lines('kKw'), conf = [];
+    kws.forEach(function(k){ l.forEach(function(n){ if (blocks(n, k)) conf.push([n, k]); }); });
+    var c = $('kConf');
+    if (!kws.length) c.innerHTML = '<li class="tk-chk mid"><i aria-hidden="true">!</i><span>Paste your keywords above to check them.</span></li>';
+    else if (!conf.length) c.innerHTML = '<li class="tk-chk ok"><i aria-hidden="true">\u2713</i><span>No conflicts. None of these negatives blocks your ' + kws.length + ' keyword' + (kws.length > 1 ? 's' : '') + '.</span></li>';
+    else c.innerHTML = conf.slice(0, 50).map(function(x){
+      return '<li class="tk-chk no"><i aria-hidden="true">!</i><span><b>' + esc(wrap(x[0])) + '</b> blocks your keyword <b>' + esc(x[1]) + '</b></span></li>';
+    }).join('') + (conf.length > 50 ? '<li class="tk-hint">and ' + (conf.length - 50) + ' more</li>' : '');
+    save();
+  }
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  $('kGroups').addEventListener('change', function(e){
+    var g = e.target.dataset.group; if (!g) return;
+    state.groups[g] = e.target.checked;
+    e.target.closest('div').querySelector('.tk-chips').hidden = !e.target.checked;
+    render();
+  });
+  $('kGroups').addEventListener('click', function(e){
+    var b = e.target.closest('.tk-chip'); if (!b) return;
+    var k = wkey(b.dataset.g, b.dataset.w);
+    state.words[k] = !state.words[k];
+    b.setAttribute('aria-pressed', state.words[k] ? 'true' : 'false');
+    render();
+  });
+  [].slice.call(document.querySelectorAll('[data-m]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      state.match = b.dataset.m;
+      document.querySelectorAll('[data-m]').forEach(function(x){ x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+      render();
+    });
+  });
+  ['kCustom','kLoc','kComp','kKw'].forEach(function(id){ $(id).addEventListener('input', render); });
+
+  function download(name, text, type){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: type }));
+    a.download = name; a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); }, 500);
+  }
+  $('kCopy').addEventListener('click', function(){
+    var l = list(), b = this; if (!l.length || !navigator.clipboard) return;
+    navigator.clipboard.writeText(l.map(wrap).join('\n')).then(function(){ var o = b.textContent; b.textContent = 'Copied'; setTimeout(function(){ b.textContent = o; }, 1400); });
+  });
+  $('kTxt').addEventListener('click', function(){ var l = list(); if (l.length) download('negative-keywords.txt', l.map(wrap).join('\n'), 'text/plain'); });
+  $('kCsv').addEventListener('click', function(){
+    var l = list(); if (!l.length) return;
+    var mt = { phrase:'Phrase', exact:'Exact', broad:'Broad' }[state.match];
+    download('negative-keywords.csv', 'Keyword,Match type\n' + l.map(function(w){ return '"' + w.replace(/"/g, '""') + '",' + mt; }).join('\n'), 'text/csv');
+  });
+  $('kReset').addEventListener('click', function(){
+    try { localStorage.removeItem(KEY); } catch(e){}
+    ['kCustom','kLoc','kComp','kKw'].forEach(function(id){ $(id).value = ''; });
+    defaults(); drawGroups();
+    document.querySelector('[data-m="phrase"]').click();
+  });
+
+  function defaults(){
+    state.groups = {}; state.words = {}; state.match = 'phrase';
+    GROUPS.forEach(function(g){ state.groups[g.id] = g.on; g.words.forEach(function(w){ state.words[wkey(g.id, w[0])] = !!w[1]; }); });
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify({ s: state, c: $('kCustom').value, l: $('kLoc').value, b: $('kComp').value, k: $('kKw').value })); } catch(e){}
+  }
+  function restore(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d || !d.s) return;
+      Object.keys(d.s.groups || {}).forEach(function(k){ state.groups[k] = !!d.s.groups[k]; });
+      Object.keys(d.s.words || {}).forEach(function(k){ if (k in state.words) state.words[k] = !!d.s.words[k]; });
+      if (d.s.match) state.match = d.s.match;
+      $('kCustom').value = d.c || ''; $('kLoc').value = d.l || ''; $('kComp').value = d.b || ''; $('kKw').value = d.k || '';
+    } catch(e){}
+  }
+
+  defaults(); restore(); drawGroups();
+  document.querySelectorAll('[data-m]').forEach(function(x){ var on = x.dataset.m === state.match; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+  render();
+})();
+</script>
