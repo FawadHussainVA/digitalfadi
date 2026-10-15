@@ -41,6 +41,14 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: false
         picker_utc: true
+        hint: "Always today's date. Never a future date, future-dated articles index badly."
+      - label: "Order on the Learn page"
+        name: "order"
+        widget: "number"
+        value_type: "int"
+        min: 1
+        required: true
+        hint: "Highest number shows first. Use one more than the current highest (the current highest is 11, so the next article is 12)."
       - label: "Article"
         name: "body"
         widget: "markdown"
