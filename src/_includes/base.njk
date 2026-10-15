@@ -751,6 +751,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </span>
       </span>
       <a href="/#pricing">Pricing</a>
+      <span class="navdrop">
+        <a href="/tools/" class="navtop">Tools<i class="caret" aria-hidden="true"></i></a>
+        <span class="navmenu">
+          {%- for t in collections.tools %}
+          <a href="{{ t.url }}">{{ t.data.crumb }}</a>
+          {%- endfor %}
+          <a href="/tools/">All free tools</a>
+        </span>
+      </span>
       <a href="/learn/">Learn</a>
       <a href="/#reviews">Reviews</a>
       <a href="/#contact">Contact</a>
@@ -781,6 +790,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/google-ads-audit/">Audit</a>
       <a href="/google-ads-for-ecommerce/">E-commerce</a>
       <a href="/google-ads-for-local-services/">Local services</a>
+      <a href="/tools/">Free tools</a>
       <a href="/learn/">Learn</a>
       <a href="/#reviews">Reviews</a>
       <a href="/#contact">Contact</a>
