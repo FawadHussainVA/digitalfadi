@@ -83,15 +83,25 @@ layout: base.njk
       {%- endfor %}
       {% endif %}
 
-      {% set others = collections.posts | reverse %}
-      {% if others.length %}
+      {#- Further reading: articles on this page's topics first, then the newest others, three in total -#}
+      {% set picked = [] %}
+      {%- for topic in (related or []) -%}
+        {%- for a in collections.posts | reverse -%}
+          {%- if a.data.topic == topic and picked.length < 3 and not (a in picked) %}{% set picked = (picked.push(a), picked) %}{% endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+      {%- for a in collections.posts | reverse -%}
+        {%- if picked.length < 3 and not (a in picked) %}{% set picked = (picked.push(a), picked) %}{% endif -%}
+      {%- endfor %}
+      {% if picked.length %}
       <div class="note rv further-reading" style="margin-top:40px">
         <h3>Further reading</h3>
         <p>
-        {%- for a in others -%}
-          {% if loop.index <= 3 %}<a href="{{ a.url }}" style="color:var(--purple);font-weight:700">{{ a.data.title }}</a>{% if not loop.last and loop.index < 3 %} &middot; {% endif %}{% endif %}
+        {%- for a in picked -%}
+          <a href="{{ a.url }}" style="color:var(--purple);font-weight:700">{{ a.data.title }}</a>{% if not loop.last %} &middot; {% endif %}
         {%- endfor -%}
         </p>
+        <p style="margin-top:10px">Free tools for this work: {% for t in (tools or []) %}<a href="{{ t[1] }}" style="color:var(--purple);font-weight:700">{{ t[0] }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %}{% if not tools %}<a href="/tools/" style="color:var(--purple);font-weight:700">all free Google Ads tools</a>{% endif %}</p>
       </div>
       {% endif %}
     </div>
@@ -131,6 +141,7 @@ layout: base.njk
               <option>Not running Google Ads yet</option>
             </select>
           </div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFSmQNY5L9j0Njly" data-size="flexible" style="margin-bottom:12px"></div>
           <button type="submit" class="btn fsubmit">Get my free audit <span class="arw">&rarr;</span></button>
           <p class="fnote">We reply within one working day. Your details are never shared or sold.</p>
         </form>

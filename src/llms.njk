@@ -17,7 +17,7 @@ eleventyExcludeFromCollections: true
 - 2026 Google Premier Partner, a tier held by roughly the top 3% of participating
   agencies per country. Top Rated Plus on Upwork with a 100% job success score.
 - Sectors: skincare, electronics, fall-alert wearables, private label manufacturing,
-  SAAS, media firms, law firms, HVAC, landscaping, moving companies, logistics,
+  SaaS, media firms, law firms, HVAC, landscaping, moving companies, logistics,
   apartment rentals.
 - Pricing, published: $200 one-time account analysis, $499 per month management,
   or 10% of managed ad spend for larger accounts. USD. Ad spend is paid by the client
@@ -26,13 +26,20 @@ eleventyExcludeFromCollections: true
 
 ## Services
 
-- [Google Ads audit]({{ site.url }}/google-ads-audit/): paid written account review,
-  $200, tracking checked before anything else.
+- [Google Ads audit]({{ site.url }}/google-ads-audit/): a free first-look audit, or the
+  $200 written account analysis with conversion tracking checked before anything else.
 - [Google Ads for e-commerce]({{ site.url }}/google-ads-for-ecommerce/): Merchant Center
   and product feed work first, then Shopping and Performance Max structured by margin.
 - [Google Ads for local services]({{ site.url }}/google-ads-for-local-services/): Local
   Services Ads and geo-targeted Search, measured on booked jobs rather than calls.
 
+## Free tools
+
+All run in the browser. Nothing is uploaded or sent to a server.
+
+{% for t in collections.tools | sort(false, false, 'data.order') -%}
+- [{{ t.data.heading }}]({{ site.url }}{{ t.url }}): {{ t.data.description }}
+{% endfor %}
 ## Writing
 
 {% for p in collections.posts | reverse -%}
@@ -42,4 +49,5 @@ eleventyExcludeFromCollections: true
 
 - [Home]({{ site.url }}/)
 - [Learn]({{ site.url }}/learn/)
+- [Free tools]({{ site.url }}/tools/)
 - [Privacy and terms]({{ site.url }}/privacy-terms/)

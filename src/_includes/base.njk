@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -27,8 +29,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
 {% block extrahead %}{% endblock %}
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="{{ robots or 'index, follow' }}">
 <meta name="theme-color" content="#6A5AE0">
 <meta property="og:site_name" content="DigitalFadi">
@@ -186,6 +186,8 @@ nav a.on{background:var(--purple);color:#fff}
 .btn:hover .arw{transform:translateX(4px)}
 .btn svg{width:17px;height:17px;fill:currentColor;flex:none}
 .btn{white-space:nowrap}
+.btn.wa{background:#25D366;color:var(--ink)}
+.btn.wa:hover{background:#1FB958}
 
 /* ===== hero ===== */
 .hero{position:relative;padding:clamp(40px,5.5vw,80px) 0 clamp(36px,4.5vw,64px);overflow:hidden}
@@ -936,8 +938,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     fbar.addEventListener('click', function(e){
       var b = e.target.closest('.fbtn');
       if(!b) return;
-      fbar.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); });
-      b.classList.add('on');
+      fbar.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-pressed','false'); });
+      b.classList.add('on'); b.setAttribute('aria-pressed','true');
       var f = b.dataset.f, shown = 0;
       items.forEach(function(it){
         var match = (f === 'all') || it.dataset.tags.split(' ').indexOf(f) > -1;
@@ -963,8 +965,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   /* ---------- lead forms ----------
-     Posts to Web3Forms, which emails the submission straight through.
-     The access key lives in src/_data/site.json, nowhere else.
+     Posts to /api/contact (functions/api/contact.js), which checks
+     Cloudflare Turnstile and emails the submission.
      If the post fails for any reason the form falls back to opening the
      visitor's email client, so a submission is never silently lost. */
   var FORM_ENDPOINT = '/api/contact';
@@ -975,7 +977,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       '<div class="fdone">' +
         '<div class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
         '<h4>Request received</h4>' +
-        '<p>Thanks. We\'ll reply to ' + email + ' within one working day, usually sooner.</p>' +
+        '<p>Thanks. We\'ll reply to ' + String(email).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + ' within one working day, usually sooner.</p>' +
       '</div>';
   }
 
@@ -1056,9 +1058,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && panel.classList.contains('open')) closePanel();
   });
-  setTimeout(function(){
-    if(!dismissed && !panel.classList.contains('open')) openPanel();
-  }, 12000);
+  /* auto-open only on wider screens, and never over the free tools */
+  if(window.innerWidth >= 700 && location.pathname.indexOf('/tools/') !== 0){
+    setTimeout(function(){
+      if(!dismissed && !panel.classList.contains('open')) openPanel();
+    }, 12000);
+  }
 
   document.getElementById('chips').addEventListener('click', function(e){
     var c = e.target.closest('.chip');
