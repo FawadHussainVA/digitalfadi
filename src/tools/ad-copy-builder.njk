@@ -112,7 +112,7 @@ faqs:
 <section class="wrap narrow pt0">
   <div class="prose">
     <h2>Why character limits matter more than they look</h2>
-    <p>Google does not warn you properly when a headline is too long. It simply will not serve that asset, so the advert quietly runs on whatever else you gave it. Accounts regularly run for months with three of their fifteen headlines never showing.</p>
+    <p>Google Ads will not accept a headline over 30 characters, so an over-long line gets rejected at the worst moment: when you are pasting a full set of ads into the account or uploading them through Google Ads Editor. Writing to the limit from the start saves rewriting under pressure, and a headline cut down in a hurry usually loses the part that made it work.</p>
     <p>The other trap is duplication. Fifteen headlines that all say the same thing in different words give the system nothing to test, and Google will tell you the ad strength is poor without explaining why.</p>
 
     <h2>What to write in each field</h2>
@@ -255,9 +255,9 @@ faqs:
 
     var items = [
       [overH === 0, overH === 0 ? 'No headline over 30 characters'
-        : overH + ' headline' + (overH > 1 ? 's' : '') + ' over 30 characters, which will not serve'],
+        : overH + ' headline' + (overH > 1 ? 's' : '') + ' over 30 characters, which Google Ads will reject'],
       [overD === 0, overD === 0 ? 'No description over 90 characters'
-        : overD + ' description' + (overD > 1 ? 's' : '') + ' over 90 characters, which will not serve'],
+        : overD + ' description' + (overD > 1 ? 's' : '') + ' over 90 characters, which Google Ads will reject'],
       [dupes.length === 0, dupes.length === 0 ? 'No duplicate headlines'
         : dupes.length + ' duplicate headline' + (dupes.length > 1 ? 's' : '')],
       [filledH.length >= 8, filledH.length >= 8
