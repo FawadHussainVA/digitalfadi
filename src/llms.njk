@@ -33,6 +33,11 @@ eleventyExcludeFromCollections: true
 - [Google Ads for local services]({{ site.url }}/google-ads-for-local-services/): Local
   Services Ads and geo-targeted Search, measured on booked jobs rather than calls.
 
+## Industries
+
+{% for t in collections.industries | sort(false, false, 'data.order') -%}
+- [{{ t.data.heading }}]({{ site.url }}{{ t.url }}): {{ t.data.description }}
+{% endfor %}
 ## Free tools
 
 All run in the browser. Nothing is uploaded or sent to a server.
@@ -49,5 +54,6 @@ All run in the browser. Nothing is uploaded or sent to a server.
 
 - [Home]({{ site.url }}/)
 - [Learn]({{ site.url }}/learn/)
+- [Industries]({{ site.url }}/industries/)
 - [Free tools]({{ site.url }}/tools/)
 - [Privacy and terms]({{ site.url }}/privacy-terms/)

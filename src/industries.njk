@@ -1,0 +1,33 @@
+---
+layout: base.njk
+permalink: /industries/
+title: "Google Ads by Industry | DigitalFadi"
+description: "How Google Ads works differently in each industry: what to measure, which campaign types fit, and the mistakes that cost the most, sector by sector."
+---
+<div class="phero">
+  <div class="wrap phero-in">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Industries</span>
+    </nav>
+    <h1>Google Ads, <span class="hl">industry by industry</span></h1>
+    <p>Search behaviour, customer value and what counts as a real lead are different in every market. These pages set out how Google Ads should be run in each one: what to measure, which campaign types fit, and where the budget usually leaks.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="sec-head rv">
+    <span class="eyebrow">Industries</span>
+    <h2>Pick your <span class="hl">sector</span></h2>
+  </div>
+  <div class="channels stg">
+  {%- for t in collections.industries | sort(false, false, 'data.order') %}
+    <a class="ch" href="{{ t.url }}" style="text-decoration:none">
+      <div class="ch-top"><h3>{{ t.data.crumb }}</h3><span class="unit">{{ t.data.unit or "Sector" }}</span></div>
+      <p>{{ t.data.standfirst }}</p>
+    </a>
+  {%- endfor %}
+  </div>
+  <p class="sec-head" style="margin:34px auto 0">Not listed? The approach for most service businesses is on the <a href="/google-ads-for-local-services/" style="color:var(--purple);font-weight:700">local services page</a>, and for online shops on the <a href="/google-ads-for-ecommerce/" style="color:var(--purple);font-weight:700">e-commerce page</a>.</p>
+</section>

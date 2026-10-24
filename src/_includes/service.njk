@@ -1,6 +1,8 @@
 ---
 layout: base.njk
 ---
+{%- set parentName = parent[0] if parent else "Google Ads Services" -%}
+{%- set parentUrl = parent[1] if parent else "/#services" -%}
 {% block extrahead %}
 <script type="application/ld+json">
 {
@@ -20,7 +22,7 @@ layout: base.njk
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},
-    {"@type":"ListItem","position":2,"name":"Google Ads Services","item":"{{ site.url }}/#services"},
+    {"@type":"ListItem","position":2,"name":{{ parentName | dump | safe }},"item":"{{ site.url }}{{ parentUrl }}"},
     {"@type":"ListItem","position":3,"name":{{ crumb | dump | safe }},"item":"{{ site.url }}{{ page.url }}"}
   ]
 }
@@ -48,7 +50,7 @@ layout: base.njk
     <nav class="crumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span aria-hidden="true">/</span>
-      <a href="/#services">Google Ads Services</a>
+      <a href="{{ parentUrl }}">{{ parentName }}</a>
       <span aria-hidden="true">/</span>
       <span aria-current="page">{{ crumb }}</span>
     </nav>
@@ -73,7 +75,7 @@ layout: base.njk
       {% if faqs %}
       <div class="sec-head rv" style="margin-top:52px">
         <span class="eyebrow">Questions</span>
-        <h2>Common questions about <span class="hl">{{ crumb | lower }}</span></h2>
+        <h2>Common questions about <span class="hl">{{ faqLabel or (crumb | lower) }}</span></h2>
       </div>
       {%- for f in faqs %}
       <details>
