@@ -25,10 +25,25 @@ permalink: /learn/
     <span class="eyebrow">Articles</span>
     <h2>Currently <span class="hl">published</span></h2>
   </div>
+  {#- Topic buttons build themselves from the articles: preferred order first, any new topic after -#}
+  {%- set order = ["Search", "Shopping", "Performance Max", "Local Services", "Tracking", "Strategy", "YouTube", "Display", "Demand Gen", "Remarketing"] %}
+  {%- set topics = [] %}
+  {%- for t in order %}{% for p in collections.posts %}{% if p.data.topic == t and not (t in topics) %}{% set topics = (topics.push(t), topics) %}{% endif %}{% endfor %}{% endfor %}
+  {%- for p in collections.posts %}{% if p.data.topic and not (p.data.topic in topics) %}{% set topics = (topics.push(p.data.topic), topics) %}{% endif %}{% endfor %}
+  {%- if topics.length > 1 %}
+  <div class="filters rv" data-filterbar role="group" aria-label="Filter articles by topic">
+    <em>Topic</em>
+    <button type="button" class="fbtn on" data-f="all" aria-pressed="true">All ({{ collections.posts.length }})</button>
+    {%- for t in topics %}
+    {%- set n = [] %}{% for p in collections.posts %}{% if p.data.topic == t %}{% set n = (n.push(1), n) %}{% endif %}{% endfor %}
+    <button type="button" class="fbtn" data-f="{{ t | slugify }}" aria-pressed="false">{{ t }} ({{ n.length }})</button>
+    {%- endfor %}
+  </div>
+  {%- endif %}
   <div class="posts stg">
 <!--POSTS_START-->
   {%- for p in collections.posts | reverse %}
-      <a class="post" href="{{ p.url }}">
+      <a class="post" href="{{ p.url }}" data-tags="{{ p.data.topic | slugify }}">
         <div class="post-meta">
           <i>{{ p.data.topic }}</i>
         </div>
@@ -44,6 +59,7 @@ permalink: /learn/
   {%- endfor %}
     <!--POSTS_END-->
   </div>
+  <p class="noresult hidden">No articles on that topic yet. Try another filter.</p>
 </section>
 
 <div class="cta-band" id="contact-cta">

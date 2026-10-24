@@ -82,6 +82,36 @@ ogtype: article
   </div>
 </article>
 
+{#- Keep reading: same topic first (newest first), then the newest others, three in total -#}
+{%- set related = [] %}
+{%- for a in collections.posts | reverse %}
+  {%- if a.url != page.url and a.data.topic == topic and related.length < 3 %}{% set related = (related.push(a), related) %}{% endif %}
+{%- endfor %}
+{%- for a in collections.posts | reverse %}
+  {%- if a.url != page.url and not (a in related) and related.length < 3 %}{% set related = (related.push(a), related) %}{% endif %}
+{%- endfor %}
+{%- if related.length %}
+<section class="wrap pt0 related-posts">
+  <div class="sec-head rv">
+    <span class="eyebrow">Keep reading</span>
+    <h2>More on <span class="hl">Google Ads</span></h2>
+  </div>
+  <div class="posts stg">
+  {%- for p in related %}
+    <a class="post" href="{{ p.url }}">
+      <div class="post-meta">
+        <i>{{ p.data.topic }}</i>
+      </div>
+      <h3>{{ p.data.title }}</h3>
+      <p>{{ p.data.description }}</p>
+      <span class="more">{{ p.data.readingTime }} min read <span>&rarr;</span></span>
+    </a>
+  {%- endfor %}
+  </div>
+  <p class="sec-head" style="margin:28px auto 0"><a href="/learn/" class="btn ghost">All articles <span class="arw">&rarr;</span></a></p>
+</section>
+{%- endif %}
+
 <div class="cta-band" id="contact-cta">
   <div class="wrap">
     <span class="eyebrow">Free consultation</span>
