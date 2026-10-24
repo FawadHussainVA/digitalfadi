@@ -3,6 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* Theme: saved choice first, otherwise follow the device setting. Runs before paint. */
+(function(){
+  var t = null;
+  try { t = localStorage.getItem('df_theme'); } catch(e) {}
+  if (t !== 'light' && t !== 'dark') {
+    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <!-- Consent Mode v2: must run before any Google tag.
      UK, EU, EEA and Switzerland start denied until the visitor accepts.
      A saved choice (cookie banner) always wins. -->
@@ -743,6 +754,76 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
   .objs,.phases.six,.stats.reasons,.plat ul{grid-template-columns:1fr}
 }
 
+/* ===== header fit: links never break mid-name ===== */
+nav a,.navtop{white-space:nowrap}
+@media(max-width:1440px){nav{gap:2px}nav a{padding:8px 10px}.bar{gap:18px}}
+@media(max-width:1240px){nav{font-size:.84rem}nav a{padding:8px 7px}.bar{gap:12px}header .btn.sm{padding:10px 14px}}
+/* small laptops: not enough room for every link, so use the menu button */
+@media(min-width:1001px) and (max-width:1080px){
+  nav{display:none}
+  .navtoggle{display:grid;margin-left:auto}
+  nav#mainnav.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:2px;background:var(--bg-2);
+    border-bottom:var(--bd);padding:14px 20px 20px;max-height:78vh;overflow-y:auto;font-size:.95rem}
+  nav#mainnav.open a{padding:12px 14px;border-radius:var(--r-sm)}
+  nav#mainnav.open .navdrop{display:flex;flex-direction:column}
+  nav#mainnav.open .navmenu{position:static;display:flex;min-width:0;border:0;box-shadow:none;padding:2px 0 6px 16px;background:transparent}
+  nav#mainnav.open .caret{display:none}
+}
+
+/* phones: compact header so logo, menu, button and theme toggle all fit */
+.cta-sm{display:none}
+@media(max-width:680px){.bar{gap:8px}header .btn.sm{padding:9px 11px;font-size:.8rem}.logo{font-size:1.02rem;gap:7px}
+  .navtoggle,.themetog{width:38px;height:38px}}
+@media(max-width:420px){.cta-lg{display:none}.cta-sm{display:inline}}
+@media(max-width:340px){header .btn.sm{display:none}}
+
+/* ===== theme toggle ===== */
+.themetog{width:44px;height:44px;flex:none;display:grid;place-items:center;padding:0;cursor:pointer;
+  border:var(--bd);border-radius:50%;background:var(--bg-2);color:var(--ink);box-shadow:3px 3px 0 var(--ink);
+  transition:transform .13s var(--ease),box-shadow .13s var(--ease),background .2s}
+.themetog:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);background:var(--amber);color:#14121F}
+.themetog:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.themetog svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.themetog .sun{display:none}
+[data-theme="dark"] .themetog .sun{display:block}
+[data-theme="dark"] .themetog .moon{display:none}
+
+/* ===== dark mode: same brand, darker surfaces ===== */
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#13111E;--bg-2:#1E1B30;--purple-d:#5848D0;--purple-l:#2E2853;--purple-xl:#221E3A;
+  --ink:#ECE8FA;--slate:#BDB7D6;--slate-l:#A9A3C6;--hair:#3A3560;--green:#3DC48C;--red:#F0705C;
+}
+[data-theme="dark"] header{background:rgba(19,17,30,.92)}
+[data-theme="dark"] .prose p,[data-theme="dark"] .prose ul,[data-theme="dark"] .prose ol{color:#D8D4EC}
+[data-theme="dark"] .note{background:#2A2418}
+[data-theme="dark"] .vs-col.bad{background:#1A1829}
+[data-theme="dark"] .vs-list .no{background:#2E2A45}
+[data-theme="dark"] .field input:focus,[data-theme="dark"] .field select:focus,[data-theme="dark"] .field textarea:focus{background:var(--bg-2)}
+[data-theme="dark"] .wa-msg{background:var(--bg-2)}
+[data-theme="dark"] .deco .cloud{fill:var(--bg-2)}
+/* purple text needs a lighter shade to stay readable on dark */
+[data-theme="dark"] .hl,[data-theme="dark"] .eyebrow,[data-theme="dark"] .case-tag,[data-theme="dark"] .post-meta i,
+[data-theme="dark"] .article-meta i,[data-theme="dark"] .prose a,[data-theme="dark"] .post .more,[data-theme="dark"] .vs-col.good h3,
+[data-theme="dark"] .case-metrics b,[data-theme="dark"] .crumb a:hover,[data-theme="dark"] nav a:hover,[data-theme="dark"] .foot a:hover,
+[data-theme="dark"] .ckb p a,[data-theme="dark"] .plat li i,[data-theme="dark"] summary::after,[data-theme="dark"] .tk-link{color:#B3AAFF}
+[data-theme="dark"] [style*="color:var(--purple)"]{color:#B3AAFF!important}
+[data-theme="dark"] .cta-band .eyebrow{color:#fff}
+[data-theme="dark"] nav a.on{color:#fff}
+/* text on amber or green surfaces stays dark */
+[data-theme="dark"] .btn:not(.ghost):not(.on),[data-theme="dark"] .won,[data-theme="dark"] .ticker,[data-theme="dark"] .unit:not(.new),
+[data-theme="dark"] .ph .when,[data-theme="dark"] .nform button,[data-theme="dark"] .fcard-head span,[data-theme="dark"] #waBadge,
+[data-theme="dark"] .pull,[data-theme="dark"] .tk-tag:not(.good):not(.bad):not(.soft){color:#14121F}
+[data-theme="dark"] .pull{border-color:#14121F}
+/* tool pages */
+[data-theme="dark"] .tk-seg .btn:not(.on),[data-theme="dark"] .prevtab:not(.on){color:var(--ink)}
+[data-theme="dark"] .tk-scroll{background:var(--bg-2)}
+[data-theme="dark"] .tk-table tr.sel{background:#2E2716}
+[data-theme="dark"] .tk-area:focus,[data-theme="dark"] .tk-sel:focus,[data-theme="dark"] .acfield input:focus{background:var(--bg-2)}
+[data-theme="dark"] .acfield.over input{background:#3A1F1B}
+[data-theme="dark"] .gad{color:#202124}
+[data-theme="dark"] .gad .badge{border-color:#202124}
+
 </style>
 
 <link rel="alternate" type="application/rss+xml" title="DigitalFadi | Learn" href="/feed.xml">
@@ -795,7 +876,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/#contact">Contact</a>
     </nav>
     <button class="navtoggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><i aria-hidden="true"></i></button>
-    <a href="/#contact" class="btn sm">Free consultation</a>
+    <a href="/#contact" class="btn sm"><span class="cta-lg">Free consultation</span><span class="cta-sm">Free audit</span></a>
+    <button type="button" class="themetog" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" title="Day or night mode">
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+    </button>
   </div>
 </header>
 
@@ -1137,6 +1222,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }, {rootMargin:'-45% 0px -50% 0px'});
       spyTargets.forEach(function(t){ spy.observe(t); });
     }
+  }
+
+  /* ---------- day / night mode ---------- */
+  var themeBtn = document.getElementById('themeToggle');
+  if(themeBtn){
+    var syncThemeBtn = function(){
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to day mode' : 'Switch to dark mode');
+    };
+    syncThemeBtn();
+    themeBtn.addEventListener('click', function(){
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('df_theme', next); } catch(e) {}
+      syncThemeBtn();
+    });
   }
 
   /* ---------- mobile menu ---------- */
