@@ -32,7 +32,7 @@ The most useful report in the first fortnight is the search terms report, which 
 
 Conversion numbers in this period are too small to mean much. Three enquiries in the first week could be a great start or pure luck, and so could zero.
 
-If the campaign uses an automated bidding strategy, it will also show a Learning status at this stage. Performance often wobbles while it learns, and changing settings in reaction usually restarts the learning. [Which Google Ads bid strategy should you use?](/learn/which-google-ads-bid-strategy-should-you-use/) covers this in more detail.
+If the campaign uses a new automated bidding strategy, it will also show a Learning status at this stage, for up to seven days. Performance often wobbles while it settles. Changing the budget or target will not restart that status, but constant changes make it impossible to tell what is working. [Which Google Ads bid strategy should you use?](/learn/which-google-ads-bid-strategy-should-you-use/) covers this in more detail.
 
 ## Weeks three to eight: the first fair verdict
 

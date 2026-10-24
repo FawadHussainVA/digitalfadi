@@ -73,7 +73,7 @@ If cost per conversion is comfortably below your ceiling, raising the budget is 
 
 ## When to increase the budget
 
-Increase it when two things are true at once: cost per conversion is below your target, and the campaign is losing impression share because of budget. Raise it in steps rather than doubling overnight, because a large jump can unsettle automated bidding while it relearns, and costs often rise before they settle.
+Increase it when two things are true at once: cost per conversion is below your target, and the campaign is losing impression share because of budget. Raise it in steps rather than doubling overnight. Google says a budget change does not put automated bidding back into learning, but a much larger budget buys more marginal clicks, and cost per conversion often rises before you can see whether the extra spend is worth it.
 
 ## Ad spend and management fees are separate
 

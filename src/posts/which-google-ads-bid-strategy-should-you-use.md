@@ -47,7 +47,7 @@ Start the target near what the campaign has actually achieved recently, not wher
 
 A target CPA set far below reality often makes things worse rather than better. The strategy narrows spend onto the few auctions it is most confident about, which tend to be the expensive ones, so volume drops and cost per click rises. [Why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) explains that loop. The same happens with a target ROAS set above anything the account has ever delivered.
 
-Then tighten it gradually. Each significant change sends the strategy back into learning, and results in the following week or two are unreliable, so move in modest steps and wait for the numbers to settle before the next one.
+Then tighten it gradually. Google says a target change does not put the campaign back into Learning status or wipe what the strategy has already learned, but the campaign still needs time to show what the new target does. Google's own advice is to avoid several target changes within a single conversion cycle, so make one change and let the numbers settle before the next.
 
 To find a sensible target in the first place:
 
@@ -56,9 +56,9 @@ To find a sensible target in the first place:
 
 ## The learning period
 
-After a new strategy starts, or a target changes significantly, the campaign shows a Learning status. Performance often wobbles during it.
+A campaign shows a Learning status for three reasons only: a new or reactivated bid strategy, campaigns, ad groups or keywords added to or removed from the strategy, or a significant change to the conversion goals it optimises for. Google says the status never lasts more than seven days. Changes to budgets, targets, ads or targeting do not trigger it.
 
-The most common mistake is reacting to that wobble by changing the target again, which restarts learning and keeps the campaign in a permanent state of relearning. Make one change, then leave it alone long enough to judge.
+Performance can still take longer than that to settle, especially with few conversions or a long sales cycle. The most common mistake is reacting to early swings by changing the target again and again. That no longer restarts learning, but it makes it impossible to see what any single change did. Make one change, then leave it alone long enough to judge. [Does changing your budget reset Google Ads learning?](/learn/does-changing-budget-reset-google-ads-learning/) covers what does and does not trigger learning.
 
 ## When leads are not all equal
 
@@ -70,7 +70,7 @@ The fix is to tell Google which leads turned into customers, by importing that o
 
 1. **Switching to a target strategy before tracking is right.** The algorithm learns the wrong lesson quickly
 2. **Setting an aspirational target.** Volume collapses and cost per click rises
-3. **Changing targets every few days.** The campaign never leaves learning
+3. **Changing targets every few days.** Each change needs time to show its effect, so constant edits leave you unable to judge any of them
 4. **Judging a new strategy in its first week.** The numbers are not settled yet
 5. **Running Maximise clicks without a bid limit.** It buys cheap, irrelevant clicks to hit volume
 
