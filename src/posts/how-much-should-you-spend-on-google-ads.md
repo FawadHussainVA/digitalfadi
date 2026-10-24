@@ -3,6 +3,7 @@ title: "How much should you spend on Google Ads?"
 description: "Work backwards from what a customer is worth, not forwards from what feels affordable. A simple way to set a Google Ads budget, with worked numbers."
 topic: "Strategy"
 date: 2026-10-16
+updated: 2026-10-24
 order: 12
 ---
 

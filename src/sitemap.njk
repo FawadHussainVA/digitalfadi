@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
   <url>
     <loc>{{ site.url }}{{ p.url }}</loc>
     {%- if p.data.tags and "posts" in p.data.tags %}
-    <lastmod>{{ p.date | iso }}</lastmod>
+    <lastmod>{{ (p.data.updated or p.date) | iso }}</lastmod>
     <changefreq>monthly</changefreq><priority>0.7</priority>
     {%- elif p.url == "/" %}
     <changefreq>monthly</changefreq><priority>1.0</priority>

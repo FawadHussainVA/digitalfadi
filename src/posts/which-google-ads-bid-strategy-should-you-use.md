@@ -3,6 +3,7 @@ title: "Which Google Ads bid strategy should you use?"
 description: "Manual CPC, Maximise conversions, target CPA or target ROAS? How to choose a Google Ads bid strategy based on your conversion data, not fashion."
 topic: "Strategy"
 date: 2026-10-21
+updated: 2026-10-24
 order: 14
 ---
 

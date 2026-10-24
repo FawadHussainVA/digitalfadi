@@ -4,6 +4,17 @@ permalink: /industries/
 title: "Google Ads by Industry | DigitalFadi"
 description: "How Google Ads works differently in each industry: what to measure, which campaign types fit, and the mistakes that cost the most, sector by sector."
 ---
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"CollectionPage","name":{{ title | dump | safe }},"description":{{ description | dump | safe }},"url":"{{ site.url }}/industries/",
+ "mainEntity":{"@type":"ItemList","itemListElement":[
+  {%- for t in collections.industries | sort(false, false, 'data.order') %}
+  {"@type":"ListItem","position":{{ loop.index }},"url":"{{ site.url }}{{ t.url }}","name":{{ t.data.heading | dump | safe }}}{% if not loop.last %},{% endif %}
+  {%- endfor %}
+ ]}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Industries","item":"{{ site.url }}/industries/"}]}
+]}
+</script>
 <div class="phero">
   <div class="wrap phero-in">
     <nav class="crumb" aria-label="Breadcrumb">

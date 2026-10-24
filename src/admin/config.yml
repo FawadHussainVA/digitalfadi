@@ -42,6 +42,14 @@ collections:
         time_format: false
         picker_utc: true
         hint: "Always today's date. Never a future date, future-dated articles index badly."
+      - label: "Last updated (optional)"
+        name: "updated"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: true
+        required: false
+        hint: "Only fill this in when you make a real change to an older article. Use today's date. Leave empty for new articles."
       - label: "Order on the Learn page"
         name: "order"
         widget: "number"

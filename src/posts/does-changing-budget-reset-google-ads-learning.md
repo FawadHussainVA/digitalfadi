@@ -6,7 +6,7 @@ date: 2026-10-24
 order: 22
 ---
 
-No. Changing a campaign's budget or its target CPA or target ROAS does not reset the Google Ads learning period. In October 2026 Google rewrote its official help page on Smart Bidding learning to say that changes to budgets, targets, ads and targeting settings never trigger the Learning status and never remove what the bidding strategy has already learned. Learning status is now triggered by only three things, and it never lasts more than seven days.
+No. Changing a campaign's budget or its target CPA or target ROAS does not reset the Google Ads learning period. Google has rewritten its official help page on Smart Bidding learning to say that changes to budgets, targets, ads and targeting settings never trigger the Learning status and never remove what the bidding strategy has already learned. Learning status is now triggered by only three things, and it never lasts more than seven days.
 
 That overturns one of the most repeated rules in Google Ads management, so it is worth knowing exactly what changed and what still deserves care.
 
@@ -20,9 +20,9 @@ According to Google's updated help page, [About Smart Bidding learning](https://
 
 Everything else, including budget changes, target changes, new or edited ads, and changes to location, audience or language targeting, does not trigger Learning status.
 
-## What Google said, and when
+## What Google said
 
-Two things happened in the same week. On 15 October 2026, a Google Ads product manager said on Google's Ads Decoded podcast that when you change the target or budget of an established, steady campaign, there is no learning period, because the bidding system scales bids in line with the change using data it already has. A few days later, Google published the rewritten help page, which states the seven-day limit and the three triggers in writing.
+A Google Ads product manager explained on Google's Ads Decoded podcast that when you change the target or budget of an established, steady campaign, there is no learning period, because the bidding system scales bids in line with the change using data it already has. Google then published the rewritten help page, which states the seven-day limit and the three triggers in writing.
 
 ## Where the old rule came from
 

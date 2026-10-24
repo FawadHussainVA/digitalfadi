@@ -3,6 +3,7 @@ title: "How long does it take for Google Ads to work?"
 description: "Clicks start within a day, but a fair verdict takes data, not a date. What to expect week by week, and when you can judge a Google Ads campaign."
 topic: "Strategy"
 date: 2026-10-21
+updated: 2026-10-24
 order: 16
 ---
 

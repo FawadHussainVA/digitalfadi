@@ -10,7 +10,7 @@ ogtype: article
   "headline": {{ title | dump | safe }},
   "description": {{ description | dump | safe }},
   "datePublished": "{{ date | iso }}",
-  "dateModified": "{{ date | iso }}",
+  "dateModified": "{{ (updated or date) | iso }}",
   "author": {
     "@type": "Person",
     "name": {{ site.authorName | dump | safe }},

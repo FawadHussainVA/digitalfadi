@@ -4,6 +4,17 @@ permalink: /tools/
 title: "Free Google Ads Tools | DigitalFadi"
 description: "Free Google Ads tools that run entirely in your browser. Character counters, calculators and builders, with nothing uploaded or sent anywhere."
 ---
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"CollectionPage","name":{{ title | dump | safe }},"description":{{ description | dump | safe }},"url":"{{ site.url }}/tools/",
+ "mainEntity":{"@type":"ItemList","itemListElement":[
+  {%- for t in collections.tools | sort(false, false, 'data.order') %}
+  {"@type":"ListItem","position":{{ loop.index }},"url":"{{ site.url }}{{ t.url }}","name":{{ t.data.crumb | dump | safe }}}{% if not loop.last %},{% endif %}
+  {%- endfor %}
+ ]}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Free tools","item":"{{ site.url }}/tools/"}]}
+]}
+</script>
 <div class="phero">
   <div class="wrap phero-in">
     <nav class="crumb" aria-label="Breadcrumb">
