@@ -4,13 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-/* Theme: saved choice first, otherwise follow the device setting. Runs before paint. */
+/* Theme: always light unless the visitor has chosen dark with the toggle. Runs before paint. */
 (function(){
-  var t = null;
-  try { t = localStorage.getItem('df_theme'); } catch(e) {}
-  if (t !== 'light' && t !== 'dark') {
-    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
-  }
+  var t = 'light';
+  try { if (localStorage.getItem('df_theme') === 'dark') t = 'dark'; } catch(e) {}
   document.documentElement.setAttribute('data-theme', t);
 })();
 </script>
