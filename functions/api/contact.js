@@ -1,3 +1,68 @@
+import { connect } from "cloudflare:sockets";
+
+/* Send one plain-text email through an SMTP server over implicit TLS (port 465).
+   Used to deliver leads straight into the Hostinger mailbox. */
+export async function smtpSend(o, connectFn = connect) {
+  const enc = new TextEncoder(), dec = new TextDecoder();
+  const b64 = (str) => { const bytes = enc.encode(str); let bin = ""; for (const b of bytes) bin += String.fromCharCode(b); return btoa(bin); };
+  const socket = connectFn({ hostname: o.host, port: o.port }, { secureTransport: "on", allowHalfOpen: false });
+  const writer = socket.writable.getWriter();
+  const reader = socket.readable.getReader();
+  let buf = "";
+  async function reply() {
+    for (;;) {
+      const lines = buf.split("\r\n");
+      for (let i = 0; i < lines.length - 1; i++) {
+        if (/^\d{3} /.test(lines[i])) {
+          const out = { code: Number(lines[i].slice(0, 3)), text: lines.slice(0, i + 1).join(" | ") };
+          buf = lines.slice(i + 1).join("\r\n");
+          return out;
+        }
+      }
+      const { value, done } = await reader.read();
+      if (done) throw new Error("SMTP connection closed");
+      buf += dec.decode(value, { stream: true });
+    }
+  }
+  async function step(line, ok) {
+    if (line !== null) await writer.write(enc.encode(line + "\r\n"));
+    const r = await reply();
+    if (!ok.includes(r.code)) throw new Error("SMTP " + r.code + ": " + r.text.slice(0, 200));
+    return r;
+  }
+  const run = (async () => {
+    await step(null, [220]);
+    await step("EHLO digitalfadi.com", [250]);
+    await step("AUTH LOGIN", [334]);
+    await step(b64(o.user), [334]);
+    await step(b64(o.pass), [235]);
+    await step("MAIL FROM:<" + o.from + ">", [250]);
+    await step("RCPT TO:<" + o.to + ">", [250, 251]);
+    await step("DATA", [354]);
+    const body = b64(o.text).replace(/.{1,76}/g, "$&\r\n");
+    const msg = [
+      "From: DigitalFadi website <" + o.from + ">",
+      "To: <" + o.to + ">",
+      "Reply-To: <" + o.replyTo + ">",
+      "Subject: =?UTF-8?B?" + b64(o.subject) + "?=",
+      "Date: " + new Date().toUTCString().replace("GMT", "+0000"),
+      "Message-ID: <" + crypto.randomUUID() + "@digitalfadi.com>",
+      "MIME-Version: 1.0",
+      "Content-Type: text/plain; charset=UTF-8",
+      "Content-Transfer-Encoding: base64",
+      "",
+      body
+    ].join("\r\n");
+    await writer.write(enc.encode(msg + "\r\n.\r\n"));
+    await step(null, [250]);
+    try { await step("QUIT", [221]); } catch (e) {}
+  })();
+  const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("SMTP timeout")), 10000));
+  try { await Promise.race([run, timeout]); }
+  finally { try { socket.close(); } catch (e) {} }
+  return true;
+}
+
 
 const json = (body, status = 200) =>
   Response.json(body, {
@@ -101,11 +166,10 @@ const excluded = new Set([
       return json({ success: false, error: "Not configured" }, 503);
     }
 
-    // Leads go to the Hostinger mailbox. Reply goes straight to the visitor.
-    // If that send fails for any reason, the same lead goes to the backup
-    // inbox instead, so an enquiry is never lost.
+    // Leads go only to the Hostinger mailbox: first through Hostinger's own
+    // SMTP server (needs the HOSTINGER_SMTP_PASS secret), then through
+    // Cloudflare Email Sending to the same address. Reply goes to the visitor.
     const LEAD_TO = "fawad@digitalfadi.com";
-    const BACKUP_TO = "zaheer.geoz@gmail.com";
 
     const body = [
       `New enquiry: ${subject}`,
@@ -130,20 +194,46 @@ const excluded = new Set([
           })
         });
         const out = await res.json().catch(() => ({}));
-        return res.ok && out.success === true;
+        if (!res.ok || out.success !== true) {
+          console.error("Email API refused", to, res.status, JSON.stringify(out.errors || []));
+          return false;
+        }
+        // "success" only means Cloudflare accepted the request. The result
+        // says whether the address was delivered, queued or bounced.
+        const r = out.result || {};
+        const has = (list) => Array.isArray(list) &&
+          list.some((x) => String(x && x.address ? x.address : x).toLowerCase() === to);
+        if (has(r.permanent_bounces)) {
+          console.error("Email bounced", to, JSON.stringify(r.permanent_bounces));
+          return false;
+        }
+        if (Array.isArray(r.delivered) || Array.isArray(r.queued)) {
+          return has(r.delivered) || has(r.queued);
+        }
+        return true;
       } catch (e) {
+        console.error("Email request failed", to, e.message);
         return false;
       }
     }
 
-    let delivered = await send(LEAD_TO, subject);
-    if (!delivered) {
-      console.error("Primary lead email failed, using backup inbox");
-      delivered = await send(BACKUP_TO, `[Backup] ${subject}`);
+    let delivered = false;
+    if (env.HOSTINGER_SMTP_PASS) {
+      try {
+        delivered = await smtpSend({
+          host: "smtp.hostinger.com", port: 465,
+          user: LEAD_TO, pass: env.HOSTINGER_SMTP_PASS,
+          from: LEAD_TO, to: LEAD_TO, replyTo: email,
+          subject, text: body
+        });
+      } catch (e) {
+        console.error("Hostinger SMTP failed", e.message);
+      }
     }
+    if (!delivered) delivered = await send(LEAD_TO, subject);
 
     if (!delivered) {
-      console.error("Email API failed for primary and backup");
+      console.error("Lead email could not be delivered to " + LEAD_TO);
       return json({ success: false, error: "Email failed" }, 502);
     }
 
