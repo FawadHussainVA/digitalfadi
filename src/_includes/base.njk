@@ -61,6 +61,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:description" content="{{ description }}">
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
+<meta property="og:locale" content="en_US">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ site.url }}/#website",
+  "url": "{{ site.url }}/",
+  "name": "DigitalFadi",
+  "description": "Google Ads management, audits and practical advertising guides.",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "{{ site.url }}/#organization",
+    "name": "DigitalFadi",
+    "url": "{{ site.url }}/",
+    "logo": "{{ site.url }}/icon-512.png",
+    "sameAs": ["{{ site.upwork }}", "{{ site.linkedin }}"]
+  }
+}
+</script>
 {% block extrahead %}{% endblock %}
 <meta name="robots" content="{{ robots or 'index, follow' }}">
 <meta name="theme-color" content="#6A5AE0">
