@@ -1109,8 +1109,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
 
-  /* ---------- lead forms: same-origin Cloudflare Function -> Hostinger SMTP ---------- */
-  console.info('DigitalFadi lead form handler: SMTP API version 2026-10-27');
+  /* ---------- lead forms: same-origin Cloudflare Function -> Hostinger Mail API ---------- */
+  console.info('DigitalFadi lead form handler: Hostinger Mail API version 2026-10-27');
   var FORM_ENDPOINT = '/api/contact';
 
   function formDone(card, email){
@@ -1184,7 +1184,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         btn.innerHTML = original;
         formError(form, error && error.name === 'AbortError'
           ? 'The email service did not respond. Please try again later.'
-          : (error && /^(Verification required|Verification failed|Turnstile not configured|Verification unavailable|Email delivery not configured|Email delivery unavailable|Email delivery failed|Invalid form|Invalid details|Request failed)$/.test(error.message)
+          : (error && /^(Verification required|Verification failed|Turnstile not configured|Verification unavailable|Email service not configured|Email service unavailable|Email delivery not configured|Email delivery unavailable|Email delivery failed|Invalid form|Invalid details|Request failed)$/.test(error.message)
               ? error.message + '. Please try again, or contact fawad@digitalfadi.com.'
               : 'Message could not be submitted. Please try again later.'));
       }).finally(function(){ clearTimeout(timeout); });
