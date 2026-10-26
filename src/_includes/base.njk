@@ -1145,7 +1145,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if(oldError) oldError.remove();
       var payload = {};
       fd.forEach(function(value,key){
-        if(key !== 'access_key') payload[key] = String(value);
+        payload[key] = String(value);
       });
       btn.disabled = true;
       btn.textContent = 'Sending...';
