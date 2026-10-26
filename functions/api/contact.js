@@ -99,32 +99,48 @@ const excluded = new Set([
       ? "DigitalFadi - Free Google Ads Audit"
       : "DigitalFadi - Contact Enquiry";
 
-    // Send through a private Worker service binding with a verified-recipient
-    // Cloudflare Email Routing send_email binding. No paid arbitrary-recipient API.
-    if (!env.CONTACT_MAILER || typeof env.CONTACT_MAILER.fetch !== "function") {
-      console.error("CONTACT_MAILER Worker service binding missing");
+    // Send through Hostinger Mail API over HTTPS (Cloudflare Workers-compatible).
+    // Configure HOSTINGER_MAIL_API_KEY and HOSTINGER_MAILBOX_RESOURCE_ID as
+    // Cloudflare Pages production secrets/variables, never in frontend or Git.
+    if (!env.HOSTINGER_MAIL_API_KEY || !env.HOSTINGER_MAILBOX_RESOURCE_ID) {
+      console.error("Hostinger Mail API credentials not configured");
+      return json({ success: false, error: "Email service not configured" }, 503);
+    }
+
+    const mailboxId = String(env.HOSTINGER_MAILBOX_RESOURCE_ID).trim();
+    if (!/^[A-Za-z0-9_-]{4,128}$/.test(mailboxId)) {
+      console.error("Invalid Hostinger mailbox resource ID configuration");
       return json({ success: false, error: "Email service not configured" }, 503);
     }
 
     let response;
     try {
-      response = await env.CONTACT_MAILER.fetch("https://contact-mailer.internal/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          replyTo: email,
-          subject,
-          text: ["New DigitalFadi enquiry:", "", ...lines].join("\n")
-        })
-      });
+      response = await fetch(
+        "https://api.mail.hostinger.com/api/v1/mailboxes/" +
+        encodeURIComponent(mailboxId) + "/send",
+        {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + env.HOSTINGER_MAIL_API_KEY,
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            to: ["fawad@digitalfadi.com"],
+            subject,
+            text: ["New DigitalFadi enquiry", "", "Customer reply-to: " + email, "", ...lines].join("\n")
+          }),
+          signal: AbortSignal.timeout(12000)
+        }
+      );
     } catch (error) {
-      console.error("Private contact mailer failed", String(error?.message || error).slice(0,180));
+      console.error("Hostinger Mail API network error", String(error?.message || error).slice(0,160));
       return json({ success: false, error: "Email service unavailable" }, 502);
     }
-    let result;
-    try { result = await response.json(); } catch (_) { result = null; }
-    if (!response.ok || result?.success !== true) {
-      console.error("Private contact mailer rejected", response.status, result?.error || "Unknown");
+
+    if (!response.ok) {
+      // Never log response content; it could contain mailbox or account data.
+      console.error("Hostinger Mail API rejected request, HTTP", response.status);
       return json({ success: false, error: "Email delivery failed" }, 502);
     }
 
