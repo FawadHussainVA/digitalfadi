@@ -122,7 +122,7 @@ const excluded = new Set([
           signal: controller.signal,
           body: JSON.stringify({
             from: "fawad@digitalfadi.com",
-            to: ["fawad@digitalfadi.com"],
+            to: ["zaheer.geoz@gmail.com"],
             subject,
             text: ["New enquiry: " + subject, "", ...lines].join("\n")
           })
