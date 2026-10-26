@@ -759,6 +759,9 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 .mcol + .mcol{border-left:1px solid var(--hair);padding-left:8px}
 .mhead{font-style:normal;font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-l);padding:6px 12px 4px}
 .navmenu .mall{color:var(--purple);font-weight:800}
+.mcol.mind{display:grid;grid-template-columns:repeat(2,minmax(196px,auto));column-gap:4px;row-gap:2px;align-content:start}
+.mcol.mind .mhead,.mcol.mind .mall{grid-column:1 / -1}
+nav#mainnav.open .mcol.mind{display:flex;flex-direction:column}
 nav#mainnav.open .navmenu.mega{flex-direction:column;padding:2px 0 6px 16px}
 nav#mainnav.open .mcol{min-width:0}
 nav#mainnav.open .mcol + .mcol{border-left:0;padding-left:0;margin-top:6px}
@@ -881,7 +884,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="/google-ads-for-ecommerce/">Google Ads for e-commerce</a>
             <a href="/google-ads-for-local-services/">Google Ads for local services</a>
           </span>
-          <span class="mcol">
+          <span class="mcol mind">
             <em class="mhead">Industries</em>
             {%- for t in collections.industries | sort(false, false, 'data.order') %}
             <a href="{{ t.url }}">{{ t.data.crumb }}</a>

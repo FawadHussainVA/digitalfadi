@@ -103,6 +103,12 @@ layout: base.njk
           <a href="{{ a.url }}" style="color:var(--purple);font-weight:700">{{ a.data.title }}</a>{% if not loop.last %} &middot; {% endif %}
         {%- endfor -%}
         </p>
+        {%- if parent and collections.industries %}
+        {%- set rel = [] %}
+        {%- for u in (relatedIndustries or []) %}{% for t in collections.industries %}{% if t.url == u %}{% set rel = (rel.push(t), rel) %}{% endif %}{% endfor %}{% endfor %}
+        {%- for t in collections.industries | sort(false, false, 'data.order') %}{% if t.url != page.url and t.data.group == group and not (t in rel) and rel.length < 3 %}{% set rel = (rel.push(t), rel) %}{% endif %}{% endfor %}
+        <p style="margin-top:10px">Related industries: {% for t in rel %}<a href="{{ t.url }}" style="color:var(--purple);font-weight:700">{{ t.data.crumb }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %} &middot; <a href="/industries/" style="color:var(--purple);font-weight:700">all industries</a></p>
+        {%- endif %}
         <p style="margin-top:10px">Free tools for this work: {% for t in (tools or []) %}<a href="{{ t[1] }}" style="color:var(--purple);font-weight:700">{{ t[0] }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %}{% if not tools %}<a href="/tools/" style="color:var(--purple);font-weight:700">all free Google Ads tools</a>{% endif %}</p>
       </div>
       {% endif %}

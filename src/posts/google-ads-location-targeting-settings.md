@@ -25,7 +25,7 @@ Picture a plumber who targets one town. With Presence or interest, the ads can a
 - a person in another region searching for prices in different places
 - a landlord who lives elsewhere and owns property in the area
 
-Some of these could become customers, but most will not, and each click costs the same as a local customer with a leaking pipe. For any business that serves people in person, such as trades, clinics, restaurants or local shops, Presence is almost always the better choice. [Why your Google Ads calls are not becoming jobs](/learn/why-google-ads-calls-are-not-becoming-jobs/) shows how often out-of-area calls turn up in local accounts.
+Some of these could become customers, but most will not, and each click costs the same as a local customer with a leaking pipe. For any business that serves people in person, such as [trades](/industries/), [dental clinics](/google-ads-for-dentists/), restaurants or local shops, Presence is almost always the better choice. [Why your Google Ads calls are not becoming jobs](/learn/why-google-ads-calls-are-not-becoming-jobs/) shows how often out-of-area calls turn up in local accounts.
 
 ## When Presence or interest makes sense
 
