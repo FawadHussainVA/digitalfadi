@@ -13,7 +13,7 @@ export default {
     catch (_) { return Response.json({ success: false, error: "Invalid payload" }, { status: 400 }); }
     if (!data || typeof data.subject !== "string" || typeof data.text !== "string" ||
         data.subject.length > 160 || data.text.length > 12000 ||
-        !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(String(data.replyTo || ""))) {
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.replyTo || ""))) {
       return Response.json({ success: false, error: "Invalid payload" }, { status: 400 });
     }
     try {
