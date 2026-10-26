@@ -29,6 +29,8 @@ function gtag(){dataLayer.push(arguments);}
       region: ['GB','AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','CH'],
       wait_for_update: 500
     }, DENY));
+    // For locations outside the consent-required region, keep the original default.
+    // Google applies the region-specific default with higher priority.
     gtag('consent', 'default', ALLOW);
   }
   gtag('set', 'ads_data_redaction', true);
