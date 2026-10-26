@@ -205,7 +205,7 @@ permalink: /
 
       <div class="fcard fade" style="--d:.35s">
         <div class="fcard-head"><b>Contact us</b><span>Reply in 1 working day</span></div>
-        <form name="contact-hero" method="POST" data-leadform>
+        <form name="contact-hero" method="POST" action="/api/contact" data-leadform>
           <input type="hidden" name="form-name" value="contact-hero">
           <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
           <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
@@ -241,9 +241,11 @@ permalink: /
               <option>Not running Google Ads yet</option>
             </select>
           </div>       
-
+<div class="cf-turnstile"
+     data-sitekey="0x4AAAAAAFSmQNY5L9j0Njly">
+</div>
           <button type="submit" class="btn fsubmit">Send message <span class="arw">&rarr;</span></button>
-          <p class="fnote">We reply within one working day. Your information is used to respond to your enquiry and processed by our form delivery provider.</p>
+          <p class="fnote">We reply within one working day. Your details are never shared or sold.</p>
         </form>
       </div>
     </div>
@@ -1024,7 +1026,7 @@ permalink: /
 
     <div class="fcard rv">
       <div class="fcard-head"><b>Free Google Ads audit</b><span>No obligation</span></div>
-      <form name="account-analysis" method="POST" data-leadform>
+      <form name="account-analysis" method="POST" action="/api/contact" data-leadform>
         <input type="hidden" name="form-name" value="account-analysis">
           <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
         <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
@@ -1098,7 +1100,9 @@ permalink: /
           <label for="c-msg">Anything else we should know?</label>
           <textarea id="c-msg" name="message" placeholder="Leads have become more expensive since March and we can't work out which campaign is responsible."></textarea>
         </div>
-
+<div class="cf-turnstile"
+     data-sitekey="0x4AAAAAAFSmQNY5L9j0Njly">
+</div>
         <button type="submit" class="btn fsubmit">Get my free audit <span class="arw">&rarr;</span></button>
         <p class="fnote">Your details are never shared or sold, and we don't add anyone to a mailing list from this form.</p>
       </form>
