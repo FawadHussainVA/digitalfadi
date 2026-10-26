@@ -1,13 +1,12 @@
 import { connect } from "cloudflare:sockets";
 
-/* Send one plain-text email through an SMTP server over implicit TLS (port 465).
-   Used to deliver leads straight into the Hostinger mailbox. */
+/* Send one plain-text email through Hostinger using STARTTLS on port 587. */
 export async function smtpSend(o, connectFn = connect) {
   const enc = new TextEncoder(), dec = new TextDecoder();
   const b64 = (str) => { const bytes = enc.encode(str); let bin = ""; for (const b of bytes) bin += String.fromCharCode(b); return btoa(bin); };
-  const socket = connectFn({ hostname: o.host, port: o.port }, { secureTransport: "on", allowHalfOpen: false });
-  const writer = socket.writable.getWriter();
-  const reader = socket.readable.getReader();
+  let socket = connectFn({ hostname: o.host, port: o.port }, { secureTransport: "starttls" });
+  let writer = socket.writable.getWriter();
+  let reader = socket.readable.getReader();
   let buf = "";
   async function reply() {
     for (;;) {
@@ -32,6 +31,15 @@ export async function smtpSend(o, connectFn = connect) {
   }
   const run = (async () => {
     await step(null, [220]);
+    await step("EHLO digitalfadi.com", [250]);
+    await step("STARTTLS", [220]);
+    // Both stream locks must be released before upgrading the socket.
+    reader.releaseLock();
+    writer.releaseLock();
+    socket = socket.startTls();
+    reader = socket.readable.getReader();
+    writer = socket.writable.getWriter();
+    buf = "";
     await step("EHLO digitalfadi.com", [250]);
     await step("AUTH LOGIN", [334]);
     await step(b64(o.user), [334]);
@@ -141,7 +149,7 @@ const excluded = new Set([
 
     try {
       await smtpSend({
-        host: "smtp.hostinger.com", port: 465,
+        host: "smtp.hostinger.com", port: 587,
         user: LEAD_TO, pass: env.HOSTINGER_SMTP_PASS,
         from: LEAD_TO, to: LEAD_TO, replyTo: email,
         subject, text: body
