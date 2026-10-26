@@ -1114,10 +1114,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---------- lead forms ----------
      Posts to /api/contact (functions/api/contact.js), which checks
      Cloudflare Turnstile and emails the submission.
-     If the post fails for any reason the form falls back to opening the
-     visitor's email client, so a submission is never silently lost. */
+     If delivery fails, display an inline error instead of opening mail apps. */
   var FORM_ENDPOINT = '/api/contact';
-  var FORM_EMAIL = '{{ site.email }}';
 
   function formDone(card, email){
     card.innerHTML =
@@ -1128,18 +1126,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       '</div>';
   }
 
-  function mailtoFallback(form, fd){
-    var lines = [];
-    fd.forEach(function(v, k){
-      if(k === 'form-name' || k === 'bot-field' || !String(v).trim()) return;
-      lines.push(k + ': ' + v);
-    });
-    window.location.href = 'mailto:' + FORM_EMAIL +
-      '?subject=' + encodeURIComponent(
-        fd.get('form-name') === 'account-analysis'
-          ? 'Free Google Ads audit request'
-          : 'Website enquiry') +
-      '&body=' + encodeURIComponent(lines.join('\n'));
+  function formError(form, message){
+    var notice = form.querySelector('[data-form-error]');
+    if(!notice){
+      notice = document.createElement('p');
+      notice.setAttribute('data-form-error', '');
+      notice.setAttribute('role', 'alert');
+      notice.style.cssText = 'color:#a4232b;font-weight:650;margin:12px 0;line-height:1.5';
+      var button = form.querySelector('.fsubmit');
+      button.parentNode.insertBefore(notice, button.nextSibling);
+    }
+    notice.textContent = message;
   }
 
   document.querySelectorAll('[data-leadform]').forEach(function(form){
@@ -1150,6 +1147,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var email = (fd.get('email') || 'you').toString();
       var btn = form.querySelector('.fsubmit');
       var label = btn.innerHTML;
+      var oldError = form.querySelector('[data-form-error]');
+      if(oldError) oldError.remove();
       btn.disabled = true;
       btn.textContent = 'Sending\u2026';
 
@@ -1167,14 +1166,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify(payload)
       }).then(function(r){
-        return r.json();
-      }).then(function(d){
-        if(!d || !d.success) throw new Error('rejected');
+        return r.json().catch(function(){ throw new Error('Server response invalid (HTTP ' + r.status + ')'); })
+          .then(function(d){
+            if(!r.ok || !d || d.success !== true) {
+              throw new Error(d && d.error ? d.error : 'Server error (HTTP ' + r.status + ')');
+            }
+            return d;
+          });
+      }).then(function(){
         formDone(card, email);
-      }).catch(function(){
+      }).catch(function(err){
         btn.disabled = false;
         btn.innerHTML = label;
-        mailtoFallback(form, fd);
+        console.error('Contact form delivery failed:', err);
+        formError(form, 'Your message was not sent. Please try again or email us directly at fawad@digitalfadi.com.');
+        if(window.turnstile){
+          form.querySelectorAll('.cf-turnstile').forEach(function(widget){
+            try { window.turnstile.reset(widget); } catch(e) {}
+          });
+        }
       });
     });
   });

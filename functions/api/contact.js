@@ -161,11 +161,6 @@ const excluded = new Set([
     const endpoint =
       `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/email/sending/send`;
 
-    if (!env.CLOUDFLARE_ACCOUNT_ID ||
-        !env.CLOUDFLARE_EMAIL_TOKEN) {
-      return json({ success: false, error: "Not configured" }, 503);
-    }
-
     // Leads go only to the Hostinger mailbox: first through Hostinger's own
     // SMTP server (needs the HOSTINGER_SMTP_PASS secret), then through
     // Cloudflare Email Sending to the same address. Reply goes to the visitor.
@@ -230,7 +225,9 @@ const excluded = new Set([
         console.error("Hostinger SMTP failed", e.message);
       }
     }
-    if (!delivered) delivered = await send(LEAD_TO, subject);
+    if (!delivered && env.CLOUDFLARE_ACCOUNT_ID && env.CLOUDFLARE_EMAIL_TOKEN) {
+      delivered = await send(LEAD_TO, subject);
+    }
 
     if (!delivered) {
       console.error("Lead email could not be delivered to " + LEAD_TO);
