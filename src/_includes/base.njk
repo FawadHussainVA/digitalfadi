@@ -846,7 +846,10 @@ nav a,.navtop{white-space:nowrap}
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="DigitalFadi: Google Ads agency">
 <meta name="twitter:image" content="{{ site.url }}/og-image.png">
-
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async defer>
+</script>
 
 </head>
 <body>
@@ -1108,70 +1111,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
 
-  /* ---------- lead forms: same-origin Cloudflare Function -> Hostinger SMTP ---------- */
+  /* ---------- lead forms ----------
+     Posts to /api/contact (functions/api/contact.js), which checks
+     Cloudflare Turnstile and emails the submission.
+     If the post fails for any reason the form falls back to opening the
+     visitor's email client, so a submission is never silently lost. */
   var FORM_ENDPOINT = '/api/contact';
+  var FORM_EMAIL = '{{ site.email }}';
 
   function formDone(card, email){
     card.innerHTML =
       '<div class="fdone">' +
         '<div class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
-        '<h4>Request submitted</h4>' +
-        '<p>Thank you. We\'ll reply to ' + String(email).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + ' as soon as possible.</p>' +
+        '<h4>Request received</h4>' +
+        '<p>Thanks. We\'ll reply to ' + String(email).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + ' within one working day, usually sooner.</p>' +
       '</div>';
   }
-  function formError(form, message){
-    var notice = form.querySelector('[data-form-error]');
-    if(!notice){
-      notice = document.createElement('p');
-      notice.setAttribute('data-form-error','');
-      notice.setAttribute('role','alert');
-      notice.style.cssText = 'color:#a4232b;font-weight:650;margin:12px 0;line-height:1.5';
-      var button = form.querySelector('.fsubmit');
-      button.parentNode.insertBefore(notice,button.nextSibling);
-    }
-    notice.textContent = message;
+
+  function mailtoFallback(form, fd){
+    var lines = [];
+    fd.forEach(function(v, k){
+      if(k === 'form-name' || k === 'bot-field' || !String(v).trim()) return;
+      lines.push(k + ': ' + v);
+    });
+    window.location.href = 'mailto:' + FORM_EMAIL +
+      '?subject=' + encodeURIComponent(
+        fd.get('form-name') === 'account-analysis'
+          ? 'Free Google Ads audit request'
+          : 'Website enquiry') +
+      '&body=' + encodeURIComponent(lines.join('\n'));
   }
+
   document.querySelectorAll('[data-leadform]').forEach(function(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      if(!form.reportValidity()) return;
       var fd = new FormData(form);
       var card = form.closest('.fcard');
-      var email = String(fd.get('email') || 'you');
+      var email = (fd.get('email') || 'you').toString();
       var btn = form.querySelector('.fsubmit');
-      var original = btn.innerHTML;
-      var oldError = form.querySelector('[data-form-error]');
-      if(oldError) oldError.remove();
-      var payload = {};
-      fd.forEach(function(value,key){
-        if(key !== 'access_key') payload[key] = String(value);
-      });
+      var label = btn.innerHTML;
       btn.disabled = true;
-      btn.textContent = 'Sending...';
-      var controller = new AbortController();
-      var timeout = setTimeout(function(){controller.abort();}, 15000);
+      btn.textContent = 'Sending\u2026';
+
+      var payload = {};
+      fd.forEach(function(v, k){
+        if(k === 'bot-field') return;
+        payload[k] = payload[k] ? payload[k] + ', ' + v : v;
+      });
+      payload.subject = fd.get('form-name') === 'account-analysis'
+        ? 'Free Google Ads audit request'
+        : 'Website enquiry';
+      payload.from_name = 'DigitalFadi website';
       fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: {'Content-Type':'application/json','Accept':'application/json'},
-        signal: controller.signal,
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify(payload)
-      }).then(function(response){
-        return response.json().catch(function(){throw new Error('Server returned a non-JSON response ('+response.status+')');})
-          .then(function(result){
-            if(!response.ok || !result || result.success !== true){
-              throw new Error(result && result.error ? result.error : 'Server error '+response.status);
-            }
-          });
-      }).then(function(){
-        formDone(card,email);
-      }).catch(function(error){
-        console.error('Hostinger SMTP delivery failed:',error);
+      }).then(function(r){
+        return r.json();
+      }).then(function(d){
+        if(!d || !d.success) throw new Error('rejected');
+        formDone(card, email);
+      }).catch(function(){
         btn.disabled = false;
-        btn.innerHTML = original;
-        formError(form, error && error.name === 'AbortError'
-          ? 'The email service did not respond. Please try again later.'
-          : 'Message could not be submitted. Please try again later.');
-      }).finally(function(){ clearTimeout(timeout); });
+        btn.innerHTML = label;
+        mailtoFallback(form, fd);
+      });
     });
   });
 
