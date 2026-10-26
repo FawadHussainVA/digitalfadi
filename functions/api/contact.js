@@ -70,8 +70,14 @@ export async function onRequestPost({ request, env }) {
 
     if (
       verificationResult.success !== true ||
-      verificationResult.hostname !== "digitalfadi.com"
+      !["digitalfadi.com", "www.digitalfadi.com"].includes(verificationResult.hostname)
     ) {
+      // Never log the token, the secret, or the visitor's personal details.
+      console.error("Turnstile verification rejected", JSON.stringify({
+        verified: verificationResult.success === true,
+        codes: Array.isArray(verificationResult["error-codes"]) ? verificationResult["error-codes"] : [],
+        hostname: verificationResult.hostname || null
+      }));
       return json({ success: false, error: "Verification failed" }, 403);
     }
 
