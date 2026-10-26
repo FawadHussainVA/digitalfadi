@@ -1,76 +1,107 @@
 import { connect } from "cloudflare:sockets";
 
-/* Send one plain-text email through Hostinger using STARTTLS on port 587. */
+/* SMTP connection implementation for Cloudflare Pages Functions.
+ * Secure Hostinger submission, no third-party service.
+ * Avoid eager cancellation of the stream during STARTTLS and report the stage.
+ */
 export async function smtpSend(o, connectFn = connect) {
-  const enc = new TextEncoder(), dec = new TextDecoder();
-  const b64 = (str) => { const bytes = enc.encode(str); let bin = ""; for (const b of bytes) bin += String.fromCharCode(b); return btoa(bin); };
-  let socket = connectFn({ hostname: o.host, port: o.port }, { secureTransport: "starttls" });
-  let writer = socket.writable.getWriter();
-  let reader = socket.readable.getReader();
-  let buf = "";
-  async function reply() {
-    for (;;) {
-      const lines = buf.split("\r\n");
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+  const b64 = value => {
+    const bytes = encoder.encode(value);
+    let binary = "";
+    for (const byte of bytes) binary += String.fromCharCode(byte);
+    return btoa(binary);
+  };
+  let socket, reader, writer, pending = "", stage = "connect";
+  const release = () => {
+    try { reader?.releaseLock(); } catch (_) {}
+    try { writer?.releaseLock(); } catch (_) {}
+    reader = undefined; writer = undefined;
+  };
+  const attach = s => { socket = s; reader = s.readable.getReader(); writer = s.writable.getWriter(); };
+  async function response() {
+    while (true) {
+      const lines = pending.split("\r\n");
       for (let i = 0; i < lines.length - 1; i++) {
         if (/^\d{3} /.test(lines[i])) {
-          const out = { code: Number(lines[i].slice(0, 3)), text: lines.slice(0, i + 1).join(" | ") };
-          buf = lines.slice(i + 1).join("\r\n");
-          return out;
+          const result = { code: Number(lines[i].slice(0, 3)), text: lines.slice(0, i + 1).join(" | ") };
+          pending = lines.slice(i + 1).join("\r\n");
+          return result;
         }
       }
-      const { value, done } = await reader.read();
-      if (done) throw new Error("SMTP connection closed");
-      buf += dec.decode(value, { stream: true });
+      const chunk = await reader.read();
+      if (chunk.done) throw new Error("SMTP server closed connection");
+      pending += decoder.decode(chunk.value, { stream: true });
+      if (pending.length > 65536) throw new Error("SMTP response exceeded limit");
     }
   }
-  async function step(line, ok) {
-    if (line !== null) await writer.write(enc.encode(line + "\r\n"));
-    const r = await reply();
-    if (!ok.includes(r.code)) throw new Error("SMTP " + r.code + ": " + r.text.slice(0, 200));
-    return r;
+  async function command(label, line, expected) {
+    stage = label;
+    if (line !== null) await writer.write(encoder.encode(line + "\r\n"));
+    const reply = await response();
+    if (!expected.includes(reply.code)) throw new Error(`SMTP ${reply.code}: ${reply.text.slice(0, 160)}`);
+    return reply;
   }
-  const run = (async () => {
-    await step(null, [220]);
-    await step("EHLO digitalfadi.com", [250]);
-    await step("STARTTLS", [220]);
-    // Both stream locks must be released before upgrading the socket.
-    reader.releaseLock();
-    writer.releaseLock();
-    socket = socket.startTls();
-    reader = socket.readable.getReader();
-    writer = socket.writable.getWriter();
-    buf = "";
-    await step("EHLO digitalfadi.com", [250]);
-    await step("AUTH LOGIN", [334]);
-    await step(b64(o.user), [334]);
-    await step(b64(o.pass), [235]);
-    await step("MAIL FROM:<" + o.from + ">", [250]);
-    await step("RCPT TO:<" + o.to + ">", [250, 251]);
-    await step("DATA", [354]);
-    const body = b64(o.text).replace(/.{1,76}/g, "$&\r\n");
-    const msg = [
-      "From: DigitalFadi website <" + o.from + ">",
-      "To: <" + o.to + ">",
-      "Reply-To: <" + o.replyTo + ">",
-      "Subject: =?UTF-8?B?" + b64(o.subject) + "?=",
-      "Date: " + new Date().toUTCString().replace("GMT", "+0000"),
-      "Message-ID: <" + crypto.randomUUID() + "@digitalfadi.com>",
+  const task = async () => {
+    attach(connectFn({ hostname: o.host, port: o.port }, {
+      secureTransport: o.port === 465 ? "on" : "starttls"
+    }));
+    // Let the runtime complete the socket connection before first read.
+    stage = "socket open";
+    await socket.opened;
+    await command("greeting", null, [220]);
+    await command("EHLO", "EHLO digitalfadi.com", [250]);
+    if (o.port === 587) {
+      await command("STARTTLS command", "STARTTLS", [220]);
+      // Cloudflare requires releasing locks before startTls().
+      release();
+      stage = "STARTTLS handshake";
+      const upgraded = socket.startTls();
+      attach(upgraded);
+      await socket.opened;
+      pending = "";
+      await command("secure EHLO", "EHLO digitalfadi.com", [250]);
+    }
+    await command("AUTH LOGIN", "AUTH LOGIN", [334]);
+    await command("AUTH user", b64(o.user), [334]);
+    await command("AUTH password", b64(o.pass), [235]);
+    await command("MAIL FROM", `MAIL FROM:<${o.from}>`, [250]);
+    await command("RCPT TO", `RCPT TO:<${o.to}>`, [250, 251]);
+    await command("DATA", "DATA", [354]);
+    stage = "message body";
+    const textBody = b64(o.text).match(/.{1,76}/g)?.join("\r\n") || "";
+    const header = [
+      `From: DigitalFadi website <${o.from}>`,
+      `To: <${o.to}>`,
+      `Reply-To: <${o.replyTo}>`,
+      `Subject: =?UTF-8?B?${b64(o.subject)}?=`,
+      `Date: ${new Date().toUTCString()}`,
+      `Message-ID: <${crypto.randomUUID()}@digitalfadi.com>`,
       "MIME-Version: 1.0",
       "Content-Type: text/plain; charset=UTF-8",
-      "Content-Transfer-Encoding: base64",
-      "",
-      body
+      "Content-Transfer-Encoding: base64", "", textBody
     ].join("\r\n");
-    await writer.write(enc.encode(msg + "\r\n.\r\n"));
-    await step(null, [250]);
-    try { await step("QUIT", [221]); } catch (e) {}
-  })();
-  const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("SMTP timeout")), 10000));
-  try { await Promise.race([run, timeout]); }
-  finally { try { socket.close(); } catch (e) {} }
-  return true;
+    await writer.write(encoder.encode(header + "\r\n.\r\n"));
+    await command("message accepted", null, [250]);
+    // Sending is complete once SMTP server acknowledges DATA with 250.
+    try { await command("QUIT", "QUIT", [221]); } catch (_) {}
+  };
+  let timer;
+  try {
+    await Promise.race([
+      task(),
+      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error("SMTP timeout")), 12000); })
+    ]);
+    return true;
+  } catch (error) {
+    throw new Error(`${o.port}/${stage}: ${error?.message || String(error)}`);
+  } finally {
+    clearTimeout(timer);
+    release();
+    try { socket?.close(); } catch (_) {}
+  }
 }
-
 
 const json = (body, status = 200) =>
   Response.json(body, {
@@ -147,17 +178,25 @@ const excluded = new Set([
       ...lines
     ].join("\n");
 
-    try {
-      await smtpSend({
-        host: "smtp.hostinger.com", port: 587,
-        user: LEAD_TO, pass: env.HOSTINGER_SMTP_PASS,
-        from: LEAD_TO, to: LEAD_TO, replyTo: email,
-        subject, text: body
-      });
-    } catch (e) {
-      console.error("Hostinger SMTP failed", e && e.message ? e.message : String(e));
-      return json({ success: false, error: "SMTP delivery failed" }, 502);
+    // Try implicit TLS first, then STARTTLS. Both are Hostinger SMTP.
+    let sent = false;
+    for (const port of [465, 587]) {
+      try {
+        await smtpSend({
+          host: "smtp.hostinger.com", port,
+          user: LEAD_TO, pass: env.HOSTINGER_SMTP_PASS,
+          from: LEAD_TO, to: LEAD_TO, replyTo: email,
+          subject, text: body
+        });
+        sent = true;
+        break;
+      } catch (e) {
+        console.error("Hostinger SMTP failed", e?.message || String(e));
+        // Authentication rejection will not be fixed by a different port.
+        if (/SMTP (535|534|530):/.test(String(e?.message))) break;
+      }
     }
+    if (!sent) return json({ success: false, error: "SMTP delivery failed" }, 502);
 
     return json({ success: true });
   } catch (error) {
