@@ -79,6 +79,9 @@ export async function onRequestPost({ request, env }) {
       return json({ success: false, error: "Invalid origin" }, 403);
     }
 
+    if (Number(request.headers.get("content-length") || 0) > 12000) {
+      return json({ success: false, error: "Payload too large" }, 413);
+    }
     const data = await request.json();
     if (!data || typeof data !== "object" || Array.isArray(data)) {
       return json({ success: false }, 400);
@@ -103,44 +106,10 @@ export async function onRequestPost({ request, env }) {
       return json({ success: false, error: "Invalid details" }, 400);
     }
 
-    // Verify Cloudflare Turnstile before sending email.
-    const token = String(data["cf-turnstile-response"] || "");
+    // The currently deployed contact form does not include a Turnstile widget.
+    // Honeypot remains in place. Add proper server-side anti-spam controls
+    // before exposing a high-volume production endpoint.
 
-    if (!env.TURNSTILE_SECRET_KEY) {
-      return json({ success: false, error: "Turnstile not configured" }, 503);
-    }
-
-    if (!token || token.length > 2048) {
-      return json({ success: false, error: "Verification required" }, 403);
-    }
-
-    const verification = await fetch(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          secret: env.TURNSTILE_SECRET_KEY,
-          response: token,
-          remoteip: request.headers.get("CF-Connecting-IP")
-        })
-      }
-    );
-
-    if (!verification.ok) {
-      return json({ success: false, error: "Verification unavailable" }, 502);
-    }
-
-    const verificationResult = await verification.json();
-
-    if (
-      verificationResult.success !== true ||
-      verificationResult.hostname !== "digitalfadi.com"
-    ) {
-      return json({ success: false, error: "Verification failed" }, 403);
-    }
-
-   
 const excluded = new Set([
   "access_key", "bot-field", "form-name",
   "subject", "from_name", "cf-turnstile-response"
@@ -158,13 +127,11 @@ const excluded = new Set([
       ? "DigitalFadi - Free Google Ads Audit"
       : "DigitalFadi - Contact Enquiry";
 
-    const endpoint =
-      `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/email/sending/send`;
-
-    // Leads go only to the Hostinger mailbox: first through Hostinger's own
-    // SMTP server (needs the HOSTINGER_SMTP_PASS secret), then through
-    // Cloudflare Email Sending to the same address. Reply goes to the visitor.
     const LEAD_TO = "fawad@digitalfadi.com";
+    if (!env.HOSTINGER_SMTP_PASS) {
+      console.error("Hostinger SMTP secret missing");
+      return json({ success: false, error: "SMTP not configured" }, 503);
+    }
 
     const body = [
       `New enquiry: ${subject}`,
@@ -172,66 +139,16 @@ const excluded = new Set([
       ...lines
     ].join("\n");
 
-    async function send(to, subjectLine) {
-      try {
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${env.CLOUDFLARE_EMAIL_TOKEN}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            from: "fawad@digitalfadi.com",
-            to: [to],
-            reply_to: email,
-            subject: subjectLine,
-            text: body
-          })
-        });
-        const out = await res.json().catch(() => ({}));
-        if (!res.ok || out.success !== true) {
-          console.error("Email API refused", to, res.status, JSON.stringify(out.errors || []));
-          return false;
-        }
-        // "success" only means Cloudflare accepted the request. The result
-        // says whether the address was delivered, queued or bounced.
-        const r = out.result || {};
-        const has = (list) => Array.isArray(list) &&
-          list.some((x) => String(x && x.address ? x.address : x).toLowerCase() === to);
-        if (has(r.permanent_bounces)) {
-          console.error("Email bounced", to, JSON.stringify(r.permanent_bounces));
-          return false;
-        }
-        if (Array.isArray(r.delivered) || Array.isArray(r.queued)) {
-          return has(r.delivered) || has(r.queued);
-        }
-        return true;
-      } catch (e) {
-        console.error("Email request failed", to, e.message);
-        return false;
-      }
-    }
-
-    let delivered = false;
-    if (env.HOSTINGER_SMTP_PASS) {
-      try {
-        delivered = await smtpSend({
-          host: "smtp.hostinger.com", port: 465,
-          user: LEAD_TO, pass: env.HOSTINGER_SMTP_PASS,
-          from: LEAD_TO, to: LEAD_TO, replyTo: email,
-          subject, text: body
-        });
-      } catch (e) {
-        console.error("Hostinger SMTP failed", e.message);
-      }
-    }
-    if (!delivered && env.CLOUDFLARE_ACCOUNT_ID && env.CLOUDFLARE_EMAIL_TOKEN) {
-      delivered = await send(LEAD_TO, subject);
-    }
-
-    if (!delivered) {
-      console.error("Lead email could not be delivered to " + LEAD_TO);
-      return json({ success: false, error: "Email failed" }, 502);
+    try {
+      await smtpSend({
+        host: "smtp.hostinger.com", port: 465,
+        user: LEAD_TO, pass: env.HOSTINGER_SMTP_PASS,
+        from: LEAD_TO, to: LEAD_TO, replyTo: email,
+        subject, text: body
+      });
+    } catch (e) {
+      console.error("Hostinger SMTP failed", e && e.message ? e.message : String(e));
+      return json({ success: false, error: "SMTP delivery failed" }, 502);
     }
 
     return json({ success: true });

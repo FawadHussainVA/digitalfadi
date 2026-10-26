@@ -1108,11 +1108,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
 
-  /* ---------- lead forms: FormSubmit AJAX delivery ----------
-     Sends enquiries to fawad@digitalfadi.com, hosted at Hostinger.
-     Requires one-time FormSubmit confirmation email. No mailto fallback.
-     FormSubmit is an independent email delivery provider, NOT Hostinger SMTP. */
-  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/fawad@digitalfadi.com';
+  /* ---------- lead forms: same-origin Cloudflare Function -> Hostinger SMTP ---------- */
+  var FORM_ENDPOINT = '/api/contact';
 
   function formDone(card, email){
     card.innerHTML =
@@ -1147,34 +1144,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if(oldError) oldError.remove();
       var payload = {};
       fd.forEach(function(value,key){
-        if(key === 'bot-field' || key === 'cf-turnstile-response' || key === 'access_key') return;
-        payload[key] = String(value);
+        if(key !== 'access_key') payload[key] = String(value);
       });
-      payload._subject = fd.get('form-name') === 'account-analysis'
-        ? 'DigitalFadi - Free Google Ads Audit' : 'DigitalFadi - Website Enquiry';
-      payload._template = 'table';
-      payload._captcha = 'false'; // Existing honeypot remains, no extra CAPTCHA step.
-      payload._honey = String(fd.get('bot-field') || '');
       btn.disabled = true;
       btn.textContent = 'Sending...';
+      var controller = new AbortController();
+      var timeout = setTimeout(function(){controller.abort();}, 15000);
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: {'Content-Type':'application/json','Accept':'application/json'},
+        signal: controller.signal,
         body: JSON.stringify(payload)
       }).then(function(response){
-        return response.json().then(function(result){
-          if(!response.ok || !result || (result.success !== true && result.success !== 'true')) {
-            throw new Error(result && result.message ? result.message : 'Form delivery error');
-          }
-        });
+        return response.json().catch(function(){throw new Error('Server returned a non-JSON response ('+response.status+')');})
+          .then(function(result){
+            if(!response.ok || !result || result.success !== true){
+              throw new Error(result && result.error ? result.error : 'Server error '+response.status);
+            }
+          });
       }).then(function(){
         formDone(card,email);
       }).catch(function(error){
-        console.error('FormSubmit delivery failed:',error);
+        console.error('Hostinger SMTP delivery failed:',error);
         btn.disabled = false;
         btn.innerHTML = original;
-        formError(form,'Message could not be submitted. Please try again later.');
-      });
+        formError(form, error && error.name === 'AbortError'
+          ? 'The email service did not respond. Please try again later.'
+          : 'Message could not be submitted. Please try again later.');
+      }).finally(function(){ clearTimeout(timeout); });
     });
   });
 
