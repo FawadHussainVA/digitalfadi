@@ -9,10 +9,6 @@ eleventyExcludeFromCollections: true
     <loc>{{ site.url }}{{ p.url }}</loc>
     {%- if p.data.tags and "posts" in p.data.tags %}
     <lastmod>{{ (p.data.updated or p.date) | iso }}</lastmod>
-    {%- elif p.url == "/" %}
-    {%- elif p.url == "/learn/" %}
-    {%- elif p.url == "/privacy-terms/" %}
-    {%- else %}
     {%- endif %}
   </url>
   {%- endfor %}
