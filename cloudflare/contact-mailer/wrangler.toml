@@ -1,0 +1,10 @@
+name = "digitalfadi-contact-mailer"
+main = "src/index.js"
+compatibility_date = "2026-10-27"
+workers_dev = false
+
+# Email Routing is already active on digitalfadi.com.
+# Free notification sending is limited to destinations verified in this account.
+[[send_email]]
+name = "EMAIL"
+destination_address = "zaheer.geoz@gmail.com"
