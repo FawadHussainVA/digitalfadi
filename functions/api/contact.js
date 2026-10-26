@@ -101,28 +101,49 @@ const excluded = new Set([
       return json({ success: false, error: "Not configured" }, 503);
     }
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.CLOUDFLARE_EMAIL_TOKEN}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        from: "fawad@digitalfadi.com",
-        to: ["zaheer.geoz@gmail.com"],
-        subject,
-        text: [
-          `New enquiry: ${subject}`,
-          "",
-          ...lines
-        ].join("\n")
-      })
-    });
+    // Leads go to the Hostinger mailbox. Reply goes straight to the visitor.
+    // If that send fails for any reason, the same lead goes to the backup
+    // inbox instead, so an enquiry is never lost.
+    const LEAD_TO = "fawad@digitalfadi.com";
+    const BACKUP_TO = "zaheer.geoz@gmail.com";
 
-    const result = await response.json();
+    const body = [
+      `New enquiry: ${subject}`,
+      "",
+      ...lines
+    ].join("\n");
 
-    if (!response.ok || result.success !== true) {
-      console.error("Email API failed", response.status);
+    async function send(to, subjectLine) {
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${env.CLOUDFLARE_EMAIL_TOKEN}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            from: "fawad@digitalfadi.com",
+            to: [to],
+            reply_to: email,
+            subject: subjectLine,
+            text: body
+          })
+        });
+        const out = await res.json().catch(() => ({}));
+        return res.ok && out.success === true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    let delivered = await send(LEAD_TO, subject);
+    if (!delivered) {
+      console.error("Primary lead email failed, using backup inbox");
+      delivered = await send(BACKUP_TO, `[Backup] ${subject}`);
+    }
+
+    if (!delivered) {
+      console.error("Email API failed for primary and backup");
       return json({ success: false, error: "Email failed" }, 502);
     }
 
