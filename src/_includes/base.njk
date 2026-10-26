@@ -1152,11 +1152,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       btn.disabled = true;
       btn.textContent = 'Sending\u2026';
 
+      // Always include the token for THIS form's completed Turnstile widget.
+      // Some Turnstile rendering configurations do not inject a named input.
+      var widget = form.querySelector('.cf-turnstile');
+      var token = '';
+      if(widget && window.turnstile && typeof window.turnstile.getResponse === 'function'){
+        try { token = window.turnstile.getResponse(widget) || ''; } catch(ex) {}
+      }
+      if(!token){
+        token = String(fd.get('cf-turnstile-response') || '');
+      }
+      if(!token){
+        btn.disabled = false;
+        btn.innerHTML = label;
+        formError(form, 'Please complete the security verification and try again.');
+        return;
+      }
+
       var payload = {};
       fd.forEach(function(v, k){
         if(k === 'bot-field') return;
         payload[k] = payload[k] ? payload[k] + ', ' + v : v;
       });
+      payload['cf-turnstile-response'] = token;
       payload.subject = fd.get('form-name') === 'account-analysis'
         ? 'Free Google Ads audit request'
         : 'Website enquiry';
