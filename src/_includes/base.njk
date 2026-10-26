@@ -846,10 +846,7 @@ nav a,.navtop{white-space:nowrap}
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="DigitalFadi: Google Ads agency">
 <meta name="twitter:image" content="{{ site.url }}/og-image.png">
-<script
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  async defer>
-</script>
+
 
 </head>
 <body>
@@ -1111,98 +1108,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
 
-  /* ---------- lead forms ----------
-     Posts to /api/contact (functions/api/contact.js), which checks
-     Cloudflare Turnstile and emails the submission.
-     If delivery fails, display an inline error instead of opening mail apps. */
-  var FORM_ENDPOINT = '/api/contact';
+  /* ---------- lead forms: FormSubmit AJAX delivery ----------
+     Sends enquiries to fawad@digitalfadi.com, hosted at Hostinger.
+     Requires one-time FormSubmit confirmation email. No mailto fallback.
+     FormSubmit is an independent email delivery provider, NOT Hostinger SMTP. */
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/fawad@digitalfadi.com';
 
   function formDone(card, email){
     card.innerHTML =
       '<div class="fdone">' +
         '<div class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
-        '<h4>Request received</h4>' +
-        '<p>Thanks. We\'ll reply to ' + String(email).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + ' within one working day, usually sooner.</p>' +
+        '<h4>Request submitted</h4>' +
+        '<p>Thank you. We\'ll reply to ' + String(email).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }) + ' as soon as possible.</p>' +
       '</div>';
   }
-
   function formError(form, message){
     var notice = form.querySelector('[data-form-error]');
     if(!notice){
       notice = document.createElement('p');
-      notice.setAttribute('data-form-error', '');
-      notice.setAttribute('role', 'alert');
+      notice.setAttribute('data-form-error','');
+      notice.setAttribute('role','alert');
       notice.style.cssText = 'color:#a4232b;font-weight:650;margin:12px 0;line-height:1.5';
       var button = form.querySelector('.fsubmit');
-      button.parentNode.insertBefore(notice, button.nextSibling);
+      button.parentNode.insertBefore(notice,button.nextSibling);
     }
     notice.textContent = message;
   }
-
   document.querySelectorAll('[data-leadform]').forEach(function(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
+      if(!form.reportValidity()) return;
       var fd = new FormData(form);
       var card = form.closest('.fcard');
-      var email = (fd.get('email') || 'you').toString();
+      var email = String(fd.get('email') || 'you');
       var btn = form.querySelector('.fsubmit');
-      var label = btn.innerHTML;
+      var original = btn.innerHTML;
       var oldError = form.querySelector('[data-form-error]');
       if(oldError) oldError.remove();
-      btn.disabled = true;
-      btn.textContent = 'Sending\u2026';
-
-      // Always include the token for THIS form's completed Turnstile widget.
-      // Some Turnstile rendering configurations do not inject a named input.
-      var widget = form.querySelector('.cf-turnstile');
-      var token = '';
-      if(widget && window.turnstile && typeof window.turnstile.getResponse === 'function'){
-        try { token = window.turnstile.getResponse(widget) || ''; } catch(ex) {}
-      }
-      if(!token){
-        token = String(fd.get('cf-turnstile-response') || '');
-      }
-      if(!token){
-        btn.disabled = false;
-        btn.innerHTML = label;
-        formError(form, 'Please complete the security verification and try again.');
-        return;
-      }
-
       var payload = {};
-      fd.forEach(function(v, k){
-        if(k === 'bot-field') return;
-        payload[k] = payload[k] ? payload[k] + ', ' + v : v;
+      fd.forEach(function(value,key){
+        if(key === 'bot-field' || key === 'cf-turnstile-response' || key === 'access_key') return;
+        payload[key] = String(value);
       });
-      payload['cf-turnstile-response'] = token;
-      payload.subject = fd.get('form-name') === 'account-analysis'
-        ? 'Free Google Ads audit request'
-        : 'Website enquiry';
-      payload.from_name = 'DigitalFadi website';
+      payload._subject = fd.get('form-name') === 'account-analysis'
+        ? 'DigitalFadi - Free Google Ads Audit' : 'DigitalFadi - Website Enquiry';
+      payload._template = 'table';
+      payload._captcha = 'false'; // Existing honeypot remains, no extra CAPTCHA step.
+      payload._honey = String(fd.get('bot-field') || '');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
       fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify(payload)
-      }).then(function(r){
-        return r.json().catch(function(){ throw new Error('Server response invalid (HTTP ' + r.status + ')'); })
-          .then(function(d){
-            if(!r.ok || !d || d.success !== true) {
-              throw new Error(d && d.error ? d.error : 'Server error (HTTP ' + r.status + ')');
-            }
-            return d;
-          });
+      }).then(function(response){
+        return response.json().then(function(result){
+          if(!response.ok || !result || (result.success !== true && result.success !== 'true')) {
+            throw new Error(result && result.message ? result.message : 'Form delivery error');
+          }
+        });
       }).then(function(){
-        formDone(card, email);
-      }).catch(function(err){
+        formDone(card,email);
+      }).catch(function(error){
+        console.error('FormSubmit delivery failed:',error);
         btn.disabled = false;
-        btn.innerHTML = label;
-        console.error('Contact form delivery failed:', err);
-        formError(form, 'Your message was not sent. Please try again or email us directly at fawad@digitalfadi.com.');
-        if(window.turnstile){
-          form.querySelectorAll('.cf-turnstile').forEach(function(widget){
-            try { window.turnstile.reset(widget); } catch(e) {}
-          });
-        }
+        btn.innerHTML = original;
+        formError(form,'Message could not be submitted. Please try again later.');
       });
     });
   });
