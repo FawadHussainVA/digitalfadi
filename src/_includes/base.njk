@@ -1147,6 +1147,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       fd.forEach(function(value,key){
         payload[key] = String(value);
       });
+      // Turnstile may finish after FormData is created or omit the hidden field.
+      var widget = form.querySelector('.cf-turnstile');
+      var tokenField = form.querySelector('[name="cf-turnstile-response"]');
+      var widgetToken = '';
+      if(widget && window.turnstile && typeof window.turnstile.getResponse === 'function'){
+        try { widgetToken = window.turnstile.getResponse(widget) || ''; } catch(_) {}
+      }
+      payload['cf-turnstile-response'] = widgetToken || (tokenField && tokenField.value) || '';
+      if(!payload['cf-turnstile-response']){
+        formError(form, 'Please complete the security verification before submitting. If it is not visible, disable browser blockers and refresh.');
+        return;
+      }
       btn.disabled = true;
       btn.textContent = 'Sending...';
       var controller = new AbortController();
@@ -1166,12 +1178,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }).then(function(){
         formDone(card,email);
       }).catch(function(error){
-        console.error('Hostinger SMTP delivery failed:',error);
+        console.error('Contact form submission failed:',error);
         btn.disabled = false;
         btn.innerHTML = original;
         formError(form, error && error.name === 'AbortError'
           ? 'The email service did not respond. Please try again later.'
-          : 'Message could not be submitted. Please try again later.');
+          : (error && /^(Verification required|Verification failed|Turnstile not configured|Verification unavailable|Email delivery not configured|Email delivery unavailable|Email delivery failed|Invalid form|Invalid details|Request failed)$/.test(error.message)
+              ? error.message + '. Please try again, or contact fawad@digitalfadi.com.'
+              : 'Message could not be submitted. Please try again later.'));
       }).finally(function(){ clearTimeout(timeout); });
     });
   });
