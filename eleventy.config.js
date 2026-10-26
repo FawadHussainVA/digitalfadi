@@ -14,6 +14,10 @@ module.exports = function (eleventyConfig) {
     new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }));
   eleventyConfig.addFilter("iso", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("rfc822", (d) => new Date(d).toUTCString());
+  // A sitemap must only contain canonical, indexable HTML pages.
+  // Excludes feed.xml, llms.txt, robots.txt, 404 and noindex pages.
+  eleventyConfig.addFilter("sitemapPages", (pages) => pages.filter((p) =>
+    p.url && p.url.endsWith("/") && !/\bnoindex\b/i.test(String(p.data.robots || ""))));
 
   eleventyConfig.addCollection("posts", (c) =>
     c.getFilteredByGlob("src/posts/*.md")
