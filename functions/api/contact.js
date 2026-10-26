@@ -99,54 +99,33 @@ const excluded = new Set([
       ? "DigitalFadi - Free Google Ads Audit"
       : "DigitalFadi - Contact Enquiry";
 
-    // Cloudflare Email Sending REST API. No SMTP socket or third-party forms.
-    if (!env.CLOUDFLARE_ACCOUNT_ID || !env.CLOUDFLARE_EMAIL_TOKEN) {
-      console.error("Cloudflare Email Sending credentials missing");
-      return json({ success: false, error: "Email sending not configured" }, 503);
+    // Send through a private Worker service binding with a verified-recipient
+    // Cloudflare Email Routing send_email binding. No paid arbitrary-recipient API.
+    if (!env.CONTACT_MAILER || typeof env.CONTACT_MAILER.fetch !== "function") {
+      console.error("CONTACT_MAILER Worker service binding missing");
+      return json({ success: false, error: "Email service not configured" }, 503);
     }
 
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 12000);
     let response;
     try {
-      response = await fetch(
-        "https://api.cloudflare.com/client/v4/accounts/" +
-          encodeURIComponent(env.CLOUDFLARE_ACCOUNT_ID) + "/email/sending/send",
-        {
-          method: "POST",
-          headers: {
-            "Authorization": "Bearer " + env.CLOUDFLARE_EMAIL_TOKEN,
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          signal: controller.signal,
-          body: JSON.stringify({
-            from: "fawad@digitalfadi.com",
-            to: ["zaheer.geoz@gmail.com"],
-            subject,
-            text: ["New enquiry: " + subject, "", ...lines].join("\n")
-          })
-        }
-      );
+      response = await env.CONTACT_MAILER.fetch("https://contact-mailer.internal/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          replyTo: email,
+          subject,
+          text: ["New DigitalFadi enquiry:", "", ...lines].join("\n")
+        })
+      });
     } catch (error) {
-      console.error("Cloudflare Email Sending request failed", error?.name || String(error));
+      console.error("Private contact mailer failed", String(error?.message || error).slice(0,180));
       return json({ success: false, error: "Email service unavailable" }, 502);
-    } finally {
-      clearTimeout(timer);
     }
-
     let result;
     try { result = await response.json(); } catch (_) { result = null; }
     if (!response.ok || result?.success !== true) {
-      const details = Array.isArray(result?.errors)
-        ? result.errors.map(e => ({ code: e.code, message: String(e.message || "").slice(0, 160) }))
-        : [];
-      console.error("Cloudflare Email Sending rejected", response.status, JSON.stringify(details));
-      return json({ success: false, error: "Email service rejected request" }, 502);
-    }
-    if (result.result?.permanent_bounces?.length || result.result?.suppressed_recipients?.length) {
-      console.error("Cloudflare Email Sending recipient rejected");
-      return json({ success: false, error: "Email recipient unavailable" }, 502);
+      console.error("Private contact mailer rejected", response.status, result?.error || "Unknown");
+      return json({ success: false, error: "Email delivery failed" }, 502);
     }
 
     return json({ success: true });
