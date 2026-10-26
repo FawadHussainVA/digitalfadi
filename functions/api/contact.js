@@ -93,37 +93,44 @@ const excluded = new Set([
       ? "DigitalFadi - Free Google Ads Audit"
       : "DigitalFadi - Contact Enquiry";
 
-    const endpoint =
-      `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/email/sending/send`;
-
-    if (!env.CLOUDFLARE_ACCOUNT_ID ||
-        !env.CLOUDFLARE_EMAIL_TOKEN) {
-      return json({ success: false, error: "Not configured" }, 503);
+    // Existing Web3Forms access key is supplied by the site form.
+    // Deliver over HTTPS, avoiding unsupported SMTP sockets in Cloudflare Workers.
+    const accessKey = String(env.WEB3FORMS_ACCESS_KEY || data.access_key || "").trim();
+    if (!accessKey) {
+      console.error("Contact delivery key is missing");
+      return json({ success: false, error: "Email delivery not configured" }, 503);
     }
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.CLOUDFLARE_EMAIL_TOKEN}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        from: "fawad@digitalfadi.com",
-        to: ["zaheer.geoz@gmail.com"],
-        subject,
-        text: [
-          `New enquiry: ${subject}`,
-          "",
-          ...lines
-        ].join("\n")
-      })
-    });
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 12000);
+    let response;
+    try {
+      response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          access_key: accessKey,
+          name,
+          email,
+          subject,
+          from_name: "DigitalFadi website",
+          message: lines.join("\\n"),
+          botcheck: ""
+        })
+      });
+    } catch (error) {
+      console.error("Contact HTTPS delivery request failed", error?.name || String(error));
+      return json({ success: false, error: "Email delivery unavailable" }, 502);
+    } finally {
+      clearTimeout(timer);
+    }
 
-    const result = await response.json();
-
-    if (!response.ok || result.success !== true) {
-      console.error("Email API failed", response.status);
-      return json({ success: false, error: "Email failed" }, 502);
+    let result;
+    try { result = await response.json(); } catch (_) { result = null; }
+    if (!response.ok || result?.success !== true) {
+      console.error("Contact HTTPS delivery rejected", response.status, result?.message || "Unknown error");
+      return json({ success: false, error: "Email delivery failed" }, 502);
     }
 
     return json({ success: true });
