@@ -81,4 +81,4 @@ The wider picture is in [why your Google Shopping campaign is losing money](/lea
 
 ## Getting the feed looked at
 
-Feed work is part of how we run retail accounts. See [Google Ads for e-commerce](/google-ads-for-ecommerce/), or start with a [$200 account analysis](/google-ads-audit/) that checks the feed, the tracking and the structure before anything is changed.
+Feed work is part of how I run retail accounts. See [Google Ads for e-commerce](/google-ads-for-ecommerce/), or start with a [$200 account analysis](/google-ads-audit/) that checks the feed, the tracking and the structure before anything is changed.

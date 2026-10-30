@@ -76,4 +76,4 @@ The point is not which answer you reach. It is that the answer comes from a test
 
 ## Getting it checked
 
-Separating brand and non-brand properly, then running the holdout, is part of what a [Google Ads audit](/google-ads-audit/) covers. We do it before judging anything else, because the blended number answers nothing.
+Separating brand and non-brand properly, then running the holdout, is part of what a [Google Ads audit](/google-ads-audit/) covers. I do it before judging anything else, because the blended number answers nothing.

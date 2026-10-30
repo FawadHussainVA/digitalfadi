@@ -33,13 +33,13 @@ A useful hypothesis has four parts:
 
 For example:
 
-> In our existing lead generation Search campaign, testing a more specific landing page should increase qualified lead rate without increasing cost per qualified lead beyond our agreed limit.
+> In my existing lead generation Search campaign, testing a more specific landing page should increase qualified lead rate without increasing cost per qualified lead beyond my agreed limit.
 
 That is more useful than "try a new landing page and see what happens."
 
 ### Good Google Ads experiment ideas
 
-### Landing page experiment
+#### Landing page experiment
 
 **Question:** Does a specialist landing page outperform a general landing page?
 
@@ -47,7 +47,7 @@ That is more useful than "try a new landing page and see what happens."
 
 **Guardrail:** Cost per qualified lead.
 
-### Bidding strategy experiment
+#### Bidding strategy experiment
 
 **Question:** Does a different bidding strategy attract more valuable prospects?
 
@@ -55,7 +55,7 @@ That is more useful than "try a new landing page and see what happens."
 
 **Guardrail:** Total spend and overall lead volume.
 
-### Keyword targeting experiment
+#### Keyword targeting experiment
 
 **Question:** Does narrowing keyword targeting reduce irrelevant enquiries?
 
@@ -63,7 +63,7 @@ That is more useful than "try a new landing page and see what happens."
 
 **Guardrail:** Relevant search reach.
 
-### Offer experiment
+#### Offer experiment
 
 **Question:** Does a more specific offer generate better sales opportunities?
 
@@ -99,7 +99,7 @@ A balanced split can make comparison easier when both alternatives are acceptabl
 
 A smaller experiment allocation may protect performance while testing a high risk idea, at the cost of slower learning.
 
-**Important:** A 50 to 50 split does not guarantee a 50 to 50 share of impressions, conversions or spending. Auction eligibility, Ad Rank, bidding and daily budget limits can cause different delivery, as Google's documentation notes.
+**Important:** A 50/50 split does not guarantee a 50/50 share of impressions, conversions or spending. Auction eligibility, Ad Rank, bidding and daily budget limits can cause different delivery, as Google's documentation notes.
 
 ## Step 4: Decide on success criteria before launch
 
@@ -135,7 +135,7 @@ Consider this hypothetical result:
 
 ## Step 5: Allow enough time and avoid mid test interference
 
-Google advises that experiments can take time to stabilize and that changing either version during the test complicates interpretation.
+Google advises that experiments can take time to stabilise and that changing either version during the test complicates interpretation.
 
 Do not declare a winner merely because one variant has a better cost per conversion after two days. The conversion cycle, days of the week and bidding learning can affect the early numbers.
 
@@ -155,7 +155,7 @@ That sounds decisive. But 10 versus 14 conversions is still a small sample, and 
 
 **Observed lift is not the same as a proven causal improvement.** A trustworthy decision depends on the full experimental design, variation, conversion volume and uncertainty, not a single percentage.
 
-Avoid repeatedly checking the report and stopping at the first favorable result. Decide your approximate minimum evaluation window and decision criteria up front.
+Avoid repeatedly checking the report and stopping at the first favourable result. Decide your approximate minimum evaluation window and decision criteria up front.
 
 ## Step 6: Check the right performance breakdowns
 
@@ -172,7 +172,7 @@ Review:
 
 Use these cuts to diagnose unexpected results, not to manufacture a winning story from a tiny subgroup.
 
-For international campaigns, avoid assuming results in the US will automatically replicate in the UK, Canada or Australia. If behavior materially differs, the markets may require their own test plan.
+For international campaigns, avoid assuming results in the US will automatically replicate in the UK, Canada or Australia. If behaviour materially differs, the markets may require their own test plan.
 
 ## Step 7: Make a decision you can explain
 
@@ -208,7 +208,7 @@ Small samples fluctuate. A promising first few days are not reliable proof of a 
 
 ### Ignoring conversion tracking and lead quality
 
-When the measurement is wrong, the experiment can optimize the wrong behavior. If leads are not becoming customers, review [why Google Ads calls are not becoming jobs](/learn/why-google-ads-calls-are-not-becoming-jobs/) and [which bidding strategy to use](/learn/which-google-ads-bid-strategy-should-you-use/).
+When the measurement is wrong, the experiment can optimise the wrong behaviour. If leads are not becoming customers, review [why Google Ads calls are not becoming jobs](/learn/why-google-ads-calls-are-not-becoming-jobs/) and [which bidding strategy to use](/learn/which-google-ads-bid-strategy-should-you-use/).
 
 ## Frequently asked questions
 
@@ -216,7 +216,7 @@ When the measurement is wrong, the experiment can optimize the wrong behavior. I
 
 Yes. Google Ads custom experiments let eligible campaigns run an original and a modified experiment version so you can compare performance before committing to changes.
 
-### Is a 50 to 50 experiment split always best?
+### Is a 50/50 experiment split always best?
 
 No. A balanced split is often easy to interpret, but the appropriate allocation depends on volume, risk and campaign constraints. Equal eligibility does not guarantee equal impressions or spend.
 
@@ -238,7 +238,7 @@ An experiment is not a ritual that makes every change scientific. Its value come
 
 Start with one important decision. Identify the business metric, define what you will change, allow sufficient evidence to develop and write down the conclusion before making the result permanent.
 
-If you're unsure which campaign change deserves testing, a [Google Ads audit](/google-ads-audit/) can help prioritize tracking, search intent and landing page problems before you commit more budget.
+If you're unsure which campaign change deserves testing, a [Google Ads audit](/google-ads-audit/) can help prioritise tracking, search intent and landing page problems before you commit more budget.
 
 ### Official documentation
 

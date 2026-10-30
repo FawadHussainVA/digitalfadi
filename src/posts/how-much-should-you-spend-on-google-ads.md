@@ -80,4 +80,4 @@ Increase it when two things are true at once: cost per conversion is below your 
 
 Ad spend is what Google charges for clicks. A management fee is what you pay whoever runs the account. Keep them apart when you plan.
 
-At DigitalFadi, ad spend is paid by you directly to Google from your own account, never through us. Management is a separate fee, listed on the [pricing section](/#pricing). If you are already spending and are not sure the budget is doing its job, a [Google Ads audit](/google-ads-audit/) starts with whether the conversions being counted are real, because every number in this article depends on that.
+At DigitalFadi, ad spend is paid by you directly to Google from your own account, never through me. Management is a separate fee, listed on the [pricing section](/#pricing). If you are already spending and are not sure the budget is doing its job, a [Google Ads audit](/google-ads-audit/) starts with whether the conversions being counted are real, because every number in this article depends on that.

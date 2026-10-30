@@ -72,4 +72,4 @@ If you are unsure which suits your account, test rather than assume:
 - **New account with little conversion history:** Search first, then add Performance Max once conversions are flowing
 - **Small budget:** Search, focused on the highest-intent keywords
 
-If your account already runs both and you cannot tell which is earning its budget, that is exactly what a [Google Ads audit](/google-ads-audit/) separates, starting with whether the conversions behind each number are real. For online shops, the [e-commerce service page](/google-ads-for-ecommerce/) covers how we structure Shopping, Performance Max and Search together.
+If your account already runs both and you cannot tell which is earning its budget, that is exactly what a [Google Ads audit](/google-ads-audit/) separates, starting with whether the conversions behind each number are real. For online shops, the [e-commerce service page](/google-ads-for-ecommerce/) covers how I structure Shopping, Performance Max and Search together.

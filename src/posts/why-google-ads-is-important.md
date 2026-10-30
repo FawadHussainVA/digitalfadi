@@ -32,7 +32,7 @@ Paid search is one of very few channels where you can follow the money from a sp
 
 Broken tracking is not a reporting inconvenience. Smart Bidding optimises towards whatever it is told a conversion is, so a tag that fires twice, a thank-you page counted on every refresh, or a lead form that counts enquiries and sales as equal will teach the algorithm to buy the wrong traffic, quickly and expensively. The account will appear to be improving while the business gets worse.
 
-This is why verified conversion tracking comes before any bidding work in a serious account. It is also the single most common problem we find: see [what we look for first in an existing account](/#findings).
+This is why verified conversion tracking comes before any bidding work in a serious account. It is also the single most common problem I find: see [what I look for first in an existing account](/#findings).
 
 ## Your competitors are bidding on your customers right now
 
@@ -55,7 +55,7 @@ It is not important for everybody, and pretending otherwise wastes people's mone
 - If the landing page does not convert, paid traffic only makes the leak more expensive.
 - If nobody will answer the leads, the channel is not the problem.
 
-We say this to prospective clients before taking money from them. If Google Ads is not right for a business, the useful answer is to say so.
+I say this to prospective clients before taking money from them. If Google Ads is not right for a business, the useful answer is to say so.
 
 ## What "done properly" actually looks like
 
@@ -69,4 +69,4 @@ The platform is the same in both cases. The outcome is not.
 
 If you already spend on Google Ads, start with an [account analysis](/#pricing) rather than a rebuild. Most accounts do not need to be started again; they need the tracking verified, the waste identified and the structure tidied, in that order.
 
-If you have not started yet, work out what a customer is worth to you first. That number decides whether this channel makes sense, what you can afford to bid, and what success looks like before any money is spent. [Send us the account](/#contact) and we will tell you which of those applies.
+If you have not started yet, work out what a customer is worth to you first. That number decides whether this channel makes sense, what you can afford to bid, and what success looks like before any money is spent. [Send me the account](/#contact) and I will tell you which of those applies.

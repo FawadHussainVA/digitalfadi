@@ -1,6 +1,6 @@
 ---
-title: "Enhanced conversions for leads: track qualified Google Ads leads"
-description: "Learn how enhanced conversions for leads connect Google Ads clicks to CRM-qualified enquiries, with a practical 2026 setup and validation checklist."
+title: "Enhanced conversions for leads: track qualified leads"
+description: "Learn how enhanced conversions for leads connect Google Ads clicks to CRM-qualified enquiries, with a practical setup and validation checklist."
 topic: "Tracking"
 date: 2026-10-27
 order: 24
@@ -20,7 +20,7 @@ For example, a potential customer clicks an ad, submits a form, receives a callb
 
 Google uses first party information supplied through the approved setup, such as an email address, to support matching. That does **not** mean you should upload your entire CRM indiscriminately. Collect and use only the information you have a lawful basis to process, follow Google's customer data policies, and secure the data.
 
-Google's documentation now describes a unified enhanced conversions setting introduced during 2026. Older tutorials that describe the web and lead options as permanently separate may no longer match the current account interface.
+Google now combines enhanced conversions for web and for leads into a single on/off setting. Older tutorials that describe the web and lead options as separate may no longer match the current account interface.
 
 ## Why form submissions can be a misleading bidding goal
 
@@ -50,7 +50,7 @@ Imagine two Search campaigns, both spending $1,000 in the same period:
 
 **Cost per qualified lead:** $166.67.
 
-> **What the comparison tells us:** Campaign B generated twice as many qualified leads on the same budget. Its cost per qualified lead was substantially lower, even though its initial enquiry cost was higher. These figures are illustrative, not industry benchmarks.
+> **What the comparison tells me:** Campaign B generated twice as many qualified leads on the same budget. Its cost per qualified lead was substantially lower, even though its initial enquiry cost was higher. These figures are illustrative, not industry benchmarks.
 
 This distinction is especially useful for professional services, home services, B2B providers and other businesses where an enquiry passes through a sales process before it becomes revenue.
 
@@ -67,7 +67,7 @@ Agree on a precise sales stage definition with your team. Examples include:
 
 Avoid importing subjective stages such as "seems promising" without an agreed rule. Consistent definitions make month to month results comparable.
 
-Also decide which actions belong in the Google Ads **Conversions** column and which remain secondary observations. Do not automatically promote every CRM stage into a primary bidding signal; overlapping stages can distort optimization if you interpret the totals as unique customers.
+Also decide which actions belong in the Google Ads **Conversions** column and which remain secondary observations. Do not automatically promote every CRM stage into a primary bidding signal; overlapping stages can distort optimisation if you interpret the totals as unique customers.
 
 ## Step 2: Check the website form and Google tag
 
@@ -89,7 +89,7 @@ Google Ads Data Manager can connect supported sources and files to import offlin
 4. Accept Google's applicable customer data terms and review your privacy obligations.
 5. Configure a recurring import when the source and business process support it.
 
-**2026 implementation note:** Google's current guidance says offline conversion API workflows moved toward the **Data Manager API**, with changes effective June 15, 2026. Check the current documentation before implementing against an older Google Ads API import tutorial.
+**Implementation note:** offline conversion and enhanced conversions for leads uploads now go through the **Data Manager API**, and the older Google Ads API upload route is no longer open to new users. Check the current documentation before following an older Google Ads API import tutorial.
 
 A spreadsheet import may be enough for a small lead volume, but high volume businesses usually benefit from a reliable CRM integration and automated error monitoring.
 
@@ -129,7 +129,7 @@ You can still improve decisions without a complex integration. Create a consiste
 
 A simple manual process is better than pretending every form enquiry has equal value. As volume grows, you can move toward automated imports.
 
-For broader campaign decisions, see [how to choose a Google Ads bidding strategy](/learn/which-google-ads-bid-strategy-should-you-use/) and [how to allocate Google Ads budgets](/learn/google-ads-channel-prioritisation-budget-allocation/).
+For broader campaign decisions, see [how to choose a Google Ads bidding strategy](/learn/which-google-ads-bid-strategy-should-you-use/) and [how channel prioritisation and budget allocation work](/learn/google-ads-channel-prioritisation-budget-allocation/).
 
 ## Frequently asked questions
 
@@ -143,7 +143,7 @@ A CRM makes qualification and repeatable imports easier, but supported file base
 
 ### Will enhanced conversions automatically reduce cost per lead?
 
-No. Better measurement may improve the quality of optimization signals, but results depend on search intent, budget, landing pages, sales follow up and sufficient reliable conversion data.
+No. Better measurement may improve the quality of optimisation signals, but results depend on search intent, budget, landing pages, sales follow up and sufficient reliable conversion data.
 
 ### Should every form submission be a primary conversion?
 
@@ -157,7 +157,7 @@ No. Hashing is not a substitute for a lawful basis, required notices or consent,
 
 A Google Ads account should be judged by the customers and opportunities it creates, not simply by how many people press Submit.
 
-Enhanced conversions for leads can help bridge the gap between a website enquiry and a real business outcome. Start with clean form tracking, clear lead qualification rules, compliant first party data collection and a validated import process. Optimize bidding only after the measurement is trustworthy.
+Enhanced conversions for leads can help bridge the gap between a website enquiry and a real business outcome. Start with clean form tracking, clear lead qualification rules, compliant first party data collection and a validated import process. Optimise bidding only after the measurement is trustworthy.
 
 If your account generates enquiries but the quality is unclear, a [Google Ads audit](/google-ads-audit/) can identify gaps between campaign traffic, conversion tracking and lead outcomes.
 

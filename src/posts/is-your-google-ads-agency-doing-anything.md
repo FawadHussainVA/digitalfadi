@@ -71,8 +71,8 @@ Your account should sit under your business and your billing, with the agency ho
 
 ## If you want an outside opinion
 
-Checking all six yourself is possible. Working out what the findings are worth is harder, which is what an independent [Google Ads audit](/google-ads-audit/) is for. We look at the account without the agency in the room and tell you what we see, in writing.
+Checking all six yourself is possible. Working out what the findings are worth is harder, which is what an independent [Google Ads audit](/google-ads-audit/) is for. I look at the account without the agency in the room and tell you what I see, in writing.
 
-It is a $200 fee and no retainer attached. If the account is well run we will say so, which is worth knowing too.
+It is a $200 fee and no retainer attached. If the account is well run I will say so, which is worth knowing too.
 
 If you are earlier than that and simply cannot see why spend is not producing enquiries, [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/) works through the usual causes in order.

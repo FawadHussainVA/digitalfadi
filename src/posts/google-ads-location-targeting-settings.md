@@ -85,4 +85,4 @@ Google works out location from signals such as device location, IP address and s
 4. Town and city names outside the area added as negative keywords
 5. The user locations report checked monthly for spend from outside the area
 
-For local businesses, the [local services page](/google-ads-for-local-services/) covers how we set up location targeting, call tracking and service areas together.
+For local businesses, the [local services page](/google-ads-for-local-services/) covers how I set up location targeting, call tracking and service areas together.

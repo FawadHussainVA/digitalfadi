@@ -86,11 +86,11 @@ You should be able to hand it to another agency or fix things in house. If an au
 
 ## Free audits and paid ones
 
-A free audit is usually a sales call with a document attached, and the findings tend to point towards whatever that agency sells.
+A free audit can be a useful first look, but if it is only a sales call with a document attached, the findings tend to point towards whatever the seller wants to sell.
 
 Paying for the analysis changes the incentive. The honest answer becomes available, including that the account is fine and the problem is the offer, the landing page, or that Google Ads is not the right channel.
 
-Our [account analysis](/google-ads-audit/) is $200 and takes about a week. The document is yours whatever you do next.
+My [account analysis](/google-ads-audit/) is $200 and takes about a week. The document is yours whatever you do next.
 
 ## If the account is not converting at all
 
