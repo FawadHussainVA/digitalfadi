@@ -9,6 +9,9 @@
   var t = 'light';
   try { if (localStorage.getItem('df_theme') === 'dark') t = 'dark'; } catch(e) {}
   document.documentElement.setAttribute('data-theme', t);
+  var c = null;
+  try { c = localStorage.getItem('df_consent'); } catch(e) {}
+  if (c !== 'granted' && c !== 'denied') document.documentElement.classList.add('ck-show');
 })();
 </script>
 <!-- Consent Mode v2: must run before any Google tag.
@@ -108,8 +111,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="preload" href="/uploads/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* fonts are served from this site: no third-party request, nothing render-blocking */
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-display:swap;font-weight:200 800;
+  src:url(/uploads/fonts/plus-jakarta-sans-latin-wght-normal.woff2) format("woff2");unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-display:swap;font-weight:400;src:url(/uploads/fonts/dm-mono-latin-400-normal.woff2) format("woff2");unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-display:swap;font-weight:500;src:url(/uploads/fonts/dm-mono-latin-500-normal.woff2) format("woff2");unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   --bg:#F1EEFF;
   --bg-2:#FFFFFF;
@@ -265,6 +273,7 @@ nav a.on{background:var(--purple);color:#fff}
 .ckb{position:fixed;left:22px;bottom:22px;z-index:130;width:min(430px,calc(100vw - 44px));
   background:var(--bg-2);border:var(--bd);border-radius:var(--r);box-shadow:var(--sh-lg);padding:20px 22px}
 .ckb[hidden]{display:none}
+html.ck-show .ckb[hidden]{display:block}
 .ckb .ckb-t{font-size:1.02rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:6px}
 .ckb p{font-size:.86rem;color:var(--slate);line-height:1.55}
 .ckb p a{color:var(--purple);font-weight:700;text-decoration:underline;text-underline-offset:2px}
@@ -830,6 +839,10 @@ nav a,.navtop{white-space:nowrap}
 @media(max-width:420px){.cta-lg{display:none}.cta-sm{display:inline}}
 @media(max-width:340px){header .btn.sm{display:none}}
 
+/* ===== performance: looping decoration starts after the page has loaded ===== */
+html:not(.loaded) .ticker-track,html:not(.loaded) .dot,html:not(.loaded) .float,html:not(.loaded) .float2,
+html:not(.loaded) #waBtn::after{animation-play-state:paused}
+
 /* ===== theme toggle ===== */
 .themetog{width:44px;height:44px;flex:none;display:grid;place-items:center;padding:0;cursor:pointer;
   border:var(--bd);border-radius:50%;background:var(--bg-2);color:var(--ink);box-shadow:3px 3px 0 var(--shc);
@@ -896,6 +909,14 @@ nav a,.navtop{white-space:nowrap}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="skip" href="#main">Skip to content</a>
+<div class="ckb" id="ckBanner" role="region" aria-label="Cookie choice" hidden>
+  <p class="ckb-t">Cookies on this site</p>
+  <p>This site uses Google Analytics cookies to see which pages are useful. Accept or reject them, and change your mind any time under Cookie settings at the bottom of the page. <a href="/privacy-terms/#privacy">Privacy policy</a></p>
+  <div class="ckb-row">
+    <button type="button" class="btn sm" id="ckYes">Accept</button>
+    <button type="button" class="btn ghost sm" id="ckNo">Reject</button>
+  </div>
+</div>
 <div id="prog" role="presentation"></div>
 
 <aside class="rail" aria-label="Social profiles">
@@ -1015,7 +1036,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+/* Mark the page as loaded so looping decoration can start */
+window.addEventListener('load', function(){ setTimeout(function(){ document.documentElement.classList.add('loaded'); }, 300); });
+/* Load Cloudflare Turnstile only where a form needs it */
+document.addEventListener('DOMContentLoaded', function(){
+  if (!document.querySelector('.cf-turnstile')) return;
+  var t = document.createElement('script');
+  t.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+  t.async = true; t.defer = true;
+  document.head.appendChild(t);
+});
+</script>
 <script>
 (function(){
   var WA_NUMBER = '{{ site.whatsapp }}';
@@ -1043,7 +1075,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       tb.appendChild(tr);
     });
     if(!reduce){
-      setInterval(function(){
+      var boardOn = false;
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){ boardOn = es[0].isIntersecting; }).observe(tb);
+      } else { boardOn = true; }
+      var startFeed = function(){ setInterval(function(){
+        if(!boardOn || document.hidden) return;
         var i = Math.floor(Math.random()*data.length), d = data[i], row = tb.children[i];
         d.bid = Math.max(0.35, d.bid + (Math.random()-0.5)*0.22);
         d.cpa = Math.max(9, Math.round(d.cpa + (Math.random()-0.52)*4));
@@ -1056,7 +1093,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         p.textContent = d.w?'Won':'Outbid';
         b.classList.add('flash'); c.classList.add('flash');
         setTimeout(function(){ b.classList.remove('flash'); c.classList.remove('flash'); },480);
-      },1500);
+      },1500); };
+      if(document.readyState === 'complete') setTimeout(startFeed, 800);
+      else window.addEventListener('load', function(){ setTimeout(startFeed, 800); });
     }
   }
 
@@ -1347,14 +1386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 
 </script>
-<div class="ckb" id="ckBanner" role="region" aria-label="Cookie choice" hidden>
-  <p class="ckb-t">Cookies on this site</p>
-  <p>This site uses Google Analytics cookies to see which pages are useful. Accept or reject them, and change your mind any time under Cookie settings at the bottom of the page. <a href="/privacy-terms/#privacy">Privacy policy</a></p>
-  <div class="ckb-row">
-    <button type="button" class="btn sm" id="ckYes">Accept</button>
-    <button type="button" class="btn ghost sm" id="ckNo">Reject</button>
-  </div>
-</div>
+
 <script>
 (function(){
   var KEY = 'df_consent', box = document.getElementById('ckBanner');
@@ -1366,6 +1398,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     gtag('consent', 'update', {ad_storage:s, ad_user_data:s, ad_personalization:s, analytics_storage:s});
     window.dataLayer.push({event: 'consent_choice', consent: s});
     box.hidden = true;
+    document.documentElement.classList.remove('ck-show');
   }
   document.getElementById('ckYes').addEventListener('click', function(){ choose('granted'); });
   document.getElementById('ckNo').addEventListener('click', function(){ choose('denied'); });
