@@ -90,7 +90,7 @@ A free audit can be a useful first look, but if it is only a sales call with a d
 
 Paying for the analysis changes the incentive. The honest answer becomes available, including that the account is fine and the problem is the offer, the landing page, or that Google Ads is not the right channel.
 
-My [account analysis](/google-ads-audit/) is $200 and takes about a week. The document is yours whatever you do next.
+My free audit lists the issues in your account. My [account analysis](/google-ads-audit/) is $100, adds the solution for each issue and is delivered within 3 days. The document is yours whatever you do next.
 
 ## If the account is not converting at all
 

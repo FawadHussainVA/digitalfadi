@@ -80,4 +80,4 @@ Start with Google Ads if your category is not covered, your service needs explai
 
 Both, measured apart, is what I run for trades and service businesses. Details on the [Google Ads for local services](/google-ads-for-local-services/) page, with sector guides for [plumbers](/google-ads-for-plumbers/), [roofing contractors](/google-ads-for-roofing-contractors/) and [water damage restoration](/google-ads-for-water-damage-restoration/).
 
-If an account is already running and the leads are not turning into work, a [$200 account analysis](/google-ads-audit/) will tell you what is being counted as a lead in the first place.
+If an account is already running and the leads are not turning into work, a [$100 account analysis](/google-ads-audit/) will tell you what is being counted as a lead in the first place.

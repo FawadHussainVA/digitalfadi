@@ -116,4 +116,4 @@ Yes. Many specialists offer a one-off audit or optimisation project. It suits ac
 
 Compare your main measure, such as cost per enquiry or return on ad spend, against your own sales records over a similar period before and after the changes. Judge on enquiries and sales, not on clicks.
 
-If you would like a first look at your own account, I offer a [free Google Ads audit](/#contact) and a more thorough [$200 account analysis](/google-ads-audit/). You can read more [about me](/about/).
+If you would like a first look at your own account, I offer a [free Google Ads audit](/#contact) that lists the issues in your account, and a [$100 account analysis](/google-ads-audit/) that adds the solution for each one. You can read more [about me](/about/).

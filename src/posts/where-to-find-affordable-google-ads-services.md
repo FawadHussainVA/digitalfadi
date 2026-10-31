@@ -64,7 +64,7 @@ Common pricing models include:
 - **Hourly rates,** for occasional work or advice
 - **One-off project fees,** for audits, setups and rebuilds
 
-Compare like with like. Ask what is included each month, who will actually do the work, and whether there is a minimum contract. For reference, my own fees are published: a $200 one-time account analysis, $499 a month for management, or 10% of managed ad spend for larger accounts, with ad spend always paid directly to Google from your own account.
+Compare like with like. Ask what is included each month, who will actually do the work, and whether there is a minimum contract. For reference, my own fees are published: a $100 one-time account analysis, $499 a month for management, or 10% of managed ad spend for larger accounts, with ad spend always paid directly to Google from your own account.
 
 ## Signs a low price is a false economy
 

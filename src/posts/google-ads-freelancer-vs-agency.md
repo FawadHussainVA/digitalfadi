@@ -50,7 +50,7 @@ Pricing varies widely, so compare like with like: what is included, who does the
 
 Common models are a fixed monthly fee, a percentage of ad spend, an hourly rate, or a one-off project fee for audits and builds. Agencies more often use minimum retainers and longer contracts. Freelancers more often work month to month.
 
-For reference, my own fees are published: a one-time account analysis is $200, management is $499 a month, or 10% of managed ad spend for larger accounts, all in USD. In every case your ad spend is paid directly to Google from your own account, never through me. Use the [metrics calculator](/tools/metrics-calculator/) and the [budget guide](/learn/how-much-should-you-spend-on-google-ads/) to work out what the advertising itself should cost.
+For reference, my own fees are published: a one-time account analysis is $100, management is $499 a month, or 10% of managed ad spend for larger accounts, all in USD. In every case your ad spend is paid directly to Google from your own account, never through me. Use the [metrics calculator](/tools/metrics-calculator/) and the [budget guide](/learn/how-much-should-you-spend-on-google-ads/) to work out what the advertising itself should cost.
 
 ## Questions to ask before you hire either
 
@@ -92,4 +92,4 @@ Partner status belongs to the business in Google's Partners programme, whether t
 
 ### How do I start?
 
-Begin with an assessment of your current account before committing to ongoing management. A [Google Ads audit](/google-ads-audit/) shows whether there is a problem worth fixing and what to fix first, whoever you hire afterwards. You can read more [about me](/about/) or [ask for a free audit](/#contact).
+Begin with an assessment of your current account before committing to ongoing management. A free [Google Ads audit](/google-ads-audit/) lists the issues in your account, and a paid analysis adds the solution for each one, whoever you hire afterwards. You can read more [about me](/about/) or [ask for a free audit](/#contact).

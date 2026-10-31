@@ -77,6 +77,6 @@ Steps one to three usually account for most of the gap. Almost nobody starts the
 
 ## Getting it looked at
 
-If you are spending and cannot tell which of these applies, a [Google Ads audit](/google-ads-audit/) checks the feed, the tracking and the structure in that order, for $200.
+If you are spending and cannot tell which of these applies, a [Google Ads audit](/google-ads-audit/) checks the feed, the tracking and the structure in that order, for $100.
 
 My approach to ongoing retail work is on the [Google Ads for e-commerce](/google-ads-for-ecommerce/) page.

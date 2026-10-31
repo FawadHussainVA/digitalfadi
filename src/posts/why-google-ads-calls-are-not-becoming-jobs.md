@@ -78,6 +78,6 @@ Sharing one campaign means one bid strategy, one schedule and one set of adverts
 
 ## Where to start
 
-If calls are being counted on a timer today, that is the first fix and it changes everything downstream. A [$200 account analysis](/google-ads-audit/) will tell you what is actually being counted and what the real cost per job is.
+If calls are being counted on a timer today, that is the first fix and it changes everything downstream. A [$100 account analysis](/google-ads-audit/) will tell you what is actually being counted and what the real cost per job is.
 
 There are sector guides for [HVAC companies](/google-ads-for-hvac-companies/), [plumbers](/google-ads-for-plumbers/), [garage door repair](/google-ads-for-garage-door-repair/) and [pest control](/google-ads-for-pest-control/). My ongoing approach for trades and service businesses is on the [Google Ads for local services](/google-ads-for-local-services/) page, and [Local Services Ads vs Google Ads](/learn/local-services-ads-vs-google-ads/) covers which to run.
