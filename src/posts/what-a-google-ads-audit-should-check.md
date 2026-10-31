@@ -92,7 +92,7 @@ Paying for the analysis changes the incentive. The honest answer becomes availab
 
 My free audit lists the issues in your account. My [account analysis](/google-ads-audit/) is $100, adds the solution for each issue and is delivered within 3 days. The document is yours whatever you do next.
 
-If you want to run these checks yourself, the [Google Ads audit checklist](/learn/google-ads-audit-checklist/) lists all 51 with where to find each one, and the free [audit template](/learn/google-ads-audit-template/) gives you a fillable PDF to record what you find.
+If you want to run these checks yourself, the [Google Ads audit checklist](/learn/google-ads-audit-checklist/) lists all 51 with where to find each one, and the free [audit template](/uploads/google-ads-audit-template.pdf) gives you a fillable PDF to record what you find.
 
 ## If the account is not converting at all
 

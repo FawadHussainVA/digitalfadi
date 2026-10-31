@@ -8,7 +8,7 @@ order: 29
 
 A Google Ads audit checklist should run in this order: conversion tracking first, then account settings and structure, search terms and keywords, bidding and budgets, ads and assets, landing pages, audiences and targeting, Shopping and Performance Max, and finally reporting. Tracking comes first because every other number in the account depends on it. The 51 checks below follow that order, and each one says where to look in Google Ads.
 
-If you want to record your findings as you go, download the free [fillable Google Ads audit template (PDF)](/learn/google-ads-audit-template/). It has the same 51 checks, with space for notes, a score summary and an action plan.
+If you want to record your findings as you go, download the free [fillable Google Ads audit template (PDF)](/uploads/google-ads-audit-template.pdf). It has the same 51 checks, with space for notes, a score summary and an action plan.
 
 <p><a class="btn" href="/uploads/google-ads-audit-template.pdf" download style="text-decoration:none;color:#14121F">Download the audit template (PDF)</a></p>
 
@@ -133,7 +133,7 @@ Once every check is marked:
 3. **Remove obvious waste next:** negatives, location settings, broken pages
 4. **Then improve:** structure, bidding, ads and landing page tests
 
-The [audit template](/learn/google-ads-audit-template/) has a Top issues page and a three-stage action plan built for exactly this.
+The free [audit template (PDF)](/uploads/google-ads-audit-template.pdf) has a Top issues page and a three-stage action plan built for exactly this.
 
 ## Frequently asked questions
 

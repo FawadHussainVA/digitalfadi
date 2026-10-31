@@ -1,5 +1,5 @@
 # Old multi-page URLs -> one-pager anchors.
-/about.html                 /#about       301
+/about.html                 /about/       301
 /google-ads-services.html   /#services    301
 /reviews.html               /#reviews     301
 /contact.html               /#contact     301
@@ -11,3 +11,7 @@
 # Retired service page, folded into the audit offering
 /performance-max-management/  /google-ads-audit/  301
 /performance-max-management   /google-ads-audit/  301
+
+# Template article retired; the PDF now lives on the checklist page
+/learn/google-ads-audit-template/  /learn/google-ads-audit-checklist/  301
+/learn/google-ads-audit-template   /learn/google-ads-audit-checklist/  301
