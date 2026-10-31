@@ -13,6 +13,7 @@ permalink: /
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "{{ site.url }}/#organization",
   "name": "DigitalFadi",
   "description": "Freelance Google Ads management by Fawad Hussain, Google Premier Partner: Search, Shopping, Performance Max, YouTube, Display, Demand Gen, remarketing and Local Services Ads.",
   "url": "{{ site.url }}/",
@@ -236,7 +237,7 @@ permalink: /
         <div class="fcard-head"><b>Contact me</b><span>Reply in 1 working day</span></div>
         <form name="contact-hero" method="POST" action="/api/contact" data-leadform>
           <input type="hidden" name="form-name" value="contact-hero">
-          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
+          <p class="hp"><label>Leave this empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div class="frow">
             <div class="field">
               <label for="h-name">Your name</label>
@@ -343,7 +344,7 @@ permalink: /
 <section class="wrap pt0" id="campaign-types">
   <div class="rv">
     <details id="search">
-          <summary><span class="sum-t"><h3>1. Search campaigns</h3><span class="unit">Highest intent</span></span></summary>
+          <summary><h3 class="sum-t"><span>1. Search campaigns</span> <span class="unit">Highest intent</span></h3></summary>
           <div class="plat">
             <p>Someone typing your product into Google is the closest thing to a raised hand you'll get. Search is also where structure matters most: match types, negatives and ad relevance decide whether you pay $2 or $9 for the same click.</p>
       <ul>
@@ -361,7 +362,7 @@ permalink: /
         </details>
 
     <details id="shopping">
-          <summary><span class="sum-t"><h3>2. Shopping campaigns</h3><span class="unit">E-commerce</span></span></summary>
+          <summary><h3 class="sum-t"><span>2. Shopping campaigns</span> <span class="unit">E-commerce</span></h3></summary>
           <div class="plat">
             <p>Shopping performance is decided in the product feed more than in the campaign. Manufacturer titles and missing attributes stop Google understanding what you sell, so feed work comes before bid work.</p>
       <ul>
@@ -379,7 +380,7 @@ permalink: /
         </details>
 
     <details id="performance-max">
-          <summary><span class="sum-t"><h3>3. Performance Max</h3><span class="unit">Automated</span></span></summary>
+          <summary><h3 class="sum-t"><span>3. Performance Max</span> <span class="unit">Automated</span></h3></summary>
           <div class="plat">
             <p>Google's most automated campaign type, and the easiest to be misled by. Left unstructured it absorbs brand traffic, reports it as new demand, and looks excellent while cannibalising what you already had.</p>
       <ul>
@@ -397,7 +398,7 @@ permalink: /
         </details>
 
     <details id="youtube">
-          <summary><span class="sum-t"><h3>4. YouTube &amp; video ads</h3><span class="unit">Video</span></span></summary>
+          <summary><h3 class="sum-t"><span>4. YouTube &amp; video ads</span> <span class="unit">Video</span></h3></summary>
           <div class="plat">
             <p>The first five seconds decide everything. I plan creative iteration alongside media buying, because on video the hook moves cost per result far more than targeting adjustments do.</p>
       <ul>
@@ -415,7 +416,7 @@ permalink: /
         </details>
 
     <details id="display">
-          <summary><span class="sum-t"><h3>5. Display campaigns</h3><span class="unit">Reach</span></span></summary>
+          <summary><h3 class="sum-t"><span>5. Display campaigns</span> <span class="unit">Reach</span></h3></summary>
           <div class="plat">
             <p>Cheap impressions, easy waste. Most underperforming Display campaigns aren't badly targeted. They're running on mobile game inventory nobody excluded. Exclusion lists do the heavy lifting here.</p>
       <ul>
@@ -433,7 +434,7 @@ permalink: /
         </details>
 
     <details id="demand-gen">
-          <summary><span class="sum-t"><h3>6. Demand Gen</h3><span class="unit">Discovery</span></span></summary>
+          <summary><h3 class="sum-t"><span>6. Demand Gen</span> <span class="unit">Discovery</span></h3></summary>
           <div class="plat">
             <p>Creative-led campaigns across YouTube, Discover and Gmail, designed to create demand before anyone searches. Works best fed by your own customer data rather than broad interest targeting.</p>
       <ul>
@@ -451,7 +452,7 @@ permalink: /
         </details>
 
     <details id="remarketing">
-          <summary><span class="sum-t"><h3>7. Remarketing &amp; RLSA</h3><span class="unit">Return visitors</span></span></summary>
+          <summary><h3 class="sum-t"><span>7. Remarketing &amp; RLSA</span> <span class="unit">Return visitors</span></h3></summary>
           <div class="plat">
             <p>The most commonly misused part of an account. Plenty of remarketing budget goes on people who already bought, which flatters the numbers while adding nothing. Exclusions matter as much as inclusions.</p>
       <ul>
@@ -469,7 +470,7 @@ permalink: /
         </details>
 
     <details id="local">
-          <summary><span class="sum-t"><h3>8. Local &amp; Local Services Ads</h3><span class="unit">Local</span></span></summary>
+          <summary><h3 class="sum-t"><span>8. Local &amp; Local Services Ads</span> <span class="unit">Local</span></h3></summary>
           <div class="plat">
             <p>For businesses that win work by phone rather than by form. Local Services Ads sit above everything else in the results and charge per lead, which changes how the whole account is managed.</p>
       <ul>
@@ -487,7 +488,7 @@ permalink: /
         </details>
 
     <details id="tracking">
-          <summary><span class="sum-t"><h3>9. Tracking, feeds &amp; account analysis</h3><span class="unit new">Foundation</span></span></summary>
+          <summary><h3 class="sum-t"><span>9. Tracking, feeds &amp; account analysis</span> <span class="unit new">Foundation</span></h3></summary>
           <div class="plat">
             <p>Every engagement starts here. Smart Bidding optimises toward whatever you tell it to value, so if conversion tracking is wrong the algorithm will efficiently buy you the wrong outcome.</p>
       <ul>
@@ -1062,7 +1063,7 @@ permalink: /
       <div class="fcard-head"><b>Free Google Ads audit</b><span>No obligation</span></div>
       <form name="account-analysis" method="POST" action="/api/contact" data-leadform>
         <input type="hidden" name="form-name" value="account-analysis">
-        <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
+        <p class="hp"><label>Leave this empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="frow">
           <div class="field">
             <label for="c-name">Your name</label>

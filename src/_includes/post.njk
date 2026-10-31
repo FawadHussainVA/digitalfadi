@@ -16,17 +16,32 @@ ogtype: article
   "dateModified": "{{ (updated or date) | iso }}",
   "author": {
     "@type": "Person",
+    "@id": "{{ site.url }}/#fawad",
     "name": {{ site.authorName | dump | safe }},
-    "jobTitle": "Google Ads specialist",
-    "url": "{{ site.url }}/#about",
+    "jobTitle": "Google Ads Freelancer",
+    "url": "{{ site.url }}/about/",
     "sameAs": ["{{ site.upwork }}", "{{ site.linkedin }}"]
   },
-  "publisher": {"@type":"Organization","name":"DigitalFadi","logo":{"@type":"ImageObject","url":"{{ site.url }}/icon-512.png"}},
+  "publisher": {"@type":"Organization","@id":"{{ site.url }}/#organization","name":"DigitalFadi","logo":{"@type":"ImageObject","url":"{{ site.url }}/icon-512.png"}},
   "image": "{{ site.url }}/og-image.png",
   "inLanguage": "en",
   "mainEntityOfPage": "{{ site.url }}{{ page.url }}"
 }
 </script>
+{%- set articleFaqs = content | faqItems %}
+{%- if articleFaqs.length %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in articleFaqs %}
+    {"@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": {"@type": "Answer", "text": {{ f.a | dump | safe }}}}{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,7 +72,7 @@ ogtype: article
     <div class="article-meta">
       <i>{{ topic }}</i>
       <span>{{ readingTime }} min read</span>
-      <span>By {{ site.authorName }}</span>
+      <span>By <a href="/about/" rel="author">{{ site.authorName }}</a></span>
     </div>
     <div class="prose">
 {{ content | safe }}

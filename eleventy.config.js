@@ -14,6 +14,20 @@ module.exports = function (eleventyConfig) {
     new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }));
   eleventyConfig.addFilter("iso", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("rfc822", (d) => new Date(d).toUTCString());
+  // FAQ schema for articles: reads the questions (h3) and first answer paragraph
+  // under a "Frequently asked questions" heading, so schema always matches the page.
+  eleventyConfig.addFilter("faqItems", (html) => {
+    const text = (s) => String(s).replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"')
+      .replace(/&#39;|&#x27;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ").trim();
+    const parts = String(html || "").split(/<h2[^>]*>\s*Frequently asked questions\s*<\/h2>/i);
+    if (parts.length < 2) return [];
+    const section = parts[1].split(/<h2[\s>]/i)[0];
+    return section.split(/<h3[^>]*>/i).slice(1).map((chunk) => {
+      const [q, rest = ""] = chunk.split(/<\/h3>/i);
+      const p = rest.match(/<p>([\s\S]*?)<\/p>/i);
+      return { q: text(q), a: p ? text(p[1]) : "" };
+    }).filter((f) => f.q && f.a);
+  });
   // A sitemap must only contain canonical, indexable HTML pages.
   // Excludes feed.xml, llms.txt, robots.txt, 404 and noindex pages.
   eleventyConfig.addFilter("sitemapPages", (pages) => pages.filter((p) =>

@@ -843,6 +843,16 @@ nav a,.navtop{white-space:nowrap}
 html:not(.loaded) .ticker-track,html:not(.loaded) .dot,html:not(.loaded) .float,html:not(.loaded) .float2,
 html:not(.loaded) #waBtn::after{animation-play-state:paused}
 
+/* ===== accessibility: small text meets WCAG AA contrast (4.5:1) ===== */
+.eyebrow,.post-meta i,.article-meta i,.case-tag,.prose a,.post .more,.tk-link{color:var(--purple-d)}
+[style*="color:var(--purple)"]{color:var(--purple-d)!important}
+.cta-band .eyebrow,.board-sub{background:rgba(20,18,31,.22);color:#fff}
+.cta-band > .wrap > p,.cta-alt{color:#fff}
+.board thead th,.lost{color:#fff}
+.st{background:rgba(20,18,31,.2)}
+.st p{color:#fff}
+[data-theme="dark"] .post .more{color:#B3AAFF}
+
 /* ===== theme toggle ===== */
 .themetog{width:44px;height:44px;flex:none;display:grid;place-items:center;padding:0;cursor:pointer;
   border:var(--bd);border-radius:50%;background:var(--bg-2);color:var(--ink);box-shadow:3px 3px 0 var(--shc);

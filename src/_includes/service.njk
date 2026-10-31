@@ -13,7 +13,8 @@ layout: base.njk
   "serviceType": {{ heading | dump | safe }},
   "url": "{{ site.url }}{{ page.url }}",
   "areaServed": ["US", "GB", "AU"],
-  "provider": {"@type": "ProfessionalService", "name": "DigitalFadi", "url": "{{ site.url }}/"}
+  "provider": {"@type": "ProfessionalService", "@id": "{{ site.url }}/#organization", "name": "DigitalFadi", "url": "{{ site.url }}/",
+    "founder": {"@id": "{{ site.url }}/#fawad"}}
 }
 </script>
 <script type="application/ld+json">
@@ -123,7 +124,7 @@ layout: base.njk
         <form name="account-analysis" method="POST" data-leadform>
           <input type="hidden" name="form-name" value="account-analysis">
           <input type="hidden" name="page" value="{{ crumb }}">
-          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1"></label></p>
+          <p class="hp"><label>Leave this empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div class="field">
             <label for="s-name">Your name</label>
             <input id="s-name" name="name" type="text" autocomplete="name" required placeholder="Full name">
