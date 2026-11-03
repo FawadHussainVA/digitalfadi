@@ -72,4 +72,6 @@ After an ad has had enough impressions, Google labels individual assets by perfo
 
 The free [ad copy builder](/tools/ad-copy-builder/) counts characters as you type, flags duplicates and very short headlines, previews the ad on desktop and mobile, and exports a file Google Ads Editor can import.
 
+For Performance Max, display ads, sitelinks and callouts, the [character limits checker](/tools/character-limits-checker/) does the same job for every asset type.
+
 Good headlines also depend on the search behind them. If ads are showing for the wrong searches, the copy cannot fix it, which is where [negative keywords](/learn/how-to-find-negative-keywords/) come in. And if click-through rate is fine but cost per click keeps climbing, [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) covers the Quality Score side. For a full review of ads, keywords and tracking together, see the [Google Ads audit](/google-ads-audit/).

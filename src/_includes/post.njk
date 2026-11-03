@@ -90,7 +90,7 @@ ogtype: article
       <div class="author">
         <span class="av" aria-hidden="true">F</span>
         <div>
-          <h4>Written by {{ site.authorName }}</h4>
+          <p class="ab-auth"><b>Written by {{ site.authorName }}</b></p>
           <p>Freelance Google Ads specialist and founder of DigitalFadi, a 2026 Google Premier Partner. Five years running Google Ads for more than 100 businesses across the US, UK and Australia, and every account is managed personally. <a href="/about/" class="ab-more">More about me</a></p>
         </div>
       </div>
@@ -168,6 +168,8 @@ ogtype: article
   .ab .prose .ab-faq details p{font-size:.98rem}
 
   .ab .share{margin-top:28px}
+  .ab .author .ab-auth{margin-bottom:6px;font-size:1.05rem;color:var(--ink)}
+  .ab .author .ab-auth b{font-weight:800}
   .ab-more{color:var(--purple);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
   .ab-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:20px}

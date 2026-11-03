@@ -85,4 +85,6 @@ Read it weekly while a campaign is new. Add the wrong searches as negatives, and
 4. **Switching everything to broad at once.** Test it in one campaign against the existing setup, and judge on enquiries or sales, not clicks
 5. **Forgetting that negatives work differently.** Negative keywords do not match close variants, so plurals and misspellings must be added separately
 
+To turn a plain keyword list into phrase and exact match in one go, use the free [keyword match type wrapper](/tools/keyword-match-type-wrapper/).
+
 If cost per click has climbed since match types were widened, [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) covers that pattern, and a [Google Ads audit](/google-ads-audit/) checks match types against the search terms they are actually buying.

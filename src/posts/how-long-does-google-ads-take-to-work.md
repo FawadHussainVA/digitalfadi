@@ -70,3 +70,5 @@ You cannot rush the data, but you can stop wasting it:
 If a campaign has had enough clicks for its conversion rate to settle and cost per enquiry is still well above what a customer is worth, more time alone will not fix it. Something in the keywords, the ads, the landing page or the offer needs to change.
 
 That is the point to look properly rather than wait longer. A [Google Ads audit](/google-ads-audit/) checks tracking first, then where the money is going, so you know whether the campaign needs time, changes or stopping.
+
+If you are still deciding whether Google Ads is right for the business at all, start with [why Google Ads is important for a growing business](/learn/why-google-ads-is-important/).

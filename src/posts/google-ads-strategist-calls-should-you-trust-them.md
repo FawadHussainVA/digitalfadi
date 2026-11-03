@@ -52,7 +52,7 @@ Recommendations from Google, whether on a call or in the Recommendations tab, te
 
 If a freelancer or agency manages your Google Ads, pass any call or email from Google to them rather than agreeing to changes yourself. Two people changing the same account without talking to each other is a reliable way to lose track of what worked.
 
-If you do not have anyone, and you are not sure whether a strategist's suggestions are right for you, that is a good moment for an independent second opinion. [What a Google Ads audit should actually check](/learn/what-a-google-ads-audit-should-check/) explains what a good one looks at.
+If you do not have anyone, and you are not sure whether a strategist's suggestions are right for you, that is a good moment for an independent second opinion. [What a Google Ads audit should actually check](/learn/what-a-google-ads-audit-should-check/) explains what a good one looks at, and [how to hire a Google Ads expert](/learn/how-to-hire-a-google-ads-expert/) covers finding someone to run the account.
 
 ## Frequently asked questions
 

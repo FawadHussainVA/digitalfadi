@@ -61,7 +61,7 @@ If you are unsure which suits your account, test rather than assume:
 
 1. Make sure conversion tracking counts only real sales or enquiries, with accurate values
 2. Exclude your brand from Performance Max before comparing anything
-3. Use a campaign experiment, or a clean before and after period of several weeks, rather than judging in the first days of learning
+3. Use a campaign experiment, or a clean before and after period of several weeks, rather than judging in the first days of learning. [How to run a useful Google Ads experiment](/learn/google-ads-experiments-ab-testing-guide/) covers the setup
 4. Judge on total business results, such as sales, profit or booked jobs, not on the campaign's own return on ad spend
 5. Check that profit, not just revenue, improved. The [break-even ROAS calculator](/tools/break-even-roas-calculator/) shows the return you actually need
 
