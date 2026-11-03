@@ -1,0 +1,311 @@
+---
+layout: tool.njk
+tags: tools
+permalink: "/tools/character-limits-checker/"
+crumb: "Character limits checker"
+order: 10
+heading: "Google Ads character limits checker"
+standfirst: "Check headlines, long headlines, descriptions, sitelinks, callouts and snippets against Google's limits for each asset type, with live counts and a check on how many of each you have."
+title: "Google Ads Character Limits Checker | DigitalFadi"
+description: "Free Google Ads character limits checker for search ads, Performance Max, display ads, sitelinks, callouts and structured snippets, with live counts."
+faqs:
+  - q: "What are the Google Ads character limits?"
+    a: "Headlines are 30 characters and descriptions 90 in search ads, Performance Max and responsive display ads. Long headlines are 90 characters, the business name 25, and display URL paths 15 each. Sitelink text is 25 characters with two description lines of 35, callouts are 25, and structured snippet values are 25."
+  - q: "Do spaces count towards the character limit?"
+    a: "Yes. Spaces, punctuation and symbols all count. Characters in double-width languages such as Chinese, Japanese and Korean count as two each, and this checker counts them the same way."
+  - q: "How many headlines does Performance Max need?"
+    a: "At least 3 headlines and up to 15, with Google recommending around 11. You also need at least 1 long headline (up to 5), at least 2 descriptions (up to 5) and 1 business name. Google also asks for at least one headline of 15 characters or fewer, which this checker flags."
+  - q: "What happens if an asset is over the limit?"
+    a: "Google Ads will not save it, so you have to shorten it before the asset group or ad can be published. Check limits before you build the campaign, especially if copy is written by someone else in a document."
+  - q: "Is my ad copy saved?"
+    a: "Yes, in this browser only, separately for each asset type, so it is still there next time on the same device. Nothing is uploaded or sent anywhere, including to me. The Clear button removes the copy for the asset type you are viewing."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="tk-seg clc-tabs" role="group" aria-label="Asset type">
+    <button type="button" class="btn sm on" data-t="rsa" aria-pressed="true">Search ad</button>
+    <button type="button" class="btn sm" data-t="pmax" aria-pressed="false">Performance Max</button>
+    <button type="button" class="btn sm" data-t="display" aria-pressed="false">Display ad</button>
+    <button type="button" class="btn sm" data-t="sitelinks" aria-pressed="false">Sitelinks</button>
+    <button type="button" class="btn sm" data-t="callouts" aria-pressed="false">Callouts</button>
+    <button type="button" class="btn sm" data-t="snippets" aria-pressed="false">Structured snippets</button>
+  </div>
+
+  <div class="split">
+    <div id="cFields"></div>
+    <div>
+      <div class="panel">
+        <h2 style="font-size:1.05rem;margin-bottom:12px" id="cTitle">Checks</h2>
+        <ul class="tk-list" id="cChecks"></ul>
+      </div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Limits for this asset type</b><span>Google Ads</span></div>
+        <div class="tk-body">
+          <div class="tk-scroll">
+            <table class="tk-table">
+              <thead><tr><th scope="col">Field</th><th scope="col">Characters</th><th scope="col">How many</th></tr></thead>
+              <tbody id="cLimits"></tbody>
+            </table>
+          </div>
+          <div class="tk-row">
+            <button type="button" class="btn sm" id="cCopy">Copy all</button>
+            <button type="button" class="btn ghost sm" id="cClear">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>Google Ads character limits, all in one place</h2>
+    <ul>
+      <li><strong>Responsive search ads:</strong> headlines 30 characters (3 to 15), descriptions 90 (2 to 4), display path 15 each (2 paths).</li>
+      <li><strong>Performance Max:</strong> headlines 30 (3 to 15, at least one of 15 or fewer), long headlines 90 (1 to 5), descriptions 90 (2 to 5), business name 25.</li>
+      <li><strong>Responsive display ads:</strong> headlines 30 (1 to 5), long headline 90 (1), descriptions 90 (1 to 5), business name 25.</li>
+      <li><strong>Sitelinks:</strong> link text 25, two description lines of 35 each.</li>
+      <li><strong>Callouts:</strong> 25 each.</li>
+      <li><strong>Structured snippets:</strong> a header chosen from Google&rsquo;s list, with values of 25 characters each (3 to 10 values).</li>
+    </ul>
+    <p>Limits are the same in every language, but characters in double-width scripts such as Chinese, Japanese and Korean count as two. Google changes asset requirements from time to time, so treat the help pages inside Google Ads as the final word.</p>
+
+    <h2>Writing to the limit, not past it</h2>
+    <p>A headline that fits is not the same as a headline that works. Use the space for one clear point per asset, so any combination Google shows still makes sense. For responsive search ads, the <a href="/tools/ad-copy-builder/">ad copy builder</a> adds a live preview and duplicate checks, and <a href="/learn/how-to-write-google-ads-headlines/">how to write Google Ads headlines that actually get shown</a> covers what to put in each one. For Performance Max, <a href="/learn/performance-max-what-it-hides/">Performance Max: what it hides</a> explains why asset groups need the same care as ad groups.</p>
+  </div>
+</section>
+
+<style>
+  .clc-tabs{margin-bottom:22px}
+  .clc-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .clc-n{flex:none;width:22px;text-align:right;font-size:.78rem;font-weight:800;color:var(--slate-l);font-variant-numeric:tabular-nums}
+  .clc-f{position:relative;flex:1;min-width:0}
+  .clc-f input,.clc-sel{width:100%;font-family:var(--font);font-size:.94rem;padding:12px 64px 12px 14px;
+    border:var(--bd);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);transition:box-shadow .14s var(--ease),background .2s}
+  .clc-sel{padding-right:14px;cursor:pointer;margin-bottom:12px}
+  .clc-f input:focus,.clc-sel:focus{outline:none;background:var(--bg-2);box-shadow:3px 3px 0 var(--purple)}
+  .clc-f input::placeholder{color:var(--slate-l)}
+  .clc-c{position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:.73rem;font-weight:800;
+    color:var(--slate-l);font-variant-numeric:tabular-nums;pointer-events:none}
+  .clc-f.warn .clc-c{color:var(--amber-d)}
+  .clc-f.over input{background:#FBE9E5}
+  [data-theme="dark"] .clc-f.over input{background:#3A2320}
+  .clc-f.over .clc-c{color:var(--red)}
+  .clc-sl{border:var(--bd);border-radius:var(--r-sm);padding:12px 12px 2px;margin-bottom:12px;background:var(--bg-2)}
+  .clc-sl .clc-row{margin-bottom:10px}
+  .clc-lbl{display:block;font-size:.76rem;font-weight:800;margin:0 0 7px}
+  .clc-add{margin-top:4px}
+  .tk #cFields .fcard + .fcard{margin-top:20px}
+  @media(prefers-reduced-motion:reduce){ .clc-f input,.clc-sel{transition:none} }
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_charlimits_v1';
+  /* field: [id, label, limit, min, max, start rows, placeholder] */
+  var TYPES = {
+    rsa: { name:'Responsive search ad', fields:[
+      ['h','Headlines',30,3,15,3,'Lead with the outcome'],
+      ['d','Descriptions',90,2,4,2,'Proof, specifics, then the call to action'],
+      ['p','Display paths',15,0,2,2,'services']
+    ]},
+    pmax: { name:'Performance Max asset group', short:true, fields:[
+      ['h','Headlines',30,3,15,3,'Short and specific'],
+      ['lh','Long headlines',90,1,5,1,'A full sentence that works on its own'],
+      ['d','Descriptions',90,2,5,2,'What you offer and why choose you'],
+      ['b','Business name',25,1,1,1,'Your business name']
+    ]},
+    display: { name:'Responsive display ad', fields:[
+      ['h','Headlines',30,1,5,1,'Short and specific'],
+      ['lh','Long headline',90,1,1,1,'A full sentence that works on its own'],
+      ['d','Descriptions',90,1,5,1,'What you offer and why choose you'],
+      ['b','Business name',25,1,1,1,'Your business name']
+    ]},
+    sitelinks: { name:'Sitelinks', sitelinks:true, rec:4 },
+    callouts: { name:'Callouts', fields:[ ['c','Callouts',25,2,20,4,'Free quotes'] ], rec:4 },
+    snippets: { name:'Structured snippet', snippet:true, fields:[ ['v','Values',25,3,10,3,'A value under the header'] ] }
+  };
+  var HEADERS = ['Amenities','Brands','Courses','Degree programs','Destinations','Featured hotels','Insurance coverage','Models','Neighborhoods','Service catalog','Shows','Styles','Types'];
+  var state = {}, cur = 'rsa';
+
+  /* double-width scripts count as two characters */
+  var WIDE = /[\u1100-\u115F\u2E80-\u303E\u3041-\u33FF\u3400-\u4DBF\u4E00-\u9FFF\uA000-\uA4CF\uAC00-\uD7A3\uF900-\uFAFF\uFE30-\uFE4F\uFF00-\uFF60\uFFE0-\uFFE6]/g;
+  function len(t){ var m = t.match(WIDE); return t.length + (m ? m.length : 0); }
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+  function load(){ try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ state = {}; } }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+  function blank(t){
+    var T = TYPES[t], s = {};
+    if (T.sitelinks){ s.sl = []; for (var i = 0; i < 4; i++) s.sl.push(['','','']); }
+    else T.fields.forEach(function(f){ s[f[0]] = []; for (var i = 0; i < f[5]; i++) s[f[0]].push(''); });
+    if (T.snippet) s.hdr = 'Service catalog';
+    return s;
+  }
+
+  function input(val, limit, ph, label, path){
+    return '<span class="clc-f" data-lim="' + limit + '"><input type="text" value="' + esc(val) + '" placeholder="' + esc(ph) + '" aria-label="' + esc(label) + ', up to ' + limit + ' characters" data-path="' + path + '" autocomplete="off"><span class="clc-c"></span></span>';
+  }
+
+  function render(){
+    var T = TYPES[cur], s = state[cur], html = '';
+    if (T.sitelinks){
+      html += '<div class="fcard"><div class="fcard-head"><b>Sitelinks</b><span>' + s.sl.length + ' added</span></div><div class="tk-body">';
+      s.sl.forEach(function(r, i){
+        html += '<div class="clc-sl"><span class="clc-lbl">Sitelink ' + (i + 1) + '</span>' +
+          '<div class="clc-row">' + input(r[0], 25, 'Link text, e.g. Get a quote', 'Sitelink ' + (i + 1) + ' text', 'sl.' + i + '.0') + '<button type="button" class="tk-x" data-del="sl.' + i + '" aria-label="Remove sitelink ' + (i + 1) + '">&times;</button></div>' +
+          '<div class="clc-row">' + input(r[1], 35, 'Description line 1 (optional)', 'Sitelink ' + (i + 1) + ' description line 1', 'sl.' + i + '.1') + '</div>' +
+          '<div class="clc-row">' + input(r[2], 35, 'Description line 2 (optional)', 'Sitelink ' + (i + 1) + ' description line 2', 'sl.' + i + '.2') + '</div></div>';
+      });
+      html += '<button type="button" class="btn ghost sm clc-add" data-add="sl">Add sitelink</button></div></div>';
+    } else {
+      T.fields.forEach(function(f){
+        var list = s[f[0]];
+        html += '<div class="fcard"><div class="fcard-head"><b>' + f[1] + '</b><span>' + list.filter(function(x){ return x.trim(); }).length + ' / ' + f[4] + '</span></div><div class="tk-body">';
+        if (T.snippet && f[0] === 'v'){
+          html += '<label class="clc-lbl" for="cHdr">Header</label><select id="cHdr" class="clc-sel">' + HEADERS.map(function(h){ return '<option' + (h === s.hdr ? ' selected' : '') + '>' + h + '</option>'; }).join('') + '</select>';
+        }
+        list.forEach(function(val, i){
+          html += '<div class="clc-row"><span class="clc-n">' + (i + 1) + '.</span>' + input(val, f[2], f[6], f[1] + ' ' + (i + 1), f[0] + '.' + i) +
+            (list.length > Math.max(f[3], 1) ? '<button type="button" class="tk-x" data-del="' + f[0] + '.' + i + '" aria-label="Remove ' + esc(f[1].toLowerCase()) + ' ' + (i + 1) + '">&times;</button>' : '') + '</div>';
+        });
+        if (list.length < f[4]) html += '<button type="button" class="btn ghost sm clc-add" data-add="' + f[0] + '">Add ' + (f[0] === 'p' ? 'path' : f[1].toLowerCase().replace(/s$/, '')) + '</button>';
+        html += '</div></div>';
+      });
+    }
+    $('cFields').innerHTML = html;
+    var hdr = $('cHdr');
+    if (hdr) hdr.addEventListener('change', function(){ state[cur].hdr = hdr.value; save(); });
+    $('cLimits').innerHTML = T.sitelinks
+      ? '<tr><td>Link text</td><td>25</td><td>Aim for 4 or more</td></tr><tr><td>Description lines</td><td>35 each</td><td>2, optional</td></tr>'
+      : (T.snippet ? '<tr><td>Header</td><td>From Google&rsquo;s list</td><td>1</td></tr>' : '') + T.fields.map(function(f){
+          return '<tr><td>' + f[1] + '</td><td>' + f[2] + '</td><td>' + (f[3] === f[4] ? f[3] : (f[3] || 0) + ' to ' + f[4]) + '</td></tr>';
+        }).join('');
+    update();
+  }
+
+  function update(){
+    [].forEach.call(document.querySelectorAll('#cFields .clc-f'), function(w){
+      var n = len(w.querySelector('input').value), lim = +w.dataset.lim;
+      w.querySelector('.clc-c').textContent = n + '/' + lim;
+      w.className = 'clc-f' + (n > lim ? ' over' : (n > lim - 4 && n > 0 ? ' warn' : ''));
+    });
+    checks();
+  }
+
+  function checks(){
+    var T = TYPES[cur], s = state[cur], out = [];
+    $('cTitle').textContent = 'Checks: ' + T.name;
+    function add(ok, text){ out.push([ok === true ? 'ok' : ok === false ? 'no' : 'mid', text]); }
+    if (T.sitelinks){
+      var filled = s.sl.filter(function(r){ return r[0].trim(); });
+      var over = 0; s.sl.forEach(function(r){ if (len(r[0]) > 25 || len(r[1]) > 35 || len(r[2]) > 35) over++; });
+      add(over === 0, over ? over + ' sitelink' + (over > 1 ? 's have' : ' has') + ' text over the limit' : 'Every sitelink is within the limits');
+      add(filled.length >= 4 ? true : filled.length >= 2 ? null : false, filled.length + ' sitelink' + (filled.length === 1 ? '' : 's') + ' with text' + (filled.length < 4 ? '. Add at least 4 so more can show on mobile and desktop' : ''));
+      var half = s.sl.filter(function(r){ return r[0].trim() && ((r[1].trim() && !r[2].trim()) || (!r[1].trim() && r[2].trim())); }).length;
+      if (half) add(false, half + ' sitelink' + (half > 1 ? 's have' : ' has') + ' only one description line. Use both lines or neither');
+      dupes(filled.map(function(r){ return r[0]; }), 'sitelink text');
+    } else {
+      T.fields.forEach(function(f){
+        var list = s[f[0]], filled = list.filter(function(x){ return x.trim(); });
+        var over = list.filter(function(x){ return len(x) > f[2]; }).length;
+        add(over === 0, over ? over + ' ' + f[1].toLowerCase() + ' over ' + f[2] + ' characters, which Google Ads will not save' : f[1] + ' within ' + f[2] + ' characters');
+        if (f[3] > 0) add(filled.length >= f[3], filled.length >= f[3] ? filled.length + ' ' + f[1].toLowerCase() + ', meets the minimum of ' + f[3] : 'Add ' + (f[3] - filled.length) + ' more ' + (f[3] - filled.length === 1 ? f[1].toLowerCase().replace(/s$/, '') : f[1].toLowerCase()) + ' (minimum ' + f[3] + ')');
+        if (f[4] > 1) dupes(filled, f[1].toLowerCase());
+      });
+      if (T.short){
+        var shortOk = s.h.some(function(x){ return x.trim() && len(x.trim()) <= 15; });
+        add(shortOk ? true : null, shortOk ? 'At least one headline of 15 characters or fewer' : 'Google asks for at least one headline of 15 characters or fewer');
+        var nh = s.h.filter(function(x){ return x.trim(); }).length;
+        if (nh < 11) add(null, nh + ' headline' + (nh === 1 ? '' : 's') + '. Google recommends around 11 for Performance Max');
+      }
+      if (T.rec){
+        var n = s[T.fields[0][0]].filter(function(x){ return x.trim(); }).length;
+        if (n < T.rec) add(null, 'Aim for at least ' + T.rec + ' callouts, so different combinations can show');
+      }
+    }
+    function dupes(list, word){
+      var low = list.map(function(x){ return x.trim().toLowerCase(); });
+      var d = low.filter(function(x, i){ return low.indexOf(x) !== i; }).length;
+      add(d === 0, d ? d + ' duplicate ' + word : 'No duplicate ' + word);
+    }
+    $('cChecks').innerHTML = out.map(function(c){
+      return '<li class="tk-chk ' + c[0] + '"><i aria-hidden="true">' + (c[0] === 'ok' ? '\u2713' : '!') + '</i><span>' + esc(c[1]) + '</span></li>';
+    }).join('');
+  }
+
+  function setPath(path, val){
+    var p = path.split('.'), s = state[cur];
+    if (p[0] === 'sl') s.sl[+p[1]][+p[2]] = val; else s[p[0]][+p[1]] = val;
+  }
+
+  $('cFields').addEventListener('input', function(e){
+    var el = e.target; if (!el.dataset.path) return;
+    setPath(el.dataset.path, el.value); save(); update();
+    var head = el.closest('.fcard').querySelector('.fcard-head span'), T = TYPES[cur];
+    if (!T.sitelinks){
+      var key = el.dataset.path.split('.')[0], f = T.fields.filter(function(x){ return x[0] === key; })[0];
+      head.textContent = state[cur][key].filter(function(x){ return x.trim(); }).length + ' / ' + f[4];
+    }
+  });
+  $('cFields').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    var s = state[cur], T = TYPES[cur], focusPath = null;
+    if (b.dataset.add){
+      var k = b.dataset.add;
+      if (k === 'sl'){ s.sl.push(['','','']); focusPath = 'sl.' + (s.sl.length - 1) + '.0'; }
+      else { s[k].push(''); focusPath = k + '.' + (s[k].length - 1); }
+    } else if (b.dataset.del){
+      var p = b.dataset.del.split('.');
+      if (p[0] === 'sl'){ if (s.sl.length > 1) s.sl.splice(+p[1], 1); }
+      else s[p[0]].splice(+p[1], 1);
+    } else return;
+    save(); render();
+    if (focusPath){ var inp = document.querySelector('[data-path="' + focusPath + '"]'); if (inp) inp.focus(); }
+  });
+  /* Enter in a list field adds the next one */
+  $('cFields').addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' || !e.target.dataset.path) return;
+    e.preventDefault();
+    var key = e.target.dataset.path.split('.')[0];
+    var btn = document.querySelector('[data-add="' + key + '"]');
+    if (btn) btn.click();
+  });
+
+  [].forEach.call(document.querySelectorAll('[data-t]'), function(b){
+    b.addEventListener('click', function(){
+      cur = b.dataset.t;
+      document.querySelectorAll('[data-t]').forEach(function(x){ x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+      if (!state[cur]) state[cur] = blank(cur);
+      state.last = cur; save(); render();
+    });
+  });
+
+  $('cCopy').addEventListener('click', function(){
+    var T = TYPES[cur], s = state[cur], lines = [T.name.toUpperCase()];
+    if (T.sitelinks) s.sl.forEach(function(r, i){ if (r[0].trim()) lines.push((i + 1) + '. ' + r.filter(function(x){ return x.trim(); }).join(' | ')); });
+    else {
+      if (T.snippet) lines.push('Header: ' + s.hdr);
+      T.fields.forEach(function(f){
+        var list = s[f[0]].filter(function(x){ return x.trim(); });
+        if (list.length){ lines.push('', f[1]); list.forEach(function(x, i){ lines.push((i + 1) + '. ' + x); }); }
+      });
+    }
+    var btn = this, text = lines.join('\n');
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function(){ var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = o; }, 1400); });
+  });
+  $('cClear').addEventListener('click', function(){ state[cur] = blank(cur); save(); render(); });
+
+  load();
+  Object.keys(TYPES).forEach(function(t){
+    var ok = state[t] && (TYPES[t].sitelinks ? Array.isArray(state[t].sl) : TYPES[t].fields.every(function(f){ return Array.isArray(state[t][f[0]]); }));
+    if (!ok) state[t] = blank(t);
+  });
+  var start = TYPES[state.last] ? state.last : 'rsa';
+  if (start !== 'rsa') document.querySelector('[data-t="' + start + '"]').click(); else render();
+})();
+</script>

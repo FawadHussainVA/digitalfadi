@@ -1,0 +1,192 @@
+---
+layout: tool.njk
+tags: tools
+permalink: "/tools/keyword-match-type-wrapper/"
+crumb: "Match type wrapper"
+order: 9
+heading: "Keyword match type wrapper"
+standfirst: "Paste a keyword list and get it back cleaned, de-duplicated and wrapped in phrase or exact match, ready to paste into Google Ads or import with Google Ads Editor."
+title: "Keyword Match Type Wrapper for Google Ads | DigitalFadi"
+description: "Free keyword wrapper. Turn a plain keyword list into phrase match and exact match in one click, remove duplicates, and export for Google Ads Editor."
+faqs:
+  - q: "How do I write phrase match and exact match keywords?"
+    a: "Put phrase match keywords in quotation marks, like \"emergency plumber\", and exact match keywords in square brackets, like [emergency plumber]. A keyword with no symbols is broad match. This tool adds the symbols to a whole list at once."
+  - q: "Should I use broad, phrase or exact match?"
+    a: "Exact and phrase match give you the most control over which searches trigger your ads, which suits most accounts with limited budgets. Broad match reaches more searches and relies on Smart Bidding and good conversion data to filter them. Whichever you use, check the search terms report regularly."
+  - q: "What does the clean-up option do?"
+    a: "It lowercases each keyword, removes extra spaces, strips any quotation marks, brackets or old plus signs already in the list, and removes duplicates, so the same keyword is never added twice in the same match type."
+  - q: "Can I make negative keywords with this tool?"
+    a: "Yes. Tick the negative option and each keyword gets a minus sign in front, in whichever match types you choose. For finding negatives in the first place, use the negative keyword generator or the n-gram analyser on your search terms report."
+  - q: "Is my keyword list saved?"
+    a: "Yes, in this browser only, so your list is still there next time on the same device. Nothing is uploaded or sent anywhere, including to me. The Clear button removes it."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Your keywords</b><span id="kIn">0 keywords</span></div>
+        <div class="tk-body">
+          <label class="tk-sr" for="kList">Keywords, one per line</label>
+          <textarea id="kList" class="tk-area" placeholder="One keyword per line&#10;emergency plumber&#10;plumber near me&#10;boiler repair" spellcheck="false"></textarea>
+          <span class="tk-hint">One keyword per line. Commas also split keywords if you paste a list from a spreadsheet.</span>
+
+          <fieldset class="mtw-set">
+            <legend>Match types</legend>
+            <div class="tk-seg" style="margin:0">
+              <label class="tk-tog"><input type="checkbox" id="kBroad"><span>Broad</span></label>
+              <label class="tk-tog"><input type="checkbox" id="kPhrase" checked><span>&ldquo;Phrase&rdquo;</span></label>
+              <label class="tk-tog"><input type="checkbox" id="kExact" checked><span>[Exact]</span></label>
+            </div>
+          </fieldset>
+          <label class="tk-tog"><input type="checkbox" id="kNeg"><span>Make them negative keywords (adds a minus sign)</span></label>
+          <label class="tk-tog"><input type="checkbox" id="kClean" checked><span>Clean up: lowercase, remove extra spaces, old symbols and duplicates</span></label>
+          <label class="tk-tog"><input type="checkbox" id="kGroup"><span>Group the output by match type</span></label>
+
+          <div class="frow" style="margin-top:14px">
+            <div class="field"><label for="kCamp">Campaign <small>(for the Editor file)</small></label><input id="kCamp" type="text" placeholder="Search: generic" autocomplete="off"></div>
+            <div class="field"><label for="kAg">Ad group <small>(for the Editor file)</small></label><input id="kAg" type="text" placeholder="Emergency" autocomplete="off"></div>
+          </div>
+          <div class="tk-row" style="margin-top:0"><button type="button" class="btn ghost sm" id="kClear">Clear</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Ready to paste</b><span id="kOut">0 lines</span></div>
+        <div class="tk-body">
+          <label class="tk-sr" for="kResult">Wrapped keywords</label>
+          <textarea id="kResult" class="tk-area" readonly style="min-height:260px;background:var(--purple-xl)" placeholder="Your wrapped keywords appear here."></textarea>
+          <div class="tk-row">
+            <button type="button" class="btn sm" id="kCopy">Copy</button>
+            <button type="button" class="btn ghost sm" id="kCsv">Google Ads Editor CSV</button>
+          </div>
+          <p class="tk-err" id="kMsg" hidden></p>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">Checks</h2>
+        <ul class="tk-list" id="kChecks"><li class="tk-chk mid"><i aria-hidden="true">!</i><span>Paste some keywords to check them.</span></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>Match type symbols at a glance</h2>
+    <ul>
+      <li><strong>Broad match:</strong> emergency plumber. No symbols. Can show for related searches, including ones that do not contain your words.</li>
+      <li><strong>Phrase match:</strong> &ldquo;emergency plumber&rdquo;. Shows for searches that include the meaning of the phrase, such as &ldquo;emergency plumber open now&rdquo;.</li>
+      <li><strong>Exact match:</strong> [emergency plumber]. Shows for searches with the same meaning as the keyword, including close variants.</li>
+      <li><strong>Negative keywords:</strong> add a minus sign, such as -free or -[plumber jobs], to stop ads showing for those searches.</li>
+    </ul>
+
+    <h2>Keep the list tidy before you upload</h2>
+    <p>Google Ads limits a keyword to 80 characters and 10 words, and the checks above flag any that go over. Duplicates in the same ad group waste time in reporting, and the same keyword in several ad groups splits its data. If you are not sure which match type to use, <a href="/learn/google-ads-keyword-match-types-explained/">Google Ads match types explained</a> covers when each one makes sense, and the <a href="/tools/negative-keyword-generator/">negative keyword generator</a> builds the list of searches to block.</p>
+  </div>
+</section>
+
+<style>
+  .mtw-set{border:0;padding:0;margin:16px 0 4px}
+  .mtw-set legend{font-size:.76rem;font-weight:800;color:var(--ink);margin-bottom:8px}
+  .mtw-set .tk-seg{gap:18px}
+  .tk .field small{font-weight:600;color:var(--slate-l)}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_matchwrap_v1';
+  var TEXT = ['kList','kCamp','kAg'], BOX = ['kBroad','kPhrase','kExact','kNeg','kClean','kGroup'];
+  var rows = [];
+
+  function parse(){
+    var raw = $('kList').value.split(/[\n,]+/), clean = $('kClean').checked, seen = {}, out = [];
+    raw.forEach(function(k){
+      var t = k;
+      if (clean) t = t.toLowerCase().replace(/^\s*-/, '').replace(/["\[\]+]/g, ' ');
+      t = t.replace(/\s+/g, ' ').trim();
+      if (!t) return;
+      if (clean){ if (seen[t]) return; seen[t] = 1; }
+      out.push(t);
+    });
+    return out;
+  }
+
+  function calc(){
+    var kws = parse(), neg = $('kNeg').checked ? '-' : '';
+    var types = [];
+    if ($('kBroad').checked) types.push(['Broad', function(k){ return k; }]);
+    if ($('kPhrase').checked) types.push(['Phrase', function(k){ return '"' + k + '"'; }]);
+    if ($('kExact').checked) types.push(['Exact', function(k){ return '[' + k + ']'; }]);
+    $('kIn').textContent = kws.length + ' keyword' + (kws.length === 1 ? '' : 's');
+    rows = [];
+    var lines = [];
+    if ($('kGroup').checked){
+      types.forEach(function(t){ kws.forEach(function(k){ rows.push([k, t[0]]); lines.push(neg + t[1](k)); }); });
+    } else {
+      kws.forEach(function(k){ types.forEach(function(t){ rows.push([k, t[0]]); lines.push(neg + t[1](k)); }); });
+    }
+    $('kResult').value = lines.join('\n');
+    $('kOut').textContent = lines.length + ' line' + (lines.length === 1 ? '' : 's');
+
+    var checks = [];
+    if (!kws.length) checks.push(['mid', 'Paste some keywords to check them.']);
+    else {
+      var long = kws.filter(function(k){ return k.length > 80; }).length;
+      var wordy = kws.filter(function(k){ return k.split(' ').length > 10; }).length;
+      var rawCount = $('kList').value.split(/[\n,]+/).filter(function(x){ return x.trim(); }).length;
+      checks.push([long ? 'no' : 'ok', long ? long + ' keyword' + (long > 1 ? 's are' : ' is') + ' over 80 characters, which Google Ads will not accept' : 'All keywords are within 80 characters']);
+      checks.push([wordy ? 'no' : 'ok', wordy ? wordy + ' keyword' + (wordy > 1 ? 's have' : ' has') + ' more than 10 words, which Google Ads will not accept' : 'All keywords are 10 words or fewer']);
+      if ($('kClean').checked) checks.push([rawCount > kws.length ? 'mid' : 'ok', rawCount > kws.length ? (rawCount - kws.length) + ' duplicate or empty line' + (rawCount - kws.length > 1 ? 's' : '') + ' removed' : 'No duplicates found']);
+      if (!types.length) checks.push(['no', 'Choose at least one match type']);
+      var odd = kws.filter(function(k){ return /[!@%^*=<>;~`{}|\\]/.test(k); }).length;
+      if (odd) checks.push(['mid', odd + ' keyword' + (odd > 1 ? 's contain' : ' contains') + ' symbols Google Ads ignores or rejects. Worth checking']);
+    }
+    $('kChecks').innerHTML = checks.map(function(c){
+      return '<li class="tk-chk ' + c[0] + '"><i aria-hidden="true">' + (c[0] === 'ok' ? '\u2713' : '!') + '</i><span>' + c[1] + '</span></li>';
+    }).join('');
+    save();
+  }
+
+  function flash(btn, text){ var old = btn.textContent; btn.textContent = text; setTimeout(function(){ btn.textContent = old; }, 1400); }
+  $('kCopy').addEventListener('click', function(){
+    var btn = this, val = $('kResult').value;
+    if (!val) return;
+    if (navigator.clipboard) navigator.clipboard.writeText(val).then(function(){ flash(btn, 'Copied'); }, function(){ $('kResult').select(); });
+    else { $('kResult').select(); document.execCommand('copy'); flash(btn, 'Copied'); }
+  });
+  $('kCsv').addEventListener('click', function(){
+    if (!rows.length) return;
+    var neg = $('kNeg').checked, camp = $('kCamp').value.trim(), ag = $('kAg').value.trim();
+    var data = [['Campaign','Ad group','Keyword','Criterion Type']].concat(rows.map(function(r){
+      return [camp, ag, r[0], (neg ? 'Negative ' : '') + r[1]];
+    }));
+    var csv = data.map(function(r){ return r.map(function(c){ return '"' + String(c).replace(/"/g, '""') + '"'; }).join(','); }).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' }));
+    a.download = 'keywords-match-types.csv'; a.click(); URL.revokeObjectURL(a.href);
+  });
+  $('kClear').addEventListener('click', function(){
+    TEXT.forEach(function(id){ $(id).value = ''; });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    calc(); $('kList').focus();
+  });
+
+  function save(){ try { var d = {}; TEXT.forEach(function(id){ d[id] = $(id).value; }); BOX.forEach(function(id){ d[id] = $(id).checked; }); localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} }
+  function restore(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d) return;
+      TEXT.forEach(function(id){ if (typeof d[id] === 'string') $(id).value = d[id]; });
+      BOX.forEach(function(id){ if (typeof d[id] === 'boolean') $(id).checked = d[id]; });
+    } catch(e){}
+  }
+  TEXT.forEach(function(id){ $(id).addEventListener('input', calc); });
+  BOX.forEach(function(id){ $(id).addEventListener('change', calc); });
+  restore(); calc();
+})();
+</script>

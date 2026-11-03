@@ -30,30 +30,56 @@ permalink: /learn/
   </div>
 </div>
 
-<section class="wrap">
-  <div class="sec-head rv">
-    <span class="eyebrow">Articles</span>
-    <h2>Currently <span class="hl">published</span></h2>
+{%- set all = collections.posts | reverse %}
+{%- set lead = all[0] %}
+<section class="wrap lr">
+  {%- if lead %}
+  <div class="feat lr-feat" id="lrFeat">
+    <div class="feat-txt">
+      <div class="post-meta"><i>{{ lead.data.topic }}</i><span>Newest</span><span>{{ lead.data.readingTime }} min read</span></div>
+      <h2><a href="{{ lead.url }}" class="lr-flink">{{ lead.data.title }}</a></h2>
+      <p>{{ lead.data.description }}</p>
+      <a href="{{ lead.url }}" class="btn" tabindex="-1" aria-hidden="true">Read the article <span class="arw">&rarr;</span></a>
+    </div>
+    <div class="feat-vis">
+      <div class="lr-also">
+        <h3>Also new</h3>
+        <ul>
+        {%- for p in all %}{% if loop.index > 1 and loop.index <= 4 %}
+          <li><a href="{{ p.url }}"><b>{{ p.data.title }}</b><span>{{ p.data.topic }}, {{ p.data.readingTime }} min read</span></a></li>
+        {%- endif %}{% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
+  {%- endif %}
+
   {#- Topic buttons build themselves from the articles: preferred order first, any new topic after -#}
   {%- set order = ["Search", "Shopping", "Performance Max", "Local Services", "Tracking", "Strategy", "YouTube", "Display", "Demand Gen", "Remarketing"] %}
   {%- set topics = [] %}
   {%- for t in order %}{% for p in collections.posts %}{% if p.data.topic == t and not (t in topics) %}{% set topics = (topics.push(t), topics) %}{% endif %}{% endfor %}{% endfor %}
   {%- for p in collections.posts %}{% if p.data.topic and not (p.data.topic in topics) %}{% set topics = (topics.push(p.data.topic), topics) %}{% endif %}{% endfor %}
-  {%- if topics.length > 1 %}
-  <div class="filters rv" data-filterbar role="group" aria-label="Filter articles by topic">
-    <em>Topic</em>
-    <button type="button" class="fbtn on" data-f="all" aria-pressed="true">All ({{ collections.posts.length }})</button>
-    {%- for t in topics %}
-    {%- set n = [] %}{% for p in collections.posts %}{% if p.data.topic == t %}{% set n = (n.push(1), n) %}{% endif %}{% endfor %}
-    <button type="button" class="fbtn" data-f="{{ t | slugify }}" aria-pressed="false">{{ t }} ({{ n.length }})</button>
-    {%- endfor %}
+  <div class="lr-bar">
+    <div class="field lr-search">
+      <label for="lrQ">Search the articles</label>
+      <input id="lrQ" type="search" placeholder="Try &ldquo;Performance Max&rdquo; or &ldquo;budget&rdquo;" autocomplete="off">
+    </div>
+    {%- if topics.length > 1 %}
+    <div class="filters lr-topics" role="group" aria-label="Filter articles by topic">
+      <button type="button" class="fbtn on" data-lt="all" aria-pressed="true">All ({{ collections.posts.length }})</button>
+      {%- for t in topics %}
+      {%- set n = [] %}{% for p in collections.posts %}{% if p.data.topic == t %}{% set n = (n.push(1), n) %}{% endif %}{% endfor %}
+      <button type="button" class="fbtn" data-lt="{{ t | slugify }}" aria-pressed="false">{{ t }} ({{ n.length }})</button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
   </div>
-  {%- endif %}
-  <div class="posts stg">
+  <p class="lr-count" id="lrCount" aria-live="polite">All {{ collections.posts.length }} articles, newest first.</p>
+
+  <div class="posts lr-grid">
 <!--POSTS_START-->
-  {%- for p in collections.posts | reverse %}
-      <a class="post" href="{{ p.url }}" data-tags="{{ p.data.topic | slugify }}">
+  {%- for p in all %}
+      <a class="post{% if loop.first %} lr-lead{% endif %}" href="{{ p.url }}" data-lt="{{ p.data.topic | slugify }}" data-q="{{ (p.data.title + ' ' + p.data.description + ' ' + p.data.topic) | lower }}">
         <div class="post-meta">
           <i>{{ p.data.topic }}</i>
         </div>
@@ -62,15 +88,80 @@ permalink: /learn/
         <span class="more">{{ p.data.readingTime }} min read <span>&rarr;</span></span>
       </a>
   {%- else %}
-      <div class="note rv">
+      <div class="note">
         <h4>Nothing published yet</h4>
         <p>The first articles are on the way. Check back shortly.</p>
       </div>
   {%- endfor %}
     <!--POSTS_END-->
   </div>
-  <p class="noresult hidden">No articles on that topic yet. Try another filter.</p>
+  <div class="note lr-none" id="lrNone" hidden>
+    <h3>No articles match that</h3>
+    <p>Try a shorter search or another topic, or <button type="button" class="lr-reset" id="lrReset">show all articles</button>. If your question is not covered, <a href="/#contact">ask me directly</a>.</p>
+  </div>
 </section>
+
+<style>
+  /* Learn index. Page-specific block; classes prefixed lr-. */
+  .lr-feat{margin-bottom:40px}
+  .lr-feat[hidden]{display:none}
+  .lr-feat h2 a:hover{color:var(--purple)}
+  .lr-feat .post-meta{margin-bottom:0}
+  .lr-feat .post-meta span + span::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:currentColor;margin:0 8px 2px 0;vertical-align:middle}
+  .lr-also{position:relative;z-index:2;color:#fff}
+  .lr-also h3{font-size:.95rem;margin-bottom:12px;color:var(--amber)}
+  .lr-also ul{list-style:none;margin:0;padding:0}
+  .lr-also li{border-top:1.5px solid rgba(255,255,255,.28)}
+  .lr-also li:first-child{border-top:0}
+  .lr-also a{display:block;padding:12px 0}
+  .lr-also b{display:block;font-weight:800;font-size:.98rem;line-height:1.3}
+  .lr-also span{display:block;font-size:.78rem;color:rgba(255,255,255,.78);font-weight:600;margin-top:4px}
+  .lr-also a:hover b{text-decoration:underline;text-underline-offset:3px}
+
+  .lr-bar{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:14px 26px;align-items:end;margin-bottom:12px}
+  .lr-search{margin:0}
+  .lr-search input[type=search]{-webkit-appearance:none;appearance:none}
+  .lr-topics{justify-content:flex-start;margin:0}
+  .lr-count{font-size:.85rem;font-weight:700;color:var(--slate);margin:0 0 20px}
+  .lr-grid .lr-lead{display:none}
+  .lr-grid.searching .lr-lead{display:flex}
+  .lr-grid .post[hidden]{display:none}
+  .lr-none{margin-top:6px}
+  .lr-none a{color:var(--purple);font-weight:700;text-decoration:underline}
+  .lr-reset{all:unset;cursor:pointer;color:var(--purple-d);font-weight:700;text-decoration:underline}
+  [data-theme="dark"] .lr-none a,[data-theme="dark"] .lr-reset,[data-theme="dark"] .lr-feat h2 a:hover{color:#B3AAFF}
+  @media(max-width:1000px){ .lr-bar{grid-template-columns:1fr} }
+</style>
+<script>
+(function(){
+  'use strict';
+  var grid = document.querySelector('.lr-grid'); if(!grid) return;
+  var cards = [].slice.call(grid.querySelectorAll('.post')), q = document.getElementById('lrQ'),
+      feat = document.getElementById('lrFeat'), count = document.getElementById('lrCount'),
+      none = document.getElementById('lrNone'), topic = 'all', total = cards.length;
+  function run(){
+    var words = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean), shown = 0;
+    var filtering = topic !== 'all' || words.length > 0;
+    grid.classList.toggle('searching', filtering);
+    if(feat) feat.hidden = filtering;
+    cards.forEach(function(c){
+      var ok = (topic === 'all' || c.dataset.lt === topic) && words.every(function(w){ return c.dataset.q.indexOf(w) > -1; });
+      c.hidden = !ok; if(ok) shown++;
+    });
+    none.hidden = shown > 0;
+    count.textContent = filtering ? shown + ' of ' + total + ' articles' : 'All ' + total + ' articles, newest first.';
+  }
+  [].forEach.call(document.querySelectorAll('.lr-topics .fbtn'), function(b){
+    b.addEventListener('click', function(){
+      topic = b.dataset.lt;
+      document.querySelectorAll('.lr-topics .fbtn').forEach(function(x){ x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+      run();
+    });
+  });
+  q.addEventListener('input', run);
+  document.getElementById('lrReset').addEventListener('click', function(){ q.value = ''; document.querySelector('.lr-topics .fbtn[data-lt="all"]').click(); q.focus(); });
+})();
+</script>
 
 <div class="cta-band" id="contact-cta">
   <div class="wrap">

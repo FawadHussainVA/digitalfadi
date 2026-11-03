@@ -1,0 +1,232 @@
+---
+layout: tool.njk
+tags: tools
+permalink: "/tools/cost-per-booked-job-calculator/"
+crumb: "Cost per booked job calculator"
+order: 8
+heading: "Cost per booked job calculator"
+standfirst: "Follow your Google Ads leads past the click to the jobs that actually get booked, and see where the enquiries are being lost between the phone ringing and the work being won."
+title: "Cost per Booked Job Calculator for Google Ads | DigitalFadi"
+description: "Free cost per booked job calculator for trades and local services. Turn ad spend and leads into the real cost of each job won, and find where leads are lost."
+faqs:
+  - q: "What is cost per booked job?"
+    a: "It is your ad spend divided by the number of jobs that were actually booked from those ads. Cost per lead counts every call and form, including the ones nobody answered and the ones that never became work. Cost per booked job only counts the leads that turned into paying customers, so it is the figure that tells you whether the advertising pays."
+  - q: "How do I calculate cost per booked job?"
+    a: "Divide your monthly ad spend by the number of jobs booked from Google Ads leads that month. If you spent 2,000 and booked 16 jobs, your cost per booked job is 125. This calculator works it out from your lead count, the share of leads you reach and the share of those that book."
+  - q: "What is a good cost per booked job?"
+    a: "It depends on what a job is worth to you. Compare it with the profit on an average job, not the revenue. If a job leaves 300 after materials and labour, a cost per booked job of 100 leaves 200, and one of 350 loses money even though the leads look cheap."
+  - q: "Why are my Google Ads leads not turning into jobs?"
+    a: "The most common reasons are missed calls, slow replies to forms, leads from outside your service area or for services you do not offer, and price shoppers. The funnel in this calculator shows whether the bigger loss is in reaching people or in converting them once you do."
+  - q: "Is the information I enter saved?"
+    a: "Yes, in this browser only, so your figures are still there next time on the same device. Nothing is uploaded or sent anywhere, including to me. The Clear button removes them."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Last month</b><span>From Google Ads</span></div>
+        <div class="tk-body">
+          <div class="frow">
+            <div class="field">
+              <label for="jCur">Currency</label>
+              <select id="jCur" class="tk-sel">
+                <option value="USD">US dollar ($)</option>
+                <option value="GBP">British pound (&pound;)</option>
+                <option value="EUR">Euro (&euro;)</option>
+                <option value="AUD">Australian dollar (A$)</option>
+                <option value="CAD">Canadian dollar (C$)</option>
+              </select>
+            </div>
+            <div class="field"><label for="jSpend">Ad spend</label><input id="jSpend" type="number" min="0" step="any" inputmode="decimal" placeholder="2000"></div>
+          </div>
+          <div class="field"><label for="jLeads">Leads: calls, forms and messages</label><input id="jLeads" type="number" min="0" step="1" inputmode="numeric" placeholder="60"></div>
+          <div class="frow">
+            <div class="field"><label for="jReach">Leads you actually spoke to %</label><input id="jReach" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="70"></div>
+            <div class="field"><label for="jBook">Of those, booked a job %</label><input id="jBook" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="40"></div>
+          </div>
+          <p class="tk-hint" style="margin:-4px 0 18px">Not sure? Count last month&rsquo;s missed calls and unanswered forms for the first figure, and the quotes or bookings that went ahead for the second.</p>
+          <div class="frow">
+            <div class="field"><label for="jVal">Average job value</label><input id="jVal" type="number" min="0" step="any" inputmode="decimal" placeholder="450"></div>
+            <div class="field"><label for="jMargin">Profit on a job before ads %</label><input id="jMargin" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="40"></div>
+          </div>
+          <div class="tk-row" style="margin-top:0"><button type="button" class="btn ghost sm" id="jClear">Clear</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Cost per booked job</b><span>What each job cost</span></div>
+        <div class="tk-body" aria-live="polite">
+          <p class="tk-big" id="oJob">&ndash;</p>
+          <p class="tk-sub" id="oJobSub">Enter your spend, leads and the two percentages.</p>
+          <p class="tk-err" id="oErr" hidden></p>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">The detail</h2>
+        <dl>
+          <dt class="first">Cost per lead</dt><dd id="oLead">&ndash;</dd>
+          <dt>Jobs booked</dt><dd id="oJobs">&ndash;</dd>
+          <dt>Revenue from those jobs</dt><dd id="oRev">&ndash;</dd>
+          <dt>Profit after ad spend</dt><dd id="oProfit">Add job value and profit to see this.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:20px">
+    <div><div class="fcard">
+      <div class="fcard-head"><b>Where the leads go</b><span>Your funnel</span></div>
+      <div class="tk-body">
+        <div class="cbj-funnel" id="oFunnel"><p class="tk-sub" style="margin:0">Your funnel appears here.</p></div>
+      </div>
+    </div></div>
+    <div><div class="fcard">
+      <div class="fcard-head"><b>What if</b><span>Same ad spend</span></div>
+      <div class="tk-body">
+        <div class="field">
+          <label for="jReach2">If you spoke to this % of leads</label>
+          <input id="jReach2" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="90">
+        </div>
+        <div class="field">
+          <label for="jBook2">And booked this % of them</label>
+          <input id="jBook2" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="Same as now">
+        </div>
+        <p class="tk-sub" id="oWhat" style="margin:0">Try a higher answer rate to see what fixing missed calls is worth.</p>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>Why cost per lead is the wrong number</h2>
+    <p>Google Ads reports a lead the moment a call connects or a form is sent. It cannot see whether anyone picked up, whether the caller was in your area, or whether the quote went ahead. Two businesses with the same cost per lead can have very different costs per job, and only the cost per job decides whether the advertising pays.</p>
+
+    <h2>Where leads usually leak</h2>
+    <ul>
+      <li><strong>Missed calls.</strong> Calls that ring out while you are on a job, at lunch or after hours. Many callers ring the next business on the list rather than leave a voicemail.</li>
+      <li><strong>Slow form replies.</strong> A form answered the next day competes with businesses who called back within the hour.</li>
+      <li><strong>The wrong leads.</strong> Enquiries from outside your area or for work you do not do. These are an advertising problem: location settings and negative keywords fix most of them.</li>
+      <li><strong>Price shoppers.</strong> Some are unavoidable. A lot of them suggests the ads promise cheap rather than reliable.</li>
+    </ul>
+
+    <h2>Fix the right end first</h2>
+    <p>If the funnel shows most leads are lost before you speak to them, more ad spend will mostly buy more missed calls. If you reach most people but few book, look at the quality of the leads and at how quotes are handled. There is more on this in <a href="/learn/why-google-ads-calls-are-not-becoming-jobs/">why your Google Ads calls are not becoming jobs</a>, and the <a href="/tools/budget-calculator/">budget calculator</a> works out what it costs to get more leads in the first place. For help with the advertising side, see <a href="/google-ads-for-local-services/">Google Ads for local services</a>.</p>
+  </div>
+</section>
+
+<style>
+  .cbj-funnel{display:flex;flex-direction:column;gap:14px}
+  .cbj-step{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+  .cbj-step b{font-size:.9rem;font-weight:800}
+  .cbj-step em{font-style:normal;font-size:.85rem;font-weight:800;font-variant-numeric:tabular-nums}
+  .cbj-bar{grid-column:1 / -1;height:22px;border:var(--bd);border-radius:999px;background:var(--bg);overflow:hidden}
+  .cbj-bar i{display:block;height:100%;background:var(--amber);border-right:2px solid var(--bdc);transition:width .4s var(--ease)}
+  .cbj-step.win .cbj-bar i{background:var(--green)}
+  .cbj-lost{grid-column:1 / -1;font-size:.8rem;color:var(--red);font-weight:700}
+  @media(prefers-reduced-motion:reduce){ .cbj-bar i{transition:none} }
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_cpbj_v1';
+  var IDS = ['jCur','jSpend','jLeads','jReach','jBook','jVal','jMargin','jReach2','jBook2'];
+
+  function v(id){ var x = parseFloat($(id).value); return isFinite(x) && x >= 0 ? x : 0; }
+  function has(id){ return $(id).value.trim() !== ''; }
+  function pct(id){ return Math.min(v(id), 100) / 100; }
+  function cur(n, dp){
+    var d = dp === undefined ? 2 : dp;
+    try { return new Intl.NumberFormat(undefined, { style:'currency', currency:$('jCur').value, minimumFractionDigits:d, maximumFractionDigits:d }).format(n); }
+    catch(e){ return n.toFixed(d); }
+  }
+  function one(n){ return n.toLocaleString(undefined, { maximumFractionDigits:1 }); }
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function calc(){
+    var err = $('oErr'); err.hidden = true;
+    var ready = has('jSpend') && has('jLeads') && has('jReach') && has('jBook') && v('jLeads') > 0;
+    if (!ready){
+      $('oJob').textContent = '\u2013';
+      $('oJobSub').textContent = 'Enter your spend, leads and the two percentages.';
+      ['oLead','oJobs','oRev'].forEach(function(id){ $(id).textContent = '\u2013'; });
+      $('oProfit').textContent = 'Add job value and profit to see this.';
+      $('oFunnel').innerHTML = '<p class="tk-sub" style="margin:0">Your funnel appears here.</p>';
+      $('oWhat').textContent = 'Try a higher answer rate to see what fixing missed calls is worth.';
+      save(); return;
+    }
+    var spend = v('jSpend'), leads = v('jLeads'), reach = pct('jReach'), book = pct('jBook');
+    var reached = leads * reach, jobs = reached * book;
+    $('oLead').textContent = cur(spend / leads);
+    $('oJobs').textContent = one(jobs);
+
+    if (jobs <= 0){
+      $('oJob').textContent = 'No jobs';
+      $('oJobSub').textContent = '';
+      err.textContent = 'With these figures no leads turn into jobs, so every ' + cur(1000, 0) + ' of ad spend is lost. Start with the stage that is at zero.';
+      err.hidden = false;
+    } else {
+      var cpj = spend / jobs;
+      $('oJob').textContent = cur(cpj);
+      $('oJobSub').textContent = 'That is ' + one(cpj / (spend / leads)) + ' times your cost per lead of ' + cur(spend / leads) + '.';
+    }
+
+    if (has('jVal')){
+      var rev = jobs * v('jVal');
+      $('oRev').textContent = cur(rev, 0);
+      if (has('jMargin')){
+        var profit = rev * pct('jMargin') - spend;
+        $('oProfit').innerHTML = '<span class="tk-tag ' + (profit >= 0 ? 'good' : 'bad') + '">' + (profit >= 0 ? 'Profit ' : 'Loss ') + esc(cur(Math.abs(profit), 0)) + '</span>' +
+          (jobs > 0 ? '<small style="margin-top:6px">Each job leaves ' + esc(cur(v('jVal') * pct('jMargin'))) + ' before ads and costs ' + esc(cur(spend / jobs)) + ' in ad spend to win.</small>' : '');
+      } else $('oProfit').textContent = 'Add your profit percentage to see this.';
+    } else { $('oRev').textContent = '\u2013'; $('oProfit').textContent = 'Add job value and profit to see this.'; }
+
+    /* funnel */
+    var steps = [
+      ['Leads from Google Ads', leads, null],
+      ['Leads you spoke to', reached, leads - reached],
+      ['Jobs booked', jobs, reached - jobs]
+    ];
+    $('oFunnel').innerHTML = steps.map(function(s, i){
+      var w = leads > 0 ? Math.max(s[1] / leads * 100, s[1] > 0 ? 2 : 0) : 0;
+      return '<div class="cbj-step' + (i === 2 ? ' win' : '') + '"><b>' + s[0] + '</b><em>' + one(s[1]) + '</em>' +
+        '<div class="cbj-bar" role="img" aria-label="' + s[0] + ': ' + one(s[1]) + '"><i style="width:' + w.toFixed(1) + '%"></i></div>' +
+        (s[2] !== null && s[2] > 0.05 ? '<span class="cbj-lost">' + one(s[2]) + (i === 1 ? ' never reached' : ' reached but did not book') + '</span>' : '') + '</div>';
+    }).join('');
+
+    /* what if */
+    if (has('jReach2') || has('jBook2')){
+      var r2 = has('jReach2') ? pct('jReach2') : reach, b2 = has('jBook2') ? pct('jBook2') : book;
+      var jobs2 = leads * r2 * b2;
+      if (jobs2 <= 0) $('oWhat').textContent = 'With those figures no jobs are booked.';
+      else {
+        var diff = jobs2 - jobs;
+        $('oWhat').innerHTML = 'You would book <b>' + one(jobs2) + '</b> jobs instead of ' + one(jobs) + ', at <b>' + esc(cur(spend / jobs2)) + '</b> a job' +
+          (has('jVal') && diff > 0 ? ', worth an extra ' + esc(cur(diff * v('jVal'), 0)) + ' in revenue a month for the same ad spend.' : '.');
+      }
+    } else $('oWhat').textContent = 'Try a higher answer rate to see what fixing missed calls is worth.';
+    save();
+  }
+
+  $('jClear').addEventListener('click', function(){
+    IDS.forEach(function(id){ if (id !== 'jCur') $(id).value = ''; });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    calc();
+  });
+  function save(){ try { var d = {}; IDS.forEach(function(id){ d[id] = $(id).value; }); localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} }
+  function restore(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d) return;
+      IDS.forEach(function(id){ if (typeof d[id] === 'string' && d[id] !== '') $(id).value = d[id]; });
+    } catch(e){}
+  }
+  IDS.forEach(function(id){ $(id).addEventListener($(id).tagName === 'SELECT' ? 'change' : 'input', calc); });
+  restore(); calc();
+})();
+</script>

@@ -1,0 +1,208 @@
+---
+layout: tool.njk
+tags: tools
+permalink: "/tools/budget-calculator/"
+crumb: "Budget calculator"
+order: 7
+heading: "Google Ads budget calculator"
+standfirst: "Work backwards from the leads or sales you want each month to the monthly and daily budget it takes, using your own cost per click and conversion rate."
+title: "Google Ads Budget Calculator: Monthly and Daily | DigitalFadi"
+description: "Free Google Ads budget calculator. Enter the leads or sales you want, your cost per click and conversion rate, and get the monthly and daily budget you need."
+faqs:
+  - q: "How do I calculate my Google Ads budget?"
+    a: "Divide the number of conversions you want by your conversion rate to get the clicks you need, then multiply by your average cost per click. For 30 leads a month at a 5 percent conversion rate and a 3 dollar cost per click, you need 600 clicks, which is a budget of 1,800 a month."
+  - q: "How do I turn a monthly budget into a daily budget?"
+    a: "Divide the monthly budget by 30.4, the average number of days in a month. Google Ads uses the same figure: over a month it will not charge more than your average daily budget multiplied by 30.4, although spend can be higher on individual days."
+  - q: "Where do I find my cost per click and conversion rate?"
+    a: "If the account has been running, use the last 90 days from the Campaigns view, ideally for the campaigns you plan to fund. For a new account, Keyword Planner gives estimated cost per click ranges for your keywords, and your website's conversion rate from other traffic is a starting point for the conversion rate."
+  - q: "Why do I need more budget than the calculator says?"
+    a: "The result assumes your cost per click and conversion rate stay the same as you spend more. In practice, extra budget often buys less relevant clicks at higher prices, so results per dollar usually fall a little as spend grows. Use the range table to see what happens if your numbers are worse than expected."
+  - q: "Is the information I enter saved?"
+    a: "Yes, in this browser only, so your figures are still there next time on the same device. Nothing is uploaded or sent anywhere, including to me. The Clear button removes them."
+---
+{% include "tool-ui.njk" %}
+
+<section class="wrap tk">
+  <div class="split">
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Your goal</b><span>Per month</span></div>
+        <div class="tk-body">
+          <div class="frow">
+            <div class="field">
+              <label for="gCur">Currency</label>
+              <select id="gCur" class="tk-sel">
+                <option value="USD">US dollar ($)</option>
+                <option value="GBP">British pound (&pound;)</option>
+                <option value="EUR">Euro (&euro;)</option>
+                <option value="AUD">Australian dollar (A$)</option>
+                <option value="CAD">Canadian dollar (C$)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="gType">What you count</label>
+              <select id="gType" class="tk-sel">
+                <option value="lead">Leads (calls, forms, bookings)</option>
+                <option value="sale">Online sales</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="gWant">How many <span class="gNoun">leads</span> you want each month</label><input id="gWant" type="number" min="0" step="1" inputmode="numeric" placeholder="30"></div>
+          <div class="frow">
+            <div class="field"><label for="gCpc">Average cost per click</label><input id="gCpc" type="number" min="0" step="any" inputmode="decimal" placeholder="3.00"></div>
+            <div class="field"><label for="gCr">Conversion rate %</label><input id="gCr" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="5"></div>
+          </div>
+          <p class="tk-hint" style="margin:-4px 0 18px">Use the last 90 days of your own account if you have them. For a new account, take cost per click from Keyword Planner and treat the result as a first estimate.</p>
+
+          <label class="tk-tog"><input type="checkbox" id="gValOn"><span>Also show what the budget could return</span></label>
+          <div id="gValWrap" hidden>
+            <div class="frow">
+              <div class="field" id="gCloseWrap"><label for="gClose">Leads that become customers %</label><input id="gClose" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="30"></div>
+              <div class="field"><label for="gVal" id="gValLbl">Average value of a customer</label><input id="gVal" type="number" min="0" step="any" inputmode="decimal" placeholder="400"></div>
+            </div>
+          </div>
+          <div class="tk-row" style="margin-top:4px"><button type="button" class="btn ghost sm" id="gClear">Clear</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="fcard">
+        <div class="fcard-head"><b>Monthly budget</b><span>What it takes</span></div>
+        <div class="tk-body" aria-live="polite">
+          <p class="tk-big" id="oMonth">&ndash;</p>
+          <p class="tk-sub" id="oMonthSub">Enter your goal, cost per click and conversion rate.</p>
+          <p class="tk-err" id="oErr" hidden></p>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 style="font-size:1.05rem;margin-bottom:12px">The detail</h2>
+        <dl>
+          <dt class="first">Daily budget to set in Google Ads</dt><dd id="oDay">&ndash;</dd>
+          <dt>Clicks needed per month</dt><dd id="oClicks">&ndash;</dd>
+          <dt>Cost per <span class="gNoun1">lead</span></dt><dd id="oCpa">&ndash;</dd>
+          <dt id="oRetLbl">Estimated return</dt><dd id="oRet">Tick the box on the left to add customer value.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="fcard" style="margin-top:20px">
+    <div class="fcard-head"><b>If your numbers are better or worse</b><span>Monthly budget</span></div>
+    <div class="tk-body">
+      <p class="tk-sub" style="margin:0 0 12px">The budget for the same goal at different conversion rates (across) and costs per click (down). Your own figures are highlighted.</p>
+      <div class="tk-scroll">
+        <table class="tk-table" id="oGrid">
+          <tbody><tr><td class="l" style="color:var(--slate)">Fill in your numbers to see the table.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap narrow pt0">
+  <div class="prose">
+    <h2>The Google Ads budget formula</h2>
+    <p>Monthly budget = conversions wanted &divide; conversion rate &times; cost per click. The conversion rate tells you how many clicks it takes to get one lead or sale, and the cost per click tells you what those clicks cost. Divide the monthly figure by 30.4 for the daily budget, because Google Ads works in average days rather than calendar months.</p>
+
+    <h2>Why the first estimate is usually optimistic</h2>
+    <ul>
+      <li><strong>Costs rise as you spend more.</strong> The first clicks are the most relevant and often the cheapest. Extra budget reaches less likely buyers.</li>
+      <li><strong>Conversion rates assume tracking is right.</strong> If the account counts page views or duplicate form fills as conversions, the rate is inflated and the budget will fall short.</li>
+      <li><strong>New accounts take time.</strong> The first weeks are spent learning which searches work, so results per dollar are usually lower at the start.</li>
+    </ul>
+
+    <h2>Is the budget worth it?</h2>
+    <p>Tick the return option to compare the budget with what the leads or sales are worth. For local service businesses, the <a href="/tools/cost-per-booked-job-calculator/">cost per booked job calculator</a> goes a step further and follows leads through to booked work. For online shops, the <a href="/tools/break-even-roas-calculator/">break-even ROAS calculator</a> shows the return you need to make a profit. There is more on setting a sensible first budget in <a href="/learn/how-much-should-you-spend-on-google-ads/">how much should you spend on Google Ads</a>, and if the numbers do not add up in your own account, the <a href="/google-ads-audit/">$100 account analysis</a> starts with tracking.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'df_budget_v1';
+  var IDS = ['gCur','gType','gWant','gCpc','gCr','gClose','gVal'];
+  var DAYS = 30.4;
+
+  function v(id){ var x = parseFloat($(id).value); return isFinite(x) && x >= 0 ? x : 0; }
+  function has(id){ return $(id).value.trim() !== ''; }
+  function cur(n, dp){
+    var d = dp === undefined ? (n >= 1000 ? 0 : 2) : dp;
+    try { return new Intl.NumberFormat(undefined, { style:'currency', currency:$('gCur').value, minimumFractionDigits:d, maximumFractionDigits:d }).format(n); }
+    catch(e){ return n.toFixed(d); }
+  }
+  function num(n){ return Math.round(n).toLocaleString(); }
+  function dash(){ ['oDay','oClicks','oCpa'].forEach(function(id){ $(id).textContent = '\u2013'; }); }
+
+  function calc(){
+    var lead = $('gType').value === 'lead';
+    [].forEach.call(document.querySelectorAll('.gNoun'), function(e){ e.textContent = lead ? 'leads' : 'sales'; });
+    [].forEach.call(document.querySelectorAll('.gNoun1'), function(e){ e.textContent = lead ? 'lead' : 'sale'; });
+    $('gValWrap').hidden = !$('gValOn').checked;
+    $('gCloseWrap').hidden = !lead;
+    $('gValLbl').textContent = lead ? 'Average value of a customer' : 'Average order value';
+    var err = $('oErr'); err.hidden = true;
+
+    if (!(has('gWant') && has('gCpc') && has('gCr')) || v('gWant') === 0){
+      $('oMonth').textContent = '\u2013';
+      $('oMonthSub').textContent = 'Enter your goal, cost per click and conversion rate.';
+      dash(); $('oRet').textContent = $('gValOn').checked ? 'Enter your goal first.' : 'Tick the box on the left to add customer value.';
+      $('oGrid').innerHTML = '<tbody><tr><td class="l" style="color:var(--slate)">Fill in your numbers to see the table.</td></tr></tbody>';
+      save(); return;
+    }
+    var want = v('gWant'), cpc = v('gCpc'), cr = v('gCr') / 100;
+    if (cr <= 0 || cr > 1 || cpc <= 0){
+      $('oMonth').textContent = '\u2013'; $('oMonthSub').textContent = '';
+      err.textContent = cr > 1 ? 'A conversion rate cannot be above 100%.' : 'Cost per click and conversion rate need to be above zero.';
+      err.hidden = false; dash(); save(); return;
+    }
+
+    var clicks = want / cr, month = clicks * cpc, day = month / DAYS, cpa = cpc / cr;
+    $('oMonth').textContent = cur(month);
+    $('oMonthSub').textContent = 'For ' + num(want) + ' ' + (lead ? 'leads' : 'sales') + ' a month at ' + cur(cpc, 2) + ' a click and a ' + (cr * 100).toLocaleString(undefined,{maximumFractionDigits:2}) + '% conversion rate.';
+    $('oDay').textContent = cur(day, 2);
+    $('oClicks').textContent = num(clicks);
+    $('oCpa').textContent = cur(cpa, 2);
+
+    if (!$('gValOn').checked){ $('oRet').textContent = 'Tick the box on the left to add customer value.'; }
+    else if (!has('gVal') || (lead && !has('gClose'))){ $('oRet').textContent = lead ? 'Add your close rate and customer value.' : 'Add your average order value.'; }
+    else {
+      var customers = lead ? want * v('gClose') / 100 : want;
+      var rev = customers * v('gVal'), back = rev / month, net = rev - month;
+      $('oRet').innerHTML = '<span class="tk-tag ' + (net >= 0 ? 'good' : 'bad') + '">' + back.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) + ' in revenue for every 1 spent</span><small style="margin-top:6px">' +
+        num(customers) + ' customer' + (Math.round(customers) === 1 ? '' : 's') + ' worth ' + cur(rev) + ' in revenue, ' + (net >= 0 ? cur(net) + ' more than' : cur(-net) + ' less than') + ' the ad spend. This is revenue, not profit: your own costs still come out of it.</small>';
+    }
+
+    /* grid: costs per click down, conversion rates across */
+    var crs = [cr * 0.5, cr * 0.75, cr, cr * 1.25, cr * 1.5], cpcs = [cpc * 0.75, cpc, cpc * 1.25, cpc * 1.5];
+    var head = '<thead><tr><th scope="col" class="l">Cost per click</th>' + crs.map(function(c){ return '<th scope="col">' + (c * 100).toLocaleString(undefined,{maximumFractionDigits:2}) + '%</th>'; }).join('') + '</tr></thead>';
+    var body = '<tbody>' + cpcs.map(function(p, i){
+      return '<tr' + (i === 1 ? ' class="sel"' : '') + '><th scope="row" class="l">' + cur(p, 2) + '</th>' + crs.map(function(c, j){
+        var b = want / c * p;
+        return '<td' + (i === 1 && j === 2 ? ' style="font-weight:800"' : '') + '>' + cur(b, 0) + '</td>';
+      }).join('') + '</tr>';
+    }).join('') + '</tbody>';
+    $('oGrid').innerHTML = head + body;
+    save();
+  }
+
+  $('gClear').addEventListener('click', function(){
+    IDS.forEach(function(id){ if (id !== 'gCur' && id !== 'gType') $(id).value = ''; });
+    $('gValOn').checked = false;
+    try { localStorage.removeItem(KEY); } catch(e){}
+    calc();
+  });
+  function save(){ try { var d = { valOn: $('gValOn').checked }; IDS.forEach(function(id){ d[id] = $(id).value; }); localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} }
+  function restore(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d) return;
+      IDS.forEach(function(id){ if (typeof d[id] === 'string' && d[id] !== '') $(id).value = d[id]; });
+      $('gValOn').checked = !!d.valOn;
+    } catch(e){}
+  }
+  IDS.forEach(function(id){ $(id).addEventListener($(id).tagName === 'SELECT' ? 'change' : 'input', calc); });
+  $('gValOn').addEventListener('change', calc);
+  restore(); calc();
+})();
+</script>
