@@ -75,6 +75,190 @@
   .tk-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .tk-err{color:var(--red);font-weight:700;font-size:.88rem;margin-top:8px}
 
+  /* Themed dropdown. The real <select> stays in the page underneath, so every tool
+     still reads its value, saves it and gets its change event. */
+  .tk-dd{position:relative;display:block}
+  .tk-dd.clc-dd{margin-bottom:12px}
+  .tk-dd > select{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+  .tk-dd-btn{display:block;width:100%;text-align:left;font-family:var(--font);font-size:.94rem;font-weight:500;
+    padding:12px 42px 12px 14px;border:var(--bd);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;position:relative;
+    transition:box-shadow .14s var(--ease),background .2s}
+  .tk-dd-btn::after{content:"";position:absolute;right:16px;top:50%;margin-top:-2px;width:0;height:0;
+    border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--ink);
+    transition:transform .2s var(--ease)}
+  .tk-dd-btn:hover{background:var(--purple-xl)}
+  .tk-dd-btn:focus{outline:none}
+  .tk-dd-btn:focus-visible,.tk-dd-btn[aria-expanded="true"]{background:var(--bg-2);box-shadow:3px 3px 0 var(--purple)}
+  .tk-dd-btn[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .tk-dd-list{position:fixed;z-index:150;list-style:none;margin:0;padding:6px;background:var(--bg-2);
+    border:var(--bd);border-radius:var(--r-sm);box-shadow:var(--sh);max-height:288px;overflow-y:auto;
+    font-family:var(--font);font-size:.92rem;animation:tkDd .14s var(--ease)}
+  .tk-dd-list:focus{outline:none}
+  .tk-dd-list li{position:relative;padding:10px 12px 10px 34px;border-radius:7px;font-weight:600;color:var(--ink);
+    cursor:pointer;line-height:1.35;user-select:none}
+  .tk-dd-list li + li{margin-top:2px}
+  .tk-dd-list li.act{background:var(--purple-l)}
+  .tk-dd-list li[aria-selected="true"]{background:var(--purple);color:#fff}
+  .tk-dd-list li[aria-selected="true"].act{background:var(--purple-d)}
+  .tk-dd-list li[aria-selected="true"]::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:5px;
+    margin-top:-4px;border-left:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg)}
+  .tk-dd-list li[aria-disabled="true"]{opacity:.45;cursor:default}
+  @keyframes tkDd{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){ .tk-dd-btn,.tk-dd-btn::after{transition:none} .tk-dd-list{animation:none} }
+
   @media(max-width:1000px){ .tk .split{grid-template-columns:1fr} }
   @media(prefers-reduced-motion:reduce){ .tk-area,.tk-sel{transition:none} }
 </style>
+
+<script>
+/* Themed dropdowns for tool pages. Replaces the browser's own option list, which
+   cannot be styled, with one that matches the site. Keyboard: arrows, Home, End,
+   Enter, Space, Escape, Tab and type-to-jump, as on a normal select. */
+(function(){
+  'use strict';
+  var open = null, uid = 0;
+
+  function label(sel){ var o = sel.options[sel.selectedIndex]; return o ? o.text : ''; }
+  function syncAll(){ [].forEach.call(document.querySelectorAll('.tk-dd'), function(w){ w._sync && w._sync(); }); }
+
+  function enhance(sel){
+    if (sel._tkdd || sel.multiple || (sel.size && sel.size > 1)) return;
+    sel._tkdd = true;
+    var id = sel.id || ('tkdd' + (++uid));
+    var wrap = document.createElement('span');
+    wrap.className = 'tk-dd' + (sel.classList.contains('clc-sel') ? ' clc-dd' : '');
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'tk-dd-btn'; btn.id = id + '-dd';
+    btn.setAttribute('aria-haspopup', 'listbox'); btn.setAttribute('aria-expanded', 'false');
+    var lab = sel.id && document.querySelector('label[for="' + sel.id + '"]');
+    if (lab){ if (!lab.id) lab.id = id + '-lbl'; btn.setAttribute('aria-labelledby', lab.id + ' ' + btn.id); }
+    sel.parentNode.insertBefore(wrap, sel);
+    wrap.appendChild(btn); wrap.appendChild(sel);
+    sel.tabIndex = -1; sel.setAttribute('aria-hidden', 'true');
+    wrap._sync = function(){ var t = label(sel); if (btn.textContent !== t) btn.textContent = t; };
+    wrap._sync();
+    sel.addEventListener('change', wrap._sync);
+    if (lab) lab.addEventListener('click', function(e){ e.preventDefault(); btn.focus(); });
+
+    btn.addEventListener('click', function(){ open && open.sel === sel ? close(true) : show(sel, btn); });
+    btn.addEventListener('keydown', function(e){
+      if (['ArrowDown','ArrowUp','Enter',' '].indexOf(e.key) > -1){ e.preventDefault(); show(sel, btn); }
+    });
+  }
+
+  function show(sel, btn){
+    close(false);
+    var list = document.createElement('ul');
+    list.className = 'tk-dd-list'; list.setAttribute('role', 'listbox'); list.tabIndex = -1;
+    list.id = btn.id + '-list';
+    var lab = btn.getAttribute('aria-labelledby'); if (lab) list.setAttribute('aria-labelledby', lab.split(' ')[0]);
+    [].forEach.call(sel.options, function(o, i){
+      var li = document.createElement('li');
+      li.id = list.id + '-' + i; li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', i === sel.selectedIndex ? 'true' : 'false');
+      if (o.disabled) li.setAttribute('aria-disabled', 'true');
+      li.textContent = o.text; li.dataset.i = i;
+      list.appendChild(li);
+    });
+    document.body.appendChild(list);
+    btn.setAttribute('aria-expanded', 'true'); btn.setAttribute('aria-controls', list.id);
+    open = { sel: sel, btn: btn, list: list, act: Math.max(sel.selectedIndex, 0), typed: '', t: 0 };
+    place(); activate(open.act, true);
+    list.addEventListener('mousemove', function(e){ var li = e.target.closest('li'); if (li) activate(+li.dataset.i, false); });
+    list.addEventListener('mousedown', function(e){ e.preventDefault(); });
+    list.addEventListener('click', function(e){ var li = e.target.closest('li'); if (li) choose(+li.dataset.i); });
+    list.addEventListener('keydown', keys);
+    list.focus({ preventScroll: true });
+  }
+
+  function place(){
+    if (!open) return;
+    var r = open.btn.getBoundingClientRect(), l = open.list, vw = document.documentElement.clientWidth, vh = window.innerHeight;
+    var w = Math.min(Math.max(r.width, 240), vw - 24);
+    l.style.width = w + 'px';
+    l.style.left = Math.max(12, Math.min(r.left, vw - w - 12)) + 'px';
+    var below = vh - r.bottom - 12, above = r.top - 12, h = Math.min(l.scrollHeight, 288);
+    if (below < h && above > below){ l.style.top = ''; l.style.bottom = (vh - r.top + 6) + 'px'; l.style.maxHeight = Math.min(288, above - 6) + 'px'; }
+    else { l.style.bottom = ''; l.style.top = (r.bottom + 6) + 'px'; l.style.maxHeight = Math.min(288, Math.max(below - 6, 120)) + 'px'; }
+    if (r.bottom < 0 || r.top > vh) close(false);
+  }
+
+  function activate(i, scroll){
+    var items = open.list.children; if (!items.length) return;
+    i = Math.max(0, Math.min(items.length - 1, i));
+    [].forEach.call(items, function(li, n){ li.classList.toggle('act', n === i); });
+    open.act = i; open.list.setAttribute('aria-activedescendant', items[i].id);
+    if (scroll) items[i].scrollIntoView({ block: 'nearest' });
+  }
+
+  function step(dir){
+    var items = open.list.children, i = open.act;
+    do { i += dir; } while (items[i] && items[i].getAttribute('aria-disabled') === 'true');
+    if (items[i]) activate(i, true);
+  }
+
+  function choose(i){
+    var sel = open.sel, o = sel.options[i];
+    if (!o || o.disabled) return;
+    var changed = sel.selectedIndex !== i;
+    sel.selectedIndex = i;
+    close(true);
+    if (changed){
+      sel.dispatchEvent(new Event('input', { bubbles: true }));
+      sel.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+
+  function keys(e){
+    var n = open.list.children.length;
+    switch (e.key){
+      case 'ArrowDown': e.preventDefault(); step(1); break;
+      case 'ArrowUp': e.preventDefault(); step(-1); break;
+      case 'Home': e.preventDefault(); activate(0, true); break;
+      case 'End': e.preventDefault(); activate(n - 1, true); break;
+      case 'PageDown': e.preventDefault(); activate(open.act + 5, true); break;
+      case 'PageUp': e.preventDefault(); activate(open.act - 5, true); break;
+      case 'Enter': case ' ': e.preventDefault(); choose(open.act); break;
+      case 'Escape': e.preventDefault(); close(true); break;
+      case 'Tab': choose(open.act); break;
+      default:
+        if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey){
+          clearTimeout(open.t); open.typed += e.key.toLowerCase();
+          open.t = setTimeout(function(){ if (open) open.typed = ''; }, 600);
+          var items = [].slice.call(open.list.children);
+          var hit = items.filter(function(li){ return li.textContent.toLowerCase().indexOf(open.typed) === 0; })[0];
+          if (hit) activate(+hit.dataset.i, true);
+        }
+    }
+  }
+
+  function close(refocus){
+    if (!open) return;
+    var o = open; open = null;
+    o.btn.setAttribute('aria-expanded', 'false'); o.btn.removeAttribute('aria-controls');
+    o.list.remove();
+    if (refocus) o.btn.focus();
+  }
+
+  document.addEventListener('mousedown', function(e){
+    if (open && !open.list.contains(e.target) && !open.btn.contains(e.target)) close(false);
+  });
+  window.addEventListener('scroll', place, { passive: true, capture: true });
+  window.addEventListener('resize', function(){ close(false); });
+  /* tools sometimes set a select's value in code (restore, clear, presets): keep labels in step */
+  ['input','change','click','keyup'].forEach(function(ev){
+    document.addEventListener(ev, function(){ requestAnimationFrame(syncAll); }, true);
+  });
+
+  function init(){
+    [].forEach.call(document.querySelectorAll('.tk select'), enhance);
+    [].forEach.call(document.querySelectorAll('.tk'), function(root){
+      new MutationObserver(function(){
+        [].forEach.call(root.querySelectorAll('select'), enhance); syncAll();
+      }).observe(root, { childList: true, subtree: true });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
