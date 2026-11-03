@@ -122,17 +122,19 @@ ogtype: article
           <li><a href="/google-ads-for-local-services/">Google Ads for local services</a></li>
         </ul>
         {%- set toolFor = {
-          "Search": ["Negative keyword generator", "/tools/negative-keyword-generator/"],
-          "Shopping": ["Break-even ROAS calculator", "/tools/break-even-roas-calculator/"],
-          "Performance Max": ["Break-even ROAS calculator", "/tools/break-even-roas-calculator/"],
-          "Tracking": ["UTM builder", "/tools/utm-builder/"],
-          "Local Services": ["Cost per booked job calculator", "/tools/cost-per-booked-job-calculator/"],
-          "Strategy": ["Budget calculator", "/tools/budget-calculator/"]
+          "Search": [["Negative keyword generator", "/tools/negative-keyword-generator/"], ["Keyword match type wrapper", "/tools/keyword-match-type-wrapper/"]],
+          "Shopping": [["Break-even ROAS calculator", "/tools/break-even-roas-calculator/"], ["Search terms n-gram analyser", "/tools/n-gram-analyser/"]],
+          "Performance Max": [["Break-even ROAS calculator", "/tools/break-even-roas-calculator/"], ["Character limits checker", "/tools/character-limits-checker/"]],
+          "Tracking": [["UTM builder", "/tools/utm-builder/"], ["Google Ads metrics calculator", "/tools/metrics-calculator/"]],
+          "Local Services": [["Cost per booked job calculator", "/tools/cost-per-booked-job-calculator/"], ["Budget calculator", "/tools/budget-calculator/"]],
+          "Strategy": [["Budget calculator", "/tools/budget-calculator/"], ["Google Ads metrics calculator", "/tools/metrics-calculator/"]]
         } %}
-        {%- set tf = toolFor[topic] or ["Google Ads metrics calculator", "/tools/metrics-calculator/"] %}
-        <h2>Free tool</h2>
+        {%- set tfs = toolFor[topic] or [["Google Ads metrics calculator", "/tools/metrics-calculator/"]] %}
+        <h2>Free tools</h2>
         <ul>
+          {%- for tf in tfs %}
           <li><a href="{{ tf[1] }}">{{ tf[0] }}</a></li>
+          {%- endfor %}
           <li><a href="/tools/">All free tools</a></li>
         </ul>
       </div>

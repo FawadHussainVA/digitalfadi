@@ -8,6 +8,13 @@ heading: "Keyword match type wrapper"
 standfirst: "Paste a keyword list and get it back cleaned, de-duplicated and wrapped in phrase or exact match, ready to paste into Google Ads or import with Google Ads Editor."
 title: "Keyword Match Type Wrapper for Google Ads | DigitalFadi"
 description: "Free keyword wrapper. Turn a plain keyword list into phrase match and exact match in one click, remove duplicates, and export for Google Ads Editor."
+reviewed: "2026-11-03"
+features:
+  - "Wraps keywords in broad, phrase and exact match"
+  - "Optional negative keywords with a minus sign"
+  - "Cleans up case, spacing, old symbols and duplicates"
+  - "Checks the 80 character and 10 word keyword limits"
+  - "Google Ads Editor CSV export with campaign and ad group"
 faqs:
   - q: "How do I write phrase match and exact match keywords?"
     a: "Put phrase match keywords in quotation marks, like \"emergency plumber\", and exact match keywords in square brackets, like [emergency plumber]. A keyword with no symbols is broad match. This tool adds the symbols to a whole list at once."
@@ -85,7 +92,7 @@ faqs:
     </ul>
 
     <h2>Keep the list tidy before you upload</h2>
-    <p>Google Ads limits a keyword to 80 characters and 10 words, and the checks above flag any that go over. Duplicates in the same ad group waste time in reporting, and the same keyword in several ad groups splits its data. If you are not sure which match type to use, <a href="/learn/google-ads-keyword-match-types-explained/">Google Ads match types explained</a> covers when each one makes sense, and the <a href="/tools/negative-keyword-generator/">negative keyword generator</a> builds the list of searches to block.</p>
+    <p>Google Ads limits a keyword to 80 characters and 10 words, and the checks above flag any that go over. Duplicates in the same ad group waste time in reporting, and the same keyword in several ad groups splits its data. If you are not sure which match type to use, <a href="/learn/google-ads-keyword-match-types-explained/">Google Ads match types explained</a> covers when each one makes sense, and the <a href="/tools/negative-keyword-generator/">negative keyword generator</a> builds the list of searches to block. Once the keywords are in, the <a href="/tools/character-limits-checker/">character limits checker</a> checks the ads that go with them.</p>
   </div>
 </section>
 
@@ -157,7 +164,8 @@ faqs:
   $('kCopy').addEventListener('click', function(){
     var btn = this, val = $('kResult').value;
     if (!val) return;
-    if (navigator.clipboard) navigator.clipboard.writeText(val).then(function(){ flash(btn, 'Copied'); }, function(){ $('kResult').select(); });
+    function legacy(){ $('kResult').select(); try { document.execCommand('copy'); flash(btn, 'Copied'); } catch(e){} }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(val).then(function(){ flash(btn, 'Copied'); }, legacy);
     else { $('kResult').select(); document.execCommand('copy'); flash(btn, 'Copied'); }
   });
   $('kCsv').addEventListener('click', function(){
@@ -168,8 +176,9 @@ faqs:
     }));
     var csv = data.map(function(r){ return r.map(function(c){ return '"' + String(c).replace(/"/g, '""') + '"'; }).join(','); }).join('\n');
     var a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' }));
-    a.download = 'keywords-match-types.csv'; a.click(); URL.revokeObjectURL(a.href);
+    a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type:'text/csv;charset=utf-8' }));
+    a.download = 'keywords-match-types.csv'; document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   });
   $('kClear').addEventListener('click', function(){
     TEXT.forEach(function(id){ $(id).value = ''; });

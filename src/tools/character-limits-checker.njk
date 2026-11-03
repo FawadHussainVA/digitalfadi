@@ -8,6 +8,13 @@ heading: "Google Ads character limits checker"
 standfirst: "Check headlines, long headlines, descriptions, sitelinks, callouts and snippets against Google's limits for each asset type, with live counts and a check on how many of each you have."
 title: "Google Ads Character Limits Checker | DigitalFadi"
 description: "Free Google Ads character limits checker for search ads, Performance Max, display ads, sitelinks, callouts and structured snippets, with live counts."
+reviewed: "2026-11-03"
+features:
+  - "Live character counts for responsive search ads, Performance Max and responsive display ads"
+  - "Sitelinks, callouts and structured snippets"
+  - "Counts double-width characters as two"
+  - "Minimum and maximum asset counts for each asset type"
+  - "Duplicate checks and the Performance Max short headline check"
 faqs:
   - q: "What are the Google Ads character limits?"
     a: "Headlines are 30 characters and descriptions 90 in search ads, Performance Max and responsive display ads. Long headlines are 90 characters, the business name 25, and display URL paths 15 each. Sitelink text is 25 characters with two description lines of 35, callouts are 25, and structured snippet values are 25."
@@ -72,7 +79,7 @@ faqs:
     <p>Limits are the same in every language, but characters in double-width scripts such as Chinese, Japanese and Korean count as two. Google changes asset requirements from time to time, so treat the help pages inside Google Ads as the final word.</p>
 
     <h2>Writing to the limit, not past it</h2>
-    <p>A headline that fits is not the same as a headline that works. Use the space for one clear point per asset, so any combination Google shows still makes sense. For responsive search ads, the <a href="/tools/ad-copy-builder/">ad copy builder</a> adds a live preview and duplicate checks, and <a href="/learn/how-to-write-google-ads-headlines/">how to write Google Ads headlines that actually get shown</a> covers what to put in each one. For Performance Max, <a href="/learn/performance-max-what-it-hides/">Performance Max: what it hides</a> explains why asset groups need the same care as ad groups.</p>
+    <p>A headline that fits is not the same as a headline that works. Use the space for one clear point per asset, so any combination Google shows still makes sense. For responsive search ads, the <a href="/tools/ad-copy-builder/">ad copy builder</a> adds a live preview and duplicate checks, and <a href="/learn/how-to-write-google-ads-headlines/">how to write Google Ads headlines that actually get shown</a> covers what to put in each one. For Performance Max, <a href="/learn/performance-max-what-it-hides/">Performance Max: what it hides</a> explains why asset groups need the same care as ad groups. Building the keyword list for a new search campaign? The <a href="/tools/keyword-match-type-wrapper/">keyword match type wrapper</a> formats it for Google Ads Editor.</p>
   </div>
 </section>
 
@@ -116,7 +123,7 @@ faqs:
       ['h','Headlines',30,3,15,3,'Short and specific'],
       ['lh','Long headlines',90,1,5,1,'A full sentence that works on its own'],
       ['d','Descriptions',90,2,5,2,'What you offer and why choose you'],
-      ['b','Business name',25,1,1,1,'Your business name']
+      ['b','Business name',25,1,1,1,'Must match your domain or verified name']
     ]},
     display: { name:'Responsive display ad', fields:[
       ['h','Headlines',30,1,5,1,'Short and specific'],
@@ -296,7 +303,9 @@ faqs:
       });
     }
     var btn = this, text = lines.join('\n');
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function(){ var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = o; }, 1400); });
+    function done(){ var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = o; }, 1400); }
+    function legacy(){ var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch(e){} ta.remove(); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, legacy); else legacy();
   });
   $('cClear').addEventListener('click', function(){ state[cur] = blank(cur); save(); render(); });
 

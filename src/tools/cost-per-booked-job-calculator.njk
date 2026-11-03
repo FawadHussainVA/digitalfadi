@@ -8,6 +8,14 @@ heading: "Cost per booked job calculator"
 standfirst: "Follow your Google Ads leads past the click to the jobs that actually get booked, and see where the enquiries are being lost between the phone ringing and the work being won."
 title: "Cost per Booked Job Calculator for Google Ads | DigitalFadi"
 description: "Free cost per booked job calculator for trades and local services. Turn ad spend and leads into the real cost of each job won, and find where leads are lost."
+reviewed: "2026-11-03"
+features:
+  - "Calculates cost per booked job from ad spend, leads, answer rate and booking rate"
+  - "Shows cost per lead next to cost per job"
+  - "Lead funnel showing where enquiries are lost"
+  - "Profit after ad spend from job value and margin"
+  - "What-if scenario for answering more calls"
+  - "Five currencies"
 faqs:
   - q: "What is cost per booked job?"
     a: "It is your ad spend divided by the number of jobs that were actually booked from those ads. Cost per lead counts every call and form, including the ones nobody answered and the ones that never became work. Cost per booked job only counts the leads that turned into paying customers, so it is the figure that tells you whether the advertising pays."
@@ -169,7 +177,7 @@ faqs:
     if (jobs <= 0){
       $('oJob').textContent = 'No jobs';
       $('oJobSub').textContent = '';
-      err.textContent = 'With these figures no leads turn into jobs, so every ' + cur(1000, 0) + ' of ad spend is lost. Start with the stage that is at zero.';
+      err.textContent = 'With these figures no leads turn into jobs, so all ' + cur(spend, 0) + ' of ad spend produced no work. Start with the stage that is at zero.';
       err.hidden = false;
     } else {
       var cpj = spend / jobs;

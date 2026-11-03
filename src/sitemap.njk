@@ -9,6 +9,8 @@ eleventyExcludeFromCollections: true
     <loc>{{ site.url }}{{ p.url }}</loc>
     {%- if p.data.tags and "posts" in p.data.tags %}
     <lastmod>{{ (p.data.updated or p.date) | iso }}</lastmod>
+    {%- elif p.data.reviewed %}
+    <lastmod>{{ p.data.reviewed | iso }}</lastmod>
     {%- endif %}
   </url>
   {%- endfor %}

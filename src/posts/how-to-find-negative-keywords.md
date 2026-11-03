@@ -76,4 +76,4 @@ Negatives also steer traffic. Adding emergency as a negative on a planned-mainte
 
 ## How often to check
 
-Weekly while a campaign is new, because the first weeks surface the most waste. Monthly once it settles. If wasted spend keeps returning however many negatives you add, the cause is usually match types or account structure rather than missing negatives, which is covered in [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) and is part of every [Google Ads audit](/google-ads-audit/).
+Weekly while a campaign is new, because the first weeks surface the most waste. Monthly once it settles. If wasted spend keeps returning however many negatives you add, the cause is usually match types or account structure rather than missing negatives, which is covered in [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) and is part of every [Google Ads audit](/google-ads-audit/). To add the minus sign and match type symbols to a whole list at once, use the [keyword match type wrapper](/tools/keyword-match-type-wrapper/).
