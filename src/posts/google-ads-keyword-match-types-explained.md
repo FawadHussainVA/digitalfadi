@@ -88,3 +88,13 @@ Read it weekly while a campaign is new. Add the wrong searches as negatives, and
 To turn a plain keyword list into phrase and exact match in one go, use the free [keyword match type wrapper](/tools/keyword-match-type-wrapper/).
 
 If cost per click has climbed since match types were widened, [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) covers that pattern, and a [Google Ads audit](/google-ads-audit/) checks match types against the search terms they are actually buying.
+
+## Frequently asked questions
+
+### Which match type should a new account use?
+
+Most new accounts start with phrase and exact match, because they keep ads close to what you sell. Add broad match later, once conversion tracking is reliable and you review the search terms report regularly to catch unrelated searches.
+
+### Does exact match mean the search must be identical?
+
+No. Exact match includes close variants such as misspellings, plurals and reordered words that keep the same meaning. It still excludes searches with a different intent, so it is narrow rather than literal.

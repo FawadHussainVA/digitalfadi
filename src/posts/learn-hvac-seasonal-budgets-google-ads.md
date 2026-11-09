@@ -38,3 +38,13 @@ Set up alerts for sudden changes in spend or cost per click, so you learn about 
 Quiet months are a good time to tidy the account. Review the search terms report, update negative keywords, check call tracking and refresh ad copy. Also look at maintenance campaigns, because booked tune-ups in quiet months fill the calendar for the busy season ahead.
 
 If you want help setting seasonal budgets against your actual booking data, a [free Google Ads audit](/google-ads-audit/) reviews spend by month and service, and it shows where the budget should move before the next peak.
+
+## Frequently asked questions
+
+### Should an HVAC company change budgets across the seasons?
+
+Yes. Demand for cooling and heating rises and falls with the weather, so budgets and bids should follow it. Plan higher spend for the first hot and cold spells, and use quieter seasons for maintenance offers.
+
+### Should I use a seasonality adjustment for HVAC?
+
+Only for short, sharp events of about one to seven days, where you expect a big change in conversion rate. Google advises against using it for longer periods, so ordinary seasonal changes are better handled by Smart Bidding and your budgets.

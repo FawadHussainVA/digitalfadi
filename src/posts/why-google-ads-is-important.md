@@ -70,3 +70,13 @@ The platform is the same in both cases. The outcome is not.
 If you already spend on Google Ads, start with an [account analysis](/#pricing) rather than a rebuild. Most accounts do not need to be started again; they need the tracking verified, the waste identified and the structure tidied, in that order.
 
 If you have not started yet, work out what a customer is worth to you first. That number decides whether this channel makes sense, what you can afford to bid, and what success looks like before any money is spent. [Send me the account](/#contact) and I will tell you which of those applies.
+
+## Frequently asked questions
+
+### Is Google Ads worth it for a small business?
+
+It can be, because people searching for a service are already close to buying. Its value depends on your margin, conversion rate and how well tracking works, so start with a modest budget and judge cost per enquiry or sale.
+
+### What makes Google Ads different from other advertising?
+
+It reaches people when they are searching for what you sell, rather than interrupting them. That intent is why it can produce enquiries quickly, but it also means competition for valuable searches is high.

@@ -76,3 +76,13 @@ Sort the keywords by cost, then work down the list fixing the components on the 
 ## In short
 
 Quality Score is a diagnosis, not a goal. Read the three components, fix the weakest one on the keywords that spend the most, and the lower cost per click follows. A [Google Ads audit](/google-ads-audit/) includes this review alongside tracking and search terms, so the fixes go where the budget actually is.
+
+## Frequently asked questions
+
+### What is a good Quality Score?
+
+A score of 7 or above is generally considered good. Quality Score is shown per keyword on a scale of 1 to 10. It is a diagnostic guide rather than a direct input to bidding, so focus on the three parts it measures.
+
+### What are the three parts of Quality Score?
+
+Expected click-through rate, ad relevance and landing page experience. Improve them by matching ads to the intent of the keyword and sending traffic to a page that answers that search clearly and loads quickly on mobile.

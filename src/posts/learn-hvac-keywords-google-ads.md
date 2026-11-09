@@ -37,3 +37,13 @@ Add these to your negative keyword list at campaign or account level, and review
 Your own company name should be in its own campaign, with a low bid, because you want to appear for people already looking for you. Competitor names are a more delicate choice. Check the current advertising policies before using a competitor's trademark in your ad text, and be ready to justify the spend if your conversion data does not support it.
 
 If you want a clear view of which HVAC keywords are costing you money and which are producing jobs, a [free Google Ads audit](/google-ads-audit/) reviews your keyword list, search terms and call data together.
+
+## Frequently asked questions
+
+### Should an HVAC company bid on "HVAC" alone?
+
+Usually not. A single broad term attracts many searches from people who will never buy, such as job seekers and DIY readers. Build groups around specific services, such as AC repair or furnace installation, and add negatives for the rest.
+
+### Which HVAC keywords usually convert best?
+
+Terms that name a service and a need, such as emergency AC repair or heat pump installation, usually show stronger intent. Test them against your own conversion data, because results vary by area and season.

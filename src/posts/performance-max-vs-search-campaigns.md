@@ -73,3 +73,13 @@ If you are unsure which suits your account, test rather than assume:
 - **Small budget:** Search, focused on the highest-intent keywords
 
 If your account already runs both and you cannot tell which is earning its budget, that is exactly what a [Google Ads audit](/google-ads-audit/) separates, starting with whether the conversions behind each number are real. For online shops, the [e-commerce service page](/google-ads-for-ecommerce/) covers how I structure Shopping, Performance Max and Search together.
+
+## Frequently asked questions
+
+### When is Search better than Performance Max?
+
+Search suits businesses that need control over which searches they appear for and what their ads say. It is also easier to see which searches produced results, which matters for lead generation and most service businesses.
+
+### When is Performance Max a good choice?
+
+It suits businesses with reliable conversion data that want reach across Google's channels, and that run Shopping or have strong creative assets. Review its search term and channel reports regularly, because control is more limited.

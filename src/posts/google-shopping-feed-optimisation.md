@@ -97,3 +97,13 @@ You do not need a developer for most of this. Merchant Center supports supplemen
 A feed is never finished. Prices change, stock runs out, new products arrive with thin data, and new disapprovals appear. Check Merchant Center diagnostics weekly, and review which products receive impressions but few clicks: that combination usually points to a title, image or price problem rather than a bid problem.
 
 If your Shopping or Performance Max results have stalled and you are not sure whether the feed, the bids or the tracking is the cause, a [Google Ads audit](/google-ads-audit/) checks all three. The [e-commerce service page](/google-ads-for-ecommerce/) explains how I manage feeds alongside Shopping and Performance Max campaigns.
+
+## Frequently asked questions
+
+### What product data matters most in a Shopping feed?
+
+The product title, price, availability, GTIN or brand, product type and main image matter most. Complete and accurate fields help Google match products to relevant searches. Prices and availability must match your website, or products can be disapproved.
+
+### How often should the feed be updated?
+
+Keep prices and stock levels current at least daily, and more often if they change frequently. A feed showing out-of-date prices is a common reason for disapproved products and wasted clicks.

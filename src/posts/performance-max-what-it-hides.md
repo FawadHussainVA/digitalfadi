@@ -81,3 +81,13 @@ Three questions, all answerable:
 If you want this checked properly in your own account, that is part of a [Google Ads audit](/google-ads-audit/), which looks at brand exclusions and the channel breakdown before anything else. Building a new asset group? The [character limits checker](/tools/character-limits-checker/) checks headlines, long headlines and descriptions against the Performance Max limits, including the short headline Google asks for.
 
 The brand question has its own article: [should you bid on your own brand name](/learn/should-you-bid-on-your-own-brand-name/).
+
+## Frequently asked questions
+
+### Can I see where Performance Max ads are shown?
+
+Yes, in the Insights and reports section, through the channel and search term reports. They show the channels and searches that produced results, though not every detail of each impression. Review them regularly to catch unwanted placements.
+
+### How can I limit wasted spend in Performance Max?
+
+Use account-level negative keywords and brand exclusions, review the search term reports, and make sure conversion tracking counts real enquiries, so the campaign optimises towards useful outcomes.

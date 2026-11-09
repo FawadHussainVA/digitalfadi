@@ -82,3 +82,13 @@ The wider picture is in [why your Google Shopping campaign is losing money](/lea
 ## Getting the feed looked at
 
 Feed work is part of how I run retail accounts. See [Google Ads for e-commerce](/google-ads-for-ecommerce/), or start with a [$100 account analysis](/google-ads-audit/) that checks the feed, the tracking and the structure before anything is changed.
+
+## Frequently asked questions
+
+### What should a Google Shopping product title include?
+
+Include the brand, the product type and the most important attributes, such as size, colour or material, in the order a shopper would search for them. Keep the title accurate and specific, and avoid keyword stuffing, which can get products disapproved.
+
+### Can I use the manufacturer's title?
+
+You can, but manufacturer titles are often vague or contain only product codes. Rewriting the title to match how customers search usually improves which searches the product appears for.

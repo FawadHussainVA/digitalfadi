@@ -40,3 +40,13 @@ Some accounts add so many negatives that they block legitimate traffic. A campai
 ## Where to start
 
 If your account has not had a search terms review in several months, that is the highest-value job to do first. A [free Google Ads audit](/google-ads-audit/) includes a search terms review, and it shows which negatives would remove the most wasted spend from an HVAC account.
+
+## Frequently asked questions
+
+### Which negative keywords should an HVAC account start with?
+
+Start with job and training searches, DIY and parts searches, and searches for areas you do not serve. Add manufacturer or product searches for brands you do not service. Review the search terms report regularly, because new irrelevant searches appear over time.
+
+### Where do HVAC negative keywords come from?
+
+Mostly from the search terms report, which shows the exact phrases people typed before clicking. Group them by intent and add them as phrase or exact negatives, so you block the pattern rather than a single search.

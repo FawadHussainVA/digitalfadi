@@ -80,3 +80,13 @@ The fix is to tell Google which leads turned into customers, by importing that o
 Move to a more automated strategy when conversion tracking is verified and conversions arrive steadily. Change one campaign at a time, compare against a similar period before the change, and keep the old settings written down so you can go back.
 
 If you are not sure whether the account's conversions can be trusted, that is the first thing a [Google Ads audit](/google-ads-audit/) checks, before anything about bids.
+
+## Frequently asked questions
+
+### Which bid strategy suits a new account?
+
+Start with manual control or a simple clicks-based strategy while you gather reliable conversion data, then move to target CPA or target ROAS once there are enough conversions to learn from. Avoid automated targets set far from your real results.
+
+### When should I use target ROAS?
+
+When conversion values are accurate and vary by sale, as in e-commerce. Set the target from your break-even ROAS, not from a number you would like to hit.

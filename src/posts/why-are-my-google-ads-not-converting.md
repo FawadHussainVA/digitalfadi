@@ -76,3 +76,13 @@ Most accounts have a problem in the first three. Almost none have a bidding prob
 If you have worked through this and still cannot see it, that is what a [Google Ads audit](/google-ads-audit/) is for. I check tracking first, then the search terms, then the structure, and tell you which of the six it is.
 
 If you are not yet sure the channel suits the business at all, [why Google Ads matters and when it does not](/learn/why-google-ads-is-important/) covers that question first.
+
+## Frequently asked questions
+
+### What is the most common reason Google Ads is not converting?
+
+Tracking that does not match real results, such as a broken form, a call tracker recording the wrong calls, or a conversion firing on the wrong page. Check the conversion data against your own records before changing ads or bids.
+
+### Is the landing page the cause?
+
+Often, yes. If the page does not match the ad, loads slowly on mobile, or hides the next step such as the phone number or form, clicks will not turn into enquiries. Test the whole path the way a customer would.

@@ -39,3 +39,13 @@ Also check what the revenue figure includes. Returns, discounts and cancelled or
 Before you move a target, confirm that conversion tracking records the sales you care about, with the right values. A broken revenue value makes every ROAS number meaningless. If you are not sure whether the numbers can be trusted, a [$200 account analysis](/google-ads-audit/) looks at tracking, search terms and structure before any budget or target is changed.
 
 You can also work through your own margin with the [free Google Ads tools](/tools/). For the wider causes of poor results, see [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
+
+## Frequently asked questions
+
+### What is break-even ROAS?
+
+Break-even ROAS is the return on ad spend at which your advertising covers its own cost. It equals 100% divided by your gross margin, so a 40% margin needs a ROAS of 250% just to break even. Any ROAS below that loses money once product costs are counted.
+
+### Why can a 400% ROAS still lose money?
+
+A 400% return only covers ad spend if your gross margin is above 25%. Below that margin, the revenue left after product costs is smaller than the advertising spend, so every sale loses money. Shipping, returns and fees lower the margin further, so count them before setting a target.

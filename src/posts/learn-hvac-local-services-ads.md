@@ -36,3 +36,13 @@ Reviews are a major part of how Local Services Ads present a business. Ask recen
 Local Services Ads suit many HVAC companies, especially those with a clear local service area and the ability to answer calls quickly. They are worth testing alongside Search campaigns, with a clear way to compare cost per booked job. If your team cannot respond to leads promptly, or your service area is very wide, Search campaigns may give you more control.
 
 If you are considering Local Services Ads and want to see how they would fit with your existing Search account, a [free Google Ads audit](/google-ads-audit/) can review your current setup and suggest a sensible order of tests.
+
+## Frequently asked questions
+
+### Do HVAC companies pay per lead with Local Services Ads?
+
+Local Services Ads charge per lead rather than per click, but only leads that meet Google's criteria are charged. Check the current lead pricing and dispute rules in your account, as they vary by category and area.
+
+### Can HVAC companies run Local Services Ads and Search together?
+
+Yes, where both are available. They appear in different places on the results page, so measure them separately: lead outcomes for Local Services Ads, and conversions for Search.

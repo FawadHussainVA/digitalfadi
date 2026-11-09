@@ -80,3 +80,13 @@ Steps one to three usually account for most of the gap. Almost nobody starts the
 If you are spending and cannot tell which of these applies, a [Google Ads audit](/google-ads-audit/) checks the feed, the tracking and the structure in that order, for $100.
 
 My approach to ongoing retail work is on the [Google Ads for e-commerce](/google-ads-for-ecommerce/) page.
+
+## Frequently asked questions
+
+### Why is my Google Shopping campaign losing money?
+
+Common causes are a margin too low to cover the cost per click, a weak product feed, clicks on irrelevant searches, or conversion values that do not reflect profit. Check margin per product and feed quality before changing bids.
+
+### Should I stop Shopping ads on low-margin products?
+
+Possibly. Use custom labels to separate products by margin, and reduce bids or exclude products where the return after costs is negative.

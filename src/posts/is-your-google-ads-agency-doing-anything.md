@@ -76,3 +76,13 @@ Checking all six yourself is possible. Working out what the findings are worth i
 It is a $100 fee and no retainer attached. If the account is well run I will say so, which is worth knowing too.
 
 If you are earlier than that and simply cannot see why spend is not producing enquiries, [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/) works through the usual causes in order.
+
+## Frequently asked questions
+
+### What should I expect to see from a Google Ads manager each month?
+
+A clear report on the conversions that matter, such as enquiries or sales and their cost, with brand and non-brand results shown separately. You should also see a list of the changes made and the reason for each one.
+
+### What is a red flag in a Google Ads report?
+
+A report that shows only clicks, impressions and click-through rate, with no link to enquiries or sales, is a red flag. So is a manager who cannot explain what changed last month and why.

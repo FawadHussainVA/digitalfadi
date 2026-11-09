@@ -77,3 +77,13 @@ The point is not which answer you reach. It is that the answer comes from a test
 ## Getting it checked
 
 Separating brand and non-brand properly, then running the holdout, is part of what a [Google Ads audit](/google-ads-audit/) covers. I do it before judging anything else, because the blended number answers nothing.
+
+## Frequently asked questions
+
+### Is it worth paying for brand search clicks?
+
+Often yes, for three reasons: competitors may bid on your name, a paid ad can push rivals further down the page, and brand clicks tend to be cheaper. Measure brand and non-brand separately, because brand conversions can overstate the value of a campaign.
+
+### Do brand ads cost much?
+
+Usually less than non-brand ads, because your name matches your own searches more closely. The cost still depends on competition, so check cost per conversion rather than assuming it is cheap.

@@ -75,3 +75,13 @@ The free [ad copy builder](/tools/ad-copy-builder/) counts characters as you typ
 For Performance Max, display ads, sitelinks and callouts, the [character limits checker](/tools/character-limits-checker/) does the same job for every asset type.
 
 Good headlines also depend on the search behind them. If ads are showing for the wrong searches, the copy cannot fix it, which is where [negative keywords](/learn/how-to-find-negative-keywords/) come in. And if click-through rate is fine but cost per click keeps climbing, [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) covers the Quality Score side. For a full review of ads, keywords and tracking together, see the [Google Ads audit](/google-ads-audit/).
+
+## Frequently asked questions
+
+### How many headlines should a responsive search ad have?
+
+Write as many distinct headlines as you can, up to fifteen. Google tests combinations, so more unique headlines give it more to work with. Each headline should carry a different message, not a rewording of the same line.
+
+### Should I pin headlines?
+
+Only when a message is required, such as a legal line or a brand name in a set position. Pinning limits the combinations Google can test, so use it sparingly.

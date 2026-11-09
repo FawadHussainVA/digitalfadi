@@ -83,3 +83,13 @@ Ad spend is what Google charges for clicks. A management fee is what you pay who
 To turn a lead or sales goal into a monthly and daily figure using your own cost per click and conversion rate, try the free [Google Ads budget calculator](/tools/budget-calculator/).
 
 At DigitalFadi, ad spend is paid by you directly to Google from your own account, never through me. Management is a separate fee, listed on the [pricing section](/#pricing). If you are already spending and are not sure the budget is doing its job, a [Google Ads audit](/google-ads-audit/) starts with whether the conversions being counted are real, because every number in this article depends on that.
+
+## Frequently asked questions
+
+### What is a sensible starting budget?
+
+Start with enough daily budget to gather meaningful data: enough to reach the number of conversions you need in a month at your target cost per conversion. Work backwards from what a customer is worth to you, then adjust as real results arrive.
+
+### Does a higher budget always bring more customers?
+
+No. A budget increase helps only when the campaign is limited by budget and still profitable. Beyond that, extra spend tends to go on less relevant searches and lowers the return, so check cost per result before raising it.

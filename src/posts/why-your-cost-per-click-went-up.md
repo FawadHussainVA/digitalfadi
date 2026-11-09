@@ -80,3 +80,13 @@ Cost per click is not a business metric. You can halve it by bidding on worthles
 What matters is cost per lead or cost per sale. If cost per click rose and cost per lead held, nothing bad happened. If cost per click held and cost per lead rose, the problem is conversion rather than auction.
 
 A [Google Ads audit](/google-ads-audit/) separates the two and tells you which one you have. If the account is not producing enquiries at all, start with [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
+
+## Frequently asked questions
+
+### Why did my Google Ads cost per click increase?
+
+Usually because competition for your keywords rose, your Quality Score fell, or automated bidding pushed bids up to win better opportunities. Check competitors, Quality Score and search terms before lowering bids.
+
+### Should I lower bids when cost per click rises?
+
+Not automatically. Lower bids can cut visits and conversions. Compare cost per conversion instead, and lower bids only on keywords where it is above your target.

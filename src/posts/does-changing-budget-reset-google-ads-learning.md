@@ -67,3 +67,13 @@ A larger budget also still behaves like a larger budget. More money lets the cam
 - **Should I still wait after a change before judging it?** Yes, for at least one full conversion cycle
 
 If your campaigns seem to be stuck in Learning, or have been through so many changes that nobody can say what worked, a [Google Ads audit](/google-ads-audit/) starts by checking whether the conversions the strategy learns from are real.
+
+## Frequently asked questions
+
+### Does raising my budget restart the learning period?
+
+Not on its own. A change to budget, target CPA or target ROAS does not restart the learning period. Learning restarts after a new bidding strategy, a major change to campaign composition, or a change to the conversion goal. Those are the changes to plan carefully.
+
+### How long does a learning period last?
+
+Google describes the learning status as lasting up to seven days. Accounts with steady conversion data usually leave it sooner. Judge performance after that window, rather than on the first few days after a change.

@@ -35,3 +35,13 @@ Finally, the adverts and the pages they point to are reviewed together. Headline
 The output is a written list of what was found, ordered by how much it is likely to matter, with the reasoning behind each point. It is an analysis, not a sales deck, and it does not change anything in your account. Any changes are a separate decision, and they are easier to judge once the foundations are known to be sound.
 
 If you want to see whether your account is ready for that kind of review, the [Google Ads audit page](/google-ads-audit/) explains how the $200 analysis works and what access it needs. For the common reasons campaigns stop converting, read [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
+
+## Frequently asked questions
+
+### What comes first in a Google Ads account analysis?
+
+Conversion tracking. Every other finding depends on whether the conversions being counted are real enquiries or sales, so it is checked first. Only after that do search terms, structure, bidding and ads get reviewed.
+
+### Why should I not change the account before the analysis?
+
+Changes made while the problem is unclear can hide the cause and make results harder to read. An analysis first shows which change is worth making, and in what order.

@@ -85,3 +85,13 @@ Use this carefully. Performance Max is designed to move budget to wherever it fi
 - **Does Demand Gen get budget caps?** No. It supports prioritisation, but not budget allocation
 
 If you are not sure how much of your Search budget currently goes to Display or search partners, that split is one of the first things a [Google Ads audit](/google-ads-audit/) checks, because it is often money that can be redirected the same day.
+
+## Frequently asked questions
+
+### What does channel prioritisation control?
+
+It lets you rank the channels inside a campaign, so budget goes to the higher-priority channel first rather than being split by the system. The options are still rolling out, so check Google's current help page for what your account shows.
+
+### Should I cap spend on Display?
+
+Only if Display produces conversions at a cost you accept. Compare its cost per conversion with Search over the same period, using your own conversion data, before limiting it. Capping a channel that earns a profit reduces results.

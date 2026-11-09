@@ -86,3 +86,13 @@ Google works out location from signals such as device location, IP address and s
 5. The user locations report checked monthly for spend from outside the area
 
 For local businesses, the [local services page](/google-ads-for-local-services/) covers how I set up location targeting, call tracking and service areas together.
+
+## Frequently asked questions
+
+### What is the Presence versus Interest location setting?
+
+Presence targets people physically in your locations. Interest, which is Google's default, also shows ads to people who have shown interest in those places, even from abroad. Businesses that serve customers in person usually get better results with Presence.
+
+### How do I find ads shown outside my area?
+
+Open the user locations report in Google Ads and compare each location with your service area. Exclude locations that produce spend but no enquiries, and set the location option to Presence in your campaign settings.

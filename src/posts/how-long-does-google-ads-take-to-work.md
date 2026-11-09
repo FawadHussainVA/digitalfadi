@@ -72,3 +72,13 @@ If a campaign has had enough clicks for its conversion rate to settle and cost p
 That is the point to look properly rather than wait longer. A [Google Ads audit](/google-ads-audit/) checks tracking first, then where the money is going, so you know whether the campaign needs time, changes or stopping.
 
 If you are still deciding whether Google Ads is right for the business at all, start with [why Google Ads is important for a growing business](/learn/why-google-ads-is-important/).
+
+## Frequently asked questions
+
+### How long before I know whether Google Ads is working?
+
+Most accounts need several weeks of data before the results are a fair test, and Smart Bidding often needs a few weeks to settle. Judge cost per enquiry or sale over a full period, not clicks in the first few days.
+
+### Why do results sometimes get worse after a change?
+
+Automated bidding re-learns after some changes, and seasonality, competitor activity and new search terms can also shift results. Compare the same period year on year where possible, and change one thing at a time so you can see its effect.

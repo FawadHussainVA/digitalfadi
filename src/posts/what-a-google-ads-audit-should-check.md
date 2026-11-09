@@ -97,3 +97,13 @@ If you want to run these checks yourself, the [Google Ads audit checklist](/lear
 ## If the account is not converting at all
 
 Start with [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/), which works through the six causes in the order that finds the problem fastest.
+
+## Frequently asked questions
+
+### What is the most important check in a Google Ads audit?
+
+Conversion tracking. If the account counts clicks, page views or duplicates as conversions, every report and automated bid is built on wrong numbers, so it should be checked before anything else.
+
+### How long should a Google Ads audit take?
+
+It depends on the size of the account. A small account can be reviewed in a few hours, while large accounts with many campaigns, feeds or Performance Max take longer, mainly because of search terms and feed checks.

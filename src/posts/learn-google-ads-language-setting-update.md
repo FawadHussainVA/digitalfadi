@@ -41,3 +41,13 @@ In practice, the language of your ads and landing pages now does the job the set
 ## The bottom line
 
 The language setting is gone from Search, but the need to reach the right language has not. Your ads and landing pages now carry that job. Write each language properly, send it to a matching page, and track results by language so you can see what is working.
+
+## Frequently asked questions
+
+### Do I still need to set languages in new Search campaigns?
+
+Google recommends not setting campaign-level language criteria on new Search campaigns, because that setting no longer affects targeting. Existing settings can stay or be removed, but they no longer change who sees the ads.
+
+### How does Google choose the language for Search ads now?
+
+Google matches ads and landing pages based on their language and its own signals about the user. Keep ad copy and landing pages in the language you target, so the match is clear.
