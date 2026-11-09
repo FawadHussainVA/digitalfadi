@@ -15,3 +15,10 @@
 # Template article retired; the PDF now lives on the checklist page
 /learn/google-ads-audit-template/  /learn/google-ads-audit-checklist/  301
 /learn/google-ads-audit-template   /learn/google-ads-audit-checklist/  301
+
+# Articles that had a stray learn- prefix in the URL
+/learn/learn-hvac-keywords-google-ads/  /learn/hvac-keywords-google-ads/  301
+/learn/learn-hvac-local-services-ads/  /learn/hvac-local-services-ads/  301
+/learn/learn-hvac-negative-keywords/  /learn/hvac-negative-keywords/  301
+/learn/learn-hvac-seasonal-budgets-google-ads/  /learn/hvac-seasonal-budgets-google-ads/  301
+/learn/learn-google-ads-language-setting-update/  /learn/google-ads-language-setting-update/  301

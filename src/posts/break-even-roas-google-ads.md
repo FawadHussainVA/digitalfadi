@@ -1,7 +1,8 @@
 ---
-title: "Break-even ROAS: the number that decides if your Google Ads pay"
+title: "Break-even ROAS: the number that decides if your ads pay"
 description: "Work out the break-even ROAS for your margins, see why a 400% return can still lose money, and learn which target to set in Google Ads."
 date: 2026-11-06
+topic: "Strategy"
 order: 12
 ---
 

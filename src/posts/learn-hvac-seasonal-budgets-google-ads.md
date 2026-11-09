@@ -1,7 +1,9 @@
 ---
-title: "Seasonal budgets for HVAC Google Ads: plan for heating and cooling peaks"
+title: "HVAC seasonal budgets for Google Ads: plan for peak demand"
 description: "How HVAC companies can adjust Google Ads budgets, bids and schedules across heating and cooling seasons, and avoid running out of money at peak demand."
 date: 2026-11-10
+topic: "Strategy"
+permalink: /learn/hvac-seasonal-budgets-google-ads/
 order: 17
 ---
 

@@ -2,6 +2,7 @@
 title: "What a Google Ads account analysis checks before any changes"
 description: "A look at what a paid Google Ads account analysis covers, from conversion tracking to search terms and structure, and why it comes before changing bids."
 date: 2026-11-06
+topic: "Strategy"
 order: 13
 ---
 

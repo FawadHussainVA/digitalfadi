@@ -1,5 +1,5 @@
 ---
-title: "Google Ads location targeting: the setting that wastes budget"
+title: "Google Ads location targeting: the budget-wasting setting"
 description: "The default location setting shows ads to people outside your area. How presence vs interest works, which to choose, and how to check where clicks come from."
 topic: "Strategy"
 date: 2026-10-22

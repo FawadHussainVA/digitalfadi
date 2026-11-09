@@ -1,7 +1,9 @@
 ---
 title: "Local Services Ads for HVAC: what to check before you apply"
-description: "What HVAC companies should understand about Local Services Ads in Google, including verification, lead pricing and how they differ from standard Search campaigns."
+description: "What HVAC companies should know about Local Services Ads: verification, lead pricing, and how they differ from Search ads."
 date: 2026-11-10
+topic: "Local Services"
+permalink: /learn/hvac-local-services-ads/
 order: 16
 ---
 

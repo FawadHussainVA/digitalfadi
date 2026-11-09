@@ -35,7 +35,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("posts", (c) =>
     c.getFilteredByGlob("src/posts/*.md")
-      .sort((a, b) => (a.data.order || 0) - (b.data.order || 0) || a.date - b.date));
+      // sorted by publish date (oldest to newest; templates reverse it), then by order on the same day
+      .sort((a, b) => a.date - b.date || (a.data.order || 0) - (b.data.order || 0)));
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },

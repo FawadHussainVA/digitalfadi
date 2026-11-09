@@ -1,7 +1,9 @@
 ---
-title: "HVAC keywords for Google Ads: what to bid on and what to skip"
+title: "HVAC keywords for Google Ads: what to bid on and skip"
 description: "A practical guide to HVAC keywords for Google Ads, covering repair, installation and maintenance terms, match types and where each one tends to fit."
 date: 2026-11-10
+topic: "Search"
+permalink: /learn/hvac-keywords-google-ads/
 order: 14
 ---
 

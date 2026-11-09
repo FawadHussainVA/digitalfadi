@@ -1,7 +1,9 @@
 ---
-title: "Negative keywords for HVAC companies: stop paying for the wrong searches"
+title: "HVAC negative keywords: stop paying for the wrong searches"
 description: "Build a negative keyword list for an HVAC Google Ads account. Remove DIY, job-seeker and parts searches, and keep budget for homeowners who will book."
 date: 2026-11-10
+topic: "Search"
+permalink: /learn/hvac-negative-keywords/
 order: 15
 ---
 

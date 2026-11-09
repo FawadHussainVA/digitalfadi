@@ -1,7 +1,9 @@
 ---
-title: "Google Ads language setting removed: what advertisers need to change"
+title: "Google Ads language setting removed: what to change"
 description: "Google has removed the campaign language setting from Search campaigns. Here is what changes for advertisers, what stays the same, and what to check now."
 date: 2026-11-10
+topic: "Strategy"
+permalink: /learn/google-ads-language-setting-update/
 order: 13
 ---
 
