@@ -99,49 +99,38 @@ const excluded = new Set([
       ? "DigitalFadi - Free Google Ads Audit"
       : "DigitalFadi - Contact Enquiry";
 
-    // Send through Hostinger Mail API over HTTPS (Cloudflare Workers-compatible).
-    // Configure HOSTINGER_MAIL_API_KEY and HOSTINGER_MAILBOX_RESOURCE_ID as
-    // Cloudflare Pages production secrets/variables, never in frontend or Git.
-    if (!env.HOSTINGER_MAIL_API_KEY || !env.HOSTINGER_MAILBOX_RESOURCE_ID) {
-      console.error("Hostinger Mail API credentials not configured");
+    // Send through a Google Apps Script web app owned by fawad@digitalfadi.com,
+    // so the message is created inside Google Workspace (no SPF/DKIM/DMARC issues).
+    // Configure GAS_MAIL_URL (text) in Cloudflare Pages. Optional: GAS_MAIL_SECRET
+    // (secret) matching the RELAY_SECRET script property in Apps Script.
+    if (!env.GAS_MAIL_URL) {
+      console.error("Apps Script mail relay not configured");
       return json({ success: false, error: "Email service not configured" }, 503);
     }
 
-    const mailboxId = String(env.HOSTINGER_MAILBOX_RESOURCE_ID).trim();
-    if (!/^[A-Za-z0-9_-]{4,128}$/.test(mailboxId)) {
-      console.error("Invalid Hostinger mailbox resource ID configuration");
-      return json({ success: false, error: "Email service not configured" }, 503);
-    }
-
-    let response;
+    let response, result;
     try {
-      response = await fetch(
-        "https://api.mail.hostinger.com/api/v1/mailboxes/" +
-        encodeURIComponent(mailboxId) + "/send",
-        {
-          method: "POST",
-          headers: {
-            "Authorization": "Bearer " + env.HOSTINGER_MAIL_API_KEY,
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            to: ["fawad@digitalfadi.com"],
-            subject,
-            text: ["New DigitalFadi enquiry", "", "Customer reply-to: " + email, "", ...lines].join("\n")
-          }),
-          signal: AbortSignal.timeout(12000)
-        }
-      );
+      response = await fetch(env.GAS_MAIL_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          secret: env.GAS_MAIL_SECRET || "",
+          subject,
+          replyTo: email,
+          text: ["New DigitalFadi enquiry", "", "Customer reply-to: " + email, "", ...lines].join("\n")
+        }),
+        redirect: "follow",
+        signal: AbortSignal.timeout(20000)
+      });
+      result = await response.json().catch(() => null);
     } catch (error) {
-      console.error("Hostinger Mail API network error", String(error?.message || error).slice(0,160));
-      return json({ success: false, error: "Email service unavailable" }, 502);
+      console.error("Apps Script relay network error", String(error?.message || error).slice(0, 160));
+      return json({ success: false, error: "Email service unavailable" }, 500);
     }
 
-    if (!response.ok) {
-      // Never log response content; it could contain mailbox or account data.
-      console.error("Hostinger Mail API rejected request, HTTP", response.status);
-      return json({ success: false, error: "Email delivery failed" }, 502);
+    if (!response.ok || !result || result.ok !== true) {
+      console.error("Apps Script relay rejected request, HTTP", response.status);
+      return json({ success: false, error: "Email delivery failed" }, 500);
     }
 
     return json({ success: true });
