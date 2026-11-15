@@ -6,7 +6,9 @@ date: 2026-11-05
 order: 36
 ---
 
-**If you use images or videos in Google Ads that were created or edited with AI, Google gives you a setting to label them, and in some regions that label now appears on the ad itself.** Campaigns targeting the European Union, India, New York, California, South Korea or Vietnam show a visible AI overlay on ads that use assets you mark as AI created or edited. Everywhere else, the disclosure appears only when someone opens "How this ad was made" in the ad's information panel. Google may label assets made with its own AI tools for you, but assets you made elsewhere are your responsibility. Google also says the setting on its own does not guarantee you meet local law.
+**If you use images or videos in Google Ads that were created or edited with AI, Google gives you a setting to label them, and in some regions that label now appears on the ad itself.**
+
+Campaigns targeting the European Union, India, New York, California, South Korea or Vietnam show a visible AI overlay on ads that use assets you mark as AI created or edited. Everywhere else, the disclosure appears only when someone opens "How this ad was made" in the ad's information panel. Google may label assets made with its own AI tools for you, but assets you made elsewhere are your responsibility. Google also says the setting on its own does not guarantee you meet local law.
 
 ## Why this is in the news
 

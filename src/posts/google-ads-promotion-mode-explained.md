@@ -6,7 +6,9 @@ date: 2026-11-05
 order: 35
 ---
 
-**Promotion mode is a Google Ads setting that temporarily lowers a campaign's Target ROAS and, if you choose, adds extra daily budget for a sale lasting 3 to 14 days, then puts both back automatically when the sale ends.** It works only on standard Search and Performance Max campaigns that use campaign-level Target ROAS bidding, and it is still in open beta. Use it when you are deliberately willing to accept a lower return for a few days in exchange for more sales, and set the tolerance so the lowered target never falls below the return you need to break even.
+**Promotion mode is a Google Ads setting that temporarily lowers a campaign's Target ROAS and, if you choose, adds extra daily budget for a sale lasting 3 to 14 days, then puts both back automatically when the sale ends.**
+
+It works only on standard Search and Performance Max campaigns that use campaign-level Target ROAS bidding, and it is still in open beta. Use it when you are deliberately willing to accept a lower return for a few days in exchange for more sales, and set the tolerance so the lowered target never falls below the return you need to break even.
 
 ## Why this is in the news
 

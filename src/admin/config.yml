@@ -23,7 +23,8 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-        hint: "Sentence case. Becomes the heading, the page title and the web address."
+        pattern: ['^.{20,60}$', "Keep the title between 20 and 60 characters so Google shows all of it"]
+        hint: "Sentence case, 60 characters or fewer, main keyword near the start. Becomes the heading, the page title and the web address."
       - label: "Description"
         name: "description"
         widget: "text"
@@ -33,6 +34,7 @@ collections:
         name: "topic"
         widget: "select"
         default: "Strategy"
+        required: true
         options: ["Search", "Shopping", "Performance Max", "YouTube", "Display",
                   "Demand Gen", "Remarketing", "Local Services", "Tracking", "Strategy"]
       - label: "Publish date"
@@ -55,9 +57,9 @@ collections:
         widget: "number"
         value_type: "int"
         min: 1
-        required: true
-        hint: "Highest number shows first. Use one more than the current highest (the current highest is 11, so the next article is 12)."
+        required: false
+        hint: "Optional. The Learn page sorts by publish date, newest first. This number only decides the order between articles published on the same day."
       - label: "Article"
         name: "body"
         widget: "markdown"
-        hint: "Use Heading 2 for sections. This becomes a real HTML page, so Google indexes every word."
+        hint: "Start with a 40 to 60 word paragraph that answers the question directly. Use Heading 2 for sections. End with a Heading 2 called 'Frequently asked questions' and each question as Heading 3, so the FAQ schema is added automatically. No em dashes."

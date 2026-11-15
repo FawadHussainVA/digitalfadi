@@ -6,7 +6,9 @@ date: 2026-11-03
 order: 33
 ---
 
-Google has updated its help documentation to say that Performance Max campaigns may filter out navigational and brand-specific searches, so that those searches are served by a dedicated brand Search campaign instead. In practice, if you run a brand Search campaign alongside Performance Max, more of your brand traffic should now go through Search, where you control the keywords, ads and budget. The risk is that a brand campaign with too little budget or weak ads could now miss searches that Performance Max used to pick up. Check your brand campaign's budget and ads this week, and expect Performance Max's reported results to drop slightly if it was collecting brand conversions before.
+Google has updated its help documentation to say that Performance Max campaigns may filter out navigational and brand-specific searches, so that those searches are served by a dedicated brand Search campaign instead.
+
+In practice, if you run a brand Search campaign alongside Performance Max, more of your brand traffic should now go through Search, where you control the keywords, ads and budget. The risk is that a brand campaign with too little budget or weak ads could now miss searches that Performance Max used to pick up. Check your brand campaign's budget and ads now, and expect Performance Max's reported results to drop slightly if it was collecting brand conversions before.
 
 ## What Google changed
 
