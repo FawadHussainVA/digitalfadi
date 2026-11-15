@@ -36,7 +36,7 @@ Also check what the revenue figure includes. Returns, discounts and cancelled or
 
 ## Checking it before you change anything
 
-Before you move a target, confirm that conversion tracking records the sales you care about, with the right values. A broken revenue value makes every ROAS number meaningless. If you are not sure whether the numbers can be trusted, a [$200 account analysis](/google-ads-audit/) looks at tracking, search terms and structure before any budget or target is changed.
+Before you move a target, confirm that conversion tracking records the sales you care about, with the right values. A broken revenue value makes every ROAS number meaningless. If you are not sure whether the numbers can be trusted, a [$100 account analysis](/google-ads-audit/) looks at tracking, search terms and structure before any budget or target is changed.
 
 You can also work through your own margin with the [free Google Ads tools](/tools/). For the wider causes of poor results, see [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
 
