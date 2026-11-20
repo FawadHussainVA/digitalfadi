@@ -281,6 +281,24 @@ permalink: /
   </div>
 </div>
 
+<section class="clients" aria-labelledby="clients-h">
+  <div class="wrap">
+    <h2 class="clients-h" id="clients-h">Trusted by 100+ businesses</h2>
+    <div class="clients-box">
+      <ul class="clients-track" id="clientsTrack" tabindex="0" aria-label="Client logos">
+        {%- for c in clients %}
+        <li class="client"><img src="{{ c.logo }}" alt="{{ c.name }}" width="{{ c.width }}" height="{{ c.height }}" loading="lazy" decoding="async"></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    <div class="clients-nav">
+      <button type="button" class="clients-btn" id="clientsPrev" aria-label="Previous logos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="clients-dots" id="clientsDots" role="group" aria-label="Choose a set of logos"></div>
+      <button type="button" class="clients-btn" id="clientsNext" aria-label="Next logos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
 <div class="wave wtop" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="#6A5AE0" d="M0,20 C180,0 360,40 720,24 C1080,8 1260,44 1440,20 L1440,48 L0,48 Z"/><path fill="none" stroke="#14121F" stroke-width="3" vector-effect="non-scaling-stroke" d="M0,20 C180,0 360,40 720,24 C1080,8 1260,44 1440,20"/></svg></div>
 <div class="trust">
   <div class="wrap trust-in rv">

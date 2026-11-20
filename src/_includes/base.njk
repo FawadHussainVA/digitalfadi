@@ -852,6 +852,32 @@ html:not(.loaded) #waBtn::after{animation-play-state:paused}
   main input[type=text],main input[type=email],main input[type=tel],main input[type=url],main input[type=number],main input[type=search]{font-size:16px!important}
 }
 
+/* ===== client logos ===== */
+.clients{padding:clamp(30px,4vw,52px) 0 clamp(38px,4.6vw,60px)}
+.clients-h{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 0 26px;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);text-align:center;line-height:1.5}
+.clients-h::before,.clients-h::after{content:"";flex:1 1 40px;max-width:96px;height:2px;background:var(--hair)}
+.clients-box{background:var(--bg-2);border:var(--bd);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.clients-track{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:calc(100% / 6);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.clients-track::-webkit-scrollbar{display:none}
+.clients-track:focus-visible{outline:3px solid var(--purple);outline-offset:-3px}
+.client{scroll-snap-align:start;display:grid;place-items:center;height:112px;padding:18px 24px;border-right:1px solid var(--hair)}
+.client img{display:block;width:auto;height:auto;max-width:100%;max-height:56px;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .25s,opacity .25s,transform .25s var(--ease)}
+.client:hover img{filter:none;opacity:1;transform:scale(1.04)}
+.clients-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px}
+.clients-btn{width:44px;height:44px;display:grid;place-items:center;border:var(--bd);border-radius:50%;background:var(--bg-2);box-shadow:3px 3px 0 var(--ink);transition:transform .13s var(--ease),box-shadow .13s var(--ease),background .2s}
+.clients-btn svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.clients-btn:hover{background:var(--amber);transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.clients-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.clients-dots{display:flex;align-items:center;gap:4px}
+.clients-dot{width:24px;height:24px;display:grid;place-items:center;padding:0}
+.clients-dot::before{content:"";display:block;width:8px;height:8px;border-radius:999px;background:var(--hair);transition:width .25s var(--ease),background .25s}
+.clients-dot.on::before{width:26px;background:var(--purple)}
+[data-theme="dark"] .client img{filter:grayscale(1) invert(1) brightness(1.05);opacity:.72}
+[data-theme="dark"] .client:hover img{filter:grayscale(1) invert(1) brightness(1.25);opacity:1}
+@media(max-width:1000px){.clients-track{grid-auto-columns:calc(100% / 4)}}
+@media(max-width:680px){.clients-track{grid-auto-columns:calc(100% / 2)}.client{height:96px;padding:16px 18px}.clients-h{letter-spacing:.1em}.clients-h::before,.clients-h::after{display:none}}
+@media(prefers-reduced-motion:reduce){.clients-track{scroll-behavior:auto}}
+
 /* ===== theme toggle ===== */
 .themetog{width:44px;height:44px;flex:none;display:grid;place-items:center;padding:0;cursor:pointer;
   border:var(--bd);border-radius:50%;background:var(--bg-2);color:var(--ink);box-shadow:3px 3px 0 var(--shc);
@@ -1294,6 +1320,82 @@ document.addEventListener('DOMContentLoaded', function(){
               : 'Message could not be submitted. Please try again later.'));
       }).finally(function(){ clearTimeout(timeout); });
     });
+  });
+
+  /* ---------- client logos carousel ---------- */
+  var ct = document.getElementById('clientsTrack');
+  if(ct){
+    var cPrev = document.getElementById('clientsPrev'), cNext = document.getElementById('clientsNext'),
+        cDots = document.getElementById('clientsDots'), cTimer = null, cPaused = false, cVisible = false;
+    var perView = function(){ var li = ct.querySelector('.client'); return li ? Math.max(1, Math.round(ct.clientWidth / li.getBoundingClientRect().width)) : 1; };
+    var pageCount = function(){ return Math.max(1, Math.ceil(ct.children.length / perView())); };
+    var curPage = function(){
+      var max = ct.scrollWidth - ct.clientWidth;
+      if(max > 0 && ct.scrollLeft >= max - 2) return pageCount() - 1;
+      return Math.round(ct.scrollLeft / ct.clientWidth);
+    };
+    var goPage = function(i){
+      var n = pageCount(); i = ((i % n) + n) % n;
+      ct.scrollTo({left: Math.min(i * ct.clientWidth, ct.scrollWidth - ct.clientWidth), behavior: reduce ? 'auto' : 'smooth'});
+    };
+    var markDots = function(){
+      var p = curPage();
+      [].forEach.call(cDots.children, function(d, i){ d.classList.toggle('on', i === p); d.setAttribute('aria-current', i === p ? 'true' : 'false'); });
+    };
+    var buildDots = function(){
+      var n = pageCount(); cDots.innerHTML = '';
+      for(var i = 0; i < n; i++){
+        (function(i){
+          var d = document.createElement('button'); d.type = 'button'; d.className = 'clients-dot';
+          d.setAttribute('aria-label', 'Show logo set ' + (i + 1) + ' of ' + n);
+          d.addEventListener('click', function(){ goPage(i); });
+          cDots.appendChild(d);
+        })(i);
+      }
+      var hide = n < 2; cPrev.hidden = hide; cNext.hidden = hide; cDots.hidden = hide;
+      markDots();
+    };
+    cPrev.addEventListener('click', function(){ goPage(curPage() - 1); });
+    cNext.addEventListener('click', function(){ goPage(curPage() + 1); });
+    var cTick = false;
+    ct.addEventListener('scroll', function(){ if(!cTick){ cTick = true; requestAnimationFrame(function(){ cTick = false; markDots(); }); } }, {passive:true});
+    var cResize; window.addEventListener('resize', function(){ clearTimeout(cResize); cResize = setTimeout(buildDots, 150); });
+    ['mouseenter','focusin','touchstart'].forEach(function(ev){ ct.parentNode.addEventListener(ev, function(){ cPaused = true; }, {passive:true}); });
+    ['mouseleave','focusout'].forEach(function(ev){ ct.parentNode.addEventListener(ev, function(){ cPaused = false; }); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ cVisible = es[0].isIntersecting; }).observe(ct);
+    } else { cVisible = true; }
+    if(!reduce){
+      cTimer = setInterval(function(){ if(cVisible && !cPaused && !document.hidden) goPage(curPage() + 1); }, 4000);
+    }
+    buildDots();
+  }
+
+  /* ---------- 15-minute call: Calendly opens in a popup on this page ----------
+     The Calendly script loads only when someone clicks a booking link, so it costs
+     nothing on page load. If it cannot load, the link opens in a new tab as before. */
+  var calendlyState = 0, calendlyQueue = [];
+  var openCalendlyTab = function(url){ window.open(url, '_blank', 'noopener'); };
+  var loadCalendly = function(cb, fail){
+    if(calendlyState === 2) return cb();
+    calendlyQueue.push([cb, fail]);
+    if(calendlyState === 1) return;
+    calendlyState = 1;
+    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(css);
+    var js = document.createElement('script'); js.src = 'https://assets.calendly.com/assets/external/widget.js'; js.async = true;
+    var done = function(ok){ calendlyState = ok ? 2 : 0; var q = calendlyQueue; calendlyQueue = []; q.forEach(function(p){ (ok ? p[0] : p[1])(); }); };
+    js.onload = function(){ done(!!window.Calendly); };
+    js.onerror = function(){ done(false); };
+    document.head.appendChild(js);
+    setTimeout(function(){ if(calendlyState === 1) done(false); }, 6000);
+  };
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="https://calendly.com/"]');
+    if(!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var url = a.href;
+    loadCalendly(function(){ window.Calendly.initPopupWidget({url: url}); }, function(){ openCalendlyTab(url); });
   });
 
   /* ---------- whatsapp widget ---------- */
