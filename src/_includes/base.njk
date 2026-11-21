@@ -948,6 +948,23 @@ html:not(.loaded) #waBtn::after{animation-play-state:paused}
 @media(max-width:1000px){.ind-jump{grid-template-columns:repeat(2,minmax(0,1fr))}.ind-block{grid-template-columns:1fr}.ind-main{position:static}}
 @media(max-width:480px){.ind-jump{grid-template-columns:1fr}}
 
+/* ===== homepage rhythm ===== */
+section.band{background:var(--bg-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);max-width:none;
+  padding-left:max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)));padding-right:max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)))}
+section.band .ch,section.band .q,section.band .ind-tile,section.band details,section.band .panel{background:var(--bg-2)}
+section.band .q,section.band .ind-tile{background:var(--bg)}
+.sub-block{margin-top:clamp(44px,5.5vw,76px)}
+.home-ind{margin-top:0}
+.home-sectors{max-width:900px;margin:30px auto 0;text-align:center}
+.home-sectors .ind-types{justify-content:center;margin-bottom:0}
+.home-sectors .ind-types a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--purple);text-underline-offset:3px}
+.svc-more{margin-top:30px}
+.svc-more > summary{justify-content:center;gap:14px;font-size:1rem}
+.svc-more-body{padding:6px 18px 18px}
+.svc-more-body details{background:var(--bg);margin-bottom:10px}
+.faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;align-items:start}
+@media(max-width:1000px){.faq-grid{grid-template-columns:1fr}}
+
 /* ===== theme toggle ===== */
 .themetog{width:44px;height:44px;flex:none;display:grid;place-items:center;padding:0;cursor:pointer;
   border:var(--bd);border-radius:50%;background:var(--bg-2);color:var(--ink);box-shadow:3px 3px 0 var(--shc);
