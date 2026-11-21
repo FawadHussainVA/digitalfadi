@@ -6,7 +6,9 @@ date: 2026-11-01
 order: 30
 ---
 
-Google's shift to AI Overviews and AI Mode changes where ads appear, not how you buy them. Your existing Search, Shopping and Performance Max campaigns are already eligible to show inside and around these AI answers, through the same auction and bidding, at no extra cost. What decides whether your ads appear inside an AI answer is mainly your match types: campaigns using only exact and phrase match can show above and below an AI Overview, but not inside it. You cannot target or opt out of these placements separately, and their results are mixed into your normal reports.
+Google's shift to AI Overviews and AI Mode changes where ads appear, not how you buy them. Your existing Search, Shopping and Performance Max campaigns are already eligible to show inside and around these AI answers, through the same auction and bidding, at no extra cost.
+
+What decides whether your ads appear inside an AI answer is mainly your match types: campaigns using only exact and phrase match can show above and below an AI Overview, but not inside it. You cannot target or opt out of these placements separately, and their results are mixed into your normal reports.
 
 ## What AI Overviews and AI Mode are
 
@@ -82,6 +84,8 @@ Since AI placements are blended into your reports, compare periods on what matte
 ## What it means beyond ads
 
 AI answers also change organic search. When an AI Overview fully answers a simple question, some people never click through to a website. That makes paid visibility on commercial searches more valuable for many businesses, and it means your website should give clear, direct answers that AI systems can understand and cite. Ads and organic citations are separate systems, so one does not buy the other.
+
+**Related reading:** [Google Ads AI content labels: who needs to label their ads](/learn/google-ads-ai-content-labels/) and [Google Ads language setting removed: what to change](/learn/google-ads-language-setting-update/).
 
 ## Frequently asked questions
 

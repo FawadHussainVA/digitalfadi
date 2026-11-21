@@ -6,7 +6,9 @@ date: 2026-10-24
 order: 23
 ---
 
-Channel prioritisation and budget allocation are two new Google Ads controls that let you decide which channels inside a campaign get your budget first and how much the lower-priority ones may spend. In a Search campaign, for example, you can make Google Search high priority and put search partners and the Display Network on low priority with a spending cap. They matter now because of a fixed date: in February 2027, Search campaigns that have the Display Network switched on move to the new system automatically, and their current spending setup goes away.
+Channel prioritisation and budget allocation are two new Google Ads controls that let you decide which channels inside a campaign get your budget first and how much the lower-priority ones may spend. In a Search campaign, for example, you can make Google Search high priority and put search partners and the Display Network on low priority with a spending cap.
+
+They matter now because of a fixed date: in February 2027, Search campaigns that have the Display Network switched on move to the new system automatically, and their current spending setup goes away.
 
 If none of your Search campaigns use the Display Network, there is no deadline to worry about. If any do, check them before February.
 

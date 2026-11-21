@@ -73,6 +73,8 @@ Implants, emergencies and check-ups need different campaigns and budgets. A mana
 
 Fees are usually a fixed monthly amount, a percentage of ad spend, or a project fee for setup and audits. Compare like with like, and remember the ad spend itself is separate. [How much do Google Ads cost for dentists?](/learn/dental-google-ads-cost/) covers both.
 
+**Related reading:** [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/).
+
 ## Frequently asked questions
 
 ### Should a dental practice use a dental marketing company or a Google Ads specialist?

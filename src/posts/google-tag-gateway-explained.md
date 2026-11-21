@@ -6,7 +6,9 @@ date: 2026-11-01
 order: 32
 ---
 
-Google tag gateway serves your Google tags from your own website's domain instead of from Google's servers, and sends the measurement data back through your domain too. Because the requests look first-party, they are less likely to be lost to browser restrictions and blockers, so Google Ads and Google Analytics record more of the conversions that actually happen. It is worth using for most advertisers who run on a supported content delivery network such as Cloudflare, where it can be switched on in a few clicks. It does not replace consent, and it only applies to Google tags.
+Google tag gateway serves your Google tags from your own website's domain instead of from Google's servers, and sends the measurement data back through your domain too. Because the requests look first-party, they are less likely to be lost to browser restrictions and blockers, so Google Ads and Google Analytics record more of the conversions that actually happen.
+
+It is worth using for most advertisers who run on a supported content delivery network such as Cloudflare, where it can be switched on in a few clicks. It does not replace consent, and it only applies to Google tags.
 
 ## Why measurement gets lost
 

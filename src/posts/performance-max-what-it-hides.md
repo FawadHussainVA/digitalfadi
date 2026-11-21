@@ -82,6 +82,8 @@ If you want this checked properly in your own account, that is part of a [Google
 
 The brand question has its own article: [should you bid on your own brand name](/learn/should-you-bid-on-your-own-brand-name/).
 
+**Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/) and [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/).
+
 ## Frequently asked questions
 
 ### Can I see where Performance Max ads are shown?

@@ -72,6 +72,8 @@ Whoever you are considering, ask:
 - Reports full of clicks and impressions, with no link to enquiries or sales
 - Nobody can explain what changed last month and why
 
+**Related reading:** [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/) and [Dental PPC management: how to choose who runs your ads](/learn/dental-ppc-management/).
+
 ## Frequently asked questions
 
 ### Is a Google Ads freelancer cheaper than an agency?

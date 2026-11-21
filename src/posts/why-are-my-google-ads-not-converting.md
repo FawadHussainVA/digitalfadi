@@ -77,6 +77,8 @@ If you have worked through this and still cannot see it, that is what a [Google 
 
 If you are not yet sure the channel suits the business at all, [why Google Ads matters and when it does not](/learn/why-google-ads-is-important/) covers that question first.
 
+**Related reading:** [Dental landing pages that turn ad clicks into bookings](/learn/dental-landing-pages/) and [Google tag gateway: what it is and should you use it?](/learn/google-tag-gateway-explained/).
+
 ## Frequently asked questions
 
 ### What is the most common reason Google Ads is not converting?

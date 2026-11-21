@@ -73,6 +73,8 @@ That is the point to look properly rather than wait longer. A [Google Ads audit]
 
 If you are still deciding whether Google Ads is right for the business at all, start with [why Google Ads is important for a growing business](/learn/why-google-ads-is-important/).
 
+**Related reading:** [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/) and [Does changing your budget reset Google Ads learning?](/learn/does-changing-budget-reset-google-ads-learning/).
+
 ## Frequently asked questions
 
 ### How long before I know whether Google Ads is working?

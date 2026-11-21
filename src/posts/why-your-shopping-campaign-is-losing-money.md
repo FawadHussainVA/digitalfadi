@@ -81,6 +81,8 @@ If you are spending and cannot tell which of these applies, a [Google Ads audit]
 
 My approach to ongoing retail work is on the [Google Ads for e-commerce](/google-ads-for-ecommerce/) page.
 
+**Related reading:** [Break-even ROAS: the number that decides if your ads pay](/learn/break-even-roas-google-ads/) and [Google Ads Promotion mode: how to use it for a short sale](/learn/google-ads-promotion-mode-explained/).
+
 ## Frequently asked questions
 
 ### Why is my Google Shopping campaign losing money?

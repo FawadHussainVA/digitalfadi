@@ -89,6 +89,8 @@ To turn a plain keyword list into phrase and exact match in one go, use the free
 
 If cost per click has climbed since match types were widened, [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) covers that pattern, and a [Google Ads audit](/google-ads-audit/) checks match types against the search terms they are actually buying.
 
+**Related reading:** [How Google's AI Mode and AI Overviews change Google Ads](/learn/how-ai-mode-and-ai-overviews-change-google-ads/) and [HVAC keywords for Google Ads: what to bid on and skip](/learn/hvac-keywords-google-ads/).
+
 ## Frequently asked questions
 
 ### Which match type should a new account use?

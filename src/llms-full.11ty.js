@@ -16,12 +16,19 @@ module.exports = {
     const site = (data.site && data.site.url) || "https://digitalfadi.com";
     const posts = (data.collections.posts || []).slice().sort((a, b) => (b.date - a.date));
     const industries = data.collections.industries || [];
+    // service and industry category pages: every service.njk page that is not an individual industry page
+    const industryUrls = new Set(industries.map((t) => t.url));
+    const servicePages = (data.collections.all || []).filter((p) => p.data.layout === "service.njk" && !industryUrls.has(p.url));
     const out = [];
     out.push("# DigitalFadi: full text", "");
     out.push("> DigitalFadi is the freelance Google Ads practice of Fawad Hussain, a Google Ads freelancer and Google Premier Partner. This file holds the full text of every article and industry page on " + site + ", newest first. The short index is at " + site + "/llms.txt.", "");
     out.push("## Articles", "");
     for (const p of posts) {
       out.push("---", "", "## " + p.data.title, "", "URL: " + site + p.url, "Topic: " + (p.data.topic || "General"), "Summary: " + p.data.description, "", toText(p.templateContent), "");
+    }
+    out.push("## Services and industry categories", "");
+    for (const t of servicePages) {
+      out.push("---", "", "## " + (t.data.heading || t.data.title), "", "URL: " + site + t.url, "Summary: " + t.data.description, "", toText(t.templateContent), "");
     }
     out.push("## Industry pages", "");
     for (const t of industries) {

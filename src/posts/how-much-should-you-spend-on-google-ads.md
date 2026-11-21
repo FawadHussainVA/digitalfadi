@@ -84,6 +84,8 @@ To turn a lead or sales goal into a monthly and daily figure using your own cost
 
 At DigitalFadi, ad spend is paid by you directly to Google from your own account, never through me. Management is a separate fee, listed on the [pricing section](/#pricing). If you are already spending and are not sure the budget is doing its job, a [Google Ads audit](/google-ads-audit/) starts with whether the conversions being counted are real, because every number in this article depends on that.
 
+**Related reading:** [How much do Google Ads cost for dentists?](/learn/dental-google-ads-cost/) and [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/).
+
 ## Frequently asked questions
 
 ### What is a sensible starting budget?

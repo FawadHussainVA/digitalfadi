@@ -6,7 +6,9 @@ date: 2026-10-07
 order: 1
 ---
 
-Most marketing interrupts people. A display banner, a pre-roll advert, a sponsored post in a feed: all of them arrive uninvited, and all of them start by having to earn attention that was pointed somewhere else. Google Ads is the exception. Somebody has a problem, they type it into a search box, and your advert appears in the half second where they are actively looking for the answer. That single difference is the reason paid search still takes the largest share of most serious advertising budgets, and it is the reason it is worth doing properly rather than approximately.
+Most marketing interrupts people. A display banner, a pre-roll advert, a sponsored post in a feed: all of them arrive uninvited, and all of them start by having to earn attention that was pointed somewhere else. Google Ads is the exception.
+
+Somebody has a problem, they type it into a search box, and your advert appears in the half second where they are actively looking for the answer. That single difference is the reason paid search still takes the largest share of most serious advertising budgets, and it is the reason it is worth doing properly rather than approximately.
 
 ## Search is the only channel where the customer starts the conversation
 
@@ -70,6 +72,8 @@ The platform is the same in both cases. The outcome is not.
 If you already spend on Google Ads, start with an [account analysis](/#pricing) rather than a rebuild. Most accounts do not need to be started again; they need the tracking verified, the waste identified and the structure tidied, in that order.
 
 If you have not started yet, work out what a customer is worth to you first. That number decides whether this channel makes sense, what you can afford to bid, and what success looks like before any money is spent. [Send me the account](/#contact) and I will tell you which of those applies.
+
+**Related reading:** [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/).
 
 ## Frequently asked questions
 

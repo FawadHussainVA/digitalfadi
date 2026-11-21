@@ -88,6 +88,8 @@ If you use target ROAS or target CPA, consider whether the targets still make se
 
 Black Friday matters for some service businesses too, but often differently: demand may dip during holiday weeks. Check your ad schedule matches the hours you can answer enquiries over the holidays, and do not raise budgets on the assumption that the whole market is busier.
 
+**Related reading:** [Google Ads Promotion mode: how to use it for a short sale](/learn/google-ads-promotion-mode-explained/) and [Break-even ROAS: the number that decides if your ads pay](/learn/break-even-roas-google-ads/).
+
 ## Frequently asked questions
 
 ### When should I start preparing Google Ads for Black Friday?

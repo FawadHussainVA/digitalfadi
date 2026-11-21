@@ -87,6 +87,8 @@ Google works out location from signals such as device location, IP address and s
 
 For local businesses, the [local services page](/google-ads-for-local-services/) covers how I set up location targeting, call tracking and service areas together.
 
+**Related reading:** [Google Ads language setting removed: what to change](/learn/google-ads-language-setting-update/) and [HVAC seasonal budgets for Google Ads: plan for peak demand](/learn/hvac-seasonal-budgets-google-ads/).
+
 ## Frequently asked questions
 
 ### What is the Presence versus Interest location setting?
