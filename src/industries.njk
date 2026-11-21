@@ -27,31 +27,57 @@ description: "How Google Ads works differently in each industry: what to measure
       <span aria-current="page">Industries</span>
     </nav>
     <h1>Google Ads, <span class="hl">industry by industry</span></h1>
-    <p>Search behaviour, customer value and what counts as a real lead are different in every market. These pages set out how Google Ads should be run in each one: what to measure, which campaign types fit, and where the budget usually leaks.</p>
+    <p>Search behaviour, customer value and what counts as a real lead are different in every market. Choose your industry to see how I structure campaigns, which rules apply and what to measure.</p>
+    <nav class="ind-jump" aria-label="Industry categories">
+      {%- for c in categories %}
+      <a class="ind-tile" href="#{{ c.key }}"><i class="ind-ic"><svg viewBox="0 0 24 24" aria-hidden="true">{{ c.icon | safe }}</svg></i><span><b>{{ c.name }}</b><small>{{ c.types | length }} business types</small></span></a>
+      {%- endfor %}
+    </nav>
   </div>
 </div>
 
-{%- for c in categories %}
-<section class="wrap{% if not loop.first %} pt0{% endif %}" id="{{ c.key }}">
-  <div class="sec-head rv">
-    <span class="eyebrow">{{ c.name }}</span>
-    <h2>Google Ads for <span class="hl">{{ c.name | lower }}</span></h2>
-    <p>{{ c.summary }}</p>
+<section class="wrap ind-wrap" aria-label="Industries">
+  {%- for c in categories %}
+  <div class="ind-block" id="{{ c.key }}">
+    <div class="ind-main">
+      <i class="ind-ic ind-ic-lg"><svg viewBox="0 0 24 24" aria-hidden="true">{{ c.icon | safe }}</svg></i>
+      <h2>Google Ads for <span class="hl">{{ c.name | lower }}</span></h2>
+      <p class="ind-sum">{{ c.summary }}</p>
+      <p class="ind-label">Who this covers</p>
+      <ul class="ind-types">
+        {%- for t in c.types %}<li>{{ t }}</li>{% endfor %}
+      </ul>
+      <a class="btn" href="{{ c.url }}">Google Ads for {{ c.name | lower }} <span class="arw" aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="ind-side">
+      <p class="ind-label">Specialist pages</p>
+      <div class="ind-pages">
+        {%- for t in collections.industries | sort(false, false, 'data.order') %}{% if t.data.group == c.key %}
+        <a class="ind-page" href="{{ t.url }}">
+          <div class="ind-pt"><h3 class="ind-ph">{{ t.data.crumb }}</h3><span class="unit">{{ t.data.unit or "Sector" }}</span></div>
+          <small>{{ t.data.description }}</small>
+        </a>
+        {%- endif %}{% endfor %}
+      </div>
+      <p class="ind-label">Guides</p>
+      <ul class="ind-guides">
+        {%- for g in c.guides %}{% for p in collections.posts %}{% if p.url == "/learn/" + g + "/" %}
+        <li><a href="{{ p.url }}">{{ p.data.title }}</a></li>
+        {%- endif %}{% endfor %}{% endfor %}
+      </ul>
+    </div>
   </div>
-  <div class="channels stg">
-    <a class="ch" href="{{ c.url }}" style="text-decoration:none">
-      <div class="ch-top"><h3>All {{ c.name | lower }}</h3><span class="unit new">Overview</span></div>
-      <p>How I run Google Ads for {{ c.name | lower }}, A to Z: campaign structure, the advertising rules that apply, and what to measure.</p>
-    </a>
-    {%- for t in collections.industries | sort(false, false, 'data.order') %}{% if t.data.group == c.key %}
-    <a class="ch" href="{{ t.url }}" style="text-decoration:none">
-      <div class="ch-top"><h3>{{ t.data.crumb }}</h3><span class="unit">{{ t.data.unit or "Sector" }}</span></div>
-      <p>{{ t.data.standfirst }}</p>
-    </a>
-    {%- endif %}{% endfor %}
+  {%- endfor %}
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <span class="eyebrow">Industry not listed?</span>
+    <h2>The same approach works for most service businesses</h2>
+    <p>Send me read-only access and I will list the issues in your Google Ads account, whatever your industry. No obligation and no slide deck.</p>
+    <div class="cta-row">
+      <a href="/#contact" class="btn">Get a free Google Ads audit <span class="arw" aria-hidden="true">&rarr;</span></a>
+      <a href="{{ booking.url }}" class="btn ghost">{{ booking.label }}</a>
+    </div>
   </div>
-</section>
-{%- endfor %}
-<section class="wrap pt0">
-  <p class="sec-head" style="margin:34px auto 0">Not listed? The approach for most service businesses is on the <a href="/google-ads-for-local-services/" style="color:var(--purple);font-weight:700">local services page</a>, and for online shops on the <a href="/google-ads-for-ecommerce/" style="color:var(--purple);font-weight:700">e-commerce page</a>.</p>
-</section>
+</div>

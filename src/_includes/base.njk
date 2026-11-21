@@ -911,6 +911,43 @@ html:not(.loaded) #waBtn::after{animation-play-state:paused}
 @media(max-width:680px){.clients-track{grid-auto-columns:calc(100% / 2)}.client{height:96px;padding:16px 18px}.clients-h{letter-spacing:.1em}.clients-h::before,.clients-h::after{display:none}}
 @media(prefers-reduced-motion:reduce){.clients-track{scroll-behavior:auto}}
 
+/* ===== industries hub ===== */
+.ind-jump{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:30px}
+.ind-tile{display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bd);border-radius:var(--r-sm);box-shadow:3px 3px 0 var(--ink);padding:12px 14px;color:var(--ink);transition:transform .14s var(--ease),box-shadow .14s var(--ease)}
+.ind-tile:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.ind-tile b{display:block;font-size:.95rem;font-weight:800;line-height:1.25}
+.ind-tile small{display:block;font-size:.76rem;font-weight:600;color:var(--slate);margin-top:2px}
+.ind-ic{flex:none;width:40px;height:40px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:var(--r-sm);background:var(--purple-l);box-shadow:2px 2px 0 var(--ink)}
+.ind-ic svg{width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ind-tile:hover .ind-ic{background:var(--amber)}
+.ind-ic-lg{width:52px;height:52px;background:var(--amber);box-shadow:3px 3px 0 var(--ink)}
+.ind-ic-lg svg{width:26px;height:26px}
+[data-theme="dark"] .ind-ic-lg svg,[data-theme="dark"] .ind-tile:hover .ind-ic svg{stroke:#14121F}
+.ind-wrap{display:flex;flex-direction:column;gap:clamp(26px,3.4vw,40px)}
+.ind-block{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,3.4vw,52px);background:var(--bg-2);border:var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-lg);padding:clamp(22px,3.4vw,42px);scroll-margin-top:100px}
+.ind-main{position:sticky;top:110px;align-self:start}
+.ind-main h2{margin:18px 0 12px;font-size:clamp(1.5rem,2.6vw,2.1rem)}
+.ind-sum{color:var(--slate);font-size:1rem;max-width:46ch}
+.ind-label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-l);margin:24px 0 10px}
+.ind-side > .ind-label:first-child{margin-top:4px}
+.ind-types{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:0 0 26px;padding:0}
+.ind-types li{font-size:.8rem;font-weight:700;padding:6px 12px;border:1.5px solid var(--hair);border-radius:999px;background:var(--purple-xl);color:var(--ink)}
+.ind-pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.ind-page{display:flex;flex-direction:column;gap:8px;padding:16px 16px 15px;border:var(--bd);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);transition:transform .16s var(--ease),box-shadow .16s var(--ease),background .2s}
+.ind-page:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);background:var(--bg-2)}
+.ind-pt{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ind-ph{font-size:1rem;font-weight:800;line-height:1.25;margin:0;letter-spacing:-.01em}
+.ind-page small{font-size:.82rem;line-height:1.5;color:var(--slate)}
+.ind-guides{list-style:none;margin:0;padding:0}
+.ind-guides li + li{border-top:1px solid var(--hair)}
+.ind-guides a{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 2px;font-size:.92rem;font-weight:700;color:var(--ink);transition:color .2s}
+.ind-guides a::after{content:"\2192";color:var(--purple);font-weight:800;transition:transform .2s var(--ease)}
+.ind-guides a:hover{color:var(--purple-d)}
+.ind-guides a:hover::after{transform:translateX(4px)}
+[data-theme="dark"] .ind-guides a:hover{color:#B3AAFF}
+@media(max-width:1000px){.ind-jump{grid-template-columns:repeat(2,minmax(0,1fr))}.ind-block{grid-template-columns:1fr}.ind-main{position:static}}
+@media(max-width:480px){.ind-jump{grid-template-columns:1fr}}
+
 /* ===== theme toggle ===== */
 .themetog{width:44px;height:44px;flex:none;display:grid;place-items:center;padding:0;cursor:pointer;
   border:var(--bd);border-radius:50%;background:var(--bg-2);color:var(--ink);box-shadow:3px 3px 0 var(--shc);
@@ -1010,14 +1047,8 @@ html:not(.loaded) #waBtn::after{animation-play-state:paused}
           </span>
           <span class="mm-col">
             <em class="mhead">Industries</em>
-            {%- set mmIcons = {
-              "professional": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></svg>',
-              "health": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5v6.5H21v5h-6.5V21h-5v-6.5H3v-5h6.5z"/></svg>',
-              "home": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
-              "property": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M11 21v-3h2v3"/></svg>'
-            } %}
             {%- for c in categories %}
-            <a class="mm-item" href="{{ c.menuUrl or c.url }}"><i class="mm-ic">{{ mmIcons[c.key] | safe }}</i><span class="mm-t"><b>{{ c.name }}</b><small>{{ c.menu }}</small></span></a>
+            <a class="mm-item" href="{{ c.menuUrl or c.url }}"><i class="mm-ic"><svg viewBox="0 0 24 24" aria-hidden="true">{{ c.icon | safe }}</svg></i><span class="mm-t"><b>{{ c.name }}</b><small>{{ c.menu }}</small></span></a>
             {%- endfor %}
             <a href="/industries/" class="mall">All industries <span aria-hidden="true">&rarr;</span></a>
           </span>

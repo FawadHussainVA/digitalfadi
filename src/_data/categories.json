@@ -4,14 +4,55 @@
     "name": "Law firms",
     "url": "/google-ads-for-law-firms/",
     "summary": "Personal injury, family, criminal defence, immigration, estate planning, employment and every other practice area.",
-    "menu": "Every practice area, measured on signed cases"
+    "menu": "Every practice area, measured on signed cases",
+    "icon": "<path d=\"M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z\"/>",
+    "types": [
+      "Personal injury",
+      "Family & divorce",
+      "Criminal defence",
+      "Immigration",
+      "Estate planning",
+      "Employment",
+      "Business law",
+      "Bankruptcy",
+      "Medical negligence",
+      "Workers' compensation",
+      "Tax law",
+      "Real estate law"
+    ],
+    "guides": [
+      "google-ads-enhanced-conversions-for-leads-guide",
+      "local-services-ads-vs-google-ads",
+      "how-to-find-negative-keywords"
+    ]
   },
   {
     "key": "health",
     "name": "Clinics",
     "url": "/google-ads-for-clinics/",
     "summary": "Dental, medical, veterinary, physiotherapy, chiropractic, dermatology, med spa and every other kind of clinic.",
-    "menu": "Dental, medical, vet and aesthetic clinics"
+    "menu": "Dental, medical, vet and aesthetic clinics",
+    "icon": "<path d=\"M9.5 3h5v6.5H21v5h-6.5V21h-5v-6.5H3v-5h6.5z\"/>",
+    "types": [
+      "Dental",
+      "General practice",
+      "Veterinary",
+      "Physiotherapy",
+      "Chiropractic",
+      "Dermatology",
+      "Med spa & aesthetics",
+      "Optometry",
+      "Hearing",
+      "Fertility",
+      "Mental health",
+      "Urgent care"
+    ],
+    "guides": [
+      "dental-ppc-guide",
+      "google-ads-for-dental-implants",
+      "dental-google-ads-cost",
+      "dental-landing-pages"
+    ]
   },
   {
     "key": "home",
@@ -19,13 +60,50 @@
     "url": "/google-ads-for-local-services/",
     "summary": "HVAC, plumbing, roofing, electrical, restoration, garage doors, pest control, remodeling and other trades.",
     "menu": "HVAC, plumbing, roofing and other trades",
-    "menuUrl": "/industries/#home"
+    "menuUrl": "/industries/#home",
+    "icon": "<path d=\"M3 11l9-7 9 7\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>",
+    "types": [
+      "HVAC",
+      "Plumbing",
+      "Roofing",
+      "Electrical",
+      "Water damage",
+      "Garage doors",
+      "Pest control",
+      "Remodeling",
+      "Landscaping",
+      "Cleaning",
+      "Moving"
+    ],
+    "guides": [
+      "hvac-keywords-google-ads",
+      "hvac-negative-keywords",
+      "why-google-ads-calls-are-not-becoming-jobs",
+      "local-services-ads-vs-google-ads"
+    ]
   },
   {
     "key": "property",
     "name": "Real estate & property",
     "url": "/google-ads-for-real-estate/",
     "summary": "Apartment rentals, property management, real estate agents, student housing and other property businesses.",
-    "menu": "Rentals, agents and property management"
+    "menu": "Rentals, agents and property management",
+    "icon": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"1\"/><path d=\"M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M11 21v-3h2v3\"/>",
+    "types": [
+      "Apartment rentals",
+      "Property management",
+      "Estate & letting agents",
+      "Student housing",
+      "New developments",
+      "Commercial property",
+      "Holiday lets",
+      "Senior living",
+      "Self storage"
+    ],
+    "guides": [
+      "google-ads-location-targeting-settings",
+      "google-ads-enhanced-conversions-for-leads-guide",
+      "how-much-should-you-spend-on-google-ads"
+    ]
   }
 ]
