@@ -8,8 +8,12 @@ description: "How Google Ads works differently in each industry: what to measure
 {"@context":"https://schema.org","@graph":[
 {"@type":"CollectionPage","name":{{ title | dump | safe }},"description":{{ description | dump | safe }},"url":"{{ site.url }}/industries/",
  "mainEntity":{"@type":"ItemList","itemListElement":[
+  {%- for c in categories %}
+  {"@type":"ListItem","position":{{ loop.index }},"url":"{{ site.url }}{{ c.url }}","name":{{ ("Google Ads for " + (c.name | lower)) | dump | safe }}},
+  {%- endfor %}
+  {%- set n = categories | length %}
   {%- for t in collections.industries | sort(false, false, 'data.order') %}
-  {"@type":"ListItem","position":{{ loop.index }},"url":"{{ site.url }}{{ t.url }}","name":{{ t.data.heading | dump | safe }}}{% if not loop.last %},{% endif %}
+  {"@type":"ListItem","position":{{ n + loop.index }},"url":"{{ site.url }}{{ t.url }}","name":{{ t.data.heading | dump | safe }}}{% if not loop.last %},{% endif %}
   {%- endfor %}
  ]}},
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Industries","item":"{{ site.url }}/industries/"}]}
@@ -27,18 +31,27 @@ description: "How Google Ads works differently in each industry: what to measure
   </div>
 </div>
 
-<section class="wrap">
+{%- for c in categories %}
+<section class="wrap{% if not loop.first %} pt0{% endif %}" id="{{ c.key }}">
   <div class="sec-head rv">
-    <span class="eyebrow">Industries</span>
-    <h2>Pick your <span class="hl">sector</span></h2>
+    <span class="eyebrow">{{ c.name }}</span>
+    <h2>Google Ads for <span class="hl">{{ c.name | lower }}</span></h2>
+    <p>{{ c.summary }}</p>
   </div>
   <div class="channels stg">
-  {%- for t in collections.industries | sort(false, false, 'data.order') %}
+    <a class="ch" href="{{ c.url }}" style="text-decoration:none">
+      <div class="ch-top"><h3>All {{ c.name | lower }}</h3><span class="unit new">Overview</span></div>
+      <p>How I run Google Ads for {{ c.name | lower }}, A to Z: campaign structure, the advertising rules that apply, and what to measure.</p>
+    </a>
+    {%- for t in collections.industries | sort(false, false, 'data.order') %}{% if t.data.group == c.key %}
     <a class="ch" href="{{ t.url }}" style="text-decoration:none">
       <div class="ch-top"><h3>{{ t.data.crumb }}</h3><span class="unit">{{ t.data.unit or "Sector" }}</span></div>
       <p>{{ t.data.standfirst }}</p>
     </a>
-  {%- endfor %}
+    {%- endif %}{% endfor %}
   </div>
+</section>
+{%- endfor %}
+<section class="wrap pt0">
   <p class="sec-head" style="margin:34px auto 0">Not listed? The approach for most service businesses is on the <a href="/google-ads-for-local-services/" style="color:var(--purple);font-weight:700">local services page</a>, and for online shops on the <a href="/google-ads-for-ecommerce/" style="color:var(--purple);font-weight:700">e-commerce page</a>.</p>
 </section>

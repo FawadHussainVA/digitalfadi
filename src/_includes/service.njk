@@ -3,6 +3,7 @@ layout: base.njk
 ---
 {%- set parentName = parent[0] if parent else "Google Ads Services" -%}
 {%- set parentUrl = parent[1] if parent else "/#services" -%}
+{%- set cat = (categories | categoryFor(group, page.url)) if parent else null -%}
 {% block extrahead %}
 <script type="application/ld+json">
 {
@@ -24,7 +25,12 @@ layout: base.njk
   "itemListElement": [
     {"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},
     {"@type":"ListItem","position":2,"name":{{ parentName | dump | safe }},"item":"{{ site.url }}{{ parentUrl }}"},
+    {%- if cat %}
+    {"@type":"ListItem","position":3,"name":{{ cat.name | dump | safe }},"item":"{{ site.url }}{{ cat.url }}"},
+    {"@type":"ListItem","position":4,"name":{{ crumb | dump | safe }},"item":"{{ site.url }}{{ page.url }}"}
+    {%- else %}
     {"@type":"ListItem","position":3,"name":{{ crumb | dump | safe }},"item":"{{ site.url }}{{ page.url }}"}
+    {%- endif %}
   ]
 }
 </script>
@@ -53,6 +59,10 @@ layout: base.njk
       <span aria-hidden="true">/</span>
       <a href="{{ parentUrl }}">{{ parentName }}</a>
       <span aria-hidden="true">/</span>
+      {%- if cat %}
+      <a href="{{ cat.url }}">{{ cat.name }}</a>
+      <span aria-hidden="true">/</span>
+      {%- endif %}
       <span aria-current="page">{{ crumb }}</span>
     </nav>
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:21ch">{{ heading }}</h1>

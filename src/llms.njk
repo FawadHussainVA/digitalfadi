@@ -41,8 +41,13 @@ eleventyExcludeFromCollections: true
 
 ## Industries
 
+{% for c in categories -%}
+### {{ c.name }}
+
+- [Google Ads for {{ c.name | lower }}]({{ site.url }}{{ c.url }}): {{ c.summary }}
 {% for t in collections.industries | sort(false, false, 'data.order') -%}
-- [{{ t.data.heading }}]({{ site.url }}{{ t.url }}): {{ t.data.description }}
+{% if t.data.group == c.key %}- [{{ t.data.heading }}]({{ site.url }}{{ t.url }}): {{ t.data.description }}
+{% endif %}{%- endfor %}
 {% endfor %}
 ## Free tools
 

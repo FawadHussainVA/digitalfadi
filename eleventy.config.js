@@ -12,6 +12,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("readable", (d) =>
     new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }));
+  // the industry category a page sits under, for breadcrumbs (null for the category page itself)
+  eleventyConfig.addFilter("categoryFor", (categories, group, url) =>
+    (categories || []).find((c) => c.key === group && c.url !== url) || null);
   eleventyConfig.addFilter("iso", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("rfc822", (d) => new Date(d).toUTCString());
   // FAQ schema for articles: reads the questions (h3) and first answer paragraph

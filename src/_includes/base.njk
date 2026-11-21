@@ -976,8 +976,8 @@ html:not(.loaded) #waBtn::after{animation-play-state:paused}
           </span>
           <span class="mcol mind">
             <em class="mhead">Industries</em>
-            {%- for t in collections.industries | sort(false, false, 'data.order') %}
-            <a href="{{ t.url }}">{{ t.data.crumb }}</a>
+            {%- for c in categories %}
+            <a href="{{ c.url }}">{{ c.name }}</a>
             {%- endfor %}
             <a href="/industries/" class="mall">All industries <span aria-hidden="true">&rarr;</span></a>
           </span>

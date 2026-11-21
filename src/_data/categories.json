@@ -1,0 +1,26 @@
+[
+  {
+    "key": "professional",
+    "name": "Law firms",
+    "url": "/google-ads-for-law-firms/",
+    "summary": "Personal injury, family, criminal defence, immigration, estate planning, employment and every other practice area."
+  },
+  {
+    "key": "health",
+    "name": "Clinics",
+    "url": "/google-ads-for-clinics/",
+    "summary": "Dental, medical, veterinary, physiotherapy, chiropractic, dermatology, med spa and every other kind of clinic."
+  },
+  {
+    "key": "home",
+    "name": "Home services",
+    "url": "/google-ads-for-local-services/",
+    "summary": "HVAC, plumbing, roofing, electrical, restoration, garage doors, pest control, remodeling and other trades."
+  },
+  {
+    "key": "property",
+    "name": "Real estate & property",
+    "url": "/google-ads-for-real-estate/",
+    "summary": "Apartment rentals, property management, real estate agents, student housing and other property businesses."
+  }
+]
