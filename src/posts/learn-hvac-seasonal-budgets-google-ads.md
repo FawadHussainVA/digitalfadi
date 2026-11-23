@@ -5,6 +5,8 @@ date: 2026-11-10
 topic: "Strategy"
 permalink: /learn/hvac-seasonal-budgets-google-ads/
 order: 17
+socialImage: /assets/social/hvac.jpg
+socialImageAlt: "DigitalFadi · Google Ads for HVAC companies"
 ---
 
 HVAC demand moves with the weather. Cooling calls rise in the hottest months, heating calls rise when temperatures drop, and shoulder seasons are quieter. A flat monthly budget can run out at the wrong moment or sit underspent when demand is weak. Planning around the seasons keeps the account working when it matters most.
@@ -38,6 +40,8 @@ Set up alerts for sudden changes in spend or cost per click, so you learn about 
 Quiet months are a good time to tidy the account. Review the search terms report, update negative keywords, check call tracking and refresh ad copy. Also look at maintenance campaigns, because booked tune-ups in quiet months fill the calendar for the busy season ahead.
 
 If you want help setting seasonal budgets against your actual booking data, a [free Google Ads audit](/google-ads-audit/) reviews spend by month and service, and it shows where the budget should move before the next peak.
+
+For help applying a seasonal plan to repairs and replacements, see [Google Ads management for HVAC companies](/google-ads-for-hvac-companies/).
 
 ## Frequently asked questions
 

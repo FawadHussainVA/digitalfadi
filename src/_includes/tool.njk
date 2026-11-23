@@ -33,20 +33,6 @@ layout: base.njk
   ]
 }
 </script>
-{% if faqs %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {%- for f in faqs %}
-    {"@type":"Question","name":{{ f.q | dump | safe }},
-     "acceptedAnswer":{"@type":"Answer","text":{{ f.a | dump | safe }}}}{% if not loop.last %},{% endif %}
-    {%- endfor %}
-  ]
-}
-</script>
-{% endif %}
 {% endblock %}
 <div class="phero">
   <div class="wrap phero-in">

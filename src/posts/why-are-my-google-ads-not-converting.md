@@ -18,7 +18,7 @@ Plenty of accounts are converting fine and reporting nothing. A tag that never f
 
 Check it the simple way. Submit your own form, then look at the conversion in Google Ads an hour later. If it is not there, nothing else on this list matters yet.
 
-The opposite problem exists too. Conversions counted twice, or a page view counted as a conversion, so the account looks like it is working while the phone stays quiet. There is more on that in [what I look for first in an existing account](/#findings).
+The opposite problem exists too. Conversions counted twice, or a page view counted as a conversion, so the account looks like it is working while the phone stays quiet. There is more on that in [what I look for first in an existing account](/google-ads-audit/#conversion-tracking).
 
 ## Is the search intent wrong?
 

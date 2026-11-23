@@ -12,7 +12,7 @@ permalink: /
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": "Organization",
   "@id": "{{ site.url }}/#organization",
   "name": "DigitalFadi",
   "description": "Freelance Google Ads management by Fawad Hussain, Google Premier Partner: Search, Shopping, Performance Max, YouTube, Display, Demand Gen, remarketing and Local Services Ads.",
@@ -27,7 +27,7 @@ permalink: /
       "sameAs": ["{{ site.upwork }}", "{{ site.linkedin }}"]
     },
     "sameAs": ["{{ site.upwork }}", "{{ site.linkedin }}", "{{ partner.url }}"],
-    "award": "2026 Google Premier Partner",
+    "award": {{ partner.tier | dump | safe }},
     "logo": "{{ site.url }}/icon-512.png",
     "image": "{{ site.url }}/og-image.png",
     "telephone": "+{{ site.whatsapp }}",
@@ -37,9 +37,8 @@ permalink: /
       "email": "{{ site.email }}",
       "telephone": "+{{ site.whatsapp }}",
       "availableLanguage": ["English", "Urdu"],
-      "areaServed": ["US", "GB", "AU"]
+      "areaServed": {{ site.coreMarkets | dump | safe }}
     },
-    "currenciesAccepted": "USD",
     "knowsAbout": [
       "Google Ads", "Search campaigns", "Google Shopping", "Performance Max",
       "YouTube advertising", "Demand Gen", "Remarketing", "Local Services Ads",
@@ -47,14 +46,6 @@ permalink: /
       "Google Tag Manager", "Smart Bidding"
     ],
   "potentialAction": {"@type": "ReserveAction", "name": "Book a 15-minute call", "target": "{{ booking.url }}"},
-  "areaServed": "Worldwide",
-  "priceRange": "$100 - $499+",
-  "serviceType": [
-    "Google Ads management", "Google Search Ads", "Google Shopping Ads",
-    "Performance Max campaigns", "YouTube advertising", "Google Display Network",
-    "Demand Gen campaigns", "Google Ads remarketing", "Local Services Ads",
-    "Google Ads account audit", "Conversion tracking setup"
-  ],
   "makesOffer": [
     {"@type": "Offer", "name": "Free Google Ads audit", "description": "A quick first look that lists the issues in your Google Ads account. Solutions are not included.", "price": "0", "priceCurrency": "USD"},
      {"@type": "Offer", "name": "Google Ads account analysis", "description": "Every issue in your Google Ads account, with the solution for each one, in a written document plus a walkthrough call, delivered within 3 days.",
@@ -66,142 +57,6 @@ permalink: /
        "unitCode": "MON"}},
     {"@type": "Offer", "name": "Performance management",
      "description": "10% of managed advertising spend"}
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Do you only work on Google Ads?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Search, Shopping, Performance Max, YouTube, Display, Demand Gen, remarketing and Local Services Ads. I don't take on SEO, social media or website projects. If one of those is the real bottleneck I'll say so, then get on with the advertising."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much should I spend on Google Ads?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It depends on your cost per conversion and what a customer is worth, not on a fixed rule. Practically, a budget needs to generate enough conversions monthly for Smart Bidding to learn and for you to make decisions from real data. I work that figure out with you rather than quoting a number blind."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does a Google Ads freelancer do?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A Google Ads freelancer is an independent specialist who plans, builds and manages Google Ads campaigns personally, rather than through an agency team. I handle strategy, conversion tracking, account structure, keywords, ads, bidding and reporting myself, and you deal directly with the person doing the work."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why hire a Google Ads freelancer instead of an agency?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You speak to the person managing your account, with no account manager relaying messages and no hand-offs to junior staff. Your fee pays for senior, hands-on time rather than overheads. An agency can make more sense if you also need design, SEO or social media from one supplier, which I do not offer."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are you a Google Ads consultant or a hands-on specialist?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Both. I set the strategy, as a consultant would, and do the hands-on work of a PPC specialist: tracking, campaign builds, search terms, ad testing and bidding. I manage accounts directly inside Google Ads rather than advising from the outside."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much does it cost to hire a Google Ads freelancer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Management is $499 a month, or 10% of managed ad spend for larger accounts. A one-time account analysis is $100. Prices are in USD, and your ad spend is paid directly to Google from your own account, never through me."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between the free audit and the $100 analysis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The free audit is a quick first look that lists the issues in your account, such as broken tracking, wasted spend or structural problems, with no obligation. It tells you what is wrong, not how to fix it. The $100 account analysis covers those issues in depth and adds the solution for each one: what to change, how and in what order, in a written document you keep, followed by a walkthrough call."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How quickly can campaigns be launched?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Usually one to two weeks. Most of that is conversion tracking, account structure and ad assets. I could go faster, but launching before tracking is verified normally costs more than the time it saves."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you take over an existing Google Ads account?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, and it's the more common starting point. I begin with an account analysis so improvements build on your existing conversion history rather than discarding it. Rebuilding from scratch resets learning, so I only do it when the structure genuinely can't be salvaged."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you set up conversion tracking?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Google Ads conversion actions, GA4, Google Tag Manager, enhanced conversions, consent mode, call tracking and offline conversion imports from your CRM. If tracking is incomplete I fix it before changing campaigns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you work with e-commerce stores?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Merchant Center and feed work, Shopping campaigns, Performance Max structured by margin, and dynamic remarketing, all managed to ROAS rather than clicks."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you manage B2B lead generation?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Search campaigns with tight negative keyword control, and lead quality tracked through to your CRM so bidding optimises on qualified enquiries rather than form fills."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you handle Performance Max?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Deliberately. Asset groups structured by product or service rather than dumped into one, brand traffic excluded where it inflates apparent performance, audience signals set from first-party data, and placement reporting extracted so you can see where impressions actually went."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you measure performance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Against a metric agreed before launch, normally cost per lead, cost per acquisition or ROAS. Google-reported conversions are cross-checked against your own CRM or order data, and where the two disagree I report the more conservative figure."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Who owns the Google Ads account?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You do. It stays registered to your business under your billing, and every campaign, audience, ad and conversion action I build stays with you if I stop working together."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are you a Google Partner?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, and at the Premier tier. Premier Partner status is awarded to roughly the top 3% of participating companies in each country, measured on ad spend, certification and client performance, and it is re-earned every year. Ours is current for 2026 and verifiable in Google's public Partners directory, so you never have to take an agency's word for it."
-      }
-    }
   ]
 }
 </script>
@@ -633,7 +488,7 @@ permalink: /
       </div>
       <div class="case-body">
         <h3>40% more booked jobs, each a third cheaper</h3>
-        <p>Local Services Ads with call tracking for an HVAC company, measured on booked jobs rather than calls.</p>
+        <p>Local Services Ads with call tracking for an HVAC company, measured on booked jobs. <a class="case-detail-link" href="/case-studies/hvac-booked-jobs/">Read the HVAC case study</a>.</p>
       </div>
       <div class="case-metrics">
         <div><b>&minus;33%</b><span>Cost per booked job</span></div>
@@ -649,7 +504,7 @@ permalink: /
       </div>
       <div class="case-body">
         <h3>21% more tours booked, cost per tour down 36%</h3>
-        <p>Search campaigns with remarketing to past visitors (RLSA) for an apartment rental business, measured on tours booked.</p>
+        <p>Search campaigns with remarketing to past visitors for an apartment rental business, measured on tours booked. <a class="case-detail-link" href="/case-studies/apartment-rental-tours/">Read the apartment rentals case study</a>.</p>
       </div>
       <div class="case-metrics">
         <div><b>&minus;36%</b><span>Cost per tour</span></div>
@@ -813,7 +668,7 @@ permalink: /
 <div class="stats-band">
   <div class="stats">
     <div class="st"><div class="fig" data-to="5" data-suf="+">5+</div><p>Years running Google Ads accounts, and nothing but Google Ads accounts.</p></div>
-    <div class="st"><div class="fig" data-to="100" data-suf="+">100+</div><p>Businesses served across the US, UK and Australia. 25 accounts live today.</p></div>
+    <div class="st"><div class="fig" data-to="100" data-suf="+">100+</div><p>Businesses served across the US, UK and Australia.</p></div>
     <div class="st"><div class="fig" data-to="9">9</div><p>Google Ads campaign types managed in-house.</p></div>
   </div>
 </div>

@@ -38,6 +38,8 @@ Your own company name should be in its own campaign, with a low bid, because you
 
 If you want a clear view of which HVAC keywords are costing you money and which are producing jobs, a [free Google Ads audit](/google-ads-audit/) reviews your keyword list, search terms and call data together.
 
+If you want these segments set up and measured against booked work, see how I manage [Google Ads for HVAC companies](/google-ads-for-hvac-companies/).
+
 ## Frequently asked questions
 
 ### Should an HVAC company bid on "HVAC" alone?

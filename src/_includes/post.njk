@@ -23,25 +23,11 @@ ogtype: article
     "sameAs": ["{{ site.upwork }}", "{{ site.linkedin }}"]
   },
   "publisher": {"@type":"Organization","@id":"{{ site.url }}/#organization","name":"DigitalFadi","logo":{"@type":"ImageObject","url":"{{ site.url }}/icon-512.png"}},
-  "image": "{{ site.url }}/og-image.png",
+  "image": "{{ site.url }}{{ socialImage or '/og-image.png' }}",
   "inLanguage": "en",
   "mainEntityOfPage": "{{ site.url }}{{ page.url }}"
 }
 </script>
-{%- set articleFaqs = content | faqItems %}
-{%- if articleFaqs.length %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {%- for f in articleFaqs %}
-    {"@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": {"@type": "Answer", "text": {{ f.a | dump | safe }}}}{% if not loop.last %},{% endif %}
-    {%- endfor %}
-  ]
-}
-</script>
-{%- endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -61,11 +47,15 @@ ogtype: article
       <span aria-hidden="true">/</span>
       <a href="{{ site.url }}/learn/">Learn</a>
       <span aria-hidden="true">/</span>
-      <span aria-current="page">{{ topic }}</span>
+      <span aria-current="page">{{ title }}</span>
     </nav>
     <div class="article-meta ab-meta">
       <i>{{ topic }}</i>
       <span>{{ readingTime }} min read</span>
+      <span>Published <time datetime="{{ date | iso }}">{{ date | readable }}</time></span>
+      {% if updated and (updated | iso) != (date | iso) %}
+      <span>Updated <time datetime="{{ updated | iso }}">{{ updated | readable }}</time></span>
+      {% endif %}
     </div>
     <h1>{{ title }}</h1>
     <p class="ab-dek">{{ description }}</p>

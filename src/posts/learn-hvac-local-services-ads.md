@@ -37,6 +37,8 @@ Local Services Ads suit many HVAC companies, especially those with a clear local
 
 If you are considering Local Services Ads and want to see how they would fit with your existing Search account, a [free Google Ads audit](/google-ads-audit/) can review your current setup and suggest a sensible order of tests.
 
+For hands-on management of Search and Local Services Ads, see [Google Ads for HVAC companies](/google-ads-for-hvac-companies/).
+
 ## Frequently asked questions
 
 ### Do HVAC companies pay per lead with Local Services Ads?

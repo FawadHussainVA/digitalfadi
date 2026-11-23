@@ -10,6 +10,8 @@ Audits have a reputation problem. Too many are a template run against an account
 
 A useful audit does two things a template cannot. It checks in an order where each step makes the next readable, and it tells you what each finding is costing.
 
+For a list you can work through yourself, use the [51-point Google Ads audit checklist](/learn/google-ads-audit-checklist/). This guide explains why the checks run in this order. For an example of what a paid review delivers, see [what a Google Ads account analysis checks](/learn/what-a-google-ads-account-analysis-checks/).
+
 ## Why the order matters more than the checklist
 
 Every finding in a Google Ads account is downstream of one question: is the conversion data real?

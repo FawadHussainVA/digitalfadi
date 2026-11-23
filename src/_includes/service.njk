@@ -14,9 +14,8 @@ servicePage: true
   "description": {{ description | dump | safe }},
   "serviceType": {{ heading | dump | safe }},
   "url": "{{ site.url }}{{ page.url }}",
-  "areaServed": ["US", "GB", "AU"],
-  "provider": {"@type": "ProfessionalService", "@id": "{{ site.url }}/#organization", "name": "DigitalFadi", "url": "{{ site.url }}/",
-    "founder": {"@id": "{{ site.url }}/#fawad"}}
+  "areaServed": {{ site.coreMarkets | dump | safe }},
+  "provider": {"@id": "{{ site.url }}/#organization"}
 }
 </script>
 <script type="application/ld+json">
@@ -35,23 +34,6 @@ servicePage: true
   ]
 }
 </script>
-{% if faqs %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {%- for f in faqs %}
-    {
-      "@type": "Question",
-      "name": {{ f.q | dump | safe }},
-      "acceptedAnswer": {"@type": "Answer", "text": {{ f.a | dump | safe }}}
-    }{% if not loop.last %},{% endif %}
-    {%- endfor %}
-  ]
-}
-</script>
-{% endif %}
 {% endblock %}
 <div class="service-page">
   <div class="service-hero">
@@ -72,6 +54,13 @@ servicePage: true
           <a class="service-partner" href="{{ partner.url }}" target="_blank" rel="noopener">{{ partner.tier }} <span aria-hidden="true">&#x2197;&#xFE0E;</span></a>
           <h1>{{ heading }}</h1>
           <p>{{ standfirst }}</p>
+          {% if serviceFacts %}
+          <dl class="service-facts">
+            {% for fact in serviceFacts %}
+            <div><dt>{{ fact[0] }}</dt><dd>{{ fact[1] }}</dd></div>
+            {% endfor %}
+          </dl>
+          {% endif %}
           <div class="service-actions">
             <a href="#enquiry" class="btn">Get a free audit <span class="arw" aria-hidden="true">&rarr;</span></a>
             <a href="/#pricing" class="service-text-link">See pricing <span aria-hidden="true">&rarr;</span></a>

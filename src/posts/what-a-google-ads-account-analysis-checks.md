@@ -4,6 +4,8 @@ description: "A look at what a paid Google Ads account analysis covers, from con
 date: 2026-11-06
 topic: "Strategy"
 order: 13
+socialImage: /assets/social/audit.jpg
+socialImageAlt: "DigitalFadi · Google Ads Audit & analysis"
 ---
 
 When an account is underperforming, the instinct is to change something quickly: raise the budget, cut the keywords, rewrite the adverts, switch bidding. Each of those changes is only worth making if the numbers behind them are right. A proper account analysis starts by checking that they are.

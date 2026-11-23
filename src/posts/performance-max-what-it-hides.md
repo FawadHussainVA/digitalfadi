@@ -84,6 +84,8 @@ The brand question has its own article: [should you bid on your own brand name](
 
 **Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/) and [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/).
 
+For retailers who need help separating Shopping and Performance Max traffic, see [e-commerce Google Ads management](/google-ads-for-ecommerce/).
+
 ## Frequently asked questions
 
 ### Can I see where Performance Max ads are shown?

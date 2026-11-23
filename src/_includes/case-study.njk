@@ -1,0 +1,31 @@
+---
+layout: base.njk
+ogtype: article
+---
+<div class="phero">
+  <div class="wrap narrow">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/#results">Client results</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ heading }}</span>
+    </nav>
+    <h1>{{ heading }}</h1>
+    <p>{{ description }}</p>
+    <div class="hero-cta">
+      <a class="btn" href="{{ serviceUrl }}">{{ serviceLabel }} <span class="arw" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+<article class="article">
+  <div class="wrap narrow prose">
+    <h2>Reported results</h2>
+    <ul>
+      {% for metric in metrics %}<li><strong>{{ metric[0] }}</strong> {{ metric[1] }}</li>{% endfor %}
+    </ul>
+    <p>These figures show relative changes reported in the client’s account.</p>
+{{ content | safe }}
+    <p><a href="/about/" rel="author">Fawad Hussain, Google Ads specialist</a></p>
+  </div>
+</article>

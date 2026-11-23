@@ -4,6 +4,8 @@ description: "What dental PPC is, how Google Ads works for dental practices, whi
 topic: "Strategy"
 date: 2026-11-20
 order: 44
+socialImage: /assets/social/dental.jpg
+socialImageAlt: "DigitalFadi · Google Ads for dental practices"
 ---
 
 Dental PPC (pay-per-click) means paying Google to show your practice at the top of search results when people search for a dentist or a dental treatment, and paying only when someone clicks. For most practices it means Google Ads: Search campaigns for people actively looking, Local Services Ads where available, and sometimes Performance Max.

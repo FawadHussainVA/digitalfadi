@@ -2,60 +2,27 @@
 permalink: /robots.txt
 eleventyExcludeFromCollections: true
 ---
+# Public pages are available to search engines.
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-# Answer engines. Allowed deliberately: being quoted by them is the point.
-User-agent: GPTBot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
 User-agent: OAI-SearchBot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: ChatGPT-User
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: ClaudeBot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
 User-agent: Claude-SearchBot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-User-agent: Perplexity-User
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
+# Match production Cloudflare policy for training and user-initiated agents.
+User-agent: GPTBot
+User-agent: ClaudeBot
 User-agent: Google-Extended
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
 User-agent: Applebot-Extended
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: Bingbot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
+User-agent: ChatGPT-User
+User-agent: Perplexity-User
+User-agent: Claude-User
+Disallow: /
 
 Sitemap: {{ site.url }}/sitemap.xml

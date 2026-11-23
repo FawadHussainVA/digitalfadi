@@ -75,6 +75,8 @@ Fees are usually a fixed monthly amount, a percentage of ad spend, or a project 
 
 **Related reading:** [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/).
 
+If you want to compare this checklist with a specific service, see [how I manage Google Ads for dental practices](/google-ads-for-dentists/).
+
 ## Frequently asked questions
 
 ### Should a dental practice use a dental marketing company or a Google Ads specialist?

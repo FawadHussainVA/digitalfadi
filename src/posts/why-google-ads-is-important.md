@@ -34,7 +34,7 @@ Paid search is one of very few channels where you can follow the money from a sp
 
 Broken tracking is not a reporting inconvenience. Smart Bidding optimises towards whatever it is told a conversion is, so a tag that fires twice, a thank-you page counted on every refresh, or a lead form that counts enquiries and sales as equal will teach the algorithm to buy the wrong traffic, quickly and expensively. The account will appear to be improving while the business gets worse.
 
-This is why verified conversion tracking comes before any bidding work in a serious account. It is also the single most common problem I find: see [what I look for first in an existing account](/#findings).
+This is why verified conversion tracking comes before any bidding work in a serious account. It is also the single most common problem I find: see [what I look for first in an existing account](/google-ads-audit/#conversion-tracking).
 
 ## Your competitors are bidding on your customers right now
 

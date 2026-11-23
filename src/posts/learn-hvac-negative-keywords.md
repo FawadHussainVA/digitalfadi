@@ -41,6 +41,8 @@ Some accounts add so many negatives that they block legitimate traffic. A campai
 
 If your account has not had a search terms review in several months, that is the highest-value job to do first. A [free Google Ads audit](/google-ads-audit/) includes a search terms review, and it shows which negatives would remove the most wasted spend from an HVAC account.
 
+For help reviewing the search terms and connecting ad spend to booked jobs, see [HVAC Google Ads management](/google-ads-for-hvac-companies/).
+
 ## Frequently asked questions
 
 ### Which negative keywords should an HVAC account start with?

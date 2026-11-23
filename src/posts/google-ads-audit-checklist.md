@@ -4,6 +4,8 @@ description: "A 51-point Google Ads audit checklist in priority order: tracking,
 topic: "Strategy"
 date: 2026-10-31
 order: 29
+socialImage: /assets/social/audit.jpg
+socialImageAlt: "DigitalFadi · Google Ads Audit & analysis"
 ---
 
 A Google Ads audit checklist should run in this order: conversion tracking first, then account settings and structure, search terms and keywords, bidding and budgets, ads and assets, landing pages, audiences and targeting, Shopping and Performance Max, and finally reporting. Tracking comes first because every other number in the account depends on it. The 51 checks below follow that order, and each one says where to look in Google Ads.

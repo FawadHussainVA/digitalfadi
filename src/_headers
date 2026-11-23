@@ -30,3 +30,11 @@
 /uploads/google-ads-audit-template.pdf
   Cache-Control: public, max-age=604800
 
+
+# Shared CSS and JavaScript use versioned URLs.
+/assets/*
+  Cache-Control: public, max-age=604800
+
+# Keep the fallback accessible without indexing a second copy.
+https://digitalfadi.pages.dev/*
+  X-Robots-Tag: noindex

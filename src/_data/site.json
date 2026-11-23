@@ -5,5 +5,10 @@
   "whatsapp": "17373043222",
   "upwork": "https://upwork.com/freelancers/fawadppcexpert",
   "linkedin": "https://www.linkedin.com/in/fawad-hussain/",
-  "authorName": "Fawad Hussain"
+  "authorName": "Fawad Hussain",
+  "coreMarkets": [
+    "United States",
+    "United Kingdom",
+    "Australia"
+  ]
 }

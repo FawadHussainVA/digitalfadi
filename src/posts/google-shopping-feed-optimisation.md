@@ -4,6 +4,8 @@ description: "Your product feed decides which searches your Shopping ads can app
 topic: "Shopping"
 date: 2026-10-22
 order: 19
+socialImage: /assets/social/ecommerce.jpg
+socialImageAlt: "DigitalFadi · Google Ads for e-commerce"
 ---
 
 Google Shopping feed optimisation means improving the product data you send to Google Merchant Center so your products appear for more of the right searches and win more clicks. Shopping ads have no keywords: Google reads your feed to decide which searches each product matches. Work in this order: fix disapproved products first, then product identifiers, titles, images, categories and custom labels, then descriptions and the remaining attributes.
