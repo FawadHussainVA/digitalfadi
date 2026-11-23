@@ -1,5 +1,6 @@
 ---
 layout: base.njk
+servicePage: true
 ---
 {%- set parentName = parent[0] if parent else "Google Ads Services" -%}
 {%- set parentUrl = parent[1] if parent else "/#services" -%}
@@ -52,51 +53,113 @@ layout: base.njk
 </script>
 {% endif %}
 {% endblock %}
-<div class="phero">
-  <div class="wrap phero-in">
-    <nav class="crumb" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <span aria-hidden="true">/</span>
-      <a href="{{ parentUrl }}">{{ parentName }}</a>
-      <span aria-hidden="true">/</span>
-      {%- if cat %}
-      <a href="{{ cat.url }}">{{ cat.name }}</a>
-      <span aria-hidden="true">/</span>
-      {%- endif %}
-      <span aria-current="page">{{ crumb }}</span>
-    </nav>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:21ch">{{ heading }}</h1>
-    <p style="max-width:58ch">{{ standfirst }}</p>
-    <div class="hero-cta">
-      <a href="#enquiry" class="btn">Get a free audit <span class="arw">&rarr;</span></a>
-      <a href="/#pricing" class="btn ghost">See pricing</a>
-    </div>
-    <p class="hero-note"><b aria-hidden="true"></b>Read-only access is enough to start. I never change anything without asking.</p>
-  </div>
-</div>
+<div class="service-page">
+  <div class="service-hero">
+    <div class="wrap">
+      <nav class="crumb service-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{ parentUrl }}">{{ parentName }}</a>
+        <span aria-hidden="true">/</span>
+        {%- if cat %}
+        <a href="{{ cat.url }}">{{ cat.name }}</a>
+        <span aria-hidden="true">/</span>
+        {%- endif %}
+        <span aria-current="page">{{ crumb }}</span>
+      </nav>
+      <div class="service-grid">
+        <div class="service-intro">
+          <a class="service-partner" href="{{ partner.url }}" target="_blank" rel="noopener">{{ partner.tier }} <span aria-hidden="true">&#x2197;&#xFE0E;</span></a>
+          <h1>{{ heading }}</h1>
+          <p>{{ standfirst }}</p>
+          <div class="service-actions">
+            <a href="#enquiry" class="btn">Get a free audit <span class="arw" aria-hidden="true">&rarr;</span></a>
+            <a href="/#pricing" class="service-text-link">See pricing <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <p class="service-reassurance">Read-only access is enough for the audit.</p>
+        </div>
 
-<section class="wrap pt0">
-  <div class="svc">
-
-    <div class="svc-main">
-      <div class="prose">
-{{ content | safe }}
+        <div class="fcard service-form" id="enquiry" role="region" aria-label="Free Google Ads audit" tabindex="-1">
+          <div class="service-form-intro">
+            <h2>Request a free Google Ads audit</h2>
+            <p>I’ll identify issues in your account. There’s no obligation.</p>
+          </div>
+          <form name="account-analysis" method="POST" action="/api/contact" data-leadform>
+            <input type="hidden" name="form-name" value="account-analysis">
+            <input type="hidden" name="page" value="{{ crumb }}">
+            <p class="hp"><label>Leave this empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <div class="service-fields">
+              <div class="field">
+                <label for="s-name">Your name</label>
+                <input id="s-name" name="name" type="text" autocomplete="name" required placeholder="Full name">
+              </div>
+              <div class="field">
+                <label for="s-email">Email</label>
+                <input id="s-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+              </div>
+              <div class="field">
+                <label for="s-phone">Phone / WhatsApp <span class="service-optional">(optional)</span></label>
+                <input id="s-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="+44 …">
+              </div>
+              <div class="field">
+                <label for="s-site">Website</label>
+                <input id="s-site" name="website" type="text" autocomplete="url" required placeholder="yourcompany.com">
+              </div>
+              <div class="field service-budget">
+                <label for="s-budget">Monthly Google Ads budget</label>
+                <select id="s-budget" name="budget" required>
+                  <option value="">Select a range</option>
+                  <option>Under $1,000</option>
+                  <option>$1,000 &ndash; $5,000</option>
+                  <option>$5,000 &ndash; $20,000</option>
+                  <option>$20,000 &ndash; $50,000</option>
+                  <option>$50,000+</option>
+                  <option>Not running Google Ads yet</option>
+                </select>
+              </div>
+            </div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFSmQNY5L9j0Njly" data-size="flexible"></div>
+            <button type="submit" class="btn fsubmit">Get my free audit <span class="arw" aria-hidden="true">&rarr;</span></button>
+            <p class="fnote">I’ll reply within one working day. For written fixes, see the <a href="{% if page.url == '/google-ads-audit/' %}#service-details{% else %}/google-ads-audit/{% endif %}">$100 account analysis</a>.</p>
+          </form>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap service-grid service-body">
+    <div class="service-main">
+      <section aria-labelledby="service-details">
+        <h2 class="service-section-title" id="service-details" tabindex="-1">{{ "Audit details" if page.url == "/google-ads-audit/" else "Service overview" }}</h2>
+        <div class="prose service-prose">
+{{ content | safe }}
+        </div>
+      </section>
 
       {% if faqs %}
-      <div class="sec-head rv" style="margin-top:52px">
-        <span class="eyebrow">Questions</span>
-        <h2>Common questions about <span class="hl">{{ faqLabel or (crumb | lower) }}</span></h2>
-      </div>
-      {%- for f in faqs %}
-      <details>
-        <summary>{{ f.q }}</summary>
-        <p>{{ f.a }}</p>
-      </details>
-      {%- endfor %}
+      <section class="service-faq" aria-labelledby="service-faq">
+        <h2 class="service-section-title" id="service-faq">Common questions about {{ faqLabel or (crumb | lower) }}</h2>
+        {%- for f in faqs %}
+        <details>
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+        {%- endfor %}
+      </section>
       {% endif %}
+    </div>
 
-      {#- Further reading: articles on this page's topics first, then the newest others, three in total -#}
+    <aside class="service-sidebar" aria-label="Contact and resources">
+      <section class="service-panel service-contact" aria-labelledby="service-contact">
+        <h2 id="service-contact">Talk to Fawad</h2>
+        <ul>
+          <li><a href="{{ booking.url }}" target="_blank" rel="noopener">{{ booking.label }}</a></li>
+          <li><a href="mailto:{{ site.email }}?subject={{ crumb | urlencode }}%20enquiry">{{ site.email }}</a></li>
+          <li><a href="https://wa.me/{{ site.whatsapp }}?text=Hi%20DigitalFadi%2C%20I%27d%20like%20to%20talk%20about%20{{ crumb | urlencode }}." target="_blank" rel="noopener">Message on WhatsApp</a></li>
+        </ul>
+      </section>
+
+      {#- Prioritize articles on this page's topics, then fill with the latest posts. -#}
       {% set picked = [] %}
       {%- for topic in (related or []) -%}
         {%- for a in collections.posts | reverse -%}
@@ -105,98 +168,41 @@ layout: base.njk
       {%- endfor -%}
       {%- for a in collections.posts | reverse -%}
         {%- if picked.length < 3 and not (a in picked) %}{% set picked = (picked.push(a), picked) %}{% endif -%}
-      {%- endfor %}
-      {% if picked.length %}
-      <div class="note rv further-reading" style="margin-top:40px">
+      {%- endfor -%}
+      <section class="service-panel service-resources" aria-labelledby="service-resources">
+        <h2 id="service-resources">Related resources</h2>
+        {% if picked.length %}
         <h3>Further reading</h3>
-        <p>
-        {%- for a in picked -%}
-          <a href="{{ a.url }}" style="color:var(--purple);font-weight:700">{{ a.data.title }}</a>{% if not loop.last %} &middot; {% endif %}
-        {%- endfor -%}
-        </p>
-        {%- if parent and collections.industries %}
-        {%- set rel = [] %}
+        <ul>
+          {% for a in picked %}<li><a href="{{ a.url }}">{{ a.data.title }}</a></li>{% endfor %}
+        </ul>
+        {% endif %}
+        {% if parent and collections.industries %}
+        {% set rel = [] %}
         {%- for u in (relatedIndustries or []) %}{% for t in collections.industries %}{% if t.url == u %}{% set rel = (rel.push(t), rel) %}{% endif %}{% endfor %}{% endfor %}
         {%- for t in collections.industries | sort(false, false, 'data.order') %}{% if t.url != page.url and t.data.group == group and not (t in rel) and rel.length < 3 %}{% set rel = (rel.push(t), rel) %}{% endif %}{% endfor %}
-        <p style="margin-top:10px">Related industries: {% for t in rel %}<a href="{{ t.url }}" style="color:var(--purple);font-weight:700">{{ t.data.crumb }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %} &middot; <a href="/industries/" style="color:var(--purple);font-weight:700">all industries</a></p>
-        {%- endif %}
-        <p style="margin-top:10px">Free tools for this work: {% for t in (tools or []) %}<a href="{{ t[1] }}" style="color:var(--purple);font-weight:700">{{ t[0] }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %}{% if not tools %}<a href="/tools/" style="color:var(--purple);font-weight:700">all free Google Ads tools</a>{% endif %}</p>
-      </div>
-      {% endif %}
-    </div>
-
-    <aside class="svc-side" id="enquiry" aria-label="Enquiry">
-      <div class="fcard">
-        <div class="fcard-head">
-          <b>Free Google Ads audit</b>
-          <span>No obligation</span>
-        </div>
-        <form name="account-analysis" method="POST" data-leadform>
-          <input type="hidden" name="form-name" value="account-analysis">
-          <input type="hidden" name="page" value="{{ crumb }}">
-          <p class="hp"><label>Leave this empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-          <div class="field">
-            <label for="s-name">Your name</label>
-            <input id="s-name" name="name" type="text" autocomplete="name" required placeholder="Full name">
-          </div>
-          <div class="field">
-            <label for="s-email">Email</label>
-            <input id="s-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
-          </div>
-          <div class="field">
-            <label for="s-phone">Phone / WhatsApp <span style="font-weight:600;color:var(--slate-l)">(optional)</span></label>
-            <input id="s-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="Include country code, e.g. +44">
-          </div>
-          <div class="field">
-            <label for="s-site">Website</label>
-            <input id="s-site" name="website" type="text" autocomplete="url" required placeholder="yourcompany.com">
-          </div>
-          <div class="field">
-            <label for="s-budget">Monthly Google Ads budget</label>
-            <select id="s-budget" name="budget" required>
-              <option value="">Select a range</option>
-              <option>Under $1,000</option>
-              <option>$1,000 &ndash; $5,000</option>
-              <option>$5,000 &ndash; $20,000</option>
-              <option>$20,000 &ndash; $50,000</option>
-              <option>$50,000+</option>
-              <option>Not running Google Ads yet</option>
-            </select>
-          </div>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFSmQNY5L9j0Njly" data-size="flexible" style="margin-bottom:12px"></div>
-          <button type="submit" class="btn fsubmit">Get my free audit <span class="arw">&rarr;</span></button>
-          <p class="fnote">The free audit lists the issues I find. The <a href="/google-ads-audit/">$100 analysis</a> adds the solution to each one. I reply within one working day.</p>
-        </form>
-      </div>
-
-      <div class="panel">
-        <dl>
-          <dt class="first">Book a call</dt>
-          <dd><a href="{{ booking.url }}" target="_blank" rel="noopener" style="color:var(--purple);font-weight:700">{{ booking.label }}</a> with Fawad, at a time that suits you.</dd>
-          <dt>Email</dt>
-          <dd><a href="mailto:{{ site.email }}?subject={{ crumb | urlencode }}%20enquiry" style="color:var(--purple);font-weight:700">{{ site.email }}</a></dd>
-          <dt>WhatsApp</dt>
-          <dd><a href="https://wa.me/{{ site.whatsapp }}?text=Hi%20DigitalFadi%2C%20I%27d%20like%20to%20talk%20about%20{{ crumb | urlencode }}." target="_blank" rel="noopener" style="color:var(--purple);font-weight:700">Message me directly</a></dd>
-          <dt>Response time</dt>
-          <dd>Monitored 24/7. I reply within one working day at the latest.</dd>
-        </dl>
-      </div>
+        <h3>Related industries</h3>
+        <ul>
+          {% for t in rel %}<li><a href="{{ t.url }}">{{ t.data.crumb }}</a></li>{% endfor %}
+          <li><a href="/industries/">See all industries</a></li>
+        </ul>
+        {% endif %}
+        <h3>Free tools</h3>
+        <ul>
+          {% for t in (tools or []) %}<li><a href="{{ t[1] }}">{{ t[0] }}</a></li>{% endfor %}
+          {% if not tools %}<li><a href="/tools/">Browse free Google Ads tools</a></li>{% endif %}
+        </ul>
+      </section>
     </aside>
-
   </div>
-</section>
 
-<div class="cta-band" id="contact-cta">
   <div class="wrap">
-    <span class="eyebrow">Free consultation</span>
-    <h2>Find out what your Google Ads account is really doing</h2>
-    <p>Send me read-only access and I'll come back with the issues I find: the specific campaigns, keywords and placements burning your budget. No obligation, no slide deck.</p>
-    <div class="cta-row">
-      <a href="/#contact" class="btn">Get a free Google Ads audit <span class="arw">&rarr;</span></a>
-      <a href="https://wa.me/{{ site.whatsapp }}?text=Hi%20DigitalFadi%2C%20I%27d%20like%20a%20free%20consultation." target="_blank" rel="noopener" class="btn wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> WhatsApp me</a>
-    </div>
-    <p class="cta-alt">Or email <a href="mailto:{{ site.email }}?subject=PPC%20enquiry">{{ site.email }}</a> &middot; <a href="{{ booking.url }}" target="_blank" rel="noopener">{{ booking.label }}</a> &middot; <a href="/#pricing">See pricing</a></p>
+    <section class="service-cta" id="contact-cta" aria-labelledby="service-cta-title">
+      <div>
+        <h2 id="service-cta-title">Find out where your Google Ads budget goes</h2>
+        <p>Start with a free review of your campaigns, keywords and placements.</p>
+      </div>
+      <a href="#enquiry" class="btn">Get a free audit <span class="arw" aria-hidden="true">&rarr;</span></a>
+    </section>
   </div>
 </div>
-<div class="wave wbot" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="#6A5AE0" d="M0,20 C180,0 360,40 720,24 C1080,8 1260,44 1440,20 L1440,48 L0,48 Z"/><path fill="none" stroke="#14121F" stroke-width="3" vector-effect="non-scaling-stroke" d="M0,20 C180,0 360,40 720,24 C1080,8 1260,44 1440,20"/></svg></div>
-

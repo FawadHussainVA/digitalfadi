@@ -344,10 +344,6 @@ section{padding:clamp(50px,6.5vw,92px) 0;position:relative}
 .sec-head.left{text-align:left;max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:end}
 
 /* channel cards */
-/* ---- service page: content with a sticky enquiry sidebar ---- */
-.svc{display:grid;grid-template-columns:minmax(0,1fr) 348px;gap:clamp(28px,3.4vw,54px);align-items:start}
-.svc-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
-.svc-side .fcard,.svc-side .panel{margin:0}
 /* ---- Google Premier Partner badge (official asset) ---- */
 .gpbadge{display:inline-block;line-height:0;transition:transform .13s var(--ease)}
 .gpbadge:hover{transform:translateY(-2px)}
@@ -667,8 +663,6 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 @media(max-width:1000px){
   .hero-grid,.deskband-in{grid-template-columns:1fr}
   .channels,.posts{grid-template-columns:repeat(2,1fr)}
-  .svc{grid-template-columns:1fr}
-  .svc-side{position:static}
   .phases{grid-template-columns:repeat(2,1fr)}
   .tiers,.quotes,.cases,.feat,.news,.vs{grid-template-columns:1fr}
   .feat-vis{border-left:0;border-top:var(--bd)}
@@ -1014,6 +1008,7 @@ section.band .q,section.band .ind-tile{background:var(--bg)}
 [data-theme="dark"] .gad{color:#202124}
 [data-theme="dark"] .gad .badge{border-color:#202124}
 
+{% if servicePage %}{% include "service.css" %}{% endif %}
 </style>
 
 <link rel="alternate" type="application/rss+xml" title="DigitalFadi | Learn" href="/feed.xml">
@@ -1167,6 +1162,8 @@ window.addEventListener('load', function(){ setTimeout(function(){ document.docu
 /* Load Cloudflare Turnstile only where a form needs it */
 document.addEventListener('DOMContentLoaded', function(){
   if (!document.querySelector('.cf-turnstile')) return;
+  var serviceWidget = document.querySelector('.service-form .cf-turnstile');
+  if (serviceWidget && serviceWidget.clientWidth < 300) serviceWidget.dataset.size = 'compact';
   var t = document.createElement('script');
   t.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
   t.async = true; t.defer = true;
