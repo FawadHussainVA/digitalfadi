@@ -110,16 +110,12 @@ nav a:hover{background:var(--purple-l);color:var(--purple)}
 nav a.on{background:var(--purple);color:#fff}
   /* ---- services dropdown ---- */
   .navdrop{position:relative;display:inline-flex}
-  .navtop{display:inline-flex;align-items:center;gap:7px}
+  .navtop{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;color:var(--slate)}
+  .navtop:hover,.navtop[aria-expanded="true"]{background:var(--purple-l);color:var(--purple-d)}
   .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
-    border-top:5px solid currentColor;display:block;transition:transform .2s var(--ease)}
-  .navdrop:hover .caret,.navdrop:focus-within .caret{transform:rotate(180deg)}
-  .navdrop::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px;display:none}
-  .navdrop:hover::after,.navdrop:focus-within::after{display:block}
-  .navmenu{position:absolute;top:calc(100% + 12px);left:0;min-width:262px;background:var(--bg-2);
-    border:var(--bd);border-radius:var(--r-sm);box-shadow:var(--sh);padding:8px;
-    display:none;flex-direction:column;gap:2px;z-index:80}
-  .navdrop:hover .navmenu,.navdrop:focus-within .navmenu{display:flex}
+    border-top:4px solid currentColor;transition:transform .2s var(--ease)}
+  .navtop[aria-expanded="true"] .caret{transform:rotate(180deg)}
+  .navmenu{display:none;position:absolute;background:var(--bg-2);border:var(--bd);border-radius:var(--r-sm);box-shadow:var(--sh);z-index:80}
   .navmenu a{white-space:nowrap;border-radius:var(--r-sm);padding:9px 12px}
   /* ---- mobile menu ---- */
   .navtoggle{display:none;width:44px;height:44px;flex:none;border:var(--bd);border-radius:var(--r-sm);
@@ -568,9 +564,9 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
     max-height:78vh;overflow-y:auto;font-size:.95rem}
   nav#mainnav.open a{padding:12px 14px;border-radius:var(--r-sm)}
   nav#mainnav.open .navdrop{display:flex;flex-direction:column}
-  nav#mainnav.open .navmenu{position:static;display:flex;min-width:0;border:0;box-shadow:none;
+  nav#mainnav.open .navmenu{position:static;min-width:0;border:0;box-shadow:none;
     padding:2px 0 6px 16px;background:transparent}
-  nav#mainnav.open .caret{display:none}
+  nav#mainnav.open .navtop{justify-content:space-between;padding:12px 14px;border-radius:var(--r-sm);text-align:left}
   .sec-head.left{grid-template-columns:1fr;gap:14px}
 }
 @media(max-width:680px){
@@ -687,17 +683,12 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 
 /* ===== mega menu: services and industries side by side ===== */
 /* ===== mega menu ===== */
-@media(min-width:1001px){
+@media(min-width:1081px){
   .navdrop{position:static}
-  .navtop{position:relative}
-  .navtop::after{content:"";position:absolute;left:-14px;right:-14px;top:100%;height:34px}
-  .navdrop::after{display:none!important}
   .navmenu.mega{top:calc(100% - 4px);left:50%;transform:translateX(-50%);width:min(940px,calc(100vw - 150px));
-    padding:22px;gap:10px;border-radius:var(--r);box-shadow:var(--sh-lg);
+    max-height:calc(100dvh - 84px);overflow-y:auto;padding:22px;gap:10px;border-radius:var(--r);box-shadow:var(--sh-lg);
     grid-template-columns:minmax(0,1fr) minmax(0,1fr) 260px}
-  .navdrop:hover .navmenu.mega,.navdrop:focus-within .navmenu.mega{display:grid;animation:mmIn .18s var(--ease)}
-  /* invisible strip across the whole panel width, up to the link, so a diagonal mouse path keeps it open */
-  .navmenu.mega::before{content:"";position:absolute;left:0;right:0;top:-20px;height:20px}
+  .navtop[aria-expanded="true"] + .navmenu.mega{display:grid;animation:mmIn .18s var(--ease)}
 }
 @keyframes mmIn{from{opacity:0;margin-top:-6px}to{opacity:1;margin-top:0}}
 .mm-col{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -713,6 +704,7 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 .mm-t small{font-size:.78rem;font-weight:500;color:var(--slate);line-height:1.4}
 .navmenu .mall{color:var(--purple-d);font-weight:800;font-size:.86rem;margin-top:4px;padding:9px 12px}
 .navmenu .mall:hover{background:var(--purple-xl)}
+.ch-top h3 a{text-decoration:underline;text-underline-offset:.2em}
 .mm-feature{display:flex;flex-direction:column;gap:8px;background:var(--purple);color:#fff;border:2px solid var(--ink);border-radius:var(--r-sm);box-shadow:4px 4px 0 var(--ink);padding:20px 18px;align-self:stretch;position:relative;overflow:hidden}
 .mm-feature::after{content:"";position:absolute;right:-26px;bottom:-26px;width:110px;height:110px;background-image:radial-gradient(rgba(255,255,255,.22) 1.6px,transparent 1.6px);background-size:14px 14px;pointer-events:none}
 .mm-kicker{font-style:normal;font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
@@ -723,7 +715,7 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 .navmenu .mm-call{color:#fff;font-size:.8rem;font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:2px 0;text-align:center;position:relative;z-index:1}
 .navmenu .mm-call:hover{color:var(--amber);background:transparent}
 /* phones and tablets: stacked inside the open mobile menu */
-nav#mainnav.open .navmenu.mega{flex-direction:column;padding:4px 0 8px 6px;gap:4px}
+nav#mainnav.open .navtop[aria-expanded="true"] + .navmenu.mega{display:flex;flex-direction:column;padding:4px 0 8px 6px;gap:4px}
 nav#mainnav.open .mm-col + .mm-col{border-left:0;padding-left:0;margin-top:8px}
 nav#mainnav.open .mm-feature{display:none}
 nav#mainnav.open .mhead{padding:6px 12px 4px}
@@ -733,8 +725,8 @@ nav#mainnav.open .mm-ic svg{width:16px;height:16px}
 
 /* ===== header fit: links never break mid-name ===== */
 nav a,.navtop{white-space:nowrap}
-@media(max-width:1440px){nav{gap:2px}nav a{padding:8px 10px}.bar{gap:18px}}
-@media(max-width:1240px){nav{font-size:.84rem}nav a{padding:8px 7px}.bar{gap:12px}header .btn.sm{padding:10px 14px}}
+@media(max-width:1440px){nav{gap:2px}nav a,.navtop{padding:8px 10px}.bar{gap:18px}}
+@media(max-width:1240px){nav{font-size:.84rem}nav a,.navtop{padding:8px 7px}.bar{gap:12px}header .btn.sm{padding:10px 14px}}
 /* small laptops: not enough room for every link, so use the menu button */
 @media(min-width:1001px) and (max-width:1080px){
   nav{display:none}
@@ -743,8 +735,8 @@ nav a,.navtop{white-space:nowrap}
     border-bottom:var(--bd);padding:14px 20px 20px;max-height:78vh;overflow-y:auto;font-size:.95rem}
   nav#mainnav.open a{padding:12px 14px;border-radius:var(--r-sm)}
   nav#mainnav.open .navdrop{display:flex;flex-direction:column}
-  nav#mainnav.open .navmenu{position:static;display:flex;min-width:0;border:0;box-shadow:none;padding:2px 0 6px 16px;background:transparent}
-  nav#mainnav.open .caret{display:none}
+  nav#mainnav.open .navmenu{position:static;min-width:0;border:0;box-shadow:none;padding:2px 0 6px 16px;background:transparent}
+  nav#mainnav.open .navtop{justify-content:space-between;padding:12px 14px;border-radius:var(--r-sm);text-align:left}
 }
 
 /* phones: compact header so logo, menu, button and theme toggle all fit */
@@ -882,6 +874,7 @@ section.band .q,section.band .ind-tile{background:var(--bg)}
 [data-theme="dark"] .deco .cloud{fill:var(--bg-2);stroke:#5A5A70}
 [data-theme="dark"] .deco .spark{stroke:#14121F}
 /* purple text needs a lighter shade to stay readable on dark */
+[data-theme="dark"] .navtop:hover,[data-theme="dark"] .navtop[aria-expanded="true"],
 [data-theme="dark"] .hl,[data-theme="dark"] .eyebrow,[data-theme="dark"] .case-tag,[data-theme="dark"] .post-meta i,
 [data-theme="dark"] .article-meta i,[data-theme="dark"] .prose a,[data-theme="dark"] .post .more,[data-theme="dark"] .vs-col.good h3,
 [data-theme="dark"] .case-metrics b,[data-theme="dark"] .crumb a:hover,[data-theme="dark"] nav a:hover,[data-theme="dark"] .foot a:hover,

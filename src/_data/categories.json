@@ -61,7 +61,6 @@
     "url": "/google-ads-for-local-services/",
     "summary": "HVAC, plumbing, roofing, electrical, restoration, garage doors, pest control, remodeling and other trades.",
     "menu": "HVAC, plumbing, roofing and other trades",
-    "menuUrl": "/industries/#home",
     "icon": "<path d=\"M3 11l9-7 9 7\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>",
     "types": [
       "HVAC",
