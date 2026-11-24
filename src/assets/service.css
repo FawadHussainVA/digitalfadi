@@ -383,3 +383,18 @@
     padding-inline: 16px;
   }
 }
+
+/* keep the sidebar beside the content while reading, so the right side never sits empty */
+@media (min-width: 1001px) {
+  .service-sidebar {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+    max-height: calc(100vh - 116px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    padding-bottom: 4px;
+  }
+}
+
