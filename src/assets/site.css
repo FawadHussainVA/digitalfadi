@@ -72,14 +72,14 @@ h4{font-size:1rem}
 .wave svg{display:block;width:100%;height:clamp(26px,3.4vw,48px)}
 
 /* ===== left rail ===== */
+/* floating social icons on the left: no bar, just the three buttons */
 .rail{
-  position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:90;
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  background:var(--bg-2);border-right:2px solid var(--bdc);
+  position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:90;
+  display:none;flex-direction:column;align-items:center;
 }
 .rail .mark{position:absolute;top:22px;width:16px;height:16px;background:var(--amber);border:2px solid var(--bdc);border-radius:50%}
 .rail .stem{position:absolute;top:56px;bottom:130px;width:2px;background:var(--hair)}
-.rail-inner{display:flex;flex-direction:column;gap:10px;z-index:2;background:var(--bg-2);padding:12px 0}
+.rail-inner{display:flex;flex-direction:column;gap:20px}
 .soc{position:relative;width:46px;height:46px;display:grid;place-items:center;border:var(--bd);border-radius:var(--r-sm);background:var(--bg-2);box-shadow:3px 3px 0 var(--shc);transition:transform .14s var(--ease),box-shadow .14s var(--ease),background .2s}
 .soc svg{width:19px;height:19px;fill:var(--ink);transition:fill .2s}
 .soc:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--shc)}
@@ -160,7 +160,7 @@ html.ck-show .ckb[hidden]{display:block}
 .ckb p a{color:var(--purple);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .ckb-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 .ckb-row .btn{flex:1 1 auto}
-@media(min-width:1001px){.ckb{left:calc(var(--rail) + 22px)}}
+@media(min-width:1001px){.ckb{left:22px}}
 @media(max-width:680px){.ckb{left:10px;right:10px;bottom:10px;width:auto;padding:16px 16px 18px}}
 .foot-nav .ckset{font-weight:600;color:inherit;padding:0;cursor:pointer}
 .foot-nav .ckset:hover{color:var(--purple)}
@@ -547,8 +547,7 @@ footer{background:var(--bg-2);border-top:var(--bd);padding:38px 0 34px;font-size
 .stg.in > *:nth-child(9){transition-delay:.44s}
 
 /* ===== responsive ===== */
-@media(min-width:1001px){
-  body{padding-left:var(--rail)}
+@media(min-width:1300px){
   .rail{display:flex}
 }
 @media(max-width:1000px){
