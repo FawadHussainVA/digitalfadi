@@ -75,6 +75,8 @@ Compare like with like. Ask what is included each month, who will actually do th
 - **Long contracts with no way out.** A confident provider does not need to lock you in
 - **Guaranteed results before seeing your account.** Nobody can promise outcomes without data
 
+**Related reading:** [Google Ads management cost: flat fee vs % of ad spend](/learn/google-ads-management-cost/) and [Run Google Ads yourself or hire help?](/learn/should-you-manage-google-ads-yourself/).
+
 ## Frequently asked questions
 
 ### How much should I pay for Google Ads management?

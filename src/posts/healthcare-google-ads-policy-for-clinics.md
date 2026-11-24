@@ -83,7 +83,7 @@ Agree the tracking approach with whoever handles compliance for the clinic befor
 
 Repeated attempts to get around a healthcare policy can lead to account suspension, so fix the cause rather than the symptom.
 
-**Related reading:** [Google Ads for dermatology clinics](/learn/google-ads-for-dermatology-clinics/), [Google Ads for fertility clinics](/learn/google-ads-for-fertility-clinics/), [Google Ads for therapy and mental health practices](/learn/google-ads-for-therapy-and-mental-health-practices/) and [Google Ads for eye clinics and optometrists](/learn/google-ads-for-eye-clinics-and-optometrists/).
+**Related reading:** [Google Ads for dermatology clinics](/learn/google-ads-for-dermatology-clinics/), [Google Ads for fertility clinics](/learn/google-ads-for-fertility-clinics/), [Google Ads for therapy and mental health practices](/learn/google-ads-for-therapy-and-mental-health-practices/), [Google Ads for eye clinics and optometrists](/learn/google-ads-for-eye-clinics-and-optometrists/), [Google Ads for weight management clinics](/learn/google-ads-for-weight-management-clinics/), [Google Ads for cosmetic surgery clinics](/learn/google-ads-for-cosmetic-surgery-clinics/), [Google Ads for hearing clinics and audiologists](/learn/google-ads-for-hearing-clinics/) and [Google Ads for podiatry clinics](/learn/google-ads-for-podiatry-clinics/).
 
 ## Frequently asked questions
 

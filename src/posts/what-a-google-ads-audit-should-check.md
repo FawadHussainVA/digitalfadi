@@ -100,7 +100,7 @@ If you want to run these checks yourself, the [Google Ads audit checklist](/lear
 
 Start with [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/), which works through the six causes in the order that finds the problem fastest.
 
-**Related reading:** [What a Google Ads account analysis checks before any changes](/learn/what-a-google-ads-account-analysis-checks/) and [Google tag gateway: what it is and should you use it?](/learn/google-tag-gateway-explained/).
+**Related reading:** [What a Google Ads account analysis checks before any changes](/learn/what-a-google-ads-account-analysis-checks/), [Google tag gateway: what it is, should you use it?](/learn/google-tag-gateway-explained/) and [Google Ads audit or ongoing management: which do you need?](/learn/google-ads-audit-or-management/).
 
 ## Frequently asked questions
 

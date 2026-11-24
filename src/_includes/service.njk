@@ -126,7 +126,7 @@ servicePage: true
       </section>
 
       {% if faqs %}
-      <section class="service-faq" aria-labelledby="service-faq">
+      <section class="service-faq" aria-labelledby="service-faq" data-faq>
         <h2 class="service-section-title" id="service-faq">Common questions about {{ faqLabel or (crumb | lower) }}</h2>
         {%- for f in faqs %}
         <details>

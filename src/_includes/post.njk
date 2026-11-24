@@ -52,10 +52,6 @@ ogtype: article
     <div class="article-meta ab-meta">
       <i>{{ topic }}</i>
       <span>{{ readingTime }} min read</span>
-      <span>Published <time datetime="{{ date | iso }}">{{ date | readable }}</time></span>
-      {% if updated and (updated | iso) != (date | iso) %}
-      <span>Updated <time datetime="{{ updated | iso }}">{{ updated | readable }}</time></span>
-      {% endif %}
     </div>
     <h1>{{ title }}</h1>
     <p class="ab-dek">{{ description }}</p>

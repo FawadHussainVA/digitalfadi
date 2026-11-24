@@ -94,7 +94,7 @@ Within the first month or two, a good expert will typically:
 
 If the reports show only clicks, impressions and click-through rate, ask how those connect to enquiries or sales. [How to tell if your Google Ads agency is doing anything](/learn/is-your-google-ads-agency-doing-anything/) has more checks, and they apply to any expert.
 
-**Related reading:** [Calls from Google Ads strategists: should you trust them?](/learn/google-ads-strategist-calls-should-you-trust-them/) and [What a Google Ads account analysis checks before any changes](/learn/what-a-google-ads-account-analysis-checks/).
+**Related reading:** [Calls from Google Ads strategists: should you trust them?](/learn/google-ads-strategist-calls-should-you-trust-them/), [What a Google Ads account analysis checks before any changes](/learn/what-a-google-ads-account-analysis-checks/), [What to expect in the first 90 days of Google Ads management](/learn/first-90-days-of-google-ads-management/) and [10 signs you need a Google Ads expert](/learn/signs-you-need-a-google-ads-expert/).
 
 ## Frequently asked questions
 
