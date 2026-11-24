@@ -246,9 +246,7 @@
 }
 
 .service-prose > h2 {
-  border-top: 1px solid var(--service-line);
-  padding-top: 23px;
-  margin-top: 34px;
+  margin-top: 46px;
   font-size: clamp(1.2rem, 2vw, 1.58rem);
   line-height: 1.25;
 }
@@ -265,9 +263,7 @@
 }
 
 .service-main .service-faq {
-  border-top: 1px solid var(--service-line);
-  padding-top: 32px;
-  margin-top: 40px;
+  margin-top: 64px;
 }
 
 .service-faq details {

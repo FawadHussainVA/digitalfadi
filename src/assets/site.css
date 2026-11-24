@@ -408,7 +408,7 @@ details p{padding:0 22px 20px;max-width:70ch;color:var(--slate);font-size:.96rem
 
 /* ===== article ===== */
 .article{padding:clamp(36px,4.5vw,60px) 0}
-.article-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:.78rem;font-weight:700;color:var(--slate-l);padding-bottom:24px;border-bottom:2px solid var(--hair);margin-bottom:32px}
+.article-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:.78rem;font-weight:700;color:var(--slate-l);margin-bottom:28px}
 .article-meta i{font-style:normal;color:var(--purple);background:var(--purple-l);border-radius:999px;padding:5px 12px;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;font-weight:800}
 .prose > * + *{margin-top:22px}
 .prose p{font-size:1.07rem;line-height:1.72;color:#2A2740}
@@ -423,7 +423,7 @@ details p{padding:0 22px 20px;max-width:70ch;color:var(--slate);font-size:.96rem
 .callout{background:var(--purple);color:#fff;border:var(--bd);border-radius:var(--r);box-shadow:var(--sh);padding:24px 26px}
 .callout h4{color:var(--amber);margin-bottom:11px;font-size:1.05rem}
 .callout p{font-size:.95rem;color:rgba(255,255,255,.95)}
-.share{display:flex;gap:10px;align-items:center;margin-top:42px;padding-top:26px;border-top:2px solid var(--hair)}
+.share{display:flex;gap:10px;align-items:center;margin-top:48px}
 .share em{font-style:normal;font-size:.78rem;font-weight:800;color:var(--slate)}
 .share a{width:40px;height:40px;border:var(--bd);border-radius:var(--r-sm);display:grid;place-items:center;background:var(--bg-2);box-shadow:3px 3px 0 var(--shc);transition:transform .13s var(--ease),box-shadow .13s var(--ease),background .2s}
 .share a svg{width:16px;height:16px;fill:var(--ink);transition:fill .2s}
@@ -830,7 +830,7 @@ html:not(.loaded) #waBtn::after{animation-play-state:paused}
 @media(max-width:480px){.ind-jump{grid-template-columns:1fr}}
 
 /* ===== homepage rhythm ===== */
-section.band{background:var(--bg-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);max-width:none;
+section.band{background:var(--bg-2);max-width:none;
   padding-left:max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)));padding-right:max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)))}
 section.band .ch,section.band .q,section.band .ind-tile,section.band details,section.band .panel{background:var(--bg-2)}
 section.band .q,section.band .ind-tile{background:var(--bg)}
