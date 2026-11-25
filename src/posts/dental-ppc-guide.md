@@ -71,6 +71,8 @@ Dental PPC usually pays off when:
 
 It is less likely to pay off if the diary is already full, calls go unanswered, or the website has no clear way to book.
 
+**Related reading:** [Dental Google Ads mistakes that waste your budget](/learn/dental-google-ads-mistakes/) and [Google Ads for orthodontists: braces and aligners](/learn/google-ads-for-orthodontists/).
+
 ## Frequently asked questions
 
 ### What is dental PPC?

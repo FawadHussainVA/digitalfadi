@@ -78,6 +78,8 @@ Good tests for dental landing pages:
 
 Run each test long enough to judge it on booked appointments, not clicks. [Google Ads experiments](/learn/google-ads-experiments-ab-testing-guide/) explains how to test fairly.
 
+**Related reading:** [Dental Google Ads mistakes that waste your budget](/learn/dental-google-ads-mistakes/).
+
 ## Frequently asked questions
 
 ### Should dental Google Ads send traffic to the homepage?

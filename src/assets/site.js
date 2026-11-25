@@ -71,14 +71,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* ---------- scroll progress, header, back to top ---------- */
   var prog = document.getElementById('prog'), hdr = document.getElementById('hdr'), topBtn = document.getElementById('top');
-  function onScroll(){
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-    hdr.classList.toggle('shrunk', window.scrollY > 40);
-    topBtn.classList.toggle('on', window.scrollY > 600);
-  }
+  /* Page height is measured only after first paint and when the page changes size,
+     never inside the scroll handler, so loading and scrolling stay cheap. */
+  var maxScroll = 0, scrollTick = false;
+  var measureScroll = function(){ maxScroll = document.documentElement.scrollHeight - window.innerHeight; };
+  var paintScroll = function(){
+    scrollTick = false;
+    var y = window.scrollY;
+    prog.style.width = (maxScroll > 0 ? Math.min(100, (y / maxScroll) * 100) : 0) + '%';
+    hdr.classList.toggle('shrunk', y > 40);
+    topBtn.classList.toggle('on', y > 600);
+  };
+  var onScroll = function(){ if(!scrollTick){ scrollTick = true; requestAnimationFrame(paintScroll); } };
   window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  window.addEventListener('resize', function(){ measureScroll(); onScroll(); }, {passive:true});
+  window.addEventListener('load', function(){ measureScroll(); onScroll(); });
+  if('ResizeObserver' in window){ new ResizeObserver(function(){ measureScroll(); onScroll(); }).observe(document.body); }
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ measureScroll(); paintScroll(); }); });
   topBtn.addEventListener('click', function(){
     window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
   });
@@ -294,7 +303,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!reduce){
       cTimer = setInterval(function(){ if(cVisible && !cPaused && !document.hidden) goPage(curPage() + 1); }, 4000);
     }
-    buildDots();
+    /* measure after first paint, so the carousel does not force a full-page layout while loading */
+    requestAnimationFrame(function(){ requestAnimationFrame(buildDots); });
   }
 
   /* ---------- 15-minute call: Calendly opens in a popup on this page ----------

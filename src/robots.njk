@@ -15,14 +15,16 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-# Match production Cloudflare policy for training and user-initiated agents.
+# AI assistants and AI training crawlers may read public pages (GEO: lets AI tools find, read and cite the site).
 User-agent: GPTBot
+User-agent: ChatGPT-User
 User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Perplexity-User
 User-agent: Google-Extended
 User-agent: Applebot-Extended
-User-agent: ChatGPT-User
-User-agent: Perplexity-User
-User-agent: Claude-User
-Disallow: /
+Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 Sitemap: {{ site.url }}/sitemap.xml

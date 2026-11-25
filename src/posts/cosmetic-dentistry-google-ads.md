@@ -74,6 +74,8 @@ For aligners in particular, explain how in-clinic treatment differs from at-home
 
 Like implants, cosmetic treatment is a long, considered decision. Track every stage: enquiry, consultation booked, consultation attended and treatment accepted, with its value. Then judge each treatment's campaign on cost per accepted case. [How to track new patients from dental Google Ads](/learn/dental-google-ads-conversion-tracking/) covers the setup.
 
+**Related reading:** [Google Ads for orthodontists: braces and aligners](/learn/google-ads-for-orthodontists/).
+
 ## Frequently asked questions
 
 ### Should cosmetic dentistry ads show prices?

@@ -2,6 +2,32 @@
 layout: base.njk
 ogtype: article
 ---
+{% block extrahead %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ heading | dump | safe }},
+  "description": {{ description | dump | safe }},
+  "url": "{{ site.url }}{{ page.url }}",
+  "mainEntityOfPage": "{{ site.url }}{{ page.url }}",
+  "author": {"@type": "Person", "@id": "{{ site.url }}/#fawad", "name": "Fawad Hussain"},
+  "publisher": {"@type": "Organization", "@id": "{{ site.url }}/#organization", "name": "DigitalFadi"}{% if socialImage %},
+  "image": "{{ site.url }}{{ socialImage }}"{% endif %}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Client results", "item": "{{ site.url }}/#results"},
+    {"@type": "ListItem", "position": 3, "name": {{ heading | dump | safe }}, "item": "{{ site.url }}{{ page.url }}"}
+  ]
+}
+</script>
+{% endblock %}
 <div class="phero">
   <div class="wrap narrow">
     <nav class="crumb" aria-label="Breadcrumb">
@@ -26,6 +52,30 @@ ogtype: article
     </ul>
     <p>These figures show relative changes reported in the client’s account.</p>
 {{ content | safe }}
+    {%- set defs = {
+      "Booked jobs": "Jobs that were actually booked into the schedule from Google Ads, not just calls or form fills. It is the closest measure to revenue for a service business.",
+      "Cost per booked job": "Total advertising cost divided by the number of booked jobs. It shows what it costs to win real work, which matters more than the cost of a click or a call.",
+      "Booked tours": "Property tours that were booked from Google Ads, rather than general enquiries. For a rental community, a booked tour is the step most likely to lead to a lease.",
+      "Cost per tour": "Total advertising cost divided by the number of booked tours. It shows what each real prospect costs, which is a better guide than cost per click.",
+      "Cost per click": "The average amount paid for each click. It is a supporting number: a lower cost per click only helps if the clicks still turn into bookings."
+    } %}
+    <h2>What these numbers mean</h2>
+    <ul>
+      {%- for metric in metrics %}{% if defs[metric[0]] %}
+      <li><strong>{{ metric[0] }}:</strong> {{ defs[metric[0]] }}</li>
+      {%- endif %}{% endfor %}
+    </ul>
+    <p>Each figure is a relative change in the client’s own Google Ads account, comparing periods before and after the work. Results depend on the market, the season, the budget and how quickly the business follows up enquiries, so the same changes will not produce the same numbers in every account.</p>
+    {%- if guides %}
+    <h2>Related guides</h2>
+    <ul>
+      <li><a href="{{ serviceUrl }}">{{ serviceLabel }}</a></li>
+      {%- for g in guides %}{% for p in collections.posts %}{% if p.url == "/learn/" + g + "/" %}
+      <li><a href="{{ p.url }}">{{ p.data.title }}</a></li>
+      {%- endif %}{% endfor %}{% endfor %}
+    </ul>
+    {%- endif %}
+    <p>Want to know what your own account could improve? A <a href="/#contact">free Google Ads audit</a> lists the issues in your account, and the <a href="/google-ads-audit/">$100 account analysis</a> adds the solution for each one, delivered within 3 days.</p>
     <p><a href="/about/" rel="author">Fawad Hussain, Google Ads specialist</a></p>
   </div>
 </article>
