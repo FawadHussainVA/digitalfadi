@@ -210,6 +210,8 @@ Small samples fluctuate. A promising first few days are not reliable proof of a 
 
 When the measurement is wrong, the experiment can optimise the wrong behaviour. If leads are not becoming customers, review [why Google Ads calls are not becoming jobs](/learn/why-google-ads-calls-are-not-becoming-jobs/) and [which bidding strategy to use](/learn/which-google-ads-bid-strategy-should-you-use/).
 
+**Related reading:** [Performance Max asset A/B testing: test edits first](/learn/performance-max-asset-ab-testing/).
+
 ## Frequently asked questions
 
 ### Can I A/B test campaigns in Google Ads?

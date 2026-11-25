@@ -74,7 +74,7 @@ If you are unsure which suits your account, test rather than assume:
 
 If your account already runs both and you cannot tell which is earning its budget, that is exactly what a [Google Ads audit](/google-ads-audit/) separates, starting with whether the conversions behind each number are real. For online shops, the [e-commerce service page](/google-ads-for-ecommerce/) covers how I structure Shopping, Performance Max and Search together.
 
-**Related reading:** [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/) and [How Google's AI Mode and AI Overviews change Google Ads](/learn/how-ai-mode-and-ai-overviews-change-google-ads/).
+**Related reading:** [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/), [How Google's AI Mode and AI Overviews change Google Ads](/learn/how-ai-mode-and-ai-overviews-change-google-ads/) and [Local customer optimization in Google Ads: what it does](/learn/local-customer-optimization-google-ads/).
 
 ## Frequently asked questions
 

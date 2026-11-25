@@ -82,7 +82,7 @@ If you want this checked properly in your own account, that is part of a [Google
 
 The brand question has its own article: [should you bid on your own brand name](/learn/should-you-bid-on-your-own-brand-name/).
 
-**Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/) and [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/).
+**Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/), [Google Ads channel prioritisation: what changes for Search](/learn/google-ads-channel-prioritisation-budget-allocation/), [Local customer optimization in Google Ads: what it does](/learn/local-customer-optimization-google-ads/) and [Performance Max asset A/B testing: test edits first](/learn/performance-max-asset-ab-testing/).
 
 For retailers who need help separating Shopping and Performance Max traffic, see [e-commerce Google Ads management](/google-ads-for-ecommerce/).
 

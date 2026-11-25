@@ -98,6 +98,8 @@ The most important decision is the tolerance. Before you pick a number:
 
 If you sell services rather than products, or your campaigns use Target CPA, Promotion mode does not apply to you yet. A seasonality adjustment or a planned budget change is the alternative.
 
+**Related reading:** [Performance Max asset A/B testing: test edits first](/learn/performance-max-asset-ab-testing/).
+
 ## Frequently asked questions
 
 ### What is Promotion mode in Google Ads?
