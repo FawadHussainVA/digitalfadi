@@ -88,6 +88,8 @@ Use this carefully. Performance Max is designed to move budget to wherever it fi
 
 If you are not sure how much of your Search budget currently goes to Display or search partners, that split is one of the first things a [Google Ads audit](/google-ads-audit/) checks, because it is often money that can be redirected the same day.
 
+**Related reading:** [Google Ads Editor 2.14: the new defaults to check](/learn/google-ads-editor-2-14/) and [Demand Gen campaigns: what they are and when to use them](/learn/demand-gen-campaigns/).
+
 ## Frequently asked questions
 
 ### What does channel prioritisation control?

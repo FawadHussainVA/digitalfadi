@@ -78,7 +78,7 @@ The point is not which answer you reach. It is that the answer comes from a test
 
 Separating brand and non-brand properly, then running the holdout, is part of what a [Google Ads audit](/google-ads-audit/) covers. I do it before judging anything else, because the blended number answers nothing.
 
-**Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/).
+**Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/) and [Google Ads auction insights: how to read the report](/learn/google-ads-auction-insights/).
 
 ## Frequently asked questions
 

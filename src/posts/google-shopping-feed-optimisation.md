@@ -100,6 +100,8 @@ A feed is never finished. Prices change, stock runs out, new products arrive wit
 
 If your Shopping or Performance Max results have stalled and you are not sure whether the feed, the bids or the tracking is the cause, a [Google Ads audit](/google-ads-audit/) checks all three. The [e-commerce service page](/google-ads-for-ecommerce/) explains how I manage feeds alongside Shopping and Performance Max campaigns.
 
+**Related reading:** [Google Shopping sale price rules and new badges](/learn/google-shopping-sale-price-rules/).
+
 ## Frequently asked questions
 
 ### What product data matters most in a Shopping feed?

@@ -77,7 +77,7 @@ If you have worked through this and still cannot see it, that is what a [Google 
 
 If you are not yet sure the channel suits the business at all, [why Google Ads matters and when it does not](/learn/why-google-ads-is-important/) covers that question first.
 
-**Related reading:** [Dental landing pages that turn ad clicks into bookings](/learn/dental-landing-pages/) and [Google tag gateway: what it is and should you use it?](/learn/google-tag-gateway-explained/).
+**Related reading:** [Dental landing pages that turn ad clicks into bookings](/learn/dental-landing-pages/), [Google tag gateway: what it is and should you use it?](/learn/google-tag-gateway-explained/), [Click fraud in Google Ads: the new invalid traffic card](/learn/google-ads-invalid-traffic-click-fraud/) and [Google tag becomes a Tag Manager container: what changes](/learn/google-tag-manager-container-update/).
 
 ## Frequently asked questions
 

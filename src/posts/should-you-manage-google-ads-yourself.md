@@ -65,6 +65,8 @@ Doing it yourself is not free. Compare:
 
 Against a management fee, the cheapest option is the one that produces the most profit, not the one with the lowest invoice. [Google Ads management cost](/learn/google-ads-management-cost/) explains how fees are usually structured.
 
+**Related reading:** [Google Ads for small business: a practical starting plan](/learn/google-ads-for-small-business/).
+
 ## Frequently asked questions
 
 ### Can I run Google Ads myself?

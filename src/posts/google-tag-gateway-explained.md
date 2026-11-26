@@ -78,6 +78,8 @@ Google tag gateway works alongside other ways to improve measurement, not instea
 
 Together they give bidding the most complete and accurate data you can legitimately collect.
 
+**Related reading:** [Google tag becomes a Tag Manager container: what changes](/learn/google-tag-manager-container-update/).
+
 ## Frequently asked questions
 
 ### Is Google tag gateway free?
