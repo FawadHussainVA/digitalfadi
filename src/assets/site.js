@@ -308,8 +308,8 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   /* ---------- 15-minute call: Calendly opens in a popup on this page ----------
-     The Calendly script loads only when someone clicks a booking link, so it costs
-     nothing on page load. If it cannot load, the link opens in a new tab as before. */
+     The Calendly script loads only when someone points at or clicks a booking link, so it
+     costs nothing on page load. If it cannot load, the link opens in a new tab as before. */
   var calendlyState = 0, calendlyQueue = [];
   var confirmedBookings = new Set();
   window.addEventListener('message', function(e){
@@ -336,13 +336,43 @@ document.addEventListener('DOMContentLoaded', function(){
     document.head.appendChild(js);
     setTimeout(function(){ if(calendlyState === 1) done(false); }, 6000);
   };
+  /* Speed: connect to Calendly early (no cookies), start loading the script as soon as someone
+     points at or touches a booking button, and show a loading message the moment they click. */
+  var calendlyConnected = false;
+  var connectCalendly = function(){
+    if(calendlyConnected) return; calendlyConnected = true;
+    ['https://assets.calendly.com','https://calendly.com'].forEach(function(h){
+      var l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; l.crossOrigin = ''; document.head.appendChild(l);
+    });
+  };
+  (window.requestIdleCallback || function(f){ setTimeout(f, 2500); })(connectCalendly);
+  var bookingLink = function(e){ return e.target.closest && e.target.closest('a[href^="https://calendly.com/"]'); };
+  ['pointerover','touchstart','focusin'].forEach(function(ev){
+    document.addEventListener(ev, function(e){
+      if(bookingLink(e) && calendlyState === 0){ connectCalendly(); loadCalendly(function(){}, function(){}); }
+    }, {passive:true});
+  });
+  var showCalendlyLoading = function(){
+    var o = document.createElement('div');
+    o.className = 'cal-loading'; o.setAttribute('role', 'status');
+    o.innerHTML = '<div class="cal-loading-box"><span class="cal-spin" aria-hidden="true"></span>Opening the calendar\u2026</div>';
+    document.body.appendChild(o);
+    return o;
+  };
   document.addEventListener('click', function(e){
-    var a = e.target.closest && e.target.closest('a[href^="https://calendly.com/"]');
+    var a = bookingLink(e);
     if(!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     trackAnalytics('booking_click', {booking_provider: 'calendly'});
     var url = a.href;
-    loadCalendly(function(){ window.Calendly.initPopupWidget({url: url}); }, function(){ openCalendlyTab(url); });
+    var loading = calendlyState === 2 ? null : showCalendlyLoading();
+    loadCalendly(function(){
+      window.Calendly.initPopupWidget({url: url});
+      if(loading) setTimeout(function(){ loading.remove(); }, 200);
+    }, function(){
+      if(loading) loading.remove();
+      openCalendlyTab(url);
+    });
   });
 
   /* ---------- whatsapp widget ---------- */
