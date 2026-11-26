@@ -848,6 +848,8 @@ section.band .q,section.band .ind-tile{background:var(--bg)}
 .svc-more-body{padding:6px 18px 18px}
 .svc-more-body details{background:var(--bg);margin-bottom:10px}
 .faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;align-items:start}
+/* two columns: every question box has the same height, so rows line up */
+@media(min-width:1001px){.faq-grid > details > summary{min-height:88px}}
 @media(max-width:1000px){.faq-grid{grid-template-columns:1fr}}
 
 /* ===== theme toggle ===== */
