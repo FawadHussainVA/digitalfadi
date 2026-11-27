@@ -1,3 +1,74 @@
+/* ---------- lead source: where each visitor came from ----------
+   Read on every page from UTM tags, ad click IDs and the referrer, and sent with generate_lead.
+   last  = this visit's source (sessionStorage; a later direct visit does not overwrite it)
+   first = the first source seen (localStorage only after the visitor accepts cookies,
+           otherwise sessionStorage, and removed from localStorage if they decline). */
+(function(){
+  var LAST = 'df_src_last', FIRST = 'df_src_first';
+  var UTM = ['source','medium','campaign','term','content'];
+  var CLICK_IDS = [
+    ['gclid','google','cpc'], ['gbraid','google','cpc'], ['wbraid','google','cpc'],
+    ['msclkid','bing','cpc'], ['ttclid','tiktok','cpc'], ['li_fat_id','linkedin','cpc'],
+    ['fbclid','facebook','social']
+  ];
+  var AI = ['chatgpt.com','chat.openai.com','perplexity.ai','claude.ai','gemini.google.com','copilot.microsoft.com','you.com','phind.com'];
+  var SOCIAL = ['facebook.com','instagram.com','linkedin.com','lnkd.in','t.co','x.com','twitter.com','youtube.com','reddit.com','pinterest.com','tiktok.com','quora.com','threads.net','upwork.com'];
+  var SEARCH = /(^|\.)(google|bing|yahoo|duckduckgo|ecosia|baidu|yandex|naver|seznam|qwant|startpage|search\.brave)\./;
+
+  function storage(name){ try { return window[name]; } catch(e) { return null; } }
+  var ss = storage('sessionStorage'), ls = storage('localStorage');
+  function read(s, k){ try { var v = s && s.getItem(k); return v ? JSON.parse(v) : null; } catch(e) { return null; } }
+  function write(s, k, v){ try { if(s) s.setItem(k, JSON.stringify(v)); } catch(e) {} }
+  function drop(s, k){ try { if(s) s.removeItem(k); } catch(e) {} }
+  function consent(){ try { return ls && ls.getItem('df_consent'); } catch(e) { return null; } }
+  function host(u){ try { return new URL(u).hostname.replace(/^www\./, '').toLowerCase(); } catch(e) { return ''; } }
+  function matches(h, list){ return list.some(function(d){ return h === d || h.slice(-(d.length + 1)) === '.' + d; }); }
+
+  function detect(){
+    var q = new URLSearchParams(location.search), t = null;
+    var ref = host(document.referrer), self = location.hostname.replace(/^www\./, '').toLowerCase();
+    var click = CLICK_IDS.filter(function(c){ return q.get(c[0]); })[0];
+    if(q.get('utm_source')){
+      t = {};
+      UTM.forEach(function(k){ var v = (q.get('utm_' + k) || '').trim(); if(v) t[k] = (k === 'source' || k === 'medium') ? v.toLowerCase() : v; });
+      t.medium = t.medium || (click ? click[2] : '(not set)');
+    } else if(click){
+      t = {source: click[1], medium: click[2]};
+    } else if(ref && ref !== self){
+      if(matches(ref, AI)) t = {source: ref, medium: 'ai'};
+      else if(SEARCH.test(ref)) t = {source: ref.match(SEARCH)[2].replace('search.', ''), medium: 'organic'};
+      else if(matches(ref, SOCIAL)) t = {source: ref, medium: 'social'};
+      else t = {source: ref, medium: 'referral'};
+    } else if(!ref){
+      t = {source: '(direct)', medium: '(none)'};
+    }
+    if(!t) return null; /* a page view inside the site: keep the visit's source */
+    if(click) t.click_id_type = click[0];
+    t.landing_page = location.pathname;
+    if(ref && ref !== self) t.referrer = ref;
+    t.at = new Date().toISOString();
+    return t;
+  }
+
+  var now = detect();
+  var last = read(ss, LAST);
+  if(now && (now.medium !== '(none)' || !last)){ last = now; write(ss, LAST, last); }
+
+  var c = consent();
+  if(c === 'denied') drop(ls, FIRST);
+  var first = (c === 'granted' && read(ls, FIRST)) || read(ss, FIRST) || last;
+  if(first){
+    write(ss, FIRST, first);
+    if(c === 'granted' && !read(ls, FIRST)) write(ls, FIRST, first);
+  }
+
+  window.dfLeadSource = function(){
+    /* re-check, so a visitor who accepts cookies on this page keeps their first source */
+    if(first && consent() === 'granted' && !read(ls, FIRST)) write(ls, FIRST, first);
+    return {first: first, last: last};
+  };
+})();
+
 /* Mark the page as loaded so looping decoration can start */
 window.addEventListener('load', function(){ setTimeout(function(){ document.documentElement.classList.add('loaded'); }, 300); });
 /* Load Cloudflare Turnstile only where a form needs it */
@@ -168,12 +239,44 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* ---------- lead forms: same-origin Cloudflare Function -> Hostinger Mail API ---------- */
   var FORM_ENDPOINT = '/api/contact';
+  /* Also send the lead source (src_* fields) to /api/contact so it can appear in the lead email.
+     Off until the backend is confirmed to accept extra fields. */
+  var SEND_SOURCE_TO_BACKEND = false;
 
+  /* Events always go through gtag. Consent Mode (set in base.njk) decides what Google may store:
+     before the visitor accepts in the UK/EU, or after they decline, gtag sends cookieless pings only.
+     Gating on the banner click used to drop every event from visitors who never clicked it. */
   function trackAnalytics(event, details){
-    var allowed = false;
-    try { allowed = localStorage.getItem('df_consent') === 'granted'; } catch(e) {}
-    if(!allowed || typeof window.gtag !== 'function') return;
+    if(typeof window.gtag !== 'function') return;
     window.gtag('event', event, Object.assign({page_path: location.pathname}, details));
+  }
+
+  /* GA4 parameter values are capped at 100 characters. */
+  function gaValue(v){ return v ? String(v).slice(0, 100) : undefined; }
+
+  function leadParams(form){
+    var src = window.dfLeadSource ? window.dfLeadSource() : {};
+    var last = src.last || {}, first = src.first || last;
+    var budget = form.querySelector('[name="budget"]'), goal = form.querySelector('[name="goal"]');
+    var params = {
+      form_name: gaValue(form.getAttribute('name')),
+      form_id: gaValue(form.getAttribute('data-form-id') || form.getAttribute('name')),
+      form_location: gaValue(location.pathname),
+      lead_source: gaValue(last.source || '(direct)'),
+      lead_medium: gaValue(last.medium || '(none)'),
+      lead_campaign: gaValue(last.campaign || '(not set)'),
+      lead_term: gaValue(last.term),
+      lead_content: gaValue(last.content),
+      landing_page: gaValue(last.landing_page),
+      click_id_type: gaValue(last.click_id_type),
+      first_source: gaValue(first.source || '(direct)'),
+      first_medium: gaValue(first.medium || '(none)'),
+      first_campaign: gaValue(first.campaign || '(not set)'),
+      lead_budget: gaValue(budget && budget.value),
+      lead_goal: gaValue(goal && goal.value)
+    };
+    Object.keys(params).forEach(function(k){ if(params[k] === undefined) delete params[k]; });
+    return params;
   }
 
   function formDone(card, email){
@@ -225,6 +328,12 @@ document.addEventListener('DOMContentLoaded', function(){
         formError(form, 'Please complete the security verification before submitting. If it is not visible, disable browser blockers and refresh.');
         return;
       }
+      var lead = leadParams(form);
+      if(SEND_SOURCE_TO_BACKEND){
+        ['form_id','lead_source','lead_medium','lead_campaign','lead_term','lead_content','landing_page','click_id_type','first_source','first_medium','first_campaign'].forEach(function(k){
+          if(lead[k]) payload['src_' + k] = lead[k];
+        });
+      }
       btn.disabled = true;
       btn.textContent = 'Sending...';
       var controller = new AbortController();
@@ -243,7 +352,9 @@ document.addEventListener('DOMContentLoaded', function(){
           });
       }).then(function(){
         formDone(card,email);
-        trackAnalytics('generate_lead', {form_type: form.getAttribute('name')});
+        /* generate_lead fires only after the server confirms the message was sent.
+           It is the GA4 key event for form leads. */
+        trackAnalytics('generate_lead', lead);
       }).catch(function(error){
         console.error('Contact form submission failed:',error);
         btn.disabled = false;
