@@ -64,6 +64,8 @@ Google has added several related tools to Performance Max asset groups:
 
 These help you create variations; Performance Max asset A/B testing tells you whether those variations actually perform better.
 
+**Related reading:** [Performance Max: what it hides and how to see it](/learn/performance-max-what-it-hides/), [Google Ads Editor 2.14: the new defaults to check](/learn/google-ads-editor-2-14/) and [Performance Max vs Search campaigns: which should you run?](/learn/performance-max-vs-search-campaigns/).
+
 ## Frequently asked questions
 
 ### What is Performance Max asset A/B testing?

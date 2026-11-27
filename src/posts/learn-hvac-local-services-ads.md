@@ -4,7 +4,7 @@ description: "What HVAC companies should know about Local Services Ads: verifica
 date: 2026-11-10
 topic: "Local Services"
 permalink: /learn/hvac-local-services-ads/
-order: 16
+order: 104
 ---
 
 Local Services Ads are a separate format from standard Search campaigns. They appear at the top of Google results for local service categories, show the business name, rating and availability, and charge per lead rather than per click. For HVAC companies, they can be a strong source of phone calls, but they work differently enough that they should be evaluated on their own terms.
@@ -38,6 +38,8 @@ Local Services Ads suit many HVAC companies, especially those with a clear local
 If you are considering Local Services Ads and want to see how they would fit with your existing Search account, a [free Google Ads audit](/google-ads-audit/) can review your current setup and suggest a sensible order of tests.
 
 For hands-on management of Search and Local Services Ads, see [Google Ads for HVAC companies](/google-ads-for-hvac-companies/).
+
+**Related reading:** [HVAC keywords for Google Ads: what to bid on and skip](/learn/hvac-keywords-google-ads/), [HVAC negative keywords: stop paying for the wrong searches](/learn/hvac-negative-keywords/) and [HVAC seasonal budgets for Google Ads: plan for peak demand](/learn/hvac-seasonal-budgets-google-ads/).
 
 ## Frequently asked questions
 

@@ -73,6 +73,8 @@ Record the source of each new patient in your booking or practice software, and 
 - Equipment and product searches, such as braces and foam rollers
 - Searches from areas too far away for regular appointments
 
+**Related reading:** [Google Ads for chiropractors: new patients within the rules](/learn/google-ads-for-chiropractors/), [Google Ads for podiatry clinics: foot pain to booked visits](/learn/google-ads-for-podiatry-clinics/) and [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for physiotherapy clinics?

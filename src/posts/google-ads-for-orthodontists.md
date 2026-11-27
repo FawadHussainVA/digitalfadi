@@ -60,6 +60,8 @@ Track consultations booked and attended, and treatment starts with their value, 
 - Free public treatment, where you do not provide it
 - Searches from areas too far for regular appointments
 
+**Related reading:** [Dental implant Google Ads: from search to accepted case](/learn/google-ads-for-dental-implants/), [Negative keywords for dental practices: a starter list](/learn/dental-negative-keywords/) and [Google Ads for periodontists: gum specialist patients](/learn/google-ads-for-periodontists/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for orthodontists?

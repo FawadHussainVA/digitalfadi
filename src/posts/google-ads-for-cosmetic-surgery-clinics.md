@@ -74,6 +74,8 @@ Because the decision is long, judge campaigns over several months. Record the so
 - Nursing and surgical training, jobs and courses
 - Procedures you do not perform
 
+**Related reading:** [Google Ads for hair transplant and hair loss clinics](/learn/google-ads-for-hair-transplant-clinics/), [Google Ads for weight management clinics: within the rules](/learn/google-ads-for-weight-management-clinics/) and [Google Ads for fertility clinics: a long, careful decision](/learn/google-ads-for-fertility-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for cosmetic surgery clinics?

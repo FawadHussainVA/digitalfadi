@@ -45,6 +45,8 @@ A Google Ads promo code is a bonus, not a strategy. Spending fast just to reach 
 
 Not every credit is a promotion. Google also issues credits for invalid traffic found after billing, shown as "Invalid activity" in your billing adjustments. [Click fraud in Google Ads](/learn/google-ads-invalid-traffic-click-fraud/) explains those.
 
+**Related reading:** [Google Ads billing: payments, invoices and charges explained](/learn/google-ads-billing/), [How much should you spend on Google Ads?](/learn/how-much-should-you-spend-on-google-ads/) and [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/).
+
 ## Frequently asked questions
 
 ### How do I get a Google Ads promo code?

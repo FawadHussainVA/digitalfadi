@@ -40,6 +40,8 @@ If you want a clear view of which HVAC keywords are costing you money and which 
 
 If you want these segments set up and measured against booked work, see how I manage [Google Ads for HVAC companies](/google-ads-for-hvac-companies/).
 
+**Related reading:** [HVAC negative keywords: stop paying for the wrong searches](/learn/hvac-negative-keywords/), [HVAC seasonal budgets for Google Ads: plan for peak demand](/learn/hvac-seasonal-budgets-google-ads/) and [Local Services Ads for HVAC: what to check before you apply](/learn/hvac-local-services-ads/).
+
 ## Frequently asked questions
 
 ### Should an HVAC company bid on "HVAC" alone?

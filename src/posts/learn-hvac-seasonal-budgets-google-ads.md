@@ -43,6 +43,8 @@ If you want help setting seasonal budgets against your actual booking data, a [f
 
 For help applying a seasonal plan to repairs and replacements, see [Google Ads management for HVAC companies](/google-ads-for-hvac-companies/).
 
+**Related reading:** [HVAC keywords for Google Ads: what to bid on and skip](/learn/hvac-keywords-google-ads/), [HVAC negative keywords: stop paying for the wrong searches](/learn/hvac-negative-keywords/) and [Local Services Ads for HVAC: what to check before you apply](/learn/hvac-local-services-ads/).
+
 ## Frequently asked questions
 
 ### Should an HVAC company change budgets across the seasons?

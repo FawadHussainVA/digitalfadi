@@ -4,7 +4,7 @@ description: "Google has removed the campaign language setting from Search campa
 date: 2026-11-10
 topic: "Strategy"
 permalink: /learn/google-ads-language-setting-update/
-order: 13
+order: 100
 ---
 
 Google has removed the campaign-level language setting from Search campaigns and from the Search portion of Performance Max. Advertisers used to choose the languages they wanted to reach, and Google limited the campaign to users it believed understood them. That manual control is gone.
@@ -41,6 +41,10 @@ In practice, the language of your ads and landing pages now does the job the set
 ## The bottom line
 
 The language setting is gone from Search, but the need to reach the right language has not. Your ads and landing pages now carry that job. Write each language properly, send it to a matching page, and track results by language so you can see what is working.
+
+**Related reading:** [Google Ads location targeting: the budget-wasting setting](/learn/google-ads-location-targeting-settings/), [How Google's AI Mode and AI Overviews change Google Ads](/learn/how-ai-mode-and-ai-overviews-change-google-ads/) and [Google Ads match types explained: broad, phrase and exact](/learn/google-ads-keyword-match-types-explained/).
+
+I offer a [free Google Ads audit](/#contact) that lists the issues in your account, and a [$100 account analysis](/google-ads-audit/) that adds the fix for every issue, delivered within 3 days.
 
 ## Frequently asked questions
 

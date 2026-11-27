@@ -82,6 +82,8 @@ Both, measured apart, is what I run for trades and service businesses. Details o
 
 If an account is already running and the leads are not turning into work, a [$100 account analysis](/google-ads-audit/) will tell you what is being counted as a lead in the first place.
 
+**Related reading:** [Local customer optimization in Google Ads: what it does](/learn/local-customer-optimization-google-ads/), [Local Services Ads for HVAC: what to check before you apply](/learn/hvac-local-services-ads/) and [Google Ads location targeting: the budget-wasting setting](/learn/google-ads-location-targeting-settings/).
+
 ## Frequently asked questions
 
 ### Should a local service business choose Local Services Ads or Google Ads?

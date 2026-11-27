@@ -64,6 +64,8 @@ Fertility enquiries are among the most sensitive health information a clinic rec
 - Free public treatment searches, where you do not provide it
 - Treatments you do not offer, such as surrogacy services, if not part of your clinic
 
+**Related reading:** [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/), [Google Ads for weight management clinics: within the rules](/learn/google-ads-for-weight-management-clinics/) and [Google Ads for cosmetic surgery clinics](/learn/google-ads-for-cosmetic-surgery-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for fertility clinics?

@@ -82,6 +82,8 @@ Then calculate cost per accepted case, and compare it with the value of the trea
 
 [Negative keywords for dental practices](/learn/dental-negative-keywords/) has a starter list.
 
+**Related reading:** [Cosmetic dentistry Google Ads: aligners, veneers, whitening](/learn/cosmetic-dentistry-google-ads/), [Dental landing pages that turn ad clicks into bookings](/learn/dental-landing-pages/) and [Google Ads for periodontists: gum specialist patients](/learn/google-ads-for-periodontists/).
+
 ## Frequently asked questions
 
 ### Are dental implant Google Ads worth it?

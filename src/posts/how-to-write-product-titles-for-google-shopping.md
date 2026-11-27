@@ -83,6 +83,8 @@ The wider picture is in [why your Google Shopping campaign is losing money](/lea
 
 Feed work is part of how I run retail accounts. See [Google Ads for e-commerce](/google-ads-for-ecommerce/), or start with a [$100 account analysis](/google-ads-audit/) that checks the feed, the tracking and the structure before anything is changed.
 
+**Related reading:** [Google Shopping feed optimisation: a practical checklist](/learn/google-shopping-feed-optimisation/), [Google Shopping sale price rules and new badges](/learn/google-shopping-sale-price-rules/) and [Break-even ROAS: the number that decides if your ads pay](/learn/break-even-roas-google-ads/).
+
 ## Frequently asked questions
 
 ### What should a Google Shopping product title include?

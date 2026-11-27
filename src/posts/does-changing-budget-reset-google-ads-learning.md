@@ -68,6 +68,8 @@ A larger budget also still behaves like a larger budget. More money lets the cam
 
 If your campaigns seem to be stuck in Learning, or have been through so many changes that nobody can say what worked, a [Google Ads audit](/google-ads-audit/) starts by checking whether the conversions the strategy learns from are real.
 
+**Related reading:** [How long does it take for Google Ads to work?](/learn/how-long-does-google-ads-take-to-work/), [Google Ads Black Friday checklist: what to set up now](/learn/google-ads-black-friday-checklist/) and [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/).
+
 ## Frequently asked questions
 
 ### Does raising my budget restart the learning period?

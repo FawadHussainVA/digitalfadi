@@ -137,6 +137,8 @@ Once every check is marked:
 
 The free [audit template (PDF)](/uploads/google-ads-audit-template.pdf) has a Top issues page and a three-stage action plan built for exactly this.
 
+**Related reading:** [Google Ads audit or ongoing management: which do you need?](/learn/google-ads-audit-or-management/), [What a Google Ads account analysis checks before any changes](/learn/what-a-google-ads-account-analysis-checks/) and [Google Ads Black Friday checklist: what to set up now](/learn/google-ads-black-friday-checklist/).
+
 ## Frequently asked questions
 
 ### How often should I audit a Google Ads account?

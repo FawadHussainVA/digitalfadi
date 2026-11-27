@@ -87,6 +87,8 @@ Starter lists only go so far. Every practice has its own patterns:
 
 The [n-gram analyser](/tools/n-gram-analyser/) groups searches by repeated words, which makes patterns much easier to spot.
 
+**Related reading:** [Cosmetic dentistry Google Ads: aligners, veneers, whitening](/learn/cosmetic-dentistry-google-ads/), [Google Ads for periodontists: gum specialist patients](/learn/google-ads-for-periodontists/) and [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/).
+
 ## Frequently asked questions
 
 ### Which negative keywords should every dental practice use?

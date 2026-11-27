@@ -81,6 +81,8 @@ If a marketing company owns the Google Ads account, you may lose the history and
 
 Any "no" is a good place to start. The [Google Ads audit checklist](/learn/google-ads-audit-checklist/) goes through 51 checks in priority order.
 
+**Related reading:** [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/), [How much do Google Ads cost for dentists?](/learn/dental-google-ads-cost/) and [Cosmetic dentistry Google Ads: aligners, veneers, whitening](/learn/cosmetic-dentistry-google-ads/).
+
 ## Frequently asked questions
 
 ### Why are my dental Google Ads not getting patients?

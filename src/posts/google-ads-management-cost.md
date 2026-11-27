@@ -75,9 +75,7 @@ I publish my prices so you can compare like with like:
 
 In every case your ad spend is paid directly to Google from your own account, which stays in your name. [Google Ads freelancer vs agency](/learn/google-ads-freelancer-vs-agency/) compares how different providers charge.
 
-**Related reading:** [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/) and [How much should you spend on Google Ads?](/learn/how-much-should-you-spend-on-google-ads/)
-
-**Related reading:** [Google Ads billing: payments, invoices and charges explained](/learn/google-ads-billing/).
+**Related reading:** [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/), [How much should you spend on Google Ads?](/learn/how-much-should-you-spend-on-google-ads/) and [Google Ads billing: payments, invoices and charges explained](/learn/google-ads-billing/).
 
 ## Frequently asked questions
 

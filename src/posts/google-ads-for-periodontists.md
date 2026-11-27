@@ -83,6 +83,8 @@ Calls and form fills are early signals. What matters is the number of consultati
 
 If the practice is new to Google Ads, start with the local specialist and main treatment campaigns, keep the budget modest, and check the search terms weekly for the first month. If the practice already advertises, the first question is whether the account knows which enquiries became accepted treatment. A [free Google Ads audit](/#contact) lists the issues in your account, and the [$100 account analysis](/google-ads-audit/) adds the solution for each one.
 
+**Related reading:** [Dental implant Google Ads: from search to accepted case](/learn/google-ads-for-dental-implants/), [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/) and [Cosmetic dentistry Google Ads: aligners, veneers, whitening](/learn/cosmetic-dentistry-google-ads/).
+
 ## Frequently asked questions
 
 ### Are Google Ads allowed for periodontists?

@@ -47,6 +47,8 @@ Google Ads can apply some recommendations automatically. Open **Recommendations*
 4. Dismiss the rest, and choose a reason, so Google learns your preferences
 5. Judge the account on leads, sales and cost per result, not the score
 
+**Related reading:** [Google Ads Editor 2.14: the new defaults to check](/learn/google-ads-editor-2-14/), [What is Quality Score in Google Ads and how to improve it](/learn/what-is-quality-score-in-google-ads/) and [Google Ads audit checklist 2026: 51 checks in priority order](/learn/google-ads-audit-checklist/).
+
 ## Frequently asked questions
 
 ### Should I accept all Google Ads recommendations?

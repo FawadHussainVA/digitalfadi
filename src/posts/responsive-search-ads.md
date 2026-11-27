@@ -59,6 +59,8 @@ Open the ad's asset details to see impressions and performance for each headline
 6. Assets such as sitelinks and calls added. [Google Ads sitelinks](/learn/google-ads-sitelinks/) explains how
 7. A landing page that matches the ad's promise
 
+**Related reading:** [Google Ads Editor 2.14: the new defaults to check](/learn/google-ads-editor-2-14/), [Performance Max asset A/B testing: test edits first](/learn/performance-max-asset-ab-testing/) and [What is Quality Score in Google Ads and how to improve it](/learn/what-is-quality-score-in-google-ads/).
+
 ## Frequently asked questions
 
 ### What are responsive search ads?

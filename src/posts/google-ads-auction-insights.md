@@ -54,6 +54,8 @@ The goal is profitable visibility, not winning every auction.
 3. Check your own impression share lost to budget and to rank
 4. Decide: raise budget, improve ad quality, adjust bids, or leave it if results are healthy
 
+**Related reading:** [Performance Max now filters brand searches: what to check](/learn/performance-max-brand-search-filtering/), [What is Quality Score in Google Ads and how to improve it](/learn/what-is-quality-score-in-google-ads/) and [Google Ads Keyword Planner: how to use it properly](/learn/google-ads-keyword-planner/).
+
 ## Frequently asked questions
 
 ### What is Google Ads auction insights?

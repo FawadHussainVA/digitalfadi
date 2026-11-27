@@ -3,7 +3,7 @@ title: "What a Google Ads account analysis checks before any changes"
 description: "A look at what a paid Google Ads account analysis covers, from conversion tracking to search terms and structure, and why it comes before changing bids."
 date: 2026-11-06
 topic: "Strategy"
-order: 13
+order: 101
 socialImage: /assets/social/audit.jpg
 socialImageAlt: "DigitalFadi · Google Ads Audit & analysis"
 ---
@@ -37,6 +37,8 @@ Finally, the adverts and the pages they point to are reviewed together. Headline
 The output is a written list of what was found, ordered by how much it is likely to matter, with the reasoning behind each point. It is an analysis, not a sales deck, and it does not change anything in your account. Any changes are a separate decision, and they are easier to judge once the foundations are known to be sound.
 
 If you want to see whether your account is ready for that kind of review, the [Google Ads audit page](/google-ads-audit/) explains how the $100 analysis works and what access it needs. For the common reasons campaigns stop converting, read [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
+
+**Related reading:** [Google Ads audit checklist 2026: 51 checks in priority order](/learn/google-ads-audit-checklist/), [What a Google Ads audit should actually check](/learn/what-a-google-ads-audit-should-check/) and [What to expect in the first 90 days of Google Ads management](/learn/first-90-days-of-google-ads-management/).
 
 ## Frequently asked questions
 

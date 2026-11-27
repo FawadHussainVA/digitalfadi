@@ -47,6 +47,8 @@ Alongside that, Deal Ends badges are no longer experimental, and Shopping ads ca
 - **Dates in promotion titles**
 - **Forgetting to remove sale prices** after the offer ends
 
+**Related reading:** [Why your Google Shopping campaign is losing money](/learn/why-your-shopping-campaign-is-losing-money/), [How to write product titles for Google Shopping](/learn/how-to-write-product-titles-for-google-shopping/) and [Break-even ROAS: the number that decides if your ads pay](/learn/break-even-roas-google-ads/).
+
 ## Frequently asked questions
 
 ### How long can a sale price run in Google Shopping?

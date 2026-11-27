@@ -66,6 +66,8 @@ The feature has been rolling out gradually, so it may not appear in every accoun
 
 [What Performance Max hides](/learn/performance-max-what-it-hides/) and [Performance Max vs Search campaigns](/learn/performance-max-vs-search-campaigns/) cover how to keep control of automated campaigns.
 
+**Related reading:** [Local Services Ads vs Google Ads: which to run](/learn/local-services-ads-vs-google-ads/), [Google Ads location targeting: the budget-wasting setting](/learn/google-ads-location-targeting-settings/) and [Google Ads for small business: a practical starting plan](/learn/google-ads-for-small-business/).
+
 ## Frequently asked questions
 
 ### What is local customer optimization in Google Ads?

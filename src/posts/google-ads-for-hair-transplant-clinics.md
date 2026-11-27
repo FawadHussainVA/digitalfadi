@@ -66,6 +66,8 @@ Patients often take months to decide, so judge campaigns over a long window. Rec
 - Hair restoration training, jobs and courses
 - Surgery abroad, if you choose not to compete for it
 
+**Related reading:** [Google Ads for cosmetic surgery clinics](/learn/google-ads-for-cosmetic-surgery-clinics/), [Google Ads for dermatology clinics: medical and cosmetic](/learn/google-ads-for-dermatology-clinics/) and [Google Ads for weight management clinics: within the rules](/learn/google-ads-for-weight-management-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for hair transplant clinics?

@@ -4,7 +4,7 @@ description: "Work backwards from what a customer is worth, not forwards from wh
 topic: "Strategy"
 date: 2026-10-16
 updated: 2026-10-24
-order: 12
+order: 99
 ---
 
 Spend enough to buy the conversions you need, at a cost per conversion the business can afford, and no less than it takes to learn something within a month or two. That is the whole answer. The useful part is turning it into a number.

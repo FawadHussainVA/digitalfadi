@@ -132,14 +132,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  /* ---------- ticker ---------- */
-  var track = document.getElementById('track');
-  if(track){
-    var chans = ['Search campaigns','Shopping campaigns','Performance Max','YouTube ads','Display','Demand Gen','Remarketing','Local Services Ads','Keyword research','Negative keywords','Merchant Center feeds','Enhanced conversions','GA4 & Tag Manager','Smart Bidding','RSA testing','Account analysis'];
-    var h = chans.map(function(c){ return '<span>'+c+' \u00B7</span>'; }).join('');
-    track.innerHTML = h + h;
-  }
-
   /* ---------- scroll progress, header, back to top ---------- */
   var prog = document.getElementById('prog'), hdr = document.getElementById('hdr'), topBtn = document.getElementById('top');
   /* Page height is measured only after first paint and when the page changes size,

@@ -71,6 +71,8 @@ Cost per first visit can look cheap while cost per returning patient tells the r
 - Free or public services you do not provide
 - Areas too far away for regular visits
 
+**Related reading:** [Google Ads for physiotherapy clinics: book more assessments](/learn/google-ads-for-physiotherapy-clinics/), [Google Ads for podiatry clinics: foot pain to booked visits](/learn/google-ads-for-podiatry-clinics/) and [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for chiropractors?

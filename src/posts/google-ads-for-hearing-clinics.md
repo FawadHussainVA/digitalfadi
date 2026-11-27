@@ -65,6 +65,8 @@ A campaign with a low cost per test but few fittings may be attracting the wrong
 - Free public services, where you do not provide them
 - Areas too far away for regular appointments
 
+**Related reading:** [Google Ads for eye clinics and optometrists](/learn/google-ads-for-eye-clinics-and-optometrists/), [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/) and [Google Ads for physiotherapy clinics: book more assessments](/learn/google-ads-for-physiotherapy-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for hearing clinics?

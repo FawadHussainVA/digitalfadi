@@ -44,6 +44,8 @@ In some countries Google adds a regulatory operating cost surcharge to ads serve
 
 Google Ads billing covers only what Google charges for ads. If someone manages your account, their fee is separate and should not be mixed into your Google invoice. [Google Ads management cost](/learn/google-ads-management-cost/) explains how management fees work.
 
+**Related reading:** [Google Ads promo code: how new advertiser credit works](/learn/google-ads-promo-code/), [How much should you spend on Google Ads?](/learn/how-much-should-you-spend-on-google-ads/) and [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/).
+
 ## Frequently asked questions
 
 ### How does Google Ads billing work?

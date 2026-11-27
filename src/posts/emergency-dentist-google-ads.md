@@ -82,6 +82,8 @@ An emergency appointment that turns into a long-term patient is worth far more t
 
 [Negative keywords for dental practices](/learn/dental-negative-keywords/) has a starter list, including emergency-specific terms.
 
+**Related reading:** [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/), [Dental landing pages that turn ad clicks into bookings](/learn/dental-landing-pages/) and [Dental Google Ads mistakes that waste your budget](/learn/dental-google-ads-mistakes/).
+
 ## Frequently asked questions
 
 ### Should emergency dentist ads run 24 hours a day?

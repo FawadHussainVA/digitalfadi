@@ -71,6 +71,8 @@ Landing pages should match the search. An emergency page needs the phone number 
 
 Record how each new client found you in the practice management system, and compare it with Google Ads. Calls and form fills are early signals; booked appointments and registered clients show whether the campaign works. [How to track new patients from Google Ads](/learn/dental-google-ads-conversion-tracking/) describes a method written for dental practices that works the same way for vet clinics.
 
+**Related reading:** [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/), [What clinics can and cannot advertise on Google Ads](/learn/healthcare-google-ads-policy-for-clinics/) and [Google Ads for dermatology clinics: medical and cosmetic](/learn/google-ads-for-dermatology-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for veterinary clinics?

@@ -45,6 +45,8 @@ If your site runs on Cloudflare or another supported network, [Google tag gatewa
 - **Sites with custom or unusual tag installations:** check and fix before January 2027
 - **Sites already using Tag Manager:** nothing changes automatically, but the optional optimisation is worth reviewing
 
+**Related reading:** [Enhanced conversions for leads: track qualified leads](/learn/google-ads-enhanced-conversions-for-leads-guide/), [How to track new patients from dental Google Ads](/learn/dental-google-ads-conversion-tracking/) and [What a Google Ads audit should actually check](/learn/what-a-google-ads-audit-should-check/).
+
 ## Frequently asked questions
 
 ### Is the Google tag being replaced by Google Tag Manager?

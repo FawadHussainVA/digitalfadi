@@ -70,6 +70,8 @@ You can also put your own visible label on a creative in your design tool before
 - **Watch performance after labelling** in the listed regions. If a labelled asset falls away, test it against one made without AI rather than removing the label
 - **Ask your agency or freelancer** whether they have used AI tools on your creative. If someone else made the assets, they are the one who knows
 
+**Related reading:** [Responsive search ads: how they work and how to set them up](/learn/responsive-search-ads/), [Google Ads Editor 2.14: the new defaults to check](/learn/google-ads-editor-2-14/) and [AI Max for Search: what it does and when to use it](/learn/ai-max-for-search/).
+
 ## Frequently asked questions
 
 ### Do I have to label AI images in Google Ads?

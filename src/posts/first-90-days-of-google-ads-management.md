@@ -74,6 +74,8 @@ What you should see: a clear trend in your main measure, an account you understa
 
 My process follows the same steps: discovery, account analysis, tracking and build, staged launch, testing and optimisation, then reporting and scaling. You get a named point of contact, a weekly note on what changed, and a monthly review call. Nothing is done to your account that you cannot see in your own dashboards, and the account stays in your name.
 
+**Related reading:** [Google Ads audit or ongoing management: which do you need?](/learn/google-ads-audit-or-management/), [10 signs you need a Google Ads expert](/learn/signs-you-need-a-google-ads-expert/) and [How to hire a Google Ads expert for account optimisation](/learn/how-to-hire-a-google-ads-expert/).
+
 ## Frequently asked questions
 
 ### What should happen in the first month of Google Ads management?

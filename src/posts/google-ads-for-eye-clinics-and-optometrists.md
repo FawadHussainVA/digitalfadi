@@ -66,6 +66,8 @@ Mixing these in one conversion count makes the cheap eye test bookings look like
 - Free services you do not provide
 - Areas too far away for routine eye tests
 
+**Related reading:** [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/), [Google Ads for hearing clinics and audiologists](/learn/google-ads-for-hearing-clinics/) and [Google Ads for dermatology clinics: medical and cosmetic](/learn/google-ads-for-dermatology-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for optometrists?

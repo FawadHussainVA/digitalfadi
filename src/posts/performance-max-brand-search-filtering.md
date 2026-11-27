@@ -50,6 +50,8 @@ In the Performance Max campaign, open the search terms insights and look for cat
 
 If brand searches drop out of Performance Max and do not appear in Search, your brand campaign is missing them, and checks 2 and 3 above are the place to start. The guide to [running Performance Max and Search together](/learn/performance-max-vs-search-campaigns/) covers how to keep the two from competing.
 
+**Related reading:** [Google Ads auction insights: how to read the report](/learn/google-ads-auction-insights/), [Google Ads Promotion mode: how to use it for a short sale](/learn/google-ads-promotion-mode-explained/) and [Google Ads location targeting: the budget-wasting setting](/learn/google-ads-location-targeting-settings/).
+
 ## Frequently asked questions
 
 ### Will Performance Max stop showing ads on my brand name completely?

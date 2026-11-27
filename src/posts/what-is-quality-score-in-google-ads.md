@@ -3,7 +3,7 @@ title: "What is Quality Score in Google Ads and how to improve it"
 description: "Quality Score rates your keywords from 1 to 10 on expected click-through rate, ad relevance and landing page experience. How to read it and raise it."
 topic: "Search"
 date: 2026-10-21
-order: 17
+order: 105
 ---
 
 Quality Score is Google's rating, from 1 to 10, of how relevant and useful your ads and landing page are for a keyword compared with other advertisers. It is built from three parts: expected click-through rate, ad relevance and landing page experience. A higher score usually means you pay less per click for the same position, which is why it matters more than its modest place in the interface suggests.

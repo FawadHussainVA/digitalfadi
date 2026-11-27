@@ -4,7 +4,7 @@ description: "Build a negative keyword list for an HVAC Google Ads account. Remo
 date: 2026-11-10
 topic: "Search"
 permalink: /learn/hvac-negative-keywords/
-order: 15
+order: 103
 ---
 
 Every HVAC account collects irrelevant clicks. Someone searching for a furnace filter size, a job application, or a how-to video is unlikely to call you for a repair, but Google will happily charge you for the click if your keyword matched. Negative keywords stop that leak.
@@ -42,6 +42,8 @@ Some accounts add so many negatives that they block legitimate traffic. A campai
 If your account has not had a search terms review in several months, that is the highest-value job to do first. A [free Google Ads audit](/google-ads-audit/) includes a search terms review, and it shows which negatives would remove the most wasted spend from an HVAC account.
 
 For help reviewing the search terms and connecting ad spend to booked jobs, see [HVAC Google Ads management](/google-ads-for-hvac-companies/).
+
+**Related reading:** [HVAC keywords for Google Ads: what to bid on and skip](/learn/hvac-keywords-google-ads/), [Local Services Ads for HVAC: what to check before you apply](/learn/hvac-local-services-ads/) and [HVAC seasonal budgets for Google Ads: plan for peak demand](/learn/hvac-seasonal-budgets-google-ads/).
 
 ## Frequently asked questions
 

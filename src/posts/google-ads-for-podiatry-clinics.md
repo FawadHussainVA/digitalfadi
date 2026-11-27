@@ -63,6 +63,8 @@ Track appointments booked and attended by treatment, and the value of procedures
 - Shoe shops and footwear searches
 - Free public services, where you do not provide them
 
+**Related reading:** [Google Ads for physiotherapy clinics: book more assessments](/learn/google-ads-for-physiotherapy-clinics/), [Google Ads for chiropractors: new patients within the rules](/learn/google-ads-for-chiropractors/) and [Google Ads for dermatology clinics: medical and cosmetic](/learn/google-ads-for-dermatology-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for podiatrists?

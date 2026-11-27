@@ -52,6 +52,8 @@ The defaults suit accounts with reliable conversion tracking, enough conversions
 
 If you are unsure, launch with AI Max off and test it later with an [experiment](/learn/google-ads-experiments-ab-testing-guide/), so you can measure the difference instead of guessing.
 
+**Related reading:** [Responsive search ads: how they work and how to set them up](/learn/responsive-search-ads/), [Performance Max asset A/B testing: test edits first](/learn/performance-max-asset-ab-testing/) and [How to write Google Ads headlines that actually get shown](/learn/how-to-write-google-ads-headlines/).
+
 ## Frequently asked questions
 
 ### What is new in Google Ads Editor 2.14?

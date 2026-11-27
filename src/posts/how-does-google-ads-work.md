@@ -53,6 +53,8 @@ Most accounts now use Smart Bidding, where Google sets bids for each auction to 
 
 Understanding how Google Ads works is the start. Results depend on targeting the right searches, blocking the wrong ones, sending people to a relevant page, and measuring real customers rather than clicks.
 
+**Related reading:** [Google Ads Keyword Planner: how to use it properly](/learn/google-ads-keyword-planner/), [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/) and [Google Ads for small business: a practical starting plan](/learn/google-ads-for-small-business/).
+
 ## Frequently asked questions
 
 ### How does Google Ads work in simple terms?

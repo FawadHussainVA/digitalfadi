@@ -4,7 +4,7 @@ description: "Manual CPC, Maximise conversions, target CPA or target ROAS? How t
 topic: "Strategy"
 date: 2026-10-21
 updated: 2026-10-24
-order: 14
+order: 102
 ---
 
 Choose the bid strategy that matches how much reliable conversion data you have and what you are trying to grow. With little or untrustworthy conversion data, keep control with Manual CPC or Maximise clicks with a bid limit. With a steady flow of genuine conversions, use Maximise conversions, then add a target CPA. If your conversions carry real revenue values, use Maximise conversion value, then add a target ROAS.
@@ -80,6 +80,8 @@ The fix is to tell Google which leads turned into customers, by importing that o
 Move to a more automated strategy when conversion tracking is verified and conversions arrive steadily. Change one campaign at a time, compare against a similar period before the change, and keep the old settings written down so you can go back.
 
 If you are not sure whether the account's conversions can be trusted, that is the first thing a [Google Ads audit](/google-ads-audit/) checks, before anything about bids.
+
+**Related reading:** [Google Ads Promotion mode: how to use it for a short sale](/learn/google-ads-promotion-mode-explained/), [Performance Max vs Search campaigns: which should you run?](/learn/performance-max-vs-search-campaigns/) and [Google Ads match types explained: broad, phrase and exact](/learn/google-ads-keyword-match-types-explained/).
 
 ## Frequently asked questions
 

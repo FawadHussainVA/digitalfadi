@@ -55,6 +55,8 @@ Track consultations booked and attended, and for cosmetic work, treatment plans 
 - Free public services, where you do not provide them
 - Searches for treatments you do not offer
 
+**Related reading:** [Google Ads for hair transplant and hair loss clinics](/learn/google-ads-for-hair-transplant-clinics/), [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/) and [Google Ads for weight management clinics: within the rules](/learn/google-ads-for-weight-management-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for dermatology clinics?

@@ -64,6 +64,8 @@ Track first sessions booked and attended, and whether clients continue. Record t
 - Medication searches
 - Locations where your clinicians are not licensed
 
+**Related reading:** [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/), [Google Ads for weight management clinics: within the rules](/learn/google-ads-for-weight-management-clinics/) and [Google Ads for physiotherapy clinics: book more assessments](/learn/google-ads-for-physiotherapy-clinics/).
+
 ## Frequently asked questions
 
 ### Do Google Ads work for therapists?

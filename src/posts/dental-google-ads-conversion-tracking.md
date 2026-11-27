@@ -80,6 +80,8 @@ Dental enquiries can include health information, so tracking needs care:
 
 If the numbers are far apart, fix tracking before changing bids or budgets.
 
+**Related reading:** [Dental Google Ads mistakes that waste your budget](/learn/dental-google-ads-mistakes/), [Dental landing pages that turn ad clicks into bookings](/learn/dental-landing-pages/) and [How much do Google Ads cost for dentists?](/learn/dental-google-ads-cost/).
+
 ## Frequently asked questions
 
 ### What should a dental practice count as a conversion?

@@ -76,6 +76,8 @@ For reference, my own prices are published: a one-time account analysis is $100,
 
 These often cost more than the difference between two management fees. [Dental Google Ads mistakes that waste your budget](/learn/dental-google-ads-mistakes/) covers the common ones.
 
+**Related reading:** [Dental PPC: how Google Ads works for dental practices](/learn/dental-ppc-guide/), [Dental PPC management: how to choose who runs your ads](/learn/dental-ppc-management/) and [Dental implant Google Ads: from search to accepted case](/learn/google-ads-for-dental-implants/).
+
 ## Frequently asked questions
 
 ### How much should a dental practice spend on Google Ads per month?

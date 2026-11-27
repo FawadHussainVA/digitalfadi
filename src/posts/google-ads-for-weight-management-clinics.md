@@ -74,6 +74,8 @@ A campaign that brings many consultations but few programme starts may be attrac
 - Nutrition courses and jobs
 - Public services you do not provide
 
+**Related reading:** [Google Ads for private medical clinics and urgent care](/learn/google-ads-for-private-medical-clinics/), [Google Ads for hair transplant and hair loss clinics](/learn/google-ads-for-hair-transplant-clinics/) and [Google Ads for dermatology clinics: medical and cosmetic](/learn/google-ads-for-dermatology-clinics/).
+
 ## Frequently asked questions
 
 ### Can weight loss clinics advertise on Google Ads?

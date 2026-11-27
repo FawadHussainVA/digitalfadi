@@ -40,6 +40,8 @@ Before you move a target, confirm that conversion tracking records the sales you
 
 You can also work through your own margin with the [free Google Ads tools](/tools/). For the wider causes of poor results, see [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
 
+**Related reading:** [Why your Google Shopping campaign is losing money](/learn/why-your-shopping-campaign-is-losing-money/), [Google Shopping feed optimisation: a practical checklist](/learn/google-shopping-feed-optimisation/) and [How to write product titles for Google Shopping](/learn/how-to-write-product-titles-for-google-shopping/).
+
 ## Frequently asked questions
 
 ### What is break-even ROAS?

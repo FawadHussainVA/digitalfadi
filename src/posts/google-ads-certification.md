@@ -68,6 +68,8 @@ Instead of relying on Google Ads certification alone, ask:
 
 [How to hire a Google Ads expert](/learn/how-to-hire-a-google-ads-expert/) has the full list, and [10 signs you need a Google Ads expert](/learn/signs-you-need-a-google-ads-expert/) helps you decide when to hire.
 
+**Related reading:** [Google Ads freelancer vs agency: which should you hire?](/learn/google-ads-freelancer-vs-agency/), [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/) and [Run Google Ads yourself or hire help?](/learn/should-you-manage-google-ads-yourself/).
+
 ## Frequently asked questions
 
 ### Is Google Ads certification free?

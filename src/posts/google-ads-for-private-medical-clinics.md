@@ -69,6 +69,8 @@ Track appointments booked and attended, by service, from your booking system. Fo
 - Medicine and pharmacy searches
 - Areas too far away for the service being advertised
 
+**Related reading:** [Google Ads for dermatology clinics: medical and cosmetic](/learn/google-ads-for-dermatology-clinics/), [Google Ads for weight management clinics: within the rules](/learn/google-ads-for-weight-management-clinics/) and [Google Ads for veterinary clinics and animal hospitals](/learn/google-ads-for-veterinary-clinics/).
+
 ## Frequently asked questions
 
 ### Can private medical clinics advertise on Google?

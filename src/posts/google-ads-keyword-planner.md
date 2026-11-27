@@ -48,6 +48,8 @@ Sign in to Google Ads, open **Tools**, then **Planning**, then **Keyword Planner
 
 The best keyword data comes from your own account once ads run. The search terms report shows what people actually searched before clicking, which is more reliable than any planning tool. Use Google Ads Keyword Planner to start, then let real search terms guide your changes. [Google Ads auction insights](/learn/google-ads-auction-insights/) shows who you compete with once campaigns are live.
 
+**Related reading:** [What is Quality Score in Google Ads and how to improve it](/learn/what-is-quality-score-in-google-ads/), [How to write Google Ads headlines that actually get shown](/learn/how-to-write-google-ads-headlines/) and [Performance Max vs Search campaigns: which should you run?](/learn/performance-max-vs-search-campaigns/).
+
 ## Frequently asked questions
 
 ### Is Google Ads Keyword Planner free?
