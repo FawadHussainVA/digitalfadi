@@ -77,6 +77,8 @@ In every case your ad spend is paid directly to Google from your own account, wh
 
 **Related reading:** [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/) and [How much should you spend on Google Ads?](/learn/how-much-should-you-spend-on-google-ads/)
 
+**Related reading:** [Google Ads billing: payments, invoices and charges explained](/learn/google-ads-billing/).
+
 ## Frequently asked questions
 
 ### How much does Google Ads management cost?

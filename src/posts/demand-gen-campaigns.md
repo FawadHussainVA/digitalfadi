@@ -66,7 +66,7 @@ Demand Gen campaigns can bid for clicks, conversions, a target cost per action, 
 - Compare cost per lead or sale across the whole account before and after, not just inside the campaign
 - Allow several weeks before judging
 
-**Related reading:** [YouTube ads cost: how pricing works and what to budget](/learn/youtube-ads-cost/).
+**Related reading:** [YouTube ads cost: how pricing works and what to budget](/learn/youtube-ads-cost/) and [Google Ads remarketing: how to win back visitors](/learn/google-ads-remarketing/).
 
 ## Frequently asked questions
 

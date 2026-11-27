@@ -73,7 +73,7 @@ If you already spend on Google Ads, start with an [account analysis](/#pricing) 
 
 If you have not started yet, work out what a customer is worth to you first. That number decides whether this channel makes sense, what you can afford to bid, and what success looks like before any money is spent. [Send me the account](/#contact) and I will tell you which of those applies.
 
-**Related reading:** [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/).
+**Related reading:** [How long does it take for Google Ads to start showing?](/learn/how-long-for-google-ads-to-start-showing/) and [How does Google Ads work? The auction in plain English](/learn/how-does-google-ads-work/).
 
 ## Frequently asked questions
 

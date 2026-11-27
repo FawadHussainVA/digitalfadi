@@ -81,7 +81,7 @@ What matters is cost per lead or cost per sale. If cost per click rose and cost 
 
 A [Google Ads audit](/google-ads-audit/) separates the two and tells you which one you have. If the account is not producing enquiries at all, start with [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/).
 
-**Related reading:** [Google Ads auction insights: how to read the report](/learn/google-ads-auction-insights/) and [Click fraud in Google Ads: the new invalid traffic card](/learn/google-ads-invalid-traffic-click-fraud/).
+**Related reading:** [Google Ads auction insights: how to read the report](/learn/google-ads-auction-insights/), [Click fraud in Google Ads: the new invalid traffic card](/learn/google-ads-invalid-traffic-click-fraud/) and [How does Google Ads work? The auction in plain English](/learn/how-does-google-ads-work/).
 
 ## Frequently asked questions
 

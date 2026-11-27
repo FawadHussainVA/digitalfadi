@@ -54,6 +54,8 @@ Then wait for the review. If the appeal is rejected, read the response, fix anyt
 - Avoid claims you cannot prove, especially in health, finance and legal advertising. [What clinics can and cannot advertise on Google Ads](/learn/healthcare-google-ads-policy-for-clinics/) covers health rules
 - Pay invoices on time and keep a working backup payment method
 
+**Related reading:** [Google Ads billing: payments, invoices and charges explained](/learn/google-ads-billing/).
+
 ## Frequently asked questions
 
 ### Why was my Google Ads account suspended?

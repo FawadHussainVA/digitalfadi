@@ -49,6 +49,8 @@ Many of these have ordinary causes too, such as broad targeting or a landing pag
 - **Protect forms** with spam filtering, so fake submissions do not count as conversions and mislead bidding
 - **Track real outcomes,** so automated bidding learns from genuine leads rather than any form fill
 
+**Related reading:** [Google Ads billing: payments, invoices and charges explained](/learn/google-ads-billing/) and [Google Ads promo code: how new advertiser credit works](/learn/google-ads-promo-code/).
+
 ## Frequently asked questions
 
 ### Do I pay for click fraud in Google Ads?

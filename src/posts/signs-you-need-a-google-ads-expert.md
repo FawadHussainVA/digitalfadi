@@ -58,6 +58,8 @@ Running an account properly means regular search term reviews, tests, budget cha
 
 [Run Google Ads yourself or hire help?](/learn/should-you-manage-google-ads-yourself/) helps you decide what kind of help fits.
 
+**Related reading:** [Google Ads recommendations: what to accept and skip](/learn/google-ads-recommendations-optimization-score/).
+
 ## Frequently asked questions
 
 ### When should I hire a Google Ads expert?

@@ -60,7 +60,7 @@ For the first months, spend half an hour a week on:
 
 Google Ads for small business can be run in-house if the account stays simple and someone gives it regular time. Bring in help when results stall, the budget grows, or the hours compete with running the business. [Run Google Ads yourself or hire help?](/learn/should-you-manage-google-ads-yourself/) compares the options, and [Google Ads management cost](/learn/google-ads-management-cost/) explains typical pricing.
 
-**Related reading:** [YouTube ads cost: how pricing works and what to budget](/learn/youtube-ads-cost/).
+**Related reading:** [YouTube ads cost: how pricing works and what to budget](/learn/youtube-ads-cost/), [How does Google Ads work? The auction in plain English](/learn/how-does-google-ads-work/) and [Google Ads promo code: how new advertiser credit works](/learn/google-ads-promo-code/).
 
 ## Frequently asked questions
 

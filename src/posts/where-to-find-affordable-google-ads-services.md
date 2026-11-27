@@ -75,7 +75,7 @@ Compare like with like. Ask what is included each month, who will actually do th
 - **Long contracts with no way out.** A confident provider does not need to lock you in
 - **Guaranteed results before seeing your account.** Nobody can promise outcomes without data
 
-**Related reading:** [Google Ads management cost: flat fee vs % of ad spend](/learn/google-ads-management-cost/) and [Run Google Ads yourself or hire help?](/learn/should-you-manage-google-ads-yourself/).
+**Related reading:** [Google Ads management cost: flat fee vs % of ad spend](/learn/google-ads-management-cost/), [Run Google Ads yourself or hire help?](/learn/should-you-manage-google-ads-yourself/) and [Google Ads certification: what it proves and what it doesn't](/learn/google-ads-certification/).
 
 ## Frequently asked questions
 

@@ -131,7 +131,7 @@ A simple manual process is better than pretending every form enquiry has equal v
 
 For broader campaign decisions, see [how to choose a Google Ads bidding strategy](/learn/which-google-ads-bid-strategy-should-you-use/) and [how channel prioritisation and budget allocation work](/learn/google-ads-channel-prioritisation-budget-allocation/).
 
-**Related reading:** [Google tag gateway: what it is and should you use it?](/learn/google-tag-gateway-explained/).
+**Related reading:** [Google tag gateway: what it is and should you use it?](/learn/google-tag-gateway-explained/) and [Google Ads lead form assets: leads without a landing page](/learn/google-ads-lead-form-assets/).
 
 ## Frequently asked questions
 

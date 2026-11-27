@@ -63,6 +63,8 @@ If the analysis shows a handful of fixes, you may not need management at all. If
 - **Your goals:** the services, products or areas you want more of
 - **Recent changes:** website updates, new campaigns, or a provider change
 
+**Related reading:** [Google Ads certification: what it proves and what it doesn't](/learn/google-ads-certification/).
+
 ## Frequently asked questions
 
 ### What is the difference between a Google Ads audit and management?

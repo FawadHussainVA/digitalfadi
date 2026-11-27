@@ -77,6 +77,8 @@ Sort the keywords by cost, then work down the list fixing the components on the 
 
 Quality Score is a diagnosis, not a goal. Read the three components, fix the weakest one on the keywords that spend the most, and the lower cost per click follows. A [Google Ads audit](/google-ads-audit/) includes this review alongside tracking and search terms, so the fixes go where the budget actually is.
 
+**Related reading:** [How does Google Ads work? The auction in plain English](/learn/how-does-google-ads-work/).
+
 ## Frequently asked questions
 
 ### What is a good Quality Score?

@@ -72,7 +72,7 @@ Whoever you are considering, ask:
 - Reports full of clicks and impressions, with no link to enquiries or sales
 - Nobody can explain what changed last month and why
 
-**Related reading:** [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/), [Dental PPC management: how to choose who runs your ads](/learn/dental-ppc-management/), [Google Ads management cost: flat fee vs % of ad spend](/learn/google-ads-management-cost/) and [Google Ads audit or ongoing management: which do you need?](/learn/google-ads-audit-or-management/).
+**Related reading:** [Where to find affordable Google Ads service providers](/learn/where-to-find-affordable-google-ads-services/), [Dental PPC management: how to choose who runs your ads](/learn/dental-ppc-management/), [Google Ads management cost: flat fee vs % of ad spend](/learn/google-ads-management-cost/), [Google Ads audit or ongoing management: which do you need?](/learn/google-ads-audit-or-management/) and [Google Ads certification: what it proves and what it doesn't](/learn/google-ads-certification/).
 
 ## Frequently asked questions
 

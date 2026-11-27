@@ -76,6 +76,8 @@ For Performance Max, display ads, sitelinks and callouts, the [character limits 
 
 Good headlines also depend on the search behind them. If ads are showing for the wrong searches, the copy cannot fix it, which is where [negative keywords](/learn/how-to-find-negative-keywords/) come in. And if click-through rate is fine but cost per click keeps climbing, [why your Google Ads cost per click went up](/learn/why-your-cost-per-click-went-up/) covers the Quality Score side. For a full review of ads, keywords and tracking together, see the [Google Ads audit](/google-ads-audit/).
 
+**Related reading:** [Responsive search ads: how they work and how to set them up](/learn/responsive-search-ads/) and [Google Ads sitelinks: how to set them up and what to link](/learn/google-ads-sitelinks/).
+
 ## Frequently asked questions
 
 ### How many headlines should a responsive search ad have?

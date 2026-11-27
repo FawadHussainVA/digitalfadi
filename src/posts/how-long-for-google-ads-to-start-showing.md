@@ -57,6 +57,8 @@ Judge the first week on whether ads are showing and clicks are arriving, not on 
 
 If all of these are fine and ads still do not show, an account review can find the cause quickly. The [Google Ads audit checklist](/learn/google-ads-audit-checklist/) lists the settings to check, and the [free Google Ads audit](/#contact) lists the issues in your account.
 
+**Related reading:** [How does Google Ads work? The auction in plain English](/learn/how-does-google-ads-work/).
+
 ## Frequently asked questions
 
 ### Why are my Google Ads approved but not showing?

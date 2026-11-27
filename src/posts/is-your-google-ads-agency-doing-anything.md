@@ -77,7 +77,7 @@ It is a $100 fee and no retainer attached. If the account is well run I will say
 
 If you are earlier than that and simply cannot see why spend is not producing enquiries, [why your Google Ads are not converting](/learn/why-are-my-google-ads-not-converting/) works through the usual causes in order.
 
-**Related reading:** [Calls from Google Ads strategists: should you trust them?](/learn/google-ads-strategist-calls-should-you-trust-them/), [Dental PPC management: how to choose who runs your ads](/learn/dental-ppc-management/), [What to expect in the first 90 days of Google Ads management](/learn/first-90-days-of-google-ads-management/) and [10 signs you need a Google Ads expert](/learn/signs-you-need-a-google-ads-expert/).
+**Related reading:** [Calls from Google Ads strategists: should you trust them?](/learn/google-ads-strategist-calls-should-you-trust-them/), [Dental PPC management: how to choose who runs your ads](/learn/dental-ppc-management/), [What to expect in the first 90 days of Google Ads management](/learn/first-90-days-of-google-ads-management/), [10 signs you need a Google Ads expert](/learn/signs-you-need-a-google-ads-expert/) and [Google Ads recommendations: what to accept and skip](/learn/google-ads-recommendations-optimization-score/).
 
 ## Frequently asked questions
 

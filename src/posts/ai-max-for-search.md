@@ -59,6 +59,8 @@ This guide explains each part of AI Max for Search, the controls you keep, and w
 
 [Google Ads match types explained](/learn/google-ads-keyword-match-types-explained/) covers broad match, which search term matching builds on, and [how AI Mode and AI Overviews change Google Ads](/learn/how-ai-mode-and-ai-overviews-change-google-ads/) explains why broader matching matters for ads in AI answers.
 
+**Related reading:** [Responsive search ads: how they work and how to set them up](/learn/responsive-search-ads/).
+
 ## Frequently asked questions
 
 ### What is AI Max for Search?
